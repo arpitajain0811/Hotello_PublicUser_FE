@@ -1,0 +1,9 @@
+.App{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    height:100%;
+    background-image: url("./group-25.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
