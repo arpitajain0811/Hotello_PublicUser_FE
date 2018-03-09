@@ -21,7 +21,7 @@ const CalcHaversineDistance = (lat1, lat2, long1, long2) => {
 const filterHotels = (center, radius, allHotels) => {
   const centerLat = center.latitude;
   const centerLon = center.longitude;
-  allHotels.filter((hotel) => {
+  const filtered = allHotels.filter((hotel) => {
     const hotelLat = Number(hotel.latitude);
     const hotelLon = Number(hotel.longitude);
     const distance = Math.floor(CalcHaversineDistance(centerLat, hotelLat, centerLon, hotelLon));
@@ -29,7 +29,9 @@ const filterHotels = (center, radius, allHotels) => {
 
     return false;
   });
+  return filtered;
 };
+
 
 module.exports = filterHotels;
 
