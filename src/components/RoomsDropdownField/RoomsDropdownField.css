@@ -1,0 +1,65 @@
+.RoomsDropdownField{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding:2%;
+}
+.RemoveButton button{
+    border:0;
+    outline: none;
+    font-size: 12px;
+    color:#9b9b9b;
+}
+.RemoveButtonDisabled{
+    display: none;
+    outline: none;
+}
+.ChildrenInputBox{
+    border: 1px solid #e0e0e0;
+    outline: none;
+}
+.AdultsInputBox{
+    border: 1px solid #e0e0e0;
+}
+select{
+    background: #fff !important;
+    border:0;
+    outline: none;
+}
+.RoomLabel{
+    font-size: 12px;
+}
+.RoomsDropdownButtons{
+    display: flex;
+    justify-content: space-around;
+    padding:2%;
+}
+.AddRoomButton{
+    padding: 2%;
+    flex-basis: 50%;
+    margin:1%;
+    background-color: white;
+    border: none;
+    border-radius: .2rem;
+    box-shadow: 0 0.1rem 0.2rem 0 rgba(0,0,0,.16);
+    font-weight: 500;
+    outline: none;
+}
+.ConfirmRoomsButton{
+    padding: 2%;
+    flex-basis: 50%;
+    margin:1%;
+    background-color: white;
+    border: none;
+    border-radius: .2rem;
+    box-shadow: 0 0.1rem 0.2rem 0 rgba(0,0,0,.16);
+    font-weight: 500;
+    outline: none;
+}
+.Room1Label{
+    font-size: 12px;
+    color:#9b9b9b;
+}
+.Room1LabelDisabled{
+    display: none;
+}

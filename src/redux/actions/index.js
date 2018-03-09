@@ -10,3 +10,9 @@ export const setCheckOutDate = date => ({
     date,
   },
 });
+export const setSearchCityText = text => ({
+  type: 'setSearchCityText',
+  payload: {
+    text,
+  },
+});

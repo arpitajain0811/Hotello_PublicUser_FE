@@ -4,8 +4,10 @@ import DatePicker from 'react-datepicker';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import 'react-datepicker/dist/react-datepicker.css';
-import { setCheckInDate, setCheckOutDate } from '../../redux/actions';
+import { setCheckInDate, setCheckOutDate, setSearchCityText } from '../../redux/actions';
 import './LandingPageBody.css';
+import RoomsDropDown from '../RoomsDropDown';
+// import RoomsDropdownField from '../RoomsDropdownField';
 
 class LandingPageBody extends React.Component {
   render() {
@@ -19,7 +21,7 @@ class LandingPageBody extends React.Component {
           </div>
           <div className="LandingPageSearchBox">
             <div className="SearchByBox">
-              <input className="SearchByTextInput" type="text" placeholder="Search Hotels by City" />
+              <input className="SearchByTextInput" value={this.props.city} type="text" placeholder="Search Hotels by City" onChange={text => this.props.saveSearchCityText(text)} />
             </div>
             <div className="CheckInOutDates">
               <div className="CheckInPicker">
@@ -39,7 +41,7 @@ class LandingPageBody extends React.Component {
               </div>
             </div>
             <div className="RoomPeopleSelection">
-              {/* <RoomsDropDown /> */}
+              <RoomsDropDown showDropdownBlock={() => this.showDropdownBlock} />
             </div>
             <div className="LandingPageButtonContainer">
               <button className="LandingPageSearchButton">Search</button>
@@ -58,17 +60,21 @@ const mapDispatchToProps = dispatch => ({
   changeCheckoutDate: (date) => {
     dispatch(setCheckOutDate(date));
   },
+  saveSearchCityText: (text) => {
+    dispatch(setSearchCityText(text));
+  },
 });
 const mapStateToProps = state => ({
   checkInDate: state.searchOptions.checkInDate,
   checkOutDate: state.searchOptions.checkOutDate,
-
+  city: state.searchOptions.city,
 });
 export default connect(mapStateToProps, mapDispatchToProps)(LandingPageBody);
 LandingPageBody.propTypes = {
-  checkInDate: PropTypes.string.isRequired,
-  checkOutDate: PropTypes.string.isRequired,
+  checkInDate: PropTypes.objectOf.isRequired,
+  checkOutDate: PropTypes.objectOf.isRequired,
   changeCheckinDate: PropTypes.func.isRequired,
   changeCheckoutDate: PropTypes.func.isRequired,
+  city: PropTypes.string.isRequired,
 };
 

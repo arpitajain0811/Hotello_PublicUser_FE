@@ -1,0 +1,29 @@
+.DropdownIcon{
+    height:100%;
+    width:10%;
+}
+.RoomsDropdown{
+    display: flex;
+    justify-content: space-between;
+     flex-direction: column;
+     width:100%;
+     padding:0;
+     margin:0;
+}
+.DropDownBlock{
+    background-color: white;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    margin-top:3.7%;
+    margin-left:-1.5%;
+    width: 30%;
+}
+.DropDownGone{
+    display: none;
+}
+.test{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
