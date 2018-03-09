@@ -12,7 +12,12 @@ export const setCheckOutDate = date => ({
 });
 
 export const storeAllHotels = allHotels => ({
-  type: 'storeAllHotels',
+  type: 'STORE_ALL_HOTELS',
   payload: allHotels,
+});
+
+export const storeFilteredHotels = filteredHotels => ({
+  type: 'STORE_FILTERED_HOTELS',
+  payload: filteredHotels,
 });
 
