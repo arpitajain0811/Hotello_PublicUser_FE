@@ -1,7 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import DatePicker from 'react-datepicker';
+import { connect } from 'react-redux';
 import moment from 'moment';
 import 'react-datepicker/dist/react-datepicker.css';
+import { setCheckInDate, setCheckOutDate } from '../../redux/actions';
 import './LandingPageBody.css';
 
 class LandingPageBody extends React.Component {
@@ -16,12 +19,13 @@ class LandingPageBody extends React.Component {
           </div>
           <div className="LandingPageSearchBox">
             <div className="SearchByBox">
-              <input className="SearchByTextInput" type="text" placeholder="Search by City, Locality or Hotel Name" />
+              <input className="SearchByTextInput" type="text" placeholder="Search Hotels by City" />
             </div>
             <div className="CheckInOutDates">
               <div className="CheckInPicker">
                 <DatePicker
-                  selected={moment()}
+                  selected={moment(this.props.checkInDate)}
+                  onChange={date => this.props.changeCheckinDate(date)}
                 />
               </div>
               <div className="Arrow">
@@ -29,7 +33,8 @@ class LandingPageBody extends React.Component {
               </div>
               <div className="CheckOutPicker">
                 <DatePicker
-                  selected={moment()}
+                  selected={moment(this.props.checkOutDate)}
+                  onChange={date => this.props.changeCheckoutDate(date)}
                 />
               </div>
             </div>
@@ -46,4 +51,24 @@ class LandingPageBody extends React.Component {
     );
   }
 }
-export default LandingPageBody;
+const mapDispatchToProps = dispatch => ({
+  changeCheckinDate: (date) => {
+    dispatch(setCheckInDate(date));
+  },
+  changeCheckoutDate: (date) => {
+    dispatch(setCheckOutDate(date));
+  },
+});
+const mapStateToProps = state => ({
+  checkInDate: state.searchOptions.checkInDate,
+  checkOutDate: state.searchOptions.checkOutDate,
+
+});
+export default connect(mapStateToProps, mapDispatchToProps)(LandingPageBody);
+LandingPageBody.propTypes = {
+  checkInDate: PropTypes.string.isRequired,
+  checkOutDate: PropTypes.string.isRequired,
+  changeCheckinDate: PropTypes.func.isRequired,
+  changeCheckoutDate: PropTypes.func.isRequired,
+};
+

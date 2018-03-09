@@ -2,7 +2,7 @@ import React from 'react';
 
 const RoomsDropdown = () => (
   <div className="RoomsDropdown">
-      {DropDownContainer}
-    </div>
+    {/* {DropDownContainer} */}
+  </div>
 );
 module.exports = RoomsDropdown;

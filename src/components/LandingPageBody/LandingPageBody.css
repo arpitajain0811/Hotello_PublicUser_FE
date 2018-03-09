@@ -82,6 +82,7 @@
     align-items: center;
     width:30%;
     border-right: 1px solid rgba(0, 0, 0, 0.24);
+    margin:1%;
 }
 .ArrowImg{
     width:60%;
@@ -100,6 +101,7 @@
 input{
     border:0;
     width:90%;
+    outline: none;
 }
 .CheckInPicker{
    width:30%;
@@ -107,6 +109,7 @@ input{
 }
 .CheckOutPicker{
     width:30%;
+    margin-left:8%;
  }
  .RoomPeopleSelection{
      width:25%;
