@@ -50,7 +50,11 @@ class LandingPage extends React.Component {
 
     return (
       <div>
-        <ReactGoogleMaps isMarkerShown updateFilteredHotels={this.updateFilteredHotels} allHotels={this.props.allHotels} />
+        <ReactGoogleMaps
+          isMarkerShown
+          updateFilteredHotels={this.updateFilteredHotels}
+          allHotels={this.props.allHotels}
+        />
       </div>
     );
   }
@@ -72,13 +76,11 @@ const mapStateToProps = state => ({
 LandingPage.defaultProps = {
   allHotels: [],
   saveAllHotels: () => {},
-  filteredHotels: [],
   saveFilteredHotels: () => {},
 };
 LandingPage.propTypes = {
   allHotels: PropTypes.arrayOf(Object),
   saveAllHotels: PropTypes.func,
-  filteredHotels: PropTypes.arrayOf(Object),
   saveFilteredHotels: PropTypes.func,
 };
 export default connect(mapStateToProps, mapDispatchToProps)(LandingPage);

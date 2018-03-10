@@ -83,7 +83,10 @@ const MyMapComponent = compose(
 )((props) => {
   const hotelMarkers = [];
   props.allHotels.forEach((hotel) => {
-    const hotelMarker = <Marker key={hotel.hotel_id} position={{ lat: Number(hotel.latitude), lng: Number(hotel.longitude) }} />;
+    const hotelMarker = (<Marker
+      key={hotel.hotel_id}
+      position={{ lat: Number(hotel.latitude), lng: Number(hotel.longitude) }}
+    />);
     hotelMarkers.push(hotelMarker);
   });
   return (
