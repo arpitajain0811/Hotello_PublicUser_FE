@@ -7,7 +7,32 @@ import {
   Marker,
   Circle,
 } from 'react-google-maps';
-import constants from '../constants.json';
+import constants from '../../constants.json';
+
+const latLngArr = [
+  {
+    lng: 72.871440,
+    lat: 19.111620,
+  },
+  {
+    lng: 72.836379,
+    lat: 19.067639,
+  },
+  {
+    lng: 72.898700,
+    lat: 19.134700,
+  },
+  {
+    lat: 18.927713,
+    lng: 72.820626,
+  },
+];
+
+const rows = [];
+rows.push(<Marker position={latLngArr[0]} />);
+rows.push(<Marker position={latLngArr[1]} />);
+rows.push(<Marker position={latLngArr[2]} />);
+rows.push(<Marker position={latLngArr[3]} />);
 
 const MyMapComponent = compose(
   withProps({
@@ -18,7 +43,7 @@ const MyMapComponent = compose(
     mapElement: <div style={{ height: '100%' }} />,
   }),
   withState('radius', 'changeRadius', 2000),
-  withState('center', 'onCenterChange', { lat: 12.9716, lng: 77.5946 }),
+  withState('center', 'onCenterChange', { lat: 19.0760, lng: 72.8777 }),
   withState('zoom', 'onZoomChange', 14),
   withHandlers(() => {
     const refs = {
@@ -66,6 +91,7 @@ const MyMapComponent = compose(
       radius={props.radius}
     />
     {props.isMarkerShown && <Marker position={props.center} />}
+    {rows}
   </GoogleMap>
 ));
 
