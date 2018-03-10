@@ -45,7 +45,7 @@ const MyMapComponent = compose(
   withState('radius', 'changeRadius', 2000),
   withState('center', 'onCenterChange', { lat: 19.0760, lng: 72.8777 }),
   withState('zoom', 'onZoomChange', 14),
-  withHandlers(() => {
+  withHandlers((props) => {
     const refs = {
       map: undefined,
     };
@@ -56,11 +56,12 @@ const MyMapComponent = compose(
       },
       onCenterChanged: ({ onCenterChange }) => () => {
         onCenterChange(refs.map.getCenter());
+        const newCenter = refs.map.getCenter();
+        props.updateFilteredHotels(newCenter, props.radius);
       },
       onZoomChanged: ({ onZoomChange, changeRadius }) => () => {
         onZoomChange(refs.map.getZoom());
         const zoom = (refs.map.getZoom());
-        // alert(zoom);
         let offset = 0;
         if (zoom > 0 && zoom < 15) {
           offset = 15;
@@ -69,30 +70,38 @@ const MyMapComponent = compose(
         } else if (zoom >= 17 && zoom < 20) {
           offset = 20;
         }
-        // const x = offset-zoom;
-        //   const radius = 5*(x−1)*(x-1)-5
 
-        changeRadius((offset - zoom) * (1 / zoom) * (10000));
+        const newRadius = (offset - zoom) * (1 / zoom) * (10000);
+
+        changeRadius(newRadius);
+        props.updateFilteredHotels(props.center, newRadius);
       },
     };
   }),
   withScriptjs,
   withGoogleMap,
-)(props => (
-  <GoogleMap
-    defaultZoom={14}
-    ref={props.onMapMounted}
-    defaultCenter={props.center}
-    onCenterChanged={props.onCenterChanged}
-    onZoomChanged={props.onZoomChanged}
-  >
-    <Circle
-      center={props.center}
-      radius={props.radius}
-    />
-    {props.isMarkerShown && <Marker position={props.center} />}
-    {rows}
-  </GoogleMap>
-));
+)((props) => {
+  const hotelMarkers = [];
+  props.allHotels.forEach((hotel) => {
+    const hotelMarker = <Marker key={hotel.hotel_id} position={{ lat: Number(hotel.latitude), lng: Number(hotel.longitude) }} />;
+    hotelMarkers.push(hotelMarker);
+  });
+  return (
+    <GoogleMap
+      defaultZoom={14}
+      ref={props.onMapMounted}
+      defaultCenter={props.center}
+      onCenterChanged={props.onCenterChanged}
+      onZoomChanged={props.onZoomChanged}
+    >
+      <Circle
+        center={props.center}
+        radius={props.radius}
+      />
+      {props.isMarkerShown && <Marker position={props.center} />}
+      {hotelMarkers}
+    </GoogleMap>
+  );
+});
 
 export default MyMapComponent;
