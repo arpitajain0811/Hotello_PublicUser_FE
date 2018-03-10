@@ -24,7 +24,7 @@ class LandingPage extends React.Component {
           ADT: 1,
         },
       ],
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MjA3MDUzMjAsImVtYWlsIjoiYWRtaW5AaG90ZWxsby5jb20iLCJpYXQiOjE1MjA3MDE3MjB9.Smle6pVDSWvmtNCaoCEgChL4sJ5akT9XECw3Hl_kgfY',
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MjA3MDkxMjksImVtYWlsIjoiYWRtaW5AaG90ZWxsby5jb20iLCJpYXQiOjE1MjA3MDU1Mjl9.zKBQ9UpntKewEHf-zDYA80NT8w4tr4yA4wp6TOiIbF0',
     )
       .then((response) => {
         this.props.saveAllHotels(response.hotelResultSet);

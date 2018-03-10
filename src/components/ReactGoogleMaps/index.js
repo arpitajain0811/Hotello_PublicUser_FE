@@ -79,14 +79,16 @@ const MyMapComponent = compose(
         position={{ lat: Number(hotel.latitude), lng: Number(hotel.longitude) }}
         mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
       >
-        <div className="OverlayView-content">
-          <div
-            className={hotel.stars <= 2 ? 'OverlayView-stars-red' : (((hotel.stars > 2) && (hotel.stars < 4)) ? 'OverlayView-stars-orange' : 'OverlayView-stars-green')}
-          >
-            {hotel.stars} &#9733;
-          </div>
-          <div className="OverlayView-price">
+        <div>
+          <div className="OverlayView-content">
+            <div
+              className={hotel.stars <= 2 ? 'OverlayView-stars-red' : (((hotel.stars > 2) && (hotel.stars < 4)) ? 'OverlayView-stars-orange' : 'OverlayView-stars-green')}
+            >
+              {hotel.stars} &#9733;
+            </div>
+            <div className="OverlayView-price">
              &#8377; {Math.round(Number(hotel.min_rate.amount * 65) * 100) / 100}
+            </div>
           </div>
         </div>
       </OverlayView>

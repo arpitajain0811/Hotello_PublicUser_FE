@@ -1,8 +1,10 @@
-.Maps-OverlayView {
+.OverlayView-outer {
+    padding: 10px;
 }
 
 .OverlayView-content {
     display: flex;
+    position: relative;
     background: white;
     flex-direction: row;
     justify-content: space-between;
@@ -12,8 +14,10 @@
     z-index: -20;
 }
 
-.OverlayView-content:after {
-    z-index: 20 ! important;
+.OverlayView-content:hover {
+    height: 40px;
+    width: 110px;
+    z-index: 30;
 }
 
 .OverlayView-stars-green {
@@ -27,6 +31,10 @@
     justify-content: space-around;
 }
 
+.OverlayView-stars-green:hover {
+    z-index: 30;
+}
+
 .OverlayView-stars-red {
     display: flex;
     background: rgb(169, 50, 50);
@@ -36,6 +44,10 @@
     height: 100%;
     flex-direction: column;
     justify-content: space-around;
+}
+
+.OverlayView-stars-red:hover {
+    z-index: 30;
 }
 
 .OverlayView-stars-orange {
@@ -49,11 +61,20 @@
     justify-content: space-around;
 }
 
+.OverlayView-stars-orange:hover {
+    z-index: 30;
+}
+
 .OverlayView-price {
     border: 1px solid lightgray;
     display: flex;
+    text-align: center;
     flex-direction: column;
     justify-content: space-around;
     width: 60%;
     height: 100%;
+}
+
+.OverlayView-stars-green:hover {
+    z-index: 30;
 }
