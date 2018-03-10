@@ -10,6 +10,38 @@ export const setCheckOutDate = date => ({
     date,
   },
 });
+export const setSearchCityText = text => ({
+  type: 'setSearchCityText',
+  payload: {
+    text,
+  },
+});
+export const changeAdultsInRoom = (value, id) => ({
+  type: 'changeAdultsInRoom',
+  payload: {
+    value,
+    id,
+  },
+});
+export const changeChildrenInRoom = (value, id) => ({
+  type: 'changeChildrenInRoom',
+  payload: {
+    value,
+    id,
+  },
+});
+export const removeRoom = id => ({
+  type: 'removeRoom',
+  payload: {
+    id,
+  },
+});
+export const addRoom = () => ({
+  type: 'addRoom',
+});
+export const confirmRooms = () => ({
+  type: 'confirmRooms',
+});
 
 export const storeAllHotels = allHotels => ({
   type: 'STORE_ALL_HOTELS',
@@ -20,4 +52,3 @@ export const storeFilteredHotels = filteredHotels => ({
   type: 'STORE_FILTERED_HOTELS',
   payload: filteredHotels,
 });
-
