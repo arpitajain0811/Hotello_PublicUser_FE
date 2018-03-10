@@ -9,30 +9,6 @@ import {
 } from 'react-google-maps';
 import constants from '../../constants.json';
 
-const latLngArr = [
-  {
-    lng: 72.871440,
-    lat: 19.111620,
-  },
-  {
-    lng: 72.836379,
-    lat: 19.067639,
-  },
-  {
-    lng: 72.898700,
-    lat: 19.134700,
-  },
-  {
-    lat: 18.927713,
-    lng: 72.820626,
-  },
-];
-
-const rows = [];
-rows.push(<Marker position={latLngArr[0]} />);
-rows.push(<Marker position={latLngArr[1]} />);
-rows.push(<Marker position={latLngArr[2]} />);
-rows.push(<Marker position={latLngArr[3]} />);
 
 const MyMapComponent = compose(
   withProps({
@@ -72,9 +48,9 @@ const MyMapComponent = compose(
         }
 
         const newRadius = (offset - zoom) * (1 / zoom) * (10000);
-
+        const newCenter = refs.map.getCenter();
         changeRadius(newRadius);
-        props.updateFilteredHotels(props.center, newRadius);
+        props.updateFilteredHotels(newCenter, newRadius);
       },
     };
   }),
