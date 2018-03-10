@@ -27,3 +27,31 @@
     justify-content: space-between;
     align-items: center;
 }
+.RoomsDropdownButtons{
+    display: flex;
+    justify-content: space-around;
+    padding:2%;
+}
+.AddRoomButton{
+    padding: 2%;
+    flex-basis: 50%;
+    margin:1%;
+    background-color: white;
+    border: none;
+    border-radius: .2rem;
+    box-shadow: 0 0.1rem 0.2rem 0 rgba(0,0,0,.16);
+    font-weight: 500;
+    outline: none;
+}
+.ConfirmRoomsButton{
+    padding: 2%;
+    flex-basis: 50%;
+    margin:1%;
+    background-color: white;
+    border: .1rem solid #0eb550;
+    border-radius: .2rem;
+    box-shadow: none;
+    font-weight: 500;
+    outline: none;
+    color: #0eb550;
+}

@@ -13,8 +13,6 @@ class LandingPageBody extends React.Component {
     if (date >= moment(new Date())) { this.props.changeCheckinDate(date); }
   }
   verifyCheckoutDate=(date) => {
-    console.log(date);
-    console.log(this.props.checkInDate);
     if (date >= this.props.checkInDate) { this.props.changeCheckoutDate(date); }
   }
   render() {

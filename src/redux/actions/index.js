@@ -16,3 +16,29 @@ export const setSearchCityText = text => ({
     text,
   },
 });
+export const changeAdultsInRoom = (value, id) => ({
+  type: 'changeAdultsInRoom',
+  payload: {
+    value,
+    id,
+  },
+});
+export const changeChildrenInRoom = (value, id) => ({
+  type: 'changeChildrenInRoom',
+  payload: {
+    value,
+    id,
+  },
+});
+export const removeRoom = id => ({
+  type: 'removeRoom',
+  payload: {
+    id,
+  },
+});
+export const addRoom = () => ({
+  type: 'addRoom',
+});
+export const confirmRooms = () => ({
+  type: 'confirmRooms',
+});
