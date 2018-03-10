@@ -1,0 +1,5 @@
+.hotel-cards-container{
+    display:flex;
+    flex-direction:row;
+    
+}

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import getAllHotels from '../../helpers/getAllHotels';
 import { storeAllHotels } from '../../redux/actions';
+import HotelCardsContainer from '../HotelCardsContainer';
 
 class LandingPage extends React.Component {
   constructor(props) {
@@ -22,7 +23,7 @@ class LandingPage extends React.Component {
           ADT: 1,
         },
       ],
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MjA2MzIxMjgsImVtYWlsIjoic2FtcGxldXNlckBnbWFpbC5jb20iLCJpYXQiOjE1MjA2Mjg1Mjh9.GIfXHNYWqA6EuEZ-3tyvJcjZckNqxRvKS3cHHNjy_J8',
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MjQyOTEzNjEsImVtYWlsIjoic2FtcGxldXNlckBnbWFpbC5jb20iLCJpYXQiOjE1MjA2OTEzNjF9.GihjaS7Lzg4hqvPlyx65fRq7BXANxdn3ko7Rgg8kTV8',
     )
       .then((response) => {
         this.props.saveAllHotels(response.hotelResultSet);
@@ -35,8 +36,9 @@ class LandingPage extends React.Component {
         <p>Loading...</p>
       );
     }
-    const h = this.props.allHotels.map(hotel => (<div>{hotel.hotel_name}</div>));
-    return (<div>{h}</div>
+
+    return (
+      <HotelCardsContainer />
     );
   }
 }
