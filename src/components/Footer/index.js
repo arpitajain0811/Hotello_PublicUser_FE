@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Footer.css';
 
 function Footer(props) {
@@ -7,24 +8,30 @@ function Footer(props) {
       <div className="footerItem1">
         <div className="whiteLine" />
         <div className="footerItem1LinksContainer" >
-          <div className="footerItem1Link" >
-            About
-          </div>
-          <div className="footerItem1Link" >
+          <Link to="/about" className="footerItem1Link">
+            <div >
+             About
+            </div>
+          </Link>
+          <Link to="/blog" className="footerItem1Link">
+            <div >
             Blog
-          </div>
-          <div className="footerItem1Link" >
+            </div>
+          </Link>
+          <Link to="/Contact" className="footerItem1Link">
+            <div >
             Contact
-          </div>
+            </div>
+          </Link>
         </div>
       </div>
       <div className="footerItem2">
-        <div className="footerItem2Link" >
+        <Link to="/legalNotice" className="footerItem2Link" >
             Legal Notice
-        </div>
-        <div className="footerItem2Link" >
+        </Link>
+        <Link to="/privacyPolicy" className="footerItem2Link" >
             Privacy policy
-        </div>
+        </Link>
       </div>
     </div>
   );

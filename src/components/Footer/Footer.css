@@ -30,6 +30,7 @@
     letter-spacing: normal;
     text-align: left;
     color: #ffffff;
+    text-decoration: none;
 }
 .footerItem2 {
     display: flex;
@@ -47,4 +48,5 @@
     letter-spacing: normal;
     text-align: left;
     color: #ffffff;
+    text-decoration: none;
 }

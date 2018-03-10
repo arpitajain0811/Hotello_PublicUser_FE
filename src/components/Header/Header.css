@@ -20,7 +20,8 @@
     letter-spacing: 0.6px;
     color: #ffffff;
     padding-left: 20px;
-    font-family: "Open Sans"
+    font-family: "Open Sans";
+    text-decoration: none;
 }
 .logo {
     height: 51px;

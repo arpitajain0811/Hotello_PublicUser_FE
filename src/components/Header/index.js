@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Header.css';
 import logo from '../../logo.svg';
 
@@ -14,8 +15,8 @@ class Header extends React.Component {
           <img src={logo} alt="logo" className="logo" />
         </div>
         <div className="headerLinksContainer">
-          <div className="headerLink">SIGN UP</div>
-          <div className="headerLink">SIGN IN</div>
+          <Link to="signUp" className="headerLink">SIGN UP</Link>
+          <Link to="signIn" className="headerLink">SIGN IN</Link>
         </div>
       </div>
     );

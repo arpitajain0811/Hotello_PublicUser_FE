@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
+import { Switch, Route } from 'react-router-dom';
 import './App.css';
-import LandingPageBody from '../src/components/LandingPageBody';
 // import RoomsDropdownField from './components/RoomsDropdownField';
 import LandingPage from '../src/components/LandingPage';
 
@@ -10,9 +10,10 @@ class App extends Component {
   render() {
     return (
       <div className="App" >
-        <LandingPage />
-        {/* <LandingPageBody /> */}
-        {/* <ListingPage /> */}
+        <Switch>
+          <Route exact path="/" component={LandingPage} />
+          <Route path="listingPage" component={ListingPage} />
+        </Switch>
       </div>
     );
   }
