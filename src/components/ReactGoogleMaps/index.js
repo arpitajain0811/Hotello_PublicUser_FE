@@ -24,22 +24,36 @@ const MyMapComponent = compose(
     containerElement: <div style={{ height: '600px' }} />,
     mapElement: <div style={{ height: '100%' }} />,
   }),
-  withState('radius', 'changeRadius', 2000),
+  withState('radius', 'changeRadius', 715),
   withState('center', 'onCenterChange', { lat: 19.0760, lng: 72.8777 }),
   withState('zoom', 'onZoomChange', 14),
+
   withHandlers((props) => {
     const refs = {
       map: undefined,
     };
-
     return {
       onMapMounted: () => (ref) => {
         refs.map = ref;
       },
-      onCenterChanged: ({ onCenterChange }) => () => {
-        onCenterChange(refs.map.getCenter());
+      onCenterChanged: ({ onCenterChange, changeRadius }) => () => {
         const newCenter = refs.map.getCenter();
-        props.updateFilteredHotels(newCenter, props.radius);
+        const newCenterObj = { lat: newCenter.lat(), lng: newCenter.lng() };
+        onCenterChange(newCenterObj);
+        console.log('inhandler:::', props.radius);
+        const zoom = (refs.map.getZoom());
+        let offset = 0;
+        if (zoom > 0 && zoom < 15) {
+          offset = 15;
+        } else if (zoom >= 15 && zoom < 17) {
+          offset = 17;
+        } else if (zoom >= 17 && zoom < 20) {
+          offset = 20;
+        }
+
+        const newRadius = (offset - zoom) * (1 / zoom) * (10000);
+        changeRadius(newRadius);
+        props.updateFilteredHotels(newCenterObj, newRadius);
       },
       onZoomChanged: ({ onZoomChange, changeRadius }) => () => {
         onZoomChange(refs.map.getZoom());
@@ -52,11 +66,10 @@ const MyMapComponent = compose(
         } else if (zoom >= 17 && zoom < 20) {
           offset = 20;
         }
-
+        console.log('soomh', props.zoom);
         const newRadius = (offset - zoom) * (1 / zoom) * (10000);
-        const newCenter = refs.map.getCenter();
         changeRadius(newRadius);
-        props.updateFilteredHotels(newCenter, newRadius);
+        props.updateFilteredHotels(props.center, newRadius);
       },
     };
   }),
@@ -71,6 +84,7 @@ const MyMapComponent = compose(
   //   />);
   //   hotelMarkers.push(hotelMarker);
   const hotelOverlays = [];
+  console.log('inrender:', props.radius, props.center);
   props.allHotels.forEach((hotel) => {
     const hotelOverlay = (
       <OverlayView
@@ -95,10 +109,10 @@ const MyMapComponent = compose(
   });
   return (
     <GoogleMap
-      defaultZoom={14}
+      defaultZoom={props.zoom}
       ref={props.onMapMounted}
       defaultCenter={props.center}
-      onCenterChanged={props.onCenterChanged}
+      onDragEnd={props.onCenterChanged}
       onZoomChanged={props.onZoomChanged}
     >
       <Circle
@@ -107,6 +121,7 @@ const MyMapComponent = compose(
       />
       {props.isMarkerShown && <Marker position={props.center} />}
       {hotelOverlays}
+
     </GoogleMap>
   );
 });

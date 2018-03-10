@@ -24,7 +24,7 @@ class LandingPage extends React.Component {
           ADT: 1,
         },
       ],
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MjA3MDUzMjAsImVtYWlsIjoiYWRtaW5AaG90ZWxsby5jb20iLCJpYXQiOjE1MjA3MDE3MjB9.Smle6pVDSWvmtNCaoCEgChL4sJ5akT9XECw3Hl_kgfY',
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MjQyOTEzNjEsImVtYWlsIjoic2FtcGxldXNlckBnbWFpbC5jb20iLCJpYXQiOjE1MjA2OTEzNjF9.GihjaS7Lzg4hqvPlyx65fRq7BXANxdn3ko7Rgg8kTV8',
     )
       .then((response) => {
         this.props.saveAllHotels(response.hotelResultSet);
@@ -33,10 +33,9 @@ class LandingPage extends React.Component {
   }
 
   updateFilteredHotels = (center, radius) => {
-    const centerObj = { latitude: center.lat(), longitude: center.lng() };
-    const radiusInKm = Math.floor(radius / 1000);
-    const newFilteredHotels = filterHotels(centerObj, radiusInKm, this.props.allHotels);
-    console.log('a:::::;', newFilteredHotels);
+    console.log('received', radius);
+    const newFilteredHotels = filterHotels(center, radius, this.props.allHotels);
+    // console.log('a:::::;', newFilteredHotels);
     this.props.saveFilteredHotels(newFilteredHotels);
   }
 
