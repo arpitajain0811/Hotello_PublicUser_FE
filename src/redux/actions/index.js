@@ -42,3 +42,13 @@ export const addRoom = () => ({
 export const confirmRooms = () => ({
   type: 'confirmRooms',
 });
+
+export const storeAllHotels = allHotels => ({
+  type: 'STORE_ALL_HOTELS',
+  payload: allHotels,
+});
+
+export const storeFilteredHotels = filteredHotels => ({
+  type: 'STORE_FILTERED_HOTELS',
+  payload: filteredHotels,
+});
