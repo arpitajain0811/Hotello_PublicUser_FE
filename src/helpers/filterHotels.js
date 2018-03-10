@@ -19,14 +19,17 @@ const CalcHaversineDistance = (lat1, lat2, long1, long2) => {
 };
 
 const filterHotels = (center, radius, allHotels) => {
-  const centerLat = center.latitude;
-  const centerLon = center.longitude;
+  const centerLat = center.lat;
+  const centerLon = center.lng;
   const filtered = allHotels.filter((hotel) => {
     const hotelLat = Number(hotel.latitude);
     const hotelLon = Number(hotel.longitude);
-    const distance = Math.floor(CalcHaversineDistance(centerLat, hotelLat, centerLon, hotelLon));
-    if (distance <= radius) { return true; }
-
+    const distance = (CalcHaversineDistance(centerLat, hotelLat, centerLon, hotelLon));
+    const distanceInMeters = distance * 1000;
+    if (distanceInMeters <= radius) {
+      console.log(radius, distanceInMeters);
+      return true;
+    }
     return false;
   });
   return filtered;
