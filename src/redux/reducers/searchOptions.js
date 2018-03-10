@@ -5,7 +5,6 @@ const defaultState = {
   checkInDate: (new Date()),
   checkOutDate: moment((new Date()).setDate((new Date()).getDate() + 1)),
   rooms: [{
-    roomId: 1,
     adults: 1,
     children: 0,
   }],

@@ -7,9 +7,16 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { setCheckInDate, setCheckOutDate, setSearchCityText } from '../../redux/actions';
 import './LandingPageBody.css';
 import RoomsDropDown from '../RoomsDropDown';
-// import RoomsDropdownField from '../RoomsDropdownField';
 
 class LandingPageBody extends React.Component {
+  verifyCheckinDate=(date) => {
+    if (date >= moment(new Date())) { this.props.changeCheckinDate(date); }
+  }
+  verifyCheckoutDate=(date) => {
+    console.log(date);
+    console.log(this.props.checkInDate);
+    if (date >= this.props.checkInDate) { this.props.changeCheckoutDate(date); }
+  }
   render() {
     return (
       <div className="LandingPageBody" >
@@ -27,7 +34,7 @@ class LandingPageBody extends React.Component {
               <div className="CheckInPicker">
                 <DatePicker
                   selected={moment(this.props.checkInDate)}
-                  onChange={date => this.props.changeCheckinDate(date)}
+                  onChange={date => this.verifyCheckinDate(date)}
                 />
               </div>
               <div className="Arrow">
@@ -36,7 +43,7 @@ class LandingPageBody extends React.Component {
               <div className="CheckOutPicker">
                 <DatePicker
                   selected={moment(this.props.checkOutDate)}
-                  onChange={date => this.props.changeCheckoutDate(date)}
+                  onChange={date => this.verifyCheckoutDate(date)}
                 />
               </div>
             </div>

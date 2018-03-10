@@ -22,6 +22,15 @@ render() {
   else if (this.props.totalChildren > 1) {
     children = `${this.props.totalChildren} children,`;
   }
+  const dropDownFieldsHolder = [];
+  for (let i = 0; i < this.props.rooms.length; i += 1) {
+    dropDownFieldsHolder.push((<RoomsDropdownField
+      id={i + 1}
+      adults={this.props.rooms[i].adults}
+      childrenProp={this.props.rooms[i].children}
+    />
+    ));
+  }
   return (
     <div className="RoomsDropdown" >
       <div className="test" onClick={() => { this.showDropdownBlock(); }}>
@@ -29,11 +38,7 @@ render() {
         <img className="DropdownIcon" src="/dropdownarrow.png" alt="" />
       </div>
       <div className={this.state.dropDownVisible ? 'DropDownBlock' : 'DropDownGone'} >
-        {/* {dropDownFieldsHolder} */}
-        <RoomsDropdownField
-          id={1}
-        />
-        <RoomsDropdownField id={2} />
+        {dropDownFieldsHolder}
         <div className="RoomsDropdownButtons">
           <button className="AddRoomButton">ADD ROOM</button>
           <button className="ConfirmRoomsButton">CONFIRM</button>
@@ -47,10 +52,12 @@ const mapStateToProps = state => ({
   totalRooms: state.searchOptions.totalRooms,
   totalAdults: state.searchOptions.totalAdults,
   totalChildren: state.searchOptions.totalChildren,
+  rooms: state.searchOptions.rooms,
 });
 export default connect(mapStateToProps, null)(RoomsDropdown);
 RoomsDropdown.propTypes = {
   totalRooms: PropTypes.number.isRequired,
   totalAdults: PropTypes.number.isRequired,
   totalChildren: PropTypes.number.isRequired,
+  rooms: PropTypes.arrayOf(PropTypes.objectOf.isRequired).isRequired,
 };
