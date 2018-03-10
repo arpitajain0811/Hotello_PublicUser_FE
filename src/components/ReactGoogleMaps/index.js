@@ -6,9 +6,15 @@ import {
   GoogleMap,
   Marker,
   Circle,
+  OverlayView,
 } from 'react-google-maps';
+import './ReactGoogleMaps.css';
 import constants from '../../constants.json';
 
+// const getPixelPositionOffset = (width, height) => ({
+//   x: -(width / 2),
+//   y: -(height / 2),
+// });
 
 const MyMapComponent = compose(
   withProps({
@@ -57,13 +63,35 @@ const MyMapComponent = compose(
   withScriptjs,
   withGoogleMap,
 )((props) => {
-  const hotelMarkers = [];
+  // const hotelMarkers = [];
+  // props.allHotels.forEach((hotel) => {
+  //   const hotelMarker = (<Marker
+  //     key={hotel.hotel_id}
+  //     position={{ lat: Number(hotel.latitude), lng: Number(hotel.longitude) }}
+  //   />);
+  //   hotelMarkers.push(hotelMarker);
+  const hotelOverlays = [];
   props.allHotels.forEach((hotel) => {
-    const hotelMarker = (<Marker
-      key={hotel.hotel_id}
-      position={{ lat: Number(hotel.latitude), lng: Number(hotel.longitude) }}
-    />);
-    hotelMarkers.push(hotelMarker);
+    const hotelOverlay = (
+      <OverlayView
+        className="Maps-OverlayView"
+        key={hotel.hotel_id}
+        position={{ lat: Number(hotel.latitude), lng: Number(hotel.longitude) }}
+        mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
+      >
+        <div className="OverlayView-content">
+          <div
+            className={hotel.stars <= 2 ? 'OverlayView-stars-red' : (((hotel.stars > 2) && (hotel.stars < 4)) ? 'OverlayView-stars-orange' : 'OverlayView-stars-green')}
+          >
+            {hotel.stars} &#9733;
+          </div>
+          <div className="OverlayView-price">
+             &#8377; {Math.round(Number(hotel.min_rate.amount * 65) * 100) / 100}
+          </div>
+        </div>
+      </OverlayView>
+    );
+    hotelOverlays.push(hotelOverlay);
   });
   return (
     <GoogleMap
@@ -78,7 +106,7 @@ const MyMapComponent = compose(
         radius={props.radius}
       />
       {props.isMarkerShown && <Marker position={props.center} />}
-      {hotelMarkers}
+      {hotelOverlays}
     </GoogleMap>
   );
 });
