@@ -9,30 +9,6 @@ import {
 } from 'react-google-maps';
 import constants from '../../constants.json';
 
-const latLngArr = [
-  {
-    lng: 72.871440,
-    lat: 19.111620,
-  },
-  {
-    lng: 72.836379,
-    lat: 19.067639,
-  },
-  {
-    lng: 72.898700,
-    lat: 19.134700,
-  },
-  {
-    lat: 18.927713,
-    lng: 72.820626,
-  },
-];
-
-const rows = [];
-rows.push(<Marker position={latLngArr[0]} />);
-rows.push(<Marker position={latLngArr[1]} />);
-rows.push(<Marker position={latLngArr[2]} />);
-rows.push(<Marker position={latLngArr[3]} />);
 
 const MyMapComponent = compose(
   withProps({
@@ -45,7 +21,7 @@ const MyMapComponent = compose(
   withState('radius', 'changeRadius', 2000),
   withState('center', 'onCenterChange', { lat: 19.0760, lng: 72.8777 }),
   withState('zoom', 'onZoomChange', 14),
-  withHandlers(() => {
+  withHandlers((props) => {
     const refs = {
       map: undefined,
     };
@@ -56,11 +32,12 @@ const MyMapComponent = compose(
       },
       onCenterChanged: ({ onCenterChange }) => () => {
         onCenterChange(refs.map.getCenter());
+        const newCenter = refs.map.getCenter();
+        props.updateFilteredHotels(newCenter, props.radius);
       },
       onZoomChanged: ({ onZoomChange, changeRadius }) => () => {
         onZoomChange(refs.map.getZoom());
         const zoom = (refs.map.getZoom());
-        // alert(zoom);
         let offset = 0;
         if (zoom > 0 && zoom < 15) {
           offset = 15;
@@ -69,30 +46,41 @@ const MyMapComponent = compose(
         } else if (zoom >= 17 && zoom < 20) {
           offset = 20;
         }
-        // const x = offset-zoom;
-        //   const radius = 5*(x−1)*(x-1)-5
 
-        changeRadius((offset - zoom) * (1 / zoom) * (10000));
+        const newRadius = (offset - zoom) * (1 / zoom) * (10000);
+        const newCenter = refs.map.getCenter();
+        changeRadius(newRadius);
+        props.updateFilteredHotels(newCenter, newRadius);
       },
     };
   }),
   withScriptjs,
   withGoogleMap,
-)(props => (
-  <GoogleMap
-    defaultZoom={14}
-    ref={props.onMapMounted}
-    defaultCenter={props.center}
-    onCenterChanged={props.onCenterChanged}
-    onZoomChanged={props.onZoomChanged}
-  >
-    <Circle
-      center={props.center}
-      radius={props.radius}
-    />
-    {props.isMarkerShown && <Marker position={props.center} />}
-    {rows}
-  </GoogleMap>
-));
+)((props) => {
+  const hotelMarkers = [];
+  props.allHotels.forEach((hotel) => {
+    const hotelMarker = (<Marker
+      key={hotel.hotel_id}
+      position={{ lat: Number(hotel.latitude), lng: Number(hotel.longitude) }}
+    />);
+    hotelMarkers.push(hotelMarker);
+  });
+  return (
+    <GoogleMap
+      defaultZoom={14}
+      ref={props.onMapMounted}
+      defaultCenter={props.center}
+      onCenterChanged={props.onCenterChanged}
+      onZoomChanged={props.onZoomChanged}
+    >
+      <Circle
+        center={props.center}
+        radius={props.radius}
+      />
+      {props.isMarkerShown && <Marker position={props.center} />}
+      {hotelMarkers}
+    </GoogleMap>
+  );
+});
 
 export default MyMapComponent;

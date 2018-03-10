@@ -3,8 +3,8 @@ import './App.css';
 // import LandingPageBody from '../src/components/LandingPageBody';
 // import RoomsDropdownField from './components/RoomsDropdownField';
 
-// import ListingPage from './components/ListingPage';
-import MyMapComponent from '../src/components/ReactGoogleMaps';
+import ListingPage from './components/ListingPage';
+// import MyMapComponent from '../src/components/ReactGoogleMaps';
 
 // { /* <div className="App" >
 //         <LandingPageBody />
@@ -14,7 +14,7 @@ import MyMapComponent from '../src/components/ReactGoogleMaps';
 class App extends Component {
   render() {
     return (
-      <MyMapComponent isMarkerShown />
+      <ListingPage />
     );
   }
 }

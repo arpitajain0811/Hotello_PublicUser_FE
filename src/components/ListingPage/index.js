@@ -2,7 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import getAllHotels from '../../helpers/getAllHotels';
-import { storeAllHotels } from '../../redux/actions';
+import filterHotels from '../../helpers/filterHotels';
+import { storeAllHotels, storeFilteredHotels } from '../../redux/actions';
+import ReactGoogleMaps from '../ReactGoogleMaps';
 
 class LandingPage extends React.Component {
   constructor(props) {
@@ -22,21 +24,38 @@ class LandingPage extends React.Component {
           ADT: 1,
         },
       ],
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MjA2MzIxMjgsImVtYWlsIjoic2FtcGxldXNlckBnbWFpbC5jb20iLCJpYXQiOjE1MjA2Mjg1Mjh9.GIfXHNYWqA6EuEZ-3tyvJcjZckNqxRvKS3cHHNjy_J8',
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MjA2OTExMjksImVtYWlsIjoic2FtcGxldXNlckBnbWFpbC5jb20iLCJpYXQiOjE1MjA2ODc1Mjl9.cOMpx75eCCP0ADTlOjhVLqnDAbeWABI61qn0Ylk782c',
     )
       .then((response) => {
         this.props.saveAllHotels(response.hotelResultSet);
         this.setState({ loaded: true });
       });
   }
+
+  updateFilteredHotels = (center, radius) => {
+    const centerObj = { latitude: center.lat(), longitude: center.lng() };
+    const radiusInKm = Math.floor(radius / 1000);
+    const newFilteredHotels = filterHotels(centerObj, radiusInKm, this.props.allHotels);
+    console.log('a:::::;', newFilteredHotels);
+    this.props.saveFilteredHotels(newFilteredHotels);
+  }
+
+
   render() {
     if (this.state.loaded === false) {
       return (
         <p>Loading...</p>
       );
     }
-    const h = this.props.allHotels.map(hotel => (<div>{hotel.hotel_name}</div>));
-    return (<div>{h}</div>
+
+    return (
+      <div>
+        <ReactGoogleMaps
+          isMarkerShown
+          updateFilteredHotels={this.updateFilteredHotels}
+          allHotels={this.props.allHotels}
+        />
+      </div>
     );
   }
 }
@@ -44,6 +63,9 @@ class LandingPage extends React.Component {
 const mapDispatchToProps = dispatch => ({
   saveAllHotels: (allHotelsArray) => {
     dispatch(storeAllHotels(allHotelsArray));
+  },
+  saveFilteredHotels: (filteredHotelsArray) => {
+    dispatch(storeFilteredHotels(filteredHotelsArray));
   },
 });
 const mapStateToProps = state => ({
@@ -54,9 +76,11 @@ const mapStateToProps = state => ({
 LandingPage.defaultProps = {
   allHotels: [],
   saveAllHotels: () => {},
+  saveFilteredHotels: () => {},
 };
 LandingPage.propTypes = {
   allHotels: PropTypes.arrayOf(Object),
   saveAllHotels: PropTypes.func,
+  saveFilteredHotels: PropTypes.func,
 };
 export default connect(mapStateToProps, mapDispatchToProps)(LandingPage);
