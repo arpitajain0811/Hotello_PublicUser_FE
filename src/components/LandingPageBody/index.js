@@ -10,6 +10,11 @@ import './LandingPageBody.css';
 import RoomsDropDown from '../RoomsDropDown';
 
 class LandingPageBody extends React.Component {
+  componentDidMount() {
+    const cookie = Math.random().toString(36).substring(2, 15)
+                    + Math.random().toString(36).substring(2, 15);
+    window.localStorage.setItem('cookie', cookie);
+  }
   verifyCheckinDate=(date) => {
     if (date >= moment(new Date())) {
       this.props.changeCheckinDate(date);

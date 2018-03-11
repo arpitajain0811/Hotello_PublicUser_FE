@@ -1,8 +1,9 @@
-const getAllHotels = (cityName, checkIn, checkOut, rooms, sessionId) => {
+const getAllHotels = (cityName, checkIn, checkOut, rooms) => {
+  const cookie = window.localStorage.getItem('cookie');
   const options = {
     method: 'post',
     headers: {
-      Authorization: sessionId,
+      sessionId: cookie,
     },
     body: JSON.stringify({
       cityName,
@@ -12,7 +13,7 @@ const getAllHotels = (cityName, checkIn, checkOut, rooms, sessionId) => {
       nationality: 'IN',
     }),
   };
-  console.log(sessionId);
+  console.log(cookie);
   return fetch('/checkAvailability', options)
     .then(response => response.json());
 };

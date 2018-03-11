@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './FooterBlack.css';
 
-function FooterBlack(props) {
+function FooterBlack() {
   return (
     <div className="footerBlack">
       <div className="footerBlackItem1">

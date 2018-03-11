@@ -25,7 +25,6 @@ class ListingPage extends React.Component {
       this.props.city,
       inDate, outDate,
       this.props.rooms,
-      '123424fdgdfgdgf66tytvhvh',
     ).then((response) => {
       this.props.saveAllHotels(response.hotelResultSet);
       this.setState({ loaded: true });
@@ -42,7 +41,6 @@ class ListingPage extends React.Component {
       this.props.city,
       inDate, outDate,
       this.props.rooms,
-      '123424fdgdfgdgf66tytvhvh',
     ).then((response) => {
       this.props.saveAllHotels(response.hotelResultSet);
       this.setState({ loaded: true });
