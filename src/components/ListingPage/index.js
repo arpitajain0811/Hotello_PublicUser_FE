@@ -7,6 +7,7 @@ import HotelParameterBox from '../HotelParameterBox';
 import MapAndListView from '../MapAndListView';
 import getAllHotels from '../../helpers/getAllHotels';
 import { storeAllHotels } from '../../redux/actions';
+import HotelCardsContainer from '../HotelCardsContainer';
 
 class ListingPage extends React.Component {
   constructor(props) {

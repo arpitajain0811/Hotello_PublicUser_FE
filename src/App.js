@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import './App.css';
-// import RoomsDropdownField from './components/RoomsDropdownField';
 import LandingPage from '../src/components/LandingPage';
-
 import ListingPage from './components/ListingPage';
 
 class App extends Component {

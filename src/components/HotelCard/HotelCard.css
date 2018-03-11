@@ -1,0 +1,60 @@
+.hotel-card{
+    display:flex;
+    flex-direction: column;
+    background-color:yellow;
+    display:flex;
+    flex-direction: column;
+    width:20%;
+    justify-content: flex-end;
+    color:white;
+    font-family: 'OpenSans-Regular';
+    width:260px;
+    height:208px;
+    margin:13.5px
+}
+
+.hotel-card-content{
+    display:flex;
+    flex-direction: column;
+    width: 260px;
+  /* height: 59px; */
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.05), #000000);
+  box-sizing: border-box;
+}
+
+.hotel-card-name{
+display:flex;
+font-size:16px;
+box-sizing: border-box;
+padding-left:13px;
+justify-content: flex-start
+}
+
+.hotel-card-details{
+    display:flex;
+    flex-direction:row;
+    font-size:0.7em;
+    justify-content: space-between;
+    align-items: center;
+    padding-left:13px;
+    padding-right: 8px;
+    box-sizing: border-box;
+    font-size:13px;
+    }
+.hotel-card-stars{
+    display:flex;
+    
+}
+.star{
+    width: 13px;
+    height: 13px;
+    object-fit: contain;
+    background-color: rgba(246, 166, 35, 0);
+}
+
+.star-grey{
+    width: 13px;
+    height: 13px;
+    object-fit: contain;
+    background-color: rgba(216, 216, 216, 0.0);
+}
