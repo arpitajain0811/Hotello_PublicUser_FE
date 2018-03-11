@@ -1,20 +1,18 @@
 import React, { Component } from 'react';
+import { Switch, Route } from 'react-router-dom';
 import './App.css';
-// import LandingPageBody from '../src/components/LandingPageBody';
-// import RoomsDropdownField from './components/RoomsDropdownField';
-
+import LandingPage from '../src/components/LandingPage';
 import ListingPage from './components/ListingPage';
-// import MyMapComponent from '../src/components/ReactGoogleMaps';
-
-// { /* <div className="App" >
-//         <LandingPageBody />
-//         <ListingPage />
-//       </div> */ }
 
 class App extends Component {
   render() {
     return (
-      <ListingPage />
+      <div className="App" >
+        <Switch>
+          <Route exact path="/" component={LandingPage} />
+          <Route path="/listingPage" component={ListingPage} />
+        </Switch>
+      </div>
     );
   }
 }

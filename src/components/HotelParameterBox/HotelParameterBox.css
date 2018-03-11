@@ -1,0 +1,44 @@
+.hotelParameterBox {
+    flex-grow: 0.05;
+    display: flex;
+    align-items: center;
+    border: solid 0 0 1px 1px rgba(151, 151, 151, 0.45);
+}
+.DatesDiv {
+    border-radius: 4px;
+    background-color: #77cc76;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 20px;
+    padding: 0 26px 0 26px;
+}
+.greenify {
+    width: 65px;
+    background-color: #77cc76;
+    color: white;
+    font-family: "OpenSans";
+    font-size: 14px;
+    font-weight: 600;
+    font-style: normal;
+    font-stretch: normal;
+    letter-spacing: 0px;
+}
+.RoomsDiv {
+    height: 40px;
+    border-radius: 4px;
+    background-color: #77cc76;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "OpenSans";
+    font-size: 14px;
+    font-weight: 600;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 4;
+    letter-spacing: 0px;
+    padding: 0px 18px 0 18px;
+    color: white;
+}
