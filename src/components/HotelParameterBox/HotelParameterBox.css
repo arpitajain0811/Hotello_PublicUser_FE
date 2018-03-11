@@ -1,8 +1,11 @@
 .hotelParameterBox {
-    flex-grow: 0.05;
+    /* flex-grow: 1; */
     display: flex;
     align-items: center;
-    border: solid 0 0 1px 1px rgba(151, 151, 151, 0.45);
+    border: solid 1px rgba(151, 151, 151, 1);
+    margin:8px 0px;
+    padding:10px;
+    box-sizing:border-box
 }
 .DatesDiv {
     border-radius: 4px;

@@ -1,13 +1,17 @@
 .mapAndListView {
+    margin:30px 0px;
     display: flex;
-    flex-grow: 0.87;
+    flex-grow: 1;
+    /* background-color:yellow */
 }
 .hotelList {
     flex-grow: 0.4;
     background-color: blue;
     /* overflow: hidden; */
 }
-.map {
-    flex-grow: 0.6;
-    background-color: red;
+.map-container {
+    flex-grow: 1;
+    padding-top:23.5px;
+    /* background-color: red; */
+    /* height:70vh */
 }
