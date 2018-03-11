@@ -1,0 +1,12 @@
+.mapAndListView {
+    display: flex;
+    flex-grow: 0.87;
+}
+.hotelList {
+    flex-grow: 0.4;
+    background-color: blue;
+}
+.map {
+    flex-grow: 0.6;
+    background-color: red;
+}

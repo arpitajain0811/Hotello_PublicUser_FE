@@ -1,62 +1,25 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import getAllHotels from '../../helpers/getAllHotels';
-import { storeAllHotels } from '../../redux/actions';
+import './ListingPage.css';
+import SarchBarAndHeader from '../SearchBarAndHeader';
+import HotelParameterBox from '../HotelParameterBox';
+import MapAndListView from '../MapAndListView';
 
-class LandingPage extends React.Component {
+class ListingPage extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      loaded: false,
-    };
   }
-  componentDidMount() {
-    getAllHotels(
-      'Mumbai', '2018-03-27', '2018-03-30', [
-        {
-          ADT: 1,
-          CHD: 1,
-        },
-        {
-          ADT: 1,
-        },
-      ],
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MjA2MzIxMjgsImVtYWlsIjoic2FtcGxldXNlckBnbWFpbC5jb20iLCJpYXQiOjE1MjA2Mjg1Mjh9.GIfXHNYWqA6EuEZ-3tyvJcjZckNqxRvKS3cHHNjy_J8',
-    )
-      .then((response) => {
-        this.props.saveAllHotels(response.hotelResultSet);
-        this.setState({ loaded: true });
-      });
-  }
+
   render() {
-    if (this.state.loaded === false) {
-      return (
-        <p>Loading...</p>
-      );
-    }
-    const h = this.props.allHotels.map(hotel => (<div>{hotel.hotel_name}</div>));
-    return (<div>{h}</div>
+    return (
+      <div className="listingPage" >
+        <SarchBarAndHeader />
+        <HotelParameterBox />
+        <MapAndListView />
+      </div>
+
     );
   }
 }
 
-const mapDispatchToProps = dispatch => ({
-  saveAllHotels: (allHotelsArray) => {
-    dispatch(storeAllHotels(allHotelsArray));
-  },
-});
-const mapStateToProps = state => ({
-  allHotels: state.storeHotels.allHotels,
-});
+export default ListingPage;
 
-
-LandingPage.defaultProps = {
-  allHotels: [],
-  saveAllHotels: () => {},
-};
-LandingPage.propTypes = {
-  allHotels: PropTypes.arrayOf(Object),
-  saveAllHotels: PropTypes.func,
-};
-export default connect(mapStateToProps, mapDispatchToProps)(LandingPage);

@@ -49,10 +49,9 @@ class LandingPageBody extends React.Component {
             <div className="RoomPeopleSelection">
               <RoomsDropDown showDropdownBlock={() => this.showDropdownBlock} />
             </div>
-            <div className="LandingPageButtonContainer">
+            <Link to="/listingPage" className="LandingPageButtonContainer" >
               <button className="LandingPageSearchButton">Search</button>
-            </div>
-
+            </Link>
           </div>
         </div>
       </div>
