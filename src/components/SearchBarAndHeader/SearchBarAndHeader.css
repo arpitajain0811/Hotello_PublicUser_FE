@@ -51,6 +51,7 @@
     font-stretch: normal;
     line-height: 3.5;
     letter-spacing: 0.1px;
+    outline: none;
 }
 .searchbarAndHeader-LinksContainer {
     width: 20%;
