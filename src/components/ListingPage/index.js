@@ -6,7 +6,9 @@ import SarchBarAndHeader from '../SearchBarAndHeader';
 import HotelParameterBox from '../HotelParameterBox';
 import MapAndListView from '../MapAndListView';
 import getAllHotels from '../../helpers/getAllHotels';
-import { storeAllHotels } from '../../redux/actions';
+import filterHotels from '../../helpers/filterHotels';
+import { storeAllHotels, storeFilteredHotels } from '../../redux/actions';
+import ReactGoogleMaps from '../ReactGoogleMaps';
 import HotelCardsContainer from '../HotelCardsContainer';
 
 class ListingPage extends React.Component {
@@ -32,6 +34,12 @@ class ListingPage extends React.Component {
     });
   }
 
+  updateFilteredHotels = (center, radius) => {
+    console.log('received', radius);
+    const newFilteredHotels = filterHotels(center, radius, this.props.allHotels);
+    this.props.saveFilteredHotels(newFilteredHotels);
+  }
+    
   render() {
     return (
       <div className="listingPage" >
@@ -47,6 +55,9 @@ const mapDispatchToProps = dispatch => ({
   saveAllHotels: (allHotelsArray) => {
     dispatch(storeAllHotels(allHotelsArray));
   },
+  saveFilteredHotels: (filteredHotelsArray) => {
+    dispatch(storeFilteredHotels(filteredHotelsArray));
+  },
 });
 const mapStateToProps = state => ({
   allHotels: state.storeHotels.allHotels,
@@ -56,7 +67,13 @@ const mapStateToProps = state => ({
   rooms: state.searchOptions.rooms,
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(ListingPage);
+
+LandingPage.defaultProps = {
+  allHotels: [],
+  saveAllHotels: () => {},
+  saveFilteredHotels: () => {},
+};
+
 
 ListingPage.propTypes = {
   checkInDate: PropTypes.objectOf.isRequired,
@@ -64,4 +81,8 @@ ListingPage.propTypes = {
   city: PropTypes.string.isRequired,
   rooms: PropTypes.arrayOf(Object).isRequired,
   saveAllHotels: PropTypes.func.isRequired,
+  saveFilteredHotels: PropTypes.func.isRequired,
+  allHotels: PropTypes.arrayOf(Object)
 };
+
+export default connect(mapStateToProps, mapDispatchToProps)(ListingPage);
