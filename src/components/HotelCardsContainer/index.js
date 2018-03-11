@@ -18,7 +18,7 @@ class HotelCardsContainer extends React.Component {
     });
     return (
       <div className="hotel-cards-container">
-        {filteredHotelsCards}
+        {filteredHotelsCards.length === 0 ? 'No hotels in this area.' : filteredHotelsCards}
       </div>);
   }
 }

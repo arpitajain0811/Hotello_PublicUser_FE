@@ -7,7 +7,7 @@ import HotelParameterBox from '../HotelParameterBox';
 import MapAndListView from '../MapAndListView';
 import getAllHotels from '../../helpers/getAllHotels';
 import { storeAllHotels, storeFilteredHotels } from '../../redux/actions';
-
+import FooterBlack from '../FooterBlack';
 
 class ListingPage extends React.Component {
   constructor(props) {
@@ -39,6 +39,7 @@ class ListingPage extends React.Component {
         <SarchBarAndHeader />
         <HotelParameterBox />
         <MapAndListView loaded={this.state.loaded} />
+        {this.state.loaded ? <FooterBlack /> : ''}
       </div>
     );
   }

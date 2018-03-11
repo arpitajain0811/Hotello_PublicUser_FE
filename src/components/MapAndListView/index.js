@@ -22,14 +22,11 @@ class MapAndListView extends React.Component {
     }
     return (
       <div className="mapAndListView" >
-        <div className="left-column">
-          <HotelCardsContainer filteredHotels={this.props.allHotels} />
-          <Footer style={{ color: 'black' }} />
-        </div>
+        <HotelCardsContainer filteredHotels={this.props.filteredHotels} />
+
         <div className="map-container">
           <ReactGoogleMaps isMarkerShown allHotels={this.props.allHotels} updateFilteredHotels={this.updateFilteredHotels} />
         </div>
-
       </div>
     );
   }
