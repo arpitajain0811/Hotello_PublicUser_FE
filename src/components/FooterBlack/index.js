@@ -2,34 +2,34 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './FooterBlack.css';
 
-function Footer(props) {
+function FooterBlack(props) {
   return (
-    <div className="footer">
-      <div className="footerItem1">
-        <div className="whiteLine" />
-        <div className="footerItem1LinksContainer" >
-          <Link to="/about" className="footerItem1Link">
+    <div className="footerBlack">
+      <div className="footerBlackItem1">
+        <div className="blackLine" />
+        <div className="footerBlackItem1LinksContainer" >
+          <Link to="/about" className="footerBlackItem1Link">
             <div >
              About
             </div>
           </Link>
-          <Link to="/blog" className="footerItem1Link">
+          <Link to="/blog" className="footerBlackItem1Link">
             <div >
             Blog
             </div>
           </Link>
-          <Link to="/Contact" className="footerItem1Link">
+          <Link to="/Contact" className="footerBlackItem1Link">
             <div >
             Contact
             </div>
           </Link>
         </div>
       </div>
-      <div className="footerItem2">
-        <Link to="/legalNotice" className="footerItem2Link" >
+      <div className="footerBlackItem2">
+        <Link to="/legalNotice" className="footerBlackItem2Link" >
             Legal Notice
         </Link>
-        <Link to="/privacyPolicy" className="footerItem2Link" >
+        <Link to="/privacyPolicy" className="footerBlackItem2Link" >
             Privacy policy
         </Link>
       </div>
@@ -37,5 +37,5 @@ function Footer(props) {
   );
 }
 
-export default Footer;
+export default FooterBlack;
 

@@ -5,7 +5,6 @@ import { storeAllHotels, storeFilteredHotels } from '../../redux/actions';
 import ReactGoogleMaps from '../ReactGoogleMaps';
 import HotelCardsContainer from '../HotelCardsContainer';
 import filterHotels from '../../helpers/filterHotels';
-import Footer from '../Footer';
 import './MapAndListView.css';
 
 class MapAndListView extends React.Component {
