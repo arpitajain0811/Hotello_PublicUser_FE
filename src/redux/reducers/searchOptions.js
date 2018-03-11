@@ -2,7 +2,7 @@ import moment from 'moment';
 
 const defaultState = {
   city: '',
-  checkInDate: (new Date()),
+  checkInDate: moment(new Date()),
   checkOutDate: moment((new Date()).setDate((new Date()).getDate() + 1)),
   rooms: [{
     ADT: 1,
