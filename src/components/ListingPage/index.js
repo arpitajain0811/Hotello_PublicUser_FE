@@ -39,7 +39,7 @@ class ListingPage extends React.Component {
     const newFilteredHotels = filterHotels(center, radius, this.props.allHotels);
     this.props.saveFilteredHotels(newFilteredHotels);
   }
-    
+
   render() {
     return (
       <div className="listingPage" >
@@ -68,7 +68,7 @@ const mapStateToProps = state => ({
 });
 
 
-LandingPage.defaultProps = {
+ListingPage.defaultProps = {
   allHotels: [],
   saveAllHotels: () => {},
   saveFilteredHotels: () => {},
@@ -82,7 +82,7 @@ ListingPage.propTypes = {
   rooms: PropTypes.arrayOf(Object).isRequired,
   saveAllHotels: PropTypes.func.isRequired,
   saveFilteredHotels: PropTypes.func.isRequired,
-  allHotels: PropTypes.arrayOf(Object)
+  allHotels: PropTypes.arrayOf(Object),
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ListingPage);
