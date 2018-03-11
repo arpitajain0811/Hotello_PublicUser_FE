@@ -1,8 +1,8 @@
-const getAllHotels = (cityName, checkIn, checkOut, rooms, jwtToken) => {
+const getAllHotels = (cityName, checkIn, checkOut, rooms, sessionId) => {
   const options = {
     method: 'post',
     headers: {
-      Authorization: jwtToken,
+      Authorization: sessionId,
     },
     body: JSON.stringify({
       cityName,
@@ -12,7 +12,7 @@ const getAllHotels = (cityName, checkIn, checkOut, rooms, jwtToken) => {
       nationality: 'IN',
     }),
   };
-  console.log(jwtToken);
+  console.log(sessionId);
   return fetch('/checkAvailability', options)
     .then(response => response.json());
 };

@@ -11,10 +11,15 @@ import RoomsDropDown from '../RoomsDropDown';
 
 class LandingPageBody extends React.Component {
   verifyCheckinDate=(date) => {
-    if (date >= moment(new Date())) { this.props.changeCheckinDate(date); }
+    if (date >= moment(new Date())) {
+      this.props.changeCheckinDate(date);
+    }
   }
   verifyCheckoutDate=(date) => {
-    if (date >= this.props.checkInDate) { this.props.changeCheckoutDate(date); }
+    if (date >= this.props.checkInDate) {
+      console.log('inside handler', date);
+      this.props.changeCheckoutDate(date);
+    }
   }
   render() {
     return (
@@ -74,7 +79,9 @@ const mapStateToProps = state => ({
   checkOutDate: state.searchOptions.checkOutDate,
   city: state.searchOptions.city,
 });
+
 export default connect(mapStateToProps, mapDispatchToProps)(LandingPageBody);
+
 LandingPageBody.propTypes = {
   checkInDate: PropTypes.objectOf.isRequired,
   checkOutDate: PropTypes.objectOf.isRequired,

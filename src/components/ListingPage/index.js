@@ -1,25 +1,70 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import './ListingPage.css';
 import SarchBarAndHeader from '../SearchBarAndHeader';
 import HotelParameterBox from '../HotelParameterBox';
 import MapAndListView from '../MapAndListView';
+import getAllHotels from '../../helpers/getAllHotels';
+import { storeAllHotels } from '../../redux/actions';
 
 class ListingPage extends React.Component {
   constructor(props) {
     super(props);
+    this.state = { loaded: false };
   }
+
+  // componentDidMount() {
+  //   const inDate = this.props.checkInDate;
+  //   const outDate = this.props.checkOutDate;
+  //   // console.log(inDate, outDate);
+  //   // console.log(String(inDate), String(outDate));
+  //   // inDate = inDate.substring(0, inDate.lastIndexOf('T'));
+  //   // outDate = outDate.substring(0, outDate.lastIndexOf('T'));
+  //   getAllHotels(
+  //     this.props.city,
+  //     '2018-03-27', '2018-03-30',
+  //     this.props.rooms,
+  //     '123424fdgdfgdgf66tytvhvh',
+  //   ).then((response) => {
+
+  //     this.props.saveAllHotels(response.hotelResultSet);
+  //     this.setState({ loaded: true });
+  //   });
+  // }
 
   render() {
     return (
       <div className="listingPage" >
         <SarchBarAndHeader />
         <HotelParameterBox />
-        <MapAndListView />
+        <MapAndListView loaded />
       </div>
-
     );
   }
 }
 
-export default ListingPage;
+const mapDispatchToProps = dispatch => ({
+  saveAllHotels: (allHotelsArray) => {
+    dispatch(storeAllHotels(allHotelsArray));
+  },
+});
+const mapStateToProps = state => ({
+  allHotels: state.storeHotels.allHotels,
+  checkInDate: state.searchOptions.checkInDate,
+  checkOutDate: state.searchOptions.checkOutDate,
+  city: state.searchOptions.city,
+  rooms: state.searchOptions.rooms,
+});
+
+
+// ListingPage.defaultProps = {
+//   allHotels: [],
+//   saveAllHotels: () => {},
+// };
+// ListingPage.propTypes = {
+//   allHotels: PropTypes.arrayOf(Object),
+//   saveAllHotels: PropTypes.func,
+// };
+export default connect(mapStateToProps, mapDispatchToProps)(ListingPage);
 

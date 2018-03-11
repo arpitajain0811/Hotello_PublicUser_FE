@@ -16,6 +16,7 @@ class HotelParameterBox extends React.Component {
   }
 
   render() {
+    console.log(moment(this.props.checkInDate));
     return (
       <div className="hotelParameterBox" >
         <div className="DatesDiv">
