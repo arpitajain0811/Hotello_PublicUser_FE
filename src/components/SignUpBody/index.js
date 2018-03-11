@@ -37,7 +37,6 @@ const mapDispatchToProps = dispatch => ({
   saveCurrentUser: (userDetailsObj) => {
     dispatch(saveUser(userDetailsObj));
   },
-
 });
 export default connect(null, mapDispatchToProps)(SignUpBody);
 SignUpBody.propTypes = {

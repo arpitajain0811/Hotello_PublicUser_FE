@@ -12,6 +12,7 @@ class SignUpForm extends Component {
       lastName: '',
       email: '',
       password: '',
+      confirmPassword: '',
       phone: '',
       formErrors: {
         email: '', password: '', phone: '', firstName: '',
@@ -21,6 +22,7 @@ class SignUpForm extends Component {
       formValid: false,
       phoneValid: false,
       firstNameValid: false,
+      confirmPwdValid: false,
     };
   }
   handleUserInput(e) {
@@ -37,22 +39,32 @@ class SignUpForm extends Component {
     let { passwordValid } = this.state;
     let { phoneValid } = this.state;
     let { firstNameValid } = this.state;
+    let { confirmPwdValid } = this.state;
     switch (fieldName) {
       case 'email':
         emailValid = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
-        fieldValidationErrors.email = emailValid ? '' : ' is invalid';
+        fieldValidationErrors.email = emailValid ? '' : 'Email is invalid';
+        fieldValidationErrors.fieldsRequired = '';
         break;
       case 'password':
         passwordValid = value.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&_])[A-Za-z\d$@$!%*?&_]{8,}/);
-        fieldValidationErrors.password = passwordValid ? '' : 'must contain atleast 8 characters, a capital letter, number and special character';
+        fieldValidationErrors.password = passwordValid ? '' : 'Password must contain atleast 8 characters, a capital letter, number and special character';
+        fieldValidationErrors.fieldsRequired = '';
         break;
       case 'phone':
         phoneValid = value.match(/^\d{10}$/);
-        fieldValidationErrors.phone = phoneValid ? '' : 'number is invalid';
+        fieldValidationErrors.phone = phoneValid ? '' : 'Phone number is invalid';
+        fieldValidationErrors.fieldsRequired = '';
         break;
       case 'firstName':
         firstNameValid = value.match(/^[a-zA-Z ]{1,}$/);
-        fieldValidationErrors.firstName = firstNameValid ? '' : 'is required';
+        fieldValidationErrors.firstName = firstNameValid ? '' : 'First name is required';
+        fieldValidationErrors.fieldsRequired = '';
+        break;
+      case 'confirmPassword':
+        confirmPwdValid = (this.state.confirmPassword === this.state.password);
+        fieldValidationErrors.password = confirmPwdValid ? '' : 'Passwords do not match';
+        fieldValidationErrors.fieldsRequired = '';
         break;
       default:
         break;
@@ -63,12 +75,23 @@ class SignUpForm extends Component {
       passwordValid,
       phoneValid,
       firstNameValid,
+      confirmPwdValid,
     }, this.validateForm);
   }
-
+  saveUser(fn, ln, email, pwd, phn) {
+    if (this.state.formValid) {
+      this.props.saveNewUser(fn, ln, email, pwd, phn);
+    } else {
+      const fieldValidationErrors = this.state.formErrors;
+      fieldValidationErrors.fieldsRequired = 'Please fill in all the required fields';
+      this.setState({
+        formErrors: fieldValidationErrors,
+      }, this.validateForm);
+    }
+  }
   validateForm() {
     this.setState({
-      formValid: this.state.emailValid && this.state.passwordValid && this.state.phoneValid && this.state.firstNameValid,
+      formValid: this.state.emailValid && this.state.passwordValid && this.state.phoneValid && this.state.firstNameValid && this.state.confirmPwdValid,
     });
   }
   render() {
@@ -119,7 +142,8 @@ class SignUpForm extends Component {
             className="SignUpInputField"
             onChange={event => this.handleUserInput(event)}
             type="password"
-            name="confirm"
+            name="confirmPassword"
+            value={this.state.confirmPassword}
             placeholder="Confirm password"
           />
         </form>
@@ -127,7 +151,7 @@ class SignUpForm extends Component {
           <FormErrors formErrors={this.state.formErrors} />
         </div>
         <div className="SignUpBtnContainer">
-          <button onClick={() => this.props.saveNewUser(this.state.firstName, this.state.lastName, this.state.email, this.state.password, this.state.phone)} className="SignUpButton" disabled={!this.state.formValid}>Sign Up</button>
+          <button onClick={() => this.saveUser(this.state.firstName, this.state.lastName, this.state.email, this.state.password, this.state.phone)} className="SignUpButton" >Sign Up</button>
         </div>
       </div>
     );
