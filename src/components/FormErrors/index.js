@@ -15,6 +15,6 @@ const FormErrors = ({ formErrors }) =>
     </div>);
 export default FormErrors;
 FormErrors.propTypes = {
-  formErrors: PropTypes.objectOf.isRequired,
+  formErrors: PropTypes.func.isRequired,
 };
 

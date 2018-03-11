@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import './SignUpForm.css';
 import FormErrors from '../FormErrors';
+
 
 class SignUpForm extends Component {
   constructor(props) {
@@ -42,7 +44,7 @@ class SignUpForm extends Component {
         break;
       case 'password':
         passwordValid = value.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&_])[A-Za-z\d$@$!%*?&_]{8,}/);
-        fieldValidationErrors.password = passwordValid ? '' : 'must contain atlest 8 characters, a capital letter, number and special character';
+        fieldValidationErrors.password = passwordValid ? '' : 'must contain atleast 8 characters, a capital letter, number and special character';
         break;
       case 'phone':
         phoneValid = value.match(/^\d{10}$/);
@@ -125,7 +127,7 @@ class SignUpForm extends Component {
           <FormErrors formErrors={this.state.formErrors} />
         </div>
         <div className="SignUpBtnContainer">
-          <button onClick={() => console.log('hey')} className="SignUpButton" disabled={!this.state.formValid}>Sign Up</button>
+          <button onClick={() => this.props.saveNewUser(this.state.firstName, this.state.lastName, this.state.email, this.state.password, this.state.phone)} className="SignUpButton" disabled={!this.state.formValid}>Sign Up</button>
         </div>
       </div>
     );
@@ -133,3 +135,7 @@ class SignUpForm extends Component {
 }
 
 export default SignUpForm;
+SignUpForm.propTypes = {
+  saveNewUser: PropTypes.func.isRequired,
+};
+

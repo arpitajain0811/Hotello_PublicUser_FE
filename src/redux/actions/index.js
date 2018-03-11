@@ -52,3 +52,7 @@ export const storeFilteredHotels = filteredHotels => ({
   type: 'STORE_FILTERED_HOTELS',
   payload: filteredHotels,
 });
+export const saveUser = userDetailsObj => ({
+  type: 'saveUser',
+  payload: userDetailsObj,
+});
