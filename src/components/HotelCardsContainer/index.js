@@ -5,10 +5,13 @@ import './HotelCardsContainer.css';
 
 class HotelCardsContainer extends React.Component {
   render() {
+    const filteredHotelsCards = [];
+    this.props.filteredHotels.forEach((hotel) => {
+      filteredHotelsCards.push(<HotelCard hotelName={hotel.hotel_name} stars={hotel.stars} minRate={parseFloat(hotel.min_rate.amount.toFixed(2))} image={hotel.thumbnail} /> );
+    });
     return (
       <div className="hotel-cards-container">
-        <HotelCard hotelName="VITS Mumbai" stars="4" minRate={280} image="" />
-        <HotelCard hotelName="VITS Mumbai" stars="4" minRate={280} image="" />
+        {filteredHotelsCards}
       </div>);
   }
 }

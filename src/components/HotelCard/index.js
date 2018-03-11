@@ -24,7 +24,7 @@ class HotelCard extends React.Component {
         <div className="hotel-card-content">
           <div className="hotel-card-name">{this.props.hotelName}</div>
           <div className="hotel-card-details">
-            <p className="hotel-card-min-rate"> ₹{Number(this.props.minRate) * 65}</p>
+            <p className="hotel-card-min-rate"> ₹{(Number(this.props.minRate) * 65).toFixed(2)}</p>
             <p className="hotel-card-stars">{stars}</p>
           </div>
         </div>

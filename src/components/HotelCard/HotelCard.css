@@ -14,9 +14,12 @@
 }
 
 .hotel-card-content{
+    display:flex;
+    flex-direction: column;
     width: 260px;
-  height: 59px;
+  /* height: 59px; */
   background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.05), #000000);
+  box-sizing: border-box;
 }
 
 .hotel-card-name{
