@@ -14,31 +14,30 @@ class ListingPage extends React.Component {
     this.state = { loaded: false };
   }
 
-  // componentDidMount() {
-  //   const inDate = this.props.checkInDate;
-  //   const outDate = this.props.checkOutDate;
-  //   // console.log(inDate, outDate);
-  //   // console.log(String(inDate), String(outDate));
-  //   // inDate = inDate.substring(0, inDate.lastIndexOf('T'));
-  //   // outDate = outDate.substring(0, outDate.lastIndexOf('T'));
-  //   getAllHotels(
-  //     this.props.city,
-  //     '2018-03-27', '2018-03-30',
-  //     this.props.rooms,
-  //     '123424fdgdfgdgf66tytvhvh',
-  //   ).then((response) => {
-
-  //     this.props.saveAllHotels(response.hotelResultSet);
-  //     this.setState({ loaded: true });
-  //   });
-  // }
+  componentDidMount() {
+    const inDate = this.props.checkInDate;
+    const outDate = this.props.checkOutDate;
+    console.log(inDate.toString(), outDate.toString());
+    // console.log(String(inDate), String(outDate));
+    // inDate = inDate.substring(0, inDate.lastIndexOf('T'));
+    // outDate = outDate.substring(0, outDate.lastIndexOf('T'));
+    getAllHotels(
+      this.props.city,
+      '2018-03-27', '2018-03-30',
+      this.props.rooms,
+      '123424fdgdfgdgf66tytvhvh',
+    ).then((response) => {
+      this.props.saveAllHotels(response.hotelResultSet);
+      this.setState({ loaded: true });
+    });
+  }
 
   render() {
     return (
       <div className="listingPage" >
         <SarchBarAndHeader />
         <HotelParameterBox />
-        <MapAndListView loaded />
+        <MapAndListView loaded={this.state.loaded} />
       </div>
     );
   }
@@ -57,14 +56,12 @@ const mapStateToProps = state => ({
   rooms: state.searchOptions.rooms,
 });
 
-
-// ListingPage.defaultProps = {
-//   allHotels: [],
-//   saveAllHotels: () => {},
-// };
-// ListingPage.propTypes = {
-//   allHotels: PropTypes.arrayOf(Object),
-//   saveAllHotels: PropTypes.func,
-// };
 export default connect(mapStateToProps, mapDispatchToProps)(ListingPage);
 
+ListingPage.propTypes = {
+  checkInDate: PropTypes.objectOf.isRequired,
+  checkOutDate: PropTypes.objectOf.isRequired,
+  city: PropTypes.string.isRequired,
+  rooms: PropTypes.arrayOf(Object).isRequired,
+  saveAllHotels: PropTypes.func.isRequired,
+};

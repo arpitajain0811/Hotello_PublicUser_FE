@@ -5,6 +5,7 @@
 .hotelList {
     flex-grow: 0.4;
     background-color: blue;
+    /* overflow: hidden; */
 }
 .map {
     flex-grow: 0.6;
