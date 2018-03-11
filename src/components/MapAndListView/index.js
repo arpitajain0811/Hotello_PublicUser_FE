@@ -24,7 +24,11 @@ class MapAndListView extends React.Component {
         <HotelCardsContainer filteredHotels={this.props.filteredHotels} />
 
         <div className="map-container">
-          <ReactGoogleMaps isMarkerShown allHotels={this.props.allHotels} updateFilteredHotels={this.updateFilteredHotels} />
+          <ReactGoogleMaps
+            isMarkerShown
+            allHotels={this.props.allHotels}
+            updateFilteredHotels={this.updateFilteredHotels}
+          />
         </div>
       </div>
     );

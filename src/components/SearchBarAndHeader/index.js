@@ -26,7 +26,7 @@ class SearchBarAndHeader extends React.Component {
                 onChange={text => this.props.saveSearchCityText(text)}
               />
             </div>
-            <button className="searchHotelByCityButton" >Search</button>
+            <button className="searchHotelByCityButton" onClick={() => { this.props.updateSearch(); }}>Search</button>
           </div>
         </div>
         <div className="searchbarAndHeader-LinksContainer">
@@ -51,4 +51,5 @@ export default connect(mapStateToProps, mapDispatchToProps)(SearchBarAndHeader);
 SearchBarAndHeader.propTypes = {
   city: PropTypes.string.isRequired,
   saveSearchCityText: PropTypes.func.isRequired,
+  updateSearch: PropTypes.func.isRequired,
 };

@@ -32,11 +32,28 @@ class ListingPage extends React.Component {
     });
   }
 
+  updateSearch=() => {
+    let inDate = this.props.checkInDate.format();
+    let outDate = this.props.checkOutDate.format();
+    console.log(inDate, outDate);
+    inDate = inDate.substring(0, inDate.lastIndexOf('T'));
+    outDate = outDate.substring(0, outDate.lastIndexOf('T'));
+    getAllHotels(
+      this.props.city,
+      inDate, outDate,
+      this.props.rooms,
+      '123424fdgdfgdgf66tytvhvh',
+    ).then((response) => {
+      this.props.saveAllHotels(response.hotelResultSet);
+      this.setState({ loaded: true });
+    });
+  }
+
 
   render() {
     return (
       <div className="listingPage" >
-        <SarchBarAndHeader />
+        <SarchBarAndHeader updateSearch={this.updateSearch} />
         <HotelParameterBox />
         <MapAndListView loaded={this.state.loaded} />
         {this.state.loaded ? <FooterBlack /> : ''}
