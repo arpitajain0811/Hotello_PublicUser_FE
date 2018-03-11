@@ -10,6 +10,7 @@ class HotelCard extends React.Component {
         src="/star.svg"
         className="star"
         alt="star"
+        key={i}
       />));
     }
     for (let i = 0; i < (5 - Number(this.props.stars)); i += 1) {
@@ -17,10 +18,11 @@ class HotelCard extends React.Component {
         src="/star-grey.svg"
         className="star-grey"
         alt="star-grey"
+        key={Number(this.props.stars) + i}
       />));
     }
     return (
-      <div className="hotel-card" style={(this.props.image === '') ? { 'background-image': 'url("/placeholder-hotel-image.jpeg")' } : { 'background-image': `url(${this.props.image})` }}>
+      <div className="hotel-card" style={(this.props.image === '') ? { backgroundImage: 'url("/placeholder-hotel-image.jpeg")' } : { backgroundImage: `url(${this.props.image})` }}>
         <div className="hotel-card-content">
           <div className="hotel-card-name">{this.props.hotelName}</div>
           <div className="hotel-card-details">

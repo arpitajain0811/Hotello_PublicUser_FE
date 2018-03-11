@@ -8,6 +8,8 @@ class HotelCardsContainer extends React.Component {
     const filteredHotelsCards = [];
     this.props.filteredHotels.forEach((hotel) => {
       filteredHotelsCards.push(<HotelCard
+        key={hotel.hotel_id}
+        hotelId={hotel.hotel_id}
         hotelName={hotel.hotel_name}
         stars={hotel.stars}
         minRate={parseFloat(hotel.min_rate.amount.toFixed(2))}
