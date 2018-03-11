@@ -1,12 +1,18 @@
 import React from 'react';
 import moment from 'moment';
+import PropTypes from 'prop-types';
 import DatePicker from 'react-datepicker';
+import { connect } from 'react-redux';
 import './HotelParameterBox.css';
 import RoomsDropDown from '../RoomsDropDown';
+import { setCheckInDate, setCheckOutDate } from '../../redux/actions';
 
 class HotelParameterBox extends React.Component {
-  constructor(props) {
-    super(props);
+  verifyCheckinDate=(date) => {
+    if (date >= moment(new Date())) { this.props.changeCheckinDate(date); }
+  }
+  verifyCheckoutDate=(date) => {
+    if (date >= this.props.checkInDate) { this.props.changeCheckoutDate(date); }
   }
 
   render() {
@@ -39,5 +45,22 @@ class HotelParameterBox extends React.Component {
   }
 }
 
-export default HotelParameterBox;
-
+const mapDispatchToProps = dispatch => ({
+  changeCheckinDate: (date) => {
+    dispatch(setCheckInDate(date));
+  },
+  changeCheckoutDate: (date) => {
+    dispatch(setCheckOutDate(date));
+  },
+});
+const mapStateToProps = state => ({
+  checkInDate: state.searchOptions.checkInDate,
+  checkOutDate: state.searchOptions.checkOutDate,
+});
+export default connect(mapStateToProps, mapDispatchToProps)(HotelParameterBox);
+HotelParameterBox.propTypes = {
+  checkInDate: PropTypes.objectOf.isRequired,
+  checkOutDate: PropTypes.objectOf.isRequired,
+  changeCheckinDate: PropTypes.func.isRequired,
+  changeCheckoutDate: PropTypes.func.isRequired,
+};

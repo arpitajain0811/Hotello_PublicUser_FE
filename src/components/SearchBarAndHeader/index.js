@@ -1,14 +1,14 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import './SearchBarAndHeader.css';
 import logo from '../../logo.svg';
 import searchLogo from '../../searchLogo.svg';
+import { setSearchCityText } from '../../redux/actions';
+
 
 class SearchBarAndHeader extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <div className="searchbarAndHeader">
@@ -19,7 +19,12 @@ class SearchBarAndHeader extends React.Component {
           <div className="searchBox">
             <div className="searchLogoAndInputBoxContainer" >
               <img src={searchLogo} alt="searchLogo" className="searchLogo" />
-              <input className="searchCityInputBox" value="Banglore" type="text" />
+              <input
+                className="searchCityInputBox"
+                value={this.props.city}
+                type="text"
+                onChange={text => this.props.saveSearchCityText(text)}
+              />
             </div>
             <button className="searchHotelByCityButton" >Search</button>
           </div>
@@ -34,5 +39,16 @@ class SearchBarAndHeader extends React.Component {
   }
 }
 
-export default SearchBarAndHeader;
-
+const mapDispatchToProps = dispatch => ({
+  saveSearchCityText: (text) => {
+    dispatch(setSearchCityText(text));
+  },
+});
+const mapStateToProps = state => ({
+  city: state.searchOptions.city,
+});
+export default connect(mapStateToProps, mapDispatchToProps)(SearchBarAndHeader);
+SearchBarAndHeader.propTypes = {
+  city: PropTypes.string.isRequired,
+  saveSearchCityText: PropTypes.func.isRequired,
+};
