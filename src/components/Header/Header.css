@@ -1,0 +1,29 @@
+.header {
+    display: flex;
+    opacity: 0.82;
+    justify-content: space-between;
+    align-items: center;
+    flex-grow: 0.1
+}
+.headerLinksContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.headerLink {
+    height: 19px;
+    font-size: 14px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: 0.6px;
+    color: #ffffff;
+    padding-left: 20px;
+    font-family: "Open Sans";
+    text-decoration: none;
+}
+.logo {
+    height: 51px;
+    width: 145px;
+}

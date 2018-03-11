@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import DatePicker from 'react-datepicker';
 import { connect } from 'react-redux';
@@ -10,10 +11,15 @@ import RoomsDropDown from '../RoomsDropDown';
 
 class LandingPageBody extends React.Component {
   verifyCheckinDate=(date) => {
-    if (date >= moment(new Date())) { this.props.changeCheckinDate(date); }
+    if (date >= moment(new Date())) {
+      this.props.changeCheckinDate(date);
+    }
   }
   verifyCheckoutDate=(date) => {
-    if (date >= this.props.checkInDate) { this.props.changeCheckoutDate(date); }
+    if (date >= this.props.checkInDate) {
+      console.log('inside handler');
+      this.props.changeCheckoutDate(date);
+    }
   }
   render() {
     return (
@@ -48,10 +54,9 @@ class LandingPageBody extends React.Component {
             <div className="RoomPeopleSelection">
               <RoomsDropDown showDropdownBlock={() => this.showDropdownBlock} />
             </div>
-            <div className="LandingPageButtonContainer">
+            <Link to="/listingPage" className="LandingPageButtonContainer" >
               <button className="LandingPageSearchButton">Search</button>
-            </div>
-
+            </Link>
           </div>
         </div>
       </div>
@@ -74,7 +79,9 @@ const mapStateToProps = state => ({
   checkOutDate: state.searchOptions.checkOutDate,
   city: state.searchOptions.city,
 });
+
 export default connect(mapStateToProps, mapDispatchToProps)(LandingPageBody);
+
 LandingPageBody.propTypes = {
   checkInDate: PropTypes.objectOf.isRequired,
   checkOutDate: PropTypes.objectOf.isRequired,

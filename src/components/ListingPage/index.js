@@ -1,45 +1,43 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import './ListingPage.css';
+import SarchBarAndHeader from '../SearchBarAndHeader';
+import HotelParameterBox from '../HotelParameterBox';
+import MapAndListView from '../MapAndListView';
 import getAllHotels from '../../helpers/getAllHotels';
 import { storeAllHotels } from '../../redux/actions';
 import HotelCardsContainer from '../HotelCardsContainer';
 
-class LandingPage extends React.Component {
+class ListingPage extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      loaded: false,
-    };
+    this.state = { loaded: false };
   }
-  componentDidMount() {
-    getAllHotels(
-      'Mumbai', '2018-03-27', '2018-03-30', [
-        {
-          ADT: 1,
-          CHD: 1,
-        },
-        {
-          ADT: 1,
-        },
-      ],
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MjQyOTEzNjEsImVtYWlsIjoic2FtcGxldXNlckBnbWFpbC5jb20iLCJpYXQiOjE1MjA2OTEzNjF9.GihjaS7Lzg4hqvPlyx65fRq7BXANxdn3ko7Rgg8kTV8',
-    )
-      .then((response) => {
-        this.props.saveAllHotels(response.hotelResultSet);
-        this.setState({ loaded: true });
-      });
-  }
-  render() {
-    if (this.state.loaded === false) {
-      return (
-        <p>Loading...</p>
-      );
-    }
 
+  componentDidMount() {
+    let inDate = this.props.checkInDate.format();
+    let outDate = this.props.checkOutDate.format();
+    console.log(inDate, outDate);
+    inDate = inDate.substring(0, inDate.lastIndexOf('T'));
+    outDate = outDate.substring(0, outDate.lastIndexOf('T'));
+    getAllHotels(
+      this.props.city,
+      inDate, outDate,
+      this.props.rooms,
+      '123424fdgdfgdgf66tytvhvh',
+    ).then((response) => {
+      this.props.saveAllHotels(response.hotelResultSet);
+      this.setState({ loaded: true });
+    });
+  }
+
+  render() {
     return (
-      <div>
-        <HotelCardsContainer filteredHotels={this.props.allHotels} />
+      <div className="listingPage" >
+        <SarchBarAndHeader />
+        <HotelParameterBox />
+        <MapAndListView loaded={this.state.loaded} />
       </div>
     );
   }
@@ -52,15 +50,18 @@ const mapDispatchToProps = dispatch => ({
 });
 const mapStateToProps = state => ({
   allHotels: state.storeHotels.allHotels,
+  checkInDate: state.searchOptions.checkInDate,
+  checkOutDate: state.searchOptions.checkOutDate,
+  city: state.searchOptions.city,
+  rooms: state.searchOptions.rooms,
 });
 
+export default connect(mapStateToProps, mapDispatchToProps)(ListingPage);
 
-LandingPage.defaultProps = {
-  allHotels: [],
-  saveAllHotels: () => {},
+ListingPage.propTypes = {
+  checkInDate: PropTypes.objectOf.isRequired,
+  checkOutDate: PropTypes.objectOf.isRequired,
+  city: PropTypes.string.isRequired,
+  rooms: PropTypes.arrayOf(Object).isRequired,
+  saveAllHotels: PropTypes.func.isRequired,
 };
-LandingPage.propTypes = {
-  allHotels: PropTypes.arrayOf(Object),
-  saveAllHotels: PropTypes.func,
-};
-export default connect(mapStateToProps, mapDispatchToProps)(LandingPage);

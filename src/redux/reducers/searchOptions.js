@@ -5,8 +5,8 @@ const defaultState = {
   checkInDate: (new Date()),
   checkOutDate: moment((new Date()).setDate((new Date()).getDate() + 1)),
   rooms: [{
-    adults: 1,
-    children: 0,
+    ADT: 1,
+    CHD: 0,
   }],
   totalRooms: 1,
   totalAdults: 1,
@@ -36,7 +36,7 @@ const searchOptionsReducer = (prevState = defaultState, action) => {
       const updatedRooms = prevState.rooms.slice();
       for (let i = 0; i < prevState.rooms.length; i += 1) {
         if (action.payload.id === i + 1) {
-          updatedRooms[i].adults = Number(action.payload.value);
+          updatedRooms[i].ADT = Number(action.payload.value);
         }
       }
       return {
@@ -48,7 +48,7 @@ const searchOptionsReducer = (prevState = defaultState, action) => {
       const updatedRooms = prevState.rooms.slice();
       for (let i = 0; i < prevState.rooms.length; i += 1) {
         if (action.payload.id === i + 1) {
-          updatedRooms[i].children = Number(action.payload.value);
+          updatedRooms[i].CHD = Number(action.payload.value);
         }
       }
       return {
@@ -71,8 +71,8 @@ const searchOptionsReducer = (prevState = defaultState, action) => {
     case 'addRoom': {
       const updatedRooms = prevState.rooms.slice();
       updatedRooms.push({
-        adults: 1,
-        children: 0,
+        ADT: 1,
+        CHD: 0,
       });
       return {
         ...prevState,
@@ -85,8 +85,8 @@ const searchOptionsReducer = (prevState = defaultState, action) => {
       let adults = 0;
       let children = 0;
       for (let i = 0; i < rooms; i += 1) {
-        adults += updatedRooms[i].adults;
-        children += updatedRooms[i].children;
+        adults += updatedRooms[i].ADT;
+        children += updatedRooms[i].CHD;
       }
       return {
         ...prevState,

@@ -1,9 +1,10 @@
 .LandingPageBody{
-    flex-grow: 1;
+    flex-grow: 0.8;
     display: flex;
     justify-content: center;
     align-items: center;
     align-content: center;
+    font-family: sans-serif;
     /* font-size: 30px; */
 }
 .LandingPageBodyContent{
@@ -36,7 +37,7 @@
   justify-content: space-between;
   margin-top: 5%;
   /* font-size: 22px; */
-  height:66px;
+  height:76px;
 }
 .LandingPageSearchButton{
     border-color: #48bc48;
@@ -78,6 +79,7 @@
     background-color: #48bc48;
     border-top-right-radius: 4px;
     border-bottom-right-radius: 4px;
+    text-decoration: none;
 }
 .CheckInOutDates{
     display: flex;
