@@ -15,15 +15,14 @@ class ListingPage extends React.Component {
   }
 
   componentDidMount() {
-    const inDate = this.props.checkInDate;
-    const outDate = this.props.checkOutDate;
-    console.log(inDate.toString(), outDate.toString());
-    // console.log(String(inDate), String(outDate));
-    // inDate = inDate.substring(0, inDate.lastIndexOf('T'));
-    // outDate = outDate.substring(0, outDate.lastIndexOf('T'));
+    let inDate = this.props.checkInDate.format();
+    let outDate = this.props.checkOutDate.format();
+    console.log(inDate, outDate);
+    inDate = inDate.substring(0, inDate.lastIndexOf('T'));
+    outDate = outDate.substring(0, outDate.lastIndexOf('T'));
     getAllHotels(
       this.props.city,
-      '2018-03-27', '2018-03-30',
+      inDate, outDate,
       this.props.rooms,
       '123424fdgdfgdgf66tytvhvh',
     ).then((response) => {
