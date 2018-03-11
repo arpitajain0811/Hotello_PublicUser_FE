@@ -1,8 +1,10 @@
 .hotel-cards-container{
     display:flex;
     flex-direction:row;
-    width:100vw;
     flex-wrap: wrap;
+    padding-top:10px;
+    width:35vw;
     height:50vh;
-    overflow:scroll
+    box-sizing:border-box;
+    overflow:scroll;
 }

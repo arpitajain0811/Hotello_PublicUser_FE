@@ -37,9 +37,10 @@ class LandingPage extends React.Component {
       );
     }
 
-    return (<div>
-      <HotelCardsContainer filteredHotels={this.props.allHotels} />
-            </div>
+    return (
+      <div>
+        <HotelCardsContainer filteredHotels={this.props.allHotels} />
+      </div>
     );
   }
 }
