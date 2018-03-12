@@ -5,6 +5,7 @@ import LandingPage from '../src/components/LandingPage';
 import ListingPage from './components/ListingPage';
 import SignUpPage from './components/SignUpPage';
 import Login from './components/Login';
+import PaymentPage from './components/PaymentPage';
 
 class App extends Component {
   render() {
@@ -15,6 +16,7 @@ class App extends Component {
           <Route path="/listingPage" component={ListingPage} />
           <Route path="/signUp" component={SignUpPage} />
           <Route path="/signIn" component={Login} />
+          <Route path="/payment" component={PaymentPage} />
         </Switch>
       </div>
     );
