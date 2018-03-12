@@ -12,6 +12,7 @@ const userReducer = (prevState = defaultState, action) => {
         firstName: action.payload.firstName,
         lastName: action.payload.lastName,
         email: action.payload.email,
+        phoneNumber: action.payload.phoneNumber,
       };
     }
 
