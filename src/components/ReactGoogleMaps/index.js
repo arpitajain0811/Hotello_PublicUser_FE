@@ -87,7 +87,8 @@ const MyMapComponent = compose(
   //   hotelMarkers.push(hotelMarker);
   const hotelOverlays = [];
   console.log('inrender:', props.radius, props.centr);
-  props.allHotels.forEach((hotel) => {
+  const someHotels = props.allHotels.slice(0, 30);
+  someHotels.forEach((hotel) => {
     const hotelOverlay = (
       <OverlayView
         className="Maps-OverlayView"
