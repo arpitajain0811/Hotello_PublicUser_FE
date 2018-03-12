@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import './SignUpForm.css';
 import FormErrors from '../FormErrors';
-import Header from '../Header';
 
 
 class SignUpForm extends Component {
@@ -152,7 +152,9 @@ class SignUpForm extends Component {
           <FormErrors formErrors={this.state.formErrors} />
         </div>
         <div className="SignUpBtnContainer">
-          <button onClick={() => this.saveUser(this.state.firstName, this.state.lastName, this.state.email, this.state.password, this.state.phone)} className="SignUpButton" >Create a new account </button>
+          <Link to="/signIn">
+            <button onClick={() => this.saveUser(this.state.firstName, this.state.lastName, this.state.email, this.state.password, this.state.phone)} className="SignUpButton" >Sign Up</button>
+          </Link>
         </div>
       </div>
 
