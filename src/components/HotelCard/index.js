@@ -22,7 +22,7 @@ class HotelCard extends React.Component {
       />));
     }
     return (
-      <div className="hotel-card" style={(this.props.image === '') ? { backgroundImage: 'url("/placeholder-hotel-image.jpeg")' } : { backgroundImage: `url(${this.props.image})` }}>
+      <div className="hotel-card" style={(this.props.image === '') ? { backgroundImage: 'url("/placeholder-hotel-image'+((this.props.hotelId%6)+1).toString()+'.jpeg")' } : { backgroundImage: `url(${this.props.image})` }}>
         <div className="hotel-card-content">
           <div className="hotel-card-name">{this.props.hotelName}</div>
           <div className="hotel-card-details">
