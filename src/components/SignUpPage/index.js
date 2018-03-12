@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import './SignUpPage.css';
@@ -35,11 +36,11 @@ class SignUpBody extends Component {
             <div
               className="AlternateSignIn"
             >Already have an account?
-              <a
+              <Link
+                to="/signIn"
                 className="signInStyle"
-                href="#"
               >Sign In
-              </a>
+              </Link>
             </div>
           </div>
           <Footer />

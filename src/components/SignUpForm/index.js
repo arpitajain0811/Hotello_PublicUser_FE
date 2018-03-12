@@ -153,7 +153,7 @@ class SignUpForm extends Component {
         </div>
         <div className="SignUpBtnContainer">
           <Link to="/signIn">
-            <button onClick={() => this.saveUser(this.state.firstName, this.state.lastName, this.state.email, this.state.password, this.state.phone)} className="SignUpButton" >Sign Up</button>
+            <button onClick={() => this.saveUser(this.state.firstName, this.state.lastName, this.state.email, this.state.password, this.state.phone)} className="SignUpButton" >Create a New Acoount</button>
           </Link>
         </div>
       </div>

@@ -81,7 +81,6 @@ class ListingPage extends React.Component {
         <SarchBarAndHeader updateSearch={this.updateSearch} />
         <HotelParameterBox />
         <MapAndListView center={this.state.center} loaded={this.state.loaded} updateCenter={this.updateCenter} />
-        {this.state.loaded ? <FooterBlack /> : ''}
       </div>
     );
   }
