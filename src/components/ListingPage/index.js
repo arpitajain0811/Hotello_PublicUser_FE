@@ -91,8 +91,8 @@ ListingPage.propTypes = {
   city: PropTypes.string.isRequired,
   rooms: PropTypes.arrayOf(Object).isRequired,
   saveAllHotels: PropTypes.func.isRequired,
-  saveFilteredHotels: PropTypes.func,
-  allHotels: PropTypes.arrayOf(Object),
+  // saveFilteredHotels: PropTypes.func,
+  // allHotels: PropTypes.arrayOf(Object),
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ListingPage);

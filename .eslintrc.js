@@ -12,6 +12,7 @@ module.exports = {
         "jsx-a11y/no-static-element-interactions": 0,
         "jsx-a11y/anchor-is-valid": 0,
         'react/no-did-mount-set-state': 0,
-        "no-nested-ternary": 0
+        "no-nested-ternary": 0,
+        "react/forbid-prop-types": 0
     },
 };

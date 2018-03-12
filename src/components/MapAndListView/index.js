@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { storeAllHotels, storeFilteredHotels } from '../../redux/actions';
@@ -6,13 +7,29 @@ import ReactGoogleMaps from '../ReactGoogleMaps';
 import HotelCardsContainer from '../HotelCardsContainer';
 import filterHotels from '../../helpers/filterHotels';
 import './MapAndListView.css';
+import constants from '../../constants.json';
 
 class MapAndListView extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      center: {},
+    };
+  }
+  componentWillMount() {
+    axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${this.props.city}&key=${constants.API_KEY}`).then((value) => {
+      console.log(value.data.results[0].geometry.location);
+      this.setState({
+        center: value.data.results[0].geometry.location,
+      });
+    });
+  }
   updateFilteredHotels = (center, radius) => {
     console.log('received', radius);
     const newFilteredHotels = filterHotels(center, radius, this.props.allHotels);
     this.props.saveFilteredHotels(newFilteredHotels);
   }
+
   render() {
     if (this.props.loaded === false) {
       return (
@@ -25,6 +42,7 @@ class MapAndListView extends React.Component {
 
         <div className="map-container">
           <ReactGoogleMaps
+            centr={this.state.center}
             isMarkerShown
             allHotels={this.props.allHotels}
             updateFilteredHotels={this.updateFilteredHotels}
@@ -45,6 +63,7 @@ const mapDispatchToProps = dispatch => ({
 const mapStateToProps = state => ({
   allHotels: state.storeHotels.allHotels,
   filteredHotels: state.storeHotels.filteredHotels,
+  city: state.searchOptions.city,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MapAndListView);
@@ -59,4 +78,5 @@ MapAndListView.propTypes = {
   allHotels: PropTypes.arrayOf(Object),
   filteredHotels: PropTypes.arrayOf(Object),
   loaded: PropTypes.bool,
+  city: PropTypes.string.isRequired,
 };

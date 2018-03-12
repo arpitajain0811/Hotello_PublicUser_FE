@@ -17,15 +17,16 @@ import constants from '../../constants.json';
 // });
 
 const MyMapComponent = compose(
-  withProps({
+  withProps(props => ({
+    parentProps: props,
     googleMapURL:
     `https://maps.googleapis.com/maps/api/js?key=${constants.API_KEY}&v=3.exp&libraries=geometry,drawing,places`,
     loadingElement: <div style={{ height: '100%' }} />,
     containerElement: <div style={{ height: '600px' }} />,
     mapElement: <div style={{ height: '100%' }} />,
-  }),
+  })),
   withState('radius', 'changeRadius', 715),
-  withState('center', 'onCenterChange', { lat: 19.0760, lng: 72.8777 }),
+  withState('center', 'onCenterChange', { lat: 39.7701723, lng: -94.8397698 }),
   withState('zoom', 'onZoomChange', 14),
 
   withHandlers((props) => {
@@ -35,6 +36,7 @@ const MyMapComponent = compose(
     return {
       onMapMounted: () => (ref) => {
         refs.map = ref;
+        props.onCenterChange(props.parentProps.centr);
       },
       onCenterChanged: ({ onCenterChange, changeRadius }) => () => {
         const newCenter = refs.map.getCenter();
@@ -84,7 +86,7 @@ const MyMapComponent = compose(
   //   />);
   //   hotelMarkers.push(hotelMarker);
   const hotelOverlays = [];
-  console.log('inrender:', props.radius, props.center);
+  console.log('inrender:', props.radius, props.centr);
   props.allHotels.forEach((hotel) => {
     const hotelOverlay = (
       <OverlayView
@@ -113,7 +115,7 @@ const MyMapComponent = compose(
     <GoogleMap
       defaultZoom={props.zoom}
       ref={props.onMapMounted}
-      defaultCenter={props.center}
+      defaultCenter={props.centr}
       onDragEnd={props.onCenterChanged}
       onZoomChanged={props.onZoomChanged}
     >
