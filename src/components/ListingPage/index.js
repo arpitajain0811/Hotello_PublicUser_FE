@@ -8,8 +8,8 @@ import MapAndListView from '../MapAndListView';
 import getAllHotels from '../../helpers/getAllHotels';
 import filterHotels from '../../helpers/filterHotels';
 import { storeAllHotels, storeFilteredHotels } from '../../redux/actions';
-import ReactGoogleMaps from '../ReactGoogleMaps';
-import HotelCardsContainer from '../HotelCardsContainer';
+// import ReactGoogleMaps from '../ReactGoogleMaps';
+// import HotelCardsContainer from '../HotelCardsContainer';
 
 class ListingPage extends React.Component {
   constructor(props) {
@@ -80,8 +80,8 @@ ListingPage.propTypes = {
   checkOutDate: PropTypes.objectOf.isRequired,
   city: PropTypes.string.isRequired,
   rooms: PropTypes.arrayOf(Object).isRequired,
-  saveAllHotels: PropTypes.func.isRequired,
-  saveFilteredHotels: PropTypes.func.isRequired,
+  saveAllHotels: PropTypes.func,
+  saveFilteredHotels: PropTypes.func,
   allHotels: PropTypes.arrayOf(Object),
 };
 
