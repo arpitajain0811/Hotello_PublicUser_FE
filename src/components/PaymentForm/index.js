@@ -1,6 +1,8 @@
 import React from 'react';
 import Payment from 'payment';
 import './PaymentForm.css';
+// import { Row, Col, FormGroup, ControlLabel, Button, Alert } from 'react-bootstrap';
+// import { Bert } from 'meteor/themeteorchef:bert';
 
 class CreditCard extends React.Component {
   constructor(props) {
