@@ -14,6 +14,9 @@ class Header extends React.Component {
           <Link to="/signUp" className="headerLink">SIGN UP</Link>
           <Link to="/signIn" className="headerLink">SIGN IN</Link>
         </div>
+        <div className="userNameDisplay" style={this.props.hideUserName} >
+          <h3>Hi {this.props.userName}</h3>
+        </div>
       </div>
     );
   }

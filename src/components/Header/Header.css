@@ -20,10 +20,14 @@
     letter-spacing: 0.6px;
     color: #ffffff;
     padding-left: 20px;
-    font-family: "Open Sans";
+    font-family: "OpenSans-Regular";
     text-decoration: none;
 }
 .logo {
     height: 51px;
     width: 145px;
+}
+.userNameDisplay {
+    color: white;
+    font-family: "OpenSans-Regular";
 }

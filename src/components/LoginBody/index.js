@@ -54,15 +54,18 @@ class LoginBody extends React.Component {
   render() {
     if (!this.state.isLoggedIn) {
       return (
-        <div className="login-body" >
-          <input type="email" required value={this.state.username} className="login-field" placeholder="Email ID" onChange={event => this.setState({ username: event.target.value, invalidCredentials: false })} />
-          <input type="password" required value={this.state.password} className="login-field" placeholder="Password" onChange={event => this.setState({ password: event.target.value, invalidCredentials: false })} />
-          <div className={this.state.invalidCredentials ? '' : 'InvalidLogin'}>Invalid Credentials!</div>
-          <button type="button" className="login-field login-button" onClick={() => { this.login(); }}>
+        <div className="loginBody" >
+          <div className="loginForm" >
+            <input type="email" required value={this.state.username} className="login-field" placeholder="Email ID" onChange={event => this.setState({ username: event.target.value, invalidCredentials: false })} />
+            <input type="password" required value={this.state.password} className="login-field" placeholder="Password" onChange={event => this.setState({ password: event.target.value, invalidCredentials: false })} />
+            <div className={this.state.invalidCredentials ? '' : 'InvalidLogin'}>Invalid Credentials!</div>
+            <button type="button" className="login-field login-button" onClick={() => { this.login(); }}>
           LOGIN
-          </button>
+            </button>
 
-        </div>);
+          </div>
+        </div>
+      );
     }
 
     return <Redirect to="/" />;
