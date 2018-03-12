@@ -1,0 +1,10 @@
+.Login{
+    width:20vw;
+    height:40vh;
+    margin:auto;
+    border-radius:10px;
+    background-color: black;
+    /* display:flex;
+    flex-direction: column; */
+    /* box-shadow:0px 2px 13px #333333  */
+}
