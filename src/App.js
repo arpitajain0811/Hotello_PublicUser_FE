@@ -3,6 +3,8 @@ import { Switch, Route } from 'react-router-dom';
 import './App.css';
 import LandingPage from '../src/components/LandingPage';
 import ListingPage from './components/ListingPage';
+import SignUpBody from './components/SignUpBody';
+import Login from './components/Login';
 
 class App extends Component {
   render() {
@@ -11,6 +13,8 @@ class App extends Component {
         <Switch>
           <Route exact path="/" component={LandingPage} />
           <Route path="/listingPage" component={ListingPage} />
+          <Route path="/signUp" component={SignUpBody} />
+          <Route path="/signIn" component={Login} />
         </Switch>
       </div>
     );
