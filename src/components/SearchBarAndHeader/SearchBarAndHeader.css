@@ -2,8 +2,9 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    flex-grow: 0.08;
+    /* flex-grow: 0.08; */
     border: solid 0 0 1px 0 rgba(151, 151, 151, 0.45);
+    margin:29px 0px
 }
 .searchbarAndHeader-LogoAndSearchBox {
     display: flex;
@@ -30,7 +31,7 @@
     margin: 0 20px 0 20px;
 }
 .searchCityInputBox {
-    font-family: "OpenSans";
+    font-family: "OpenSans-Regular";
     font-size: 16px;
     font-weight: 600;
     font-style: normal;
@@ -44,7 +45,8 @@
     border-radius: 0 4px 4px 0;
     border-style: none;
     background-color: #48bc48;
-    font-family: "OpenSans";
+    color:white;
+    font-family: "OpenSans-Regular";
     font-size: 16px;
     font-weight: 600;
     font-style: normal;
@@ -59,7 +61,7 @@
 }
 .searchbarAndHeader-Link {
     height: 19px;
-    font-family: "OpenSans";
+    font-family: "OpenSans-Regular";
     font-size: 14px;
     font-weight: normal;
     font-style: normal;

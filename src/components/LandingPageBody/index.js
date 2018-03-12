@@ -10,6 +10,11 @@ import './LandingPageBody.css';
 import RoomsDropDown from '../RoomsDropDown';
 
 class LandingPageBody extends React.Component {
+  componentDidMount() {
+    const cookie = Math.random().toString(36).substring(2, 15)
+                    + Math.random().toString(36).substring(2, 15);
+    window.localStorage.setItem('cookie', cookie);
+  }
   verifyCheckinDate=(date) => {
     if (date >= moment(new Date())) {
       this.props.changeCheckinDate(date);
@@ -17,7 +22,7 @@ class LandingPageBody extends React.Component {
   }
   verifyCheckoutDate=(date) => {
     if (date >= this.props.checkInDate) {
-      console.log('inside handler');
+      console.log('inside handler:', date.format());
       this.props.changeCheckoutDate(date);
     }
   }
@@ -88,5 +93,6 @@ LandingPageBody.propTypes = {
   changeCheckinDate: PropTypes.func.isRequired,
   changeCheckoutDate: PropTypes.func.isRequired,
   city: PropTypes.string.isRequired,
+  saveSearchCityText: PropTypes.func.isRequired,
 };
 
