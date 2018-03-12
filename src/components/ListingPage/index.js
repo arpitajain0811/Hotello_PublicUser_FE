@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 import { connect } from 'react-redux';
+import constants from '../../constants.json';
 import './ListingPage.css';
 import SarchBarAndHeader from '../SearchBarAndHeader';
 import HotelParameterBox from '../HotelParameterBox';
@@ -16,7 +18,19 @@ import FooterBlack from '../FooterBlack';
 class ListingPage extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { loaded: false };
+    this.state = {
+      loaded: false,
+      center: {},
+    };
+  }
+
+  componentWillMount() {
+    axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${this.props.city}&key=${constants.API_KEY}`).then((value) => {
+      console.log(value.data.results[0].geometry.location);
+      this.setState({
+        center: value.data.results[0].geometry.location,
+      });
+    });
   }
 
   componentDidMount() {
@@ -34,20 +48,29 @@ class ListingPage extends React.Component {
       this.setState({ loaded: true });
     });
   }
-
+  updateCenter=(c) => {
+    this.setState({ center: c });
+  }
   updateSearch=() => {
     let inDate = this.props.checkInDate.format();
     let outDate = this.props.checkOutDate.format();
     console.log(inDate, outDate);
     inDate = inDate.substring(0, inDate.lastIndexOf('T'));
     outDate = outDate.substring(0, outDate.lastIndexOf('T'));
+
     getAllHotels(
       this.props.city,
       inDate, outDate,
       this.props.rooms,
     ).then((response) => {
       this.props.saveAllHotels(response.hotelResultSet);
-      this.setState({ loaded: true });
+      axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${this.props.city}&key=${constants.API_KEY}`).then((value) => {
+        console.log(value.data.results[0].geometry.location);
+        this.setState({
+          center: value.data.results[0].geometry.location,
+          loaded: true,
+        });
+      });
     });
   }
 
@@ -57,7 +80,7 @@ class ListingPage extends React.Component {
       <div className="listingPage" >
         <SarchBarAndHeader updateSearch={this.updateSearch} />
         <HotelParameterBox />
-        <MapAndListView loaded={this.state.loaded} />
+        <MapAndListView center={this.state.center} loaded={this.state.loaded} updateCenter={this.updateCenter} />
         {this.state.loaded ? <FooterBlack /> : ''}
       </div>
     );

@@ -14,16 +14,10 @@ class MapAndListView extends React.Component {
     super(props);
     this.state = {
       center: {},
+      ctr: 0,
     };
   }
-  componentWillMount() {
-    axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${this.props.city}&key=${constants.API_KEY}`).then((value) => {
-      console.log(value.data.results[0].geometry.location);
-      this.setState({
-        center: value.data.results[0].geometry.location,
-      });
-    });
-  }
+
   updateFilteredHotels = (center, radius) => {
     console.log('received', radius);
     const newFilteredHotels = filterHotels(center, radius, this.props.allHotels);
@@ -42,10 +36,11 @@ class MapAndListView extends React.Component {
 
         <div className="map-container">
           <ReactGoogleMaps
-            centr={this.state.center}
+            centr={this.props.center}
             isMarkerShown
             allHotels={this.props.allHotels}
             updateFilteredHotels={this.updateFilteredHotels}
+            updateCenter={this.props.updateCenter}
           />
         </div>
       </div>
@@ -78,5 +73,6 @@ MapAndListView.propTypes = {
   allHotels: PropTypes.arrayOf(Object),
   filteredHotels: PropTypes.arrayOf(Object),
   loaded: PropTypes.bool,
+  center: PropTypes.object.isRequired,
   city: PropTypes.string.isRequired,
 };
