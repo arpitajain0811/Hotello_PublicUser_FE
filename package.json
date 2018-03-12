@@ -5,6 +5,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "moment": "^2.21.0",
+    "payment": "^1.0.4",
     "prop-types": "^15.6.1",
     "react": "^16.2.0",
     "react-datepicker": "^1.2.2",
