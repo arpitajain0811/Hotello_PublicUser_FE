@@ -1,9 +1,8 @@
 .footer {
     display: flex;
     flex-direction: column;
-    flex-grow: 0.2;
+    flex-grow: 1;
     justify-content: space-between;
-    padding: 20px 0 20px 0;
 }
 .footerItem1 {
     display: flex;
@@ -34,7 +33,7 @@
 }
 .footerItem2 {
     display: flex;
-    width: 14%;
+    width: 200px;
     justify-content: space-between;
 }
 .footerItem2Link {

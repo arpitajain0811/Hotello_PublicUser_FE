@@ -3,7 +3,7 @@
     opacity: 0.82;
     justify-content: space-between;
     align-items: center;
-    flex-grow: 0.1
+    flex-grow: 1;
 }
 .headerLinksContainer {
     display: flex;

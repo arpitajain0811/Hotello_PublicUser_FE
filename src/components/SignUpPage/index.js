@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import './SignUpBody.css';
+import './SignUpPage.css';
 import SignUpForm from '../SignUpForm';
 import { saveUser } from '../../redux/actions';
+import Header from '../Header';
+import Footer from '../Footer';
 
 class SignUpBody extends Component {
     saveNewUser=(firstName, lastName, email, password, phoneNumber) => {
@@ -24,11 +26,23 @@ class SignUpBody extends Component {
     }
     render() {
       return (
-        <div className="SignUpBody" >
-          <SignUpForm
-            saveNewUser={(fn, ln, email, pwd, phn) => this.saveNewUser(fn, ln, email, pwd, phn)}
-          />
-          <div className="AlternateSignIn">Already have an account? <a href="#">Sign In</a></div>
+        <div className="SignUpPage" >
+          <Header toHide={{ display: 'none' }} />
+          <div className="SignUpBody" >
+            <SignUpForm
+              saveNewUser={(fn, ln, email, pwd, phn) => this.saveNewUser(fn, ln, email, pwd, phn)}
+            />
+            <div
+              className="AlternateSignIn"
+            >Already have an account?
+              <a
+                className="signInStyle"
+                href="#"
+              >Sign In
+              </a>
+            </div>
+          </div>
+          <Footer />
         </div>
       );
     }

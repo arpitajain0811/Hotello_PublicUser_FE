@@ -12,7 +12,7 @@ class LandingPage extends React.Component {
   render() {
     return (
       <div className="landingPage">
-        <Header />
+        <Header toHide={{ display: 'flex' }} />
         <LandingPageBody />
         <Footer />
       </div>

@@ -10,9 +10,9 @@ class Header extends React.Component {
         <div className="logo">
           <img src={logo} alt="logo" className="logo" />
         </div>
-        <div className="headerLinksContainer">
-          <Link to="signUp" className="headerLink">SIGN UP</Link>
-          <Link to="signIn" className="headerLink">SIGN IN</Link>
+        <div className="headerLinksContainer" style={this.props.toHide}>
+          <Link to="/signUp" className="headerLink">SIGN UP</Link>
+          <Link to="/signIn" className="headerLink">SIGN IN</Link>
         </div>
       </div>
     );
