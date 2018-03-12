@@ -9,6 +9,10 @@ import getAllHotels from '../../helpers/getAllHotels';
 import { storeAllHotels, storeFilteredHotels } from '../../redux/actions';
 import FooterBlack from '../FooterBlack';
 
+// import ReactGoogleMaps from '../ReactGoogleMaps';
+// import HotelCardsContainer from '../HotelCardsContainer';
+
+
 class ListingPage extends React.Component {
   constructor(props) {
     super(props);
@@ -81,14 +85,14 @@ ListingPage.defaultProps = {
 
 };
 
-
 ListingPage.propTypes = {
   checkInDate: PropTypes.objectOf.isRequired,
   checkOutDate: PropTypes.objectOf.isRequired,
   city: PropTypes.string.isRequired,
   rooms: PropTypes.arrayOf(Object).isRequired,
   saveAllHotels: PropTypes.func.isRequired,
-
+  saveFilteredHotels: PropTypes.func,
+  allHotels: PropTypes.arrayOf(Object),
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ListingPage);
