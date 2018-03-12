@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-// import { updateAdminUser } from '../../redux/actions';
+import { saveUser } from '../../redux/actions';
 import './LoginBody.css';
 
 class LoginBody extends React.Component {
@@ -38,8 +38,8 @@ class LoginBody extends React.Component {
             authorization: window.localStorage.getItem('token'),
           },
         }).then(user => user.json()).then((data) => {
-          console.log(data);
-        //   this.props.updateAdminUser(data);
+        //   console.log(data);
+          this.props.saveUser(data);
         });
         this.setState({
           username: '',
@@ -69,12 +69,12 @@ class LoginBody extends React.Component {
 LoginBody.defaultProps = {
 };
 LoginBody.propTypes = {
-  updateAdminUser: PropTypes.func.isRequired,
+  saveUser: PropTypes.func.isRequired,
 };
-// const mapDispatchToProps = dispatch => ({
-//   updateAdminUser: (email) => {
-// dispatch(updateAdminUser(email));
-//   },
+const mapDispatchToProps = dispatch => ({
+  saveUser: (userDetailsObj) => {
+    dispatch(saveUser(userDetailsObj));
+  },
 
-// }s);
-export default connect(null, null)(LoginBody);
+});
+export default connect(null, mapDispatchToProps)(LoginBody);
