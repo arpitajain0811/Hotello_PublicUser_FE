@@ -28,6 +28,8 @@
     width: 145px;
 }
 .userNameDisplay {
+    display: flex;
     color: white;
     font-family: "OpenSans-Regular";
+    align-items: center;
 }
