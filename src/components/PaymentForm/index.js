@@ -1,19 +1,53 @@
 import React from 'react';
 import Payment from 'payment';
 import './PaymentForm.css';
-// import { Row, Col, FormGroup, ControlLabel, Button, Alert } from 'react-bootstrap';
-// import { Bert } from 'meteor/themeteorchef:bert';
 
 class CreditCard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      number: null,
-      exp_month: null,
-      exp_year: null,
-      cvc: null,
-      token: null,
+      imgSrc: '',
     };
+  }
+  componentDidMount() {
+    const { number, expiration, cvc } = this.refs;
+    Payment.formatCardNumber(number);
+    Payment.formatCardExpiry(expiration);
+    Payment.formatCardCVC(cvc);
+  }
+  getCardType=(event) => {
+    const type = Payment.fns.cardType(event.target.value);
+    console.log(type);
+    if (type === 'mastercard') {
+      this.setState({
+        imgSrc: '/mastercard.png',
+      });
+    }
+    if (type === 'visa') {
+      this.setState({
+        imgSrc: '/visa.png',
+      });
+    }
+    if (type === 'amex') {
+      this.setState({
+        imgSrc: '/amex.png',
+      });
+    }
+    if (type === 'jcb') {
+      this.setState({
+        imgSrc: '/jcb.png',
+      });
+    }
+    if (type === 'dinersclub') {
+      this.setState({
+        imgSrc: '/dinersclub.png',
+      });
+    }
+    if (type === 'discover') {
+      this.setState({
+        imgSrc: '/discover.png',
+      });
+    }
   }
   renderCardList=() => (
     <ul className="credit-card-list clearfix">
@@ -28,13 +62,15 @@ class CreditCard extends React.Component {
     return (
       <div className="PaymentForm">
         Payment Details
-
         <div className="CreditCard">
-          <input type="text" placeholder="Card Number" className="CardNumberInputField" />
+          <div className="CardNumberWithImage">
+            <input type="text" ref="number" placeholder="Card Number" className="CardNumberInputField" onChange={event => this.getCardType(event)} />
+            <img className="CreditCardImage" src={this.state.imgSrc} alt="" />
+          </div>
           <input type="text" placeholder="Card Holder Name" className="CardHolderNameInputField" />
           <div className="ExpiryAndCvv">
-            <input type="text" placeholder="Expiry" className="ExpiryInputField" />
-            <input type="text" placeholder="CVV" className="CvvInputField" />
+            <input type="text" ref="expiration" placeholder="Expiry" className="ExpiryInputField" />
+            <input type="text" ref="cvc" placeholder="CVV" className="CvvInputField" />
           </div>
           {/* { this.renderCardList() } */}
         </div>
