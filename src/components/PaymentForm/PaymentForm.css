@@ -79,6 +79,9 @@
   font-weight: 500;
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
+  border-radius: 5px;
+  font-weight: 500;
 }
 .Roomtype2{
   margin-right:2%;
