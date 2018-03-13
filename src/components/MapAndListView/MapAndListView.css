@@ -15,3 +15,28 @@
     /* background-color: red; */
     /* height:70vh */
 }
+
+
+.slider{
+    height:40px;
+    width:20vw;
+    border:1px solid red;
+    display:flex;
+    flex-direction: column;
+    justify-content: center
+}
+
+.handle{
+    height:100%;
+    width:3vw;
+    background-color:green
+}
+
+.bar{
+    height:10%;
+    background-color:black
+}
+
+.bar-1{
+    background-color:green
+}
