@@ -10,12 +10,18 @@ class Header extends React.Component {
         <div className="logo">
           <img src={logo} alt="logo" className="logo" />
         </div>
-        <div className="headerLinksContainer" style={this.props.toHide}>
+        <div
+          className="headerLinksContainer"
+          style={this.props.loginState.isLoggedIn ? { display: 'none' } : { display: 'flex' }}
+        >
           <Link to="/signUp" className="headerLink">SIGN UP</Link>
           <Link to="/signIn" className="headerLink">SIGN IN</Link>
         </div>
-        <div className="userNameDisplay" style={this.props.hideUserName} >
-          <h3>Hi {this.props.userName}</h3>
+        <div
+          className="userNameDisplay"
+          style={this.props.loginState.isLoggedIn ? {} : { display: 'none' }}
+        >
+          <h3>Hi {this.props.loginState.firstName}</h3>
         </div>
       </div>
     );

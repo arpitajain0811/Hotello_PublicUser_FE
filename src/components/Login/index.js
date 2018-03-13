@@ -8,11 +8,11 @@ class Login extends React.Component {
   render() {
     return (
       <div className="Login">
-        {/* <Header text="Hotello" /> */}
-        <Header toHide={{ display: 'none' }} />
+        <Header loginState={{ isLoggedIn: false }} />
         <LoginBody />
         <Footer />
-      </div>);
+      </div>
+    );
   }
 }
 

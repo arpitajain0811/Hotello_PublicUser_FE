@@ -9,20 +9,32 @@ class LandingPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      loginState: {
+        isLoggedIn: false,
+        firstName: null,
+      },
     };
+  }
+
+  componentWillMount() {
+    console.log('in comp did mount', window.localStorage.getItem('token'), window.localStorage.getItem('userName'));
+    if (window.localStorage.getItem('token')) {
+      this.setState({
+        loginState: {
+          isLoggedIn: true,
+          firstName: window.localStorage.getItem('userName'),
+        },
+      });
+    }
   }
 
 
   render() {
-    console.log(this.props.userName);
+    console.log('In landing page, local storage', window.localStorage.getItem('token'));
+    console.log(this.state.loginState);
     return (
       <div className="landingPage">
-        <Header
-          toHide={this.props.userName !== '' ? { display: 'none' } : { display: 'flex' }}
-          hideUserName={this.props.userName !== '' ? { display: 'block' } : { display: 'none' }}
-          userName={this.props.userName}
-        />
+        <Header loginState={this.state.loginState} />
         <LandingPageBody />
         <Footer />
       </div>
@@ -32,7 +44,7 @@ class LandingPage extends React.Component {
 
 
 const mapStateToProps = state => ({
-  userName: state.userReducer.firstName,
+  firstName: state.userReducer.firstName,
 });
 export default connect(mapStateToProps, null)(LandingPage);
 
