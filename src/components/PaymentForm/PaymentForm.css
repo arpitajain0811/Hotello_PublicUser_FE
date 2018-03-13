@@ -1,3 +1,56 @@
 .PaymentForm{
-    font-family: 'OpenSans-SemiBold';
+    font-family: OpenSans-regular;
+  font-size: 15px;
+  font-weight: 600;
+    width:40%;
+    letter-spacing: 0.1px;
+    opacity: 0.75;
+}
+.CardNumberInputField{
+    /* box-shadow: 0 1px 3px 0 rgba(65, 80, 66, 0.5); */
+    padding:2%;
+    margin-bottom:2%;
+    margin-top:2%;
+    font-family: openSans-regular;
+  font-size: 15px;
+  font-weight: 600;
+  border:1px solid  #979797;
+  box-sizing: border-box;
+}
+.CreditCard{
+    display: flex;
+    flex-direction: column;
+}
+.CardHolderNameInputField{
+    border:1px solid  #979797;
+    padding:2%;
+    margin-bottom:2%;
+    margin-top:2%;
+    font-family: openSans-regular;
+  font-size: 15px;
+  font-weight: 600;
+  box-sizing: border-box;
+}
+.ExpiryAndCvv{
+    display: flex;
+    flex-basis: 50%;
+}
+.ExpiryInputField{
+    border:1px solid  #979797;
+    padding:2%;
+    margin-bottom:2%;
+    margin-top:2%;
+    margin-right:2%;
+    font-family: openSans-regular;
+  font-size: 15px;
+  font-weight: 600;
+}
+.CvvInputField{
+    border:1px solid  #979797;
+    padding:2%;
+    margin-bottom:2%;
+    margin-top:2%;
+    font-family: openSans-regular;
+  font-size: 15px;
+  font-weight: 600;
 }

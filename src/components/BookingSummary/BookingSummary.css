@@ -1,0 +1,80 @@
+.BookingSummary{
+    border:1px solid #979797;
+    width:30%;
+    margin-left:5%;
+    padding:1%;
+    opacity: .85;
+}
+.SelectedHotelName{
+    font-family: OpenSans-regular;
+    font-size: 26px;
+    font-weight: bold;
+    letter-spacing: 0.1px;
+}
+.HotelNameWithStars{
+    /* border-bottom: 1px solid #9b9b9b; */
+    padding-bottom:1%;
+}
+.PaymentPageArrowImg{
+    width:65%;
+    height:45%;
+    /* object-fit: contain; */
+}
+.SearchSelectedCheckInOutDates{
+    margin-top:1%;
+    display: flex;
+}
+.PaymentpageArrow{
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    opacity: 0.45;
+}
+.SearchSelectedDetails{
+font-family: OpenSans-regular;
+  font-size: 12px;
+  font-weight: 600;
+  padding:2%;
+  /* border-bottom:1px solid #9b9b9b; */
+  padding-bottom:3%;
+  
+}
+.PaymentPageLine{
+    opacity: 0.42;
+}
+.MakePaymentButton{
+    width:100%;
+    padding:4%;
+    border-radius: 4px;
+  background-color: #48bc48;
+  font-family: OpenSans-regular;
+  font-size: 18px;
+  font-weight: 500;
+  color:white;
+}
+.PriceDeatils{
+    font-family: OpenSans-regular;
+    font-size: 13px;
+}
+.BasePay{
+    display: flex;
+    justify-content: space-between;
+    padding:2%;
+}
+.ServiceFee{
+    display: flex;
+    justify-content: space-between;
+    padding:2%;
+}
+.Taxes{
+    display: flex;
+    justify-content: space-between;
+    padding:2%;
+}
+.TotalAmount{
+    display: flex;
+    justify-content: space-between;
+    padding:2%;
+    font-weight: 600;
+    padding-bottom: 5%;
+}
