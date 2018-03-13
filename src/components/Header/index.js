@@ -7,92 +7,57 @@ import UserProfileIcon from '../UserProfileIcon';
 class Header extends React.Component {
   constructor(props) {
     super(props);
+    console.log('in Header constructor, props', this.props);
     this.state = {
-      signOptionsDisplay: {
-        display: 'none',
-      },
-      userNameDisplay: {
-        toDisplayUserName: {
-          display: 'none',
-        },
-        firstName: 'null',
-      },
+      displaySignOptions: null,
+      displayUserIcon: null,
     };
   }
 
   componentWillMount() {
-    console.log('inside header will mount', this.props.loginState);
+    console.log('in header componentWillMount, this.props.loginState', this.props.loginState);
     if (this.props.loginState.isLoggedIn) {
       this.setState({
-        signOptionsDisplay: {
-          display: 'none',
-        },
-        userNameDisplay: {
-          toDisplayUserName: {
-            display: 'flex',
-          },
-          firstName: this.props.loginState.firstName,
-        },
+        displaySignOptions: false,
+        displayUserIcon: true,
       });
-    } else if (this.props.loginState.noDisplay === true) {
+    } else if (this.props.loginState.noDisplay) {
       this.setState({
-        signOptionsDisplay: {
-          display: 'none',
-        },
-        userNameDisplay: {
-          toDisplayUserName: {
-            display: 'none',
-          },
-          firstName: 'null',
-        },
+        displaySignOptions: false,
+        displayUserIcon: false,
       });
     } else if (this.props.loginState.isLoggedIn === false) {
       this.setState({
-        signOptionsDisplay: {
-          display: 'flex',
-        },
-        userNameDisplay: {
-          toDisplayUserName: {
-            display: 'none',
-          },
-          firstName: 'null',
-        },
+        displaySignOptions: true,
+        displayUserIcon: false,
       });
     }
   }
 
   componentWillReceiveProps(newProps) {
-    console.log('in header componentWillReceiveProps', newProps);
+    console.log('in header componentWillReceiveProps, newProps', newProps);
     if (newProps.loginState.isLoggedIn === false) {
       this.setState({
-        signOptionsDisplay: {
-          display: 'flex',
-        },
-        userNameDisplay: {
-          toDisplayUserName: {
-            display: 'none',
-          },
-          firstName: 'null',
-        },
+        displaySignOptions: true,
+        displayUserIcon: false,
       });
     }
   }
 
   render() {
-    console.log('in header render', this.state);
+    console.log('in header render, this.state', this.state);
     let userProfBlock;
-    if (!this.state.userNameDisplay.firstName) {
-      userProfBlock = null;
-    } else {
+    if (this.state.displayUserIcon) {
       userProfBlock = (
         <div
-          className="userNameDisplay"
-          style={this.state.userNameDisplay.toDisplayUserName}
+          className={'userNameDisplay'.concat(this.state.displayUserIcon ? '' : ' hide')}
         >
-          <h3>Hi {this.state.userNameDisplay.firstName}</h3>
+          <h3>Hi {this.props.loginState.firstName}</h3>
           <UserProfileIcon logoutHandler={this.props.logoutHandler} />
         </div>
       );
+    } else {
+      userProfBlock = null;
     }
 
     console.log(userProfBlock);
@@ -102,8 +67,7 @@ class Header extends React.Component {
           <img src={logo} alt="logo" className="logo" />
         </div>
         <div
-          className="headerLinksContainer"
-          style={this.state.signOptionsDisplay}
+          className={'headerLinksContainer'.concat(this.state.displaySignOptions ? '' : ' hide')}
         >
           <Link to="/signUp" className="headerLink">SIGN UP</Link>
           <Link to="/signIn" className="headerLink">SIGN IN</Link>

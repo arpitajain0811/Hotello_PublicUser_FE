@@ -17,7 +17,7 @@ class LandingPage extends React.Component {
   }
 
   componentWillMount() {
-    console.log('in comp will mount', window.localStorage.getItem('userName'));
+    console.log('in LandingPage componentWillMount, window.localStorage.getItem(userName)', window.localStorage.getItem('userName'));
     if (window.localStorage.getItem('userName') !== 'null') {
       this.setState({
         loginState: {
@@ -28,21 +28,8 @@ class LandingPage extends React.Component {
     }
   }
 
-  // componentDidMount() {
-  //   console.log('in comp did mount', window.localStorage.getItem('userName'));
-  //   if (window.localStorage.getItem('userName')) {
-  //     this.setState({
-  //       loginState: {
-  //         isLoggedIn: true,
-  //         firstName: window.localStorage.getItem('userName'),
-  //       },
-  //     });
-  //   }
-  // }
-
-
   logoutHandler = () => {
-    console.log('inside logoutHandler');
+    console.log('in LandingPage logoutHandler');
     this.setState({
       loginState: {
         isLoggedIn: false,
@@ -52,8 +39,8 @@ class LandingPage extends React.Component {
   }
 
   render() {
-    console.log('In landing page render, local storage', window.localStorage.getItem('userName'));
-    console.log('In landing page render, state', this.state.loginState);
+    console.log('In LandingPage render, window.localStorage.getItem(userName)', window.localStorage.getItem('userName'));
+    console.log('In LandingPage render, this.state.loginState', this.state.loginState);
     return (
       <div className="landingPage">
         <Header
