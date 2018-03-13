@@ -61,18 +61,34 @@ class CreditCard extends React.Component {
   render() {
     return (
       <div className="PaymentForm">
+        <div className="RoomDetailsSection">
+    Room type
+          <div className="RoomTypesContainer">
+            <div className="RoomType">
+    Single Bed - standard
+            </div>
+            <div className="RoomType Roomtype2">
+    Double Bed - standard
+            </div>
+            <div className="RoomType">
+    Double Bed - Deluxe
+            </div>
+          </div>
+        </div>
+        <div className="CredidCardDetailsForm">
         Payment Details
-        <div className="CreditCard">
-          <div className="CardNumberWithImage">
-            <input type="text" ref="number" placeholder="Card Number" className="CardNumberInputField" onChange={event => this.getCardType(event)} />
-            <img className="CreditCardImage" src={this.state.imgSrc} alt="" />
+          <div className="CreditCard">
+            <div className="CardNumberWithImage">
+              <input type="text" ref="number" placeholder="Card Number" className="CardNumberInputField" onChange={event => this.getCardType(event)} />
+              <img className="CreditCardImage" src={this.state.imgSrc} alt="" />
+            </div>
+            <input type="text" placeholder="Card Holder Name" className="CardHolderNameInputField" />
+            <div className="ExpiryAndCvv">
+              <input type="text" ref="expiration" placeholder="Expiry" className="ExpiryInputField" />
+              <input type="text" ref="cvc" placeholder="CVV" className="CvvInputField" />
+            </div>
+            {/* { this.renderCardList() } */}
           </div>
-          <input type="text" placeholder="Card Holder Name" className="CardHolderNameInputField" />
-          <div className="ExpiryAndCvv">
-            <input type="text" ref="expiration" placeholder="Expiry" className="ExpiryInputField" />
-            <input type="text" ref="cvc" placeholder="CVV" className="CvvInputField" />
-          </div>
-          {/* { this.renderCardList() } */}
         </div>
       </div>
     );
