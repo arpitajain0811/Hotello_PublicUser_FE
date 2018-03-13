@@ -30,7 +30,7 @@ class LandingPage extends React.Component {
 
 
   render() {
-    console.log('In landing page, local storage', window.localStorage.getItem('token'));
+    console.log('In landing page render, local storage', window.localStorage.getItem('token'));
     console.log(this.state.loginState);
     return (
       <div className="landingPage">
