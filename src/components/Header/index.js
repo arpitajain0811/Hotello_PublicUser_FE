@@ -15,7 +15,7 @@ class Header extends React.Component {
         toDisplayUserName: {
           display: 'none',
         },
-        firstName: null,
+        firstName: 'null',
       },
     };
   }
@@ -43,7 +43,7 @@ class Header extends React.Component {
           toDisplayUserName: {
             display: 'none',
           },
-          firstName: null,
+          firstName: 'null',
         },
       });
     } else if (this.props.loginState.isLoggedIn === false) {
@@ -55,7 +55,7 @@ class Header extends React.Component {
           toDisplayUserName: {
             display: 'none',
           },
-          firstName: null,
+          firstName: 'null',
         },
       });
     }
@@ -72,7 +72,7 @@ class Header extends React.Component {
           toDisplayUserName: {
             display: 'none',
           },
-          firstName: null,
+          firstName: 'null',
         },
       });
     }
