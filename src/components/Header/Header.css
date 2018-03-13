@@ -4,6 +4,7 @@
     justify-content: space-between;
     align-items: center;
     flex-grow: 1;
+    font-family: "OpenSans-Regular";
 }
 .headerLinksContainer {
     display: flex;
@@ -20,7 +21,6 @@
     letter-spacing: 0.6px;
     color: #ffffff;
     padding-left: 20px;
-    font-family: "OpenSans-Regular";
     text-decoration: none;
 }
 .logo {
@@ -30,6 +30,8 @@
 .userNameDisplay {
     display: flex;
     color: white;
-    font-family: "OpenSans-Regular";
     align-items: center;
+}
+.hide {
+    display: none;
 }
