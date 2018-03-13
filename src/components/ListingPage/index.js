@@ -57,7 +57,7 @@ class ListingPage extends React.Component {
     console.log(inDate, outDate);
     inDate = inDate.substring(0, inDate.lastIndexOf('T'));
     outDate = outDate.substring(0, outDate.lastIndexOf('T'));
-
+    this.setState({ loaded: false });
     getAllHotels(
       this.props.city,
       inDate, outDate,
