@@ -10,7 +10,7 @@ import {
 } from 'react-google-maps';
 import './ReactGoogleMaps.css';
 import constants from '../../constants.json';
-
+import Slider from 'react-slider';
 // const getPixelPositionOffset = (width, height) => ({
 //   x: -(width / 2),
 //   y: -(height / 2),
@@ -84,6 +84,7 @@ const MyMapComponent = compose(
   });
 
   return (
+
     <GoogleMap
       defaultZoom={14}
       ref={props.onMapMounted}
@@ -91,6 +92,11 @@ const MyMapComponent = compose(
       onDragEnd={props.onCenterChanged}
       onZoomChanged={props.onZoomChanged}
     >
+      <Slider
+        defaultValue={50}
+        withBars
+        onAfterChange={(v) => { props.changeRadius(v * 15); }}
+      />
       <Circle
         center={props.centr}
         radius={props.radius}
