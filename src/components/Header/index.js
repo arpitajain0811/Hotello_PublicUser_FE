@@ -46,33 +46,33 @@ class Header extends React.Component {
 
   render() {
     console.log('in header render, this.state', this.state);
-    let userProfBlock;
+    let userIconBlock = null;
+    let signOptionsBlock = null;
     if (this.state.displayUserIcon) {
-      userProfBlock = (
-        <div
-          className={'userNameDisplay'.concat(this.state.displayUserIcon ? '' : ' hide')}
-        >
+      userIconBlock = (
+        <div className="userNameDisplay">
           <h3>Hi {this.props.loginState.firstName}</h3>
           <UserProfileIcon logoutHandler={this.props.logoutHandler} />
         </div>
       );
-    } else {
-      userProfBlock = null;
     }
-
-    console.log(userProfBlock);
+    if (this.state.displaySignOptions) {
+      signOptionsBlock = (
+        <div className="headerLinksContainer">
+          <Link to="/signUp" className="headerLink">SIGN UP</Link>
+          <Link to="/signIn" className="headerLink">SIGN IN</Link>
+        </div>
+      );
+    }
+    console.log(signOptionsBlock);
+    console.log(userIconBlock);
     return (
       <div className="header">
         <div className="logo">
           <img src={logo} alt="logo" className="logo" />
         </div>
-        <div
-          className={'headerLinksContainer'.concat(this.state.displaySignOptions ? '' : ' hide')}
-        >
-          <Link to="/signUp" className="headerLink">SIGN UP</Link>
-          <Link to="/signIn" className="headerLink">SIGN IN</Link>
-        </div>
-        {userProfBlock}
+        {signOptionsBlock}
+        {userIconBlock}
       </div>
     );
   }
