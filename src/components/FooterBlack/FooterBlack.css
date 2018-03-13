@@ -2,9 +2,10 @@
     display: flex;
     flex-direction: column;
     /* flex-grow: 0.2; */
-    height: 130px;
+    height: 120px;
     justify-content: space-between;
     padding: 20px 0 20px 0;
+    opacity: 0.75;
 }
 .footerBlackItem1 {
     display: flex;
@@ -37,8 +38,8 @@
 .footerBlackItem2 {
     margin:5px 0px;
     display: flex;
-    width: 15%;
-    justify-content: space-between;
+    /* width: 15%; */
+    /* justify-content: space-between; */
 }
 .footerBlackItem2Link {
     height: 21px;
@@ -52,4 +53,5 @@
     text-align: left;
     color: #000000;
     text-decoration: none;
+    margin-right:1%;
 }

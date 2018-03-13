@@ -1,5 +1,6 @@
 import React from 'react';
 import Payment from 'payment';
+import './PaymentForm.css';
 // import { Row, Col, FormGroup, ControlLabel, Button, Alert } from 'react-bootstrap';
 // import { Bert } from 'meteor/themeteorchef:bert';
 
@@ -31,8 +32,10 @@ class CreditCard extends React.Component {
         <div className="CreditCard">
           <input type="text" placeholder="Card Number" className="CardNumberInputField" />
           <input type="text" placeholder="Card Holder Name" className="CardHolderNameInputField" />
-          <input type="text" placeholder="Expiry" className="ExpiryInputField" />
-          <input type="text" placeholder="CVV" className="CvvInputField" />
+          <div className="ExpiryAndCvv">
+            <input type="text" placeholder="Expiry" className="ExpiryInputField" />
+            <input type="text" placeholder="CVV" className="CvvInputField" />
+          </div>
           {/* { this.renderCardList() } */}
         </div>
       </div>
