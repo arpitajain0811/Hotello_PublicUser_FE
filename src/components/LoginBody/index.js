@@ -33,6 +33,7 @@ class LoginBody extends React.Component {
           invalidCredentials: true,
         });
       } else {
+        console.log('setting jwt');
         window.localStorage.setItem('token', token);
         fetch('/userUpdateDetails', {
           method: 'GET',
@@ -41,12 +42,15 @@ class LoginBody extends React.Component {
           },
         }).then(user => user.json()).then((data) => {
         //   console.log(data);
+          console.log(data);
+          window.localStorage.setItem('userName', data.firstName);
           this.props.saveUser(data);
-        });
-        this.setState({
-          username: '',
-          password: '',
-          isLoggedIn: true,
+
+          this.setState({
+            username: '',
+            password: '',
+            isLoggedIn: true,
+          });
         });
       }
     });
@@ -62,7 +66,6 @@ class LoginBody extends React.Component {
             <button type="button" className="login-field login-button" onClick={() => { this.login(); }}>
           LOGIN
             </button>
-
           </div>
         </div>
       );

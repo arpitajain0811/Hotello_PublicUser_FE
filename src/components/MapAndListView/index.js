@@ -9,6 +9,7 @@ import filterByPrice from '../../helpers/filterByPrice';
 import './MapAndListView.css';
 import constants from '../../constants.json';
 import Slider from 'react-slider';
+import Loader from '../Loader';
 
 class MapAndListView extends React.Component {
   constructor(props) {
@@ -28,7 +29,7 @@ class MapAndListView extends React.Component {
   render() {
     if (this.props.loaded === false) {
       return (
-        <p>Loading...</p>
+        <Loader />
       );
     }
     return (

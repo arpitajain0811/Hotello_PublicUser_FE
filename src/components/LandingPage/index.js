@@ -9,19 +9,50 @@ class LandingPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      loginState: {
+        isLoggedIn: false,
+        firstName: '',
+      },
     };
   }
 
+  componentWillMount() {
+    console.log('in LandingPage componentWillMount, window.localStorage.getItem(userName)', window.localStorage.getItem('userName'), typeof (window.localStorage.getItem('userName')));
+    if (window.localStorage.getItem('userName') !== null) {
+      this.setState({
+        loginState: {
+          isLoggedIn: true,
+          firstName: window.localStorage.getItem('userName'),
+        },
+      });
+    } else {
+      this.setState({
+        loginState: {
+          isLoggedIn: false,
+          firstName: '',
+        },
+      });
+    }
+  }
+
+  logoutHandler = () => {
+    console.log('in LandingPage logoutHandler');
+    this.setState({
+      loginState: {
+        isLoggedIn: false,
+        firstName: '',
+      },
+    });
+  }
 
   render() {
-    console.log(this.props.userName);
+    console.log('In LandingPage render, window.localStorage.getItem(userName)', window.localStorage.getItem('userName'));
+    console.log('In LandingPage render, this.state.loginState', this.state.loginState);
     return (
       <div className="landingPage">
         <Header
-          toHide={this.props.userName !== '' ? { display: 'none' } : { display: 'flex' }}
-          hideUserName={this.props.userName !== '' ? { display: 'block' } : { display: 'none' }}
-          userName={this.props.userName}
+          loginState={this.state.loginState}
+          logoutHandler={this.logoutHandler}
         />
         <LandingPageBody />
         <Footer />
@@ -32,7 +63,7 @@ class LandingPage extends React.Component {
 
 
 const mapStateToProps = state => ({
-  userName: state.userReducer.firstName,
+  firstName: state.userReducer.firstName,
 });
 export default connect(mapStateToProps, null)(LandingPage);
 
