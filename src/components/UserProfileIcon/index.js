@@ -7,7 +7,7 @@ class UserProfileIcon extends React.Component {
     super(props);
     this.state = {
       isDropDownOpen: false,
-      isLoggedIn: true,
+      // isLoggedIn: true,
     };
   }
 
@@ -25,7 +25,7 @@ class UserProfileIcon extends React.Component {
     fetch('/logout', config).then(response => response.json()).then((respJson) => {
       console.log(respJson);
       window.localStorage.setItem('token', respJson.token);
-      window.localStorage.setItem('userName', 'null');
+      window.localStorage.setItem('userName', 'loggedOut');
       this.props.logoutHandler();
       // this.setState({
       //   isLoggedIn: false,

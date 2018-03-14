@@ -11,18 +11,25 @@ class LandingPage extends React.Component {
     this.state = {
       loginState: {
         isLoggedIn: false,
-        firstName: 'null',
+        firstName: 'loggedOut',
       },
     };
   }
 
   componentWillMount() {
-    console.log('in LandingPage componentWillMount, window.localStorage.getItem(userName)', window.localStorage.getItem('userName'));
-    if (window.localStorage.getItem('userName') !== null) {
+    console.log('in LandingPage componentWillMount, window.localStorage.getItem(userName)', window.localStorage.getItem('userName'), typeof (window.localStorage.getItem('userName')));
+    if (window.localStorage.getItem('userName') !== null && window.localStorage.getItem('userName') !== 'loggedOut') {
       this.setState({
         loginState: {
           isLoggedIn: true,
           firstName: window.localStorage.getItem('userName'),
+        },
+      });
+    } else {
+      this.setState({
+        loginState: {
+          isLoggedIn: false,
+          firstName: 'loggedOut',
         },
       });
     }
@@ -33,7 +40,7 @@ class LandingPage extends React.Component {
     this.setState({
       loginState: {
         isLoggedIn: false,
-        firstName: null,
+        firstName: 'loggedOut',
       },
     });
   }
@@ -41,6 +48,23 @@ class LandingPage extends React.Component {
   render() {
     console.log('In LandingPage render, window.localStorage.getItem(userName)', window.localStorage.getItem('userName'));
     console.log('In LandingPage render, this.state.loginState', this.state.loginState);
+    // if (window.localStorage.getItem('userName') !== null) {
+    //   this.setState({
+    //     loginState: {
+    //       isLoggedIn: true,
+    //       firstName: window.localStorage.getItem('userName'),
+    //     },
+    //   });
+    // } else {
+    //   this.setState({
+    //     loginState: {
+    //       isLoggedIn: false,
+    //       firstName: 'loggedOut',
+    //     },
+    //   });
+    // }
+    // console.log('In LandingPage render, window.localStorage.getItem(userName)', window.localStorage.getItem('userName'));
+    // console.log('In LandingPage render, this.state.loginState', this.state.loginState);
     return (
       <div className="landingPage">
         <Header
