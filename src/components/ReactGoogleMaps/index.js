@@ -4,7 +4,6 @@ import {
   withScriptjs,
   withGoogleMap,
   GoogleMap,
-  Circle,
   OverlayView,
 } from 'react-google-maps';
 import './ReactGoogleMaps.css';
@@ -25,8 +24,6 @@ const MyMapComponent = compose(
     containerElement: <div style={{ height: '600px' }} />,
     mapElement: <div style={{ height: '100%' }} />,
   })),
-  withState('radius', 'changeRadius', 715),
-  // withState('centr', 'onCenterChange'),
 
   withState('zoom', 'onZoomChange', 14),
   withState('cardShown', 'onMouseOver', false),
@@ -40,8 +37,7 @@ const MyMapComponent = compose(
         refs.map = ref;
       },
 
-      onCenterChanged: ({ changeRadius }) => () => {
-
+      onCenterChanged: () => () => {
         const newCenter = refs.map.getCenter();
         const newCenterObj = { lat: newCenter.lat(), lng: newCenter.lng() };
         props.updateCenter(newCenterObj);
@@ -136,10 +132,6 @@ const MyMapComponent = compose(
       onDragEnd={props.onCenterChanged}
       onZoomChanged={props.onZoomChanged}
     >
-      <Circle
-        center={props.centr}
-        radius={props.radius}
-      />
       {hotelOverlays}
 
     </GoogleMap>
