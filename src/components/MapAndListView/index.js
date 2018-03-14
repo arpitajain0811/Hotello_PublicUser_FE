@@ -28,7 +28,8 @@ class MapAndListView extends React.Component {
     this.props.saveFilteredHotels(newFilteredHotels);
   }
 
-  displayCard=(hotelId) => {
+  displayCard=(hotelId, origin) => {
+    console.log('display');
     fetch(
       `/viewHotelDetails/${hotelId}`,
       {
@@ -36,7 +37,13 @@ class MapAndListView extends React.Component {
       { authorization: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MjA0MTY2NjUsImVtYWlsIjoiYWRtaW5AaG90ZWxsby5jb20iLCJpYXQiOjE1MjA0MTMwNjV9.7r28DUo3Mycw9dEwkZ7UB0sx6aJC1wizKyPpgVoD-eM' },
         sessionId: window.localStorage.getItem('cookie'),
       },
-    ).then(response => response.json()).then((respJSON) => { this.setState({ selectedHotelDetails: { id: hotelId, desc: respJSON.hotel_details.description, name: respJSON.hotel_details.hotel_name } }); });
+    ).then(response => response.json()).then((respJSON) => {
+      this.setState({
+        selectedHotelDetails: {
+          id: hotelId, desc: respJSON.hotel_details.description, name: respJSON.hotel_details.hotel_name, origin,
+        },
+      });
+    });
   }
 
   render() {
@@ -57,7 +64,7 @@ class MapAndListView extends React.Component {
         <div className="mapAndListView" >
 
           {/* <HotelCardsContainer filteredHotels={this.props.filteredHotels} /> */}
-          <HotelBoxContainer filteredHotels={this.props.filteredHotels} selectedHotelDetails={this.state.selectedHotelDetails} />
+          <HotelBoxContainer filteredHotels={this.props.filteredHotels} selectedHotelDetails={this.state.selectedHotelDetails} displayCard={this.displayCard} />
           <div className="map-container">
             <ReactGoogleMaps
               centr={this.props.center}
