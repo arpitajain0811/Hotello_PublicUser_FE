@@ -65,7 +65,8 @@ class CreditCard extends React.Component {
     Room type
           <div className="RoomTypesContainer">
             <div className="RoomType">
-    Single Bed - standard
+              <div>   <img src="/male.svg" className="maleIcon" alt="" /></div>
+              <div>  Single Bed - standard</div>
             </div>
             <div className="RoomType Roomtype2">
     Double Bed - standard

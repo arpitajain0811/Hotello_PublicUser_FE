@@ -51,6 +51,7 @@ font-family: OpenSans-regular;
   font-size: 18px;
   font-weight: 500;
   color:white;
+  outline: none;
 }
 .PriceDeatils{
     font-family: OpenSans-regular;

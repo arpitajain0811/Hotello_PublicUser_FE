@@ -4,6 +4,22 @@ import { connect } from 'react-redux';
 import './BookingSummary.css';
 
 class BookingSummary extends React.Component {
+  makePayment=() => {
+    const auth = window.localStorage.getItem('token');
+    const cookie = window.localStorage.getItem('cookie');
+    fetch('/makePayment', {
+      method: 'POST',
+      headers: {
+        authorization: auth,
+        sessionId: cookie,
+      },
+      body: JSON.stringify({
+        basket: [this.props.RoomId],
+        amount: this.props.amount,
+      }),
+    }).then((res) => {
+    });
+  }
   render() {
     const stars = [];
     for (let i = 0; i < Number(this.props.stars); i += 1) {
@@ -88,7 +104,7 @@ class BookingSummary extends React.Component {
           </div>
         </div>
         <div className="MakePaymentButtonDiv" >
-          <button className="MakePaymentButton">Make Payment</button>
+          <button onClick={() => this.makePayment()} className="MakePaymentButton">Make Payment</button>
         </div>
       </div>
     );
@@ -103,6 +119,8 @@ BookingSummary.defaultProps = {
   totalChildren: 0,
   amountPerNight: 3000,
   serviceFee: 700,
+  RoomId: '00334399-d1f4-4fec-b7a7-189af47b4f40',
+  amount: 1235,
 };
 const mapStateToProps = state => ({
   checkInDate: state.searchOptions.checkInDate,
@@ -122,4 +140,6 @@ BookingSummary.propTypes = {
   checkInDate: PropTypes.objectOf.isRequired,
   amountPerNight: PropTypes.number,
   serviceFee: PropTypes.number,
+  RoomId: PropTypes.string,
+  amount: PropTypes.number,
 };
