@@ -32,7 +32,7 @@
     margin: 0 20px 0 20px;
 }
 .searchCityInputBox {
-    font-family: "OpenSans-Regular";
+    font-family: "Open Sans";
     font-size: 16px;
     font-weight: 600;
     font-style: normal;
@@ -47,7 +47,7 @@
     border-style: none;
     background-color: #48bc48;
     color:white;
-    font-family: "OpenSans-Regular";
+    font-family: "Open Sans";
     font-size: 16px;
     font-weight: 600;
     font-style: normal;
@@ -62,7 +62,7 @@
 }
 .searchbarAndHeader-Link {
     height: 19px;
-    font-family: "OpenSans-Regular";
+    font-family: "Open Sans";
     font-size: 14px;
     font-weight: normal;
     font-style: normal;

@@ -20,7 +20,7 @@
     letter-spacing: 0.6px;
     color: #ffffff;
     padding-left: 20px;
-    font-family: "OpenSans-Regular";
+    font-family: "Open Sans";
     text-decoration: none;
 }
 .logo {
@@ -29,5 +29,5 @@
 }
 .userNameDisplay {
     color: white;
-    font-family: "OpenSans-Regular";
+    font-family: "Open Sans";
 }

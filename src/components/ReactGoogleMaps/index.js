@@ -9,6 +9,7 @@ import {
 } from 'react-google-maps';
 import './ReactGoogleMaps.css';
 import constants from '../../constants.json';
+import HotelCard from '../HotelCard';
 
 // const getPixelPositionOffset = (width, height) => ({
 //   x: -(width / 2),
@@ -105,30 +106,34 @@ const MyMapComponent = compose(
         position={{ lat: Number(hotel.latitude), lng: Number(hotel.longitude) }}
         mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
         onMouseOver={() => { props.showCard(hotel.hotel_id); }}
-        onFocus={() => { props.showCard(); }}
+        onMouseOut={() => { props.hideCard(hotel.hotel_id); }}
+        onFocus={() => { props.showCard(hotel.hotel_id); }}
+        onBlur={() => { props.hideCard(hotel.hotel_id); }}
       >
-        <div className="OverlayView-main">
+        <div
+          className="OverlayView-main"
+          onMouseOver={() => { props.showCard(hotel.hotel_id); }}
+          onMouseOut={() => { props.hideCard(hotel.hotel_id); }}
+          onFocus={() => { props.showCard(hotel.hotel_id); }}
+          onBlur={() => { props.hideCard(hotel.hotel_id); }}
+        >
           <div
-className="OverlayView-hover-trigger"
+            className="OverlayView-hover-trigger"
             onMouseOver={() => { props.showCard(hotel.hotel_id); }}
-            onMouseOut={() => { props.hideCard(hotel.hotel_id); }}
+            onFocus={() => { props.showCard(hotel.hotel_id); }}
           >
             <div
               className="OverlayView-content"
-              onFocus={() => { props.showCard(); }}
-              onBlur={() => { props.hideCard(); }}
+              onMouseOver={() => { props.showCard(hotel.hotel_id); }}
+              onFocus={() => { props.showCard(hotel.hotel_id); }}
             >
               <div
                 className={hotel.stars <= 2 ? 'OverlayView-stars-red' : (((hotel.stars > 2) && (hotel.stars < 4)) ? 'OverlayView-stars-orange' : 'OverlayView-stars-green')}
-                onMouseOver={() => { props.showCard(hotel.hotel_id); }}
-                onFocus={() => { props.showCard(); }}
               >
                 {hotel.stars} &#9733;
               </div>
               <div
                 className="OverlayView-price"
-                onMouseOver={() => { props.showCard(hotel.hotel_id); }}
-                onFocus={() => { props.showCard(); }}
               >
               &#8377; {Math.round(Number(hotel.min_rate.amount * 65) * 100) / 100}
               </div>
@@ -137,7 +142,13 @@ className="OverlayView-hover-trigger"
           <div
             className={(props.cardShown && hotel.hotel_id === props.hid) ? 'OverlayView-CardShow' : 'OverlayView-CardHide'}
           >
-            {hotel.hotel_name}
+            <HotelCard
+              hotelId={hotel.hotel_id}
+              hotelName={hotel.hotel_name}
+              image=""
+              minRate={hotel.min_rate.amount}
+              stars={hotel.stars}
+            />
           </div>
         </div>
       </OverlayView>
