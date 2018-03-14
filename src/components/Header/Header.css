@@ -21,6 +21,7 @@
     letter-spacing: 0.6px;
     color: #ffffff;
     padding-left: 20px;
+    font-family: "Open Sans";
     text-decoration: none;
 }
 .logo {
@@ -30,6 +31,7 @@
 .userNameDisplay {
     display: flex;
     color: white;
+    font-family: "Open Sans";
     align-items: center;
 }
 .hide {
