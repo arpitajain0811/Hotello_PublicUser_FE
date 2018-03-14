@@ -28,7 +28,7 @@ class SignUpBody extends Component {
     render() {
       return (
         <div className="SignUpPage" >
-          <Header toHide={{ display: 'none' }} />
+          <Header loginState={{ isLoggedIn: false, noDisplay: true }} />
           <div className="SignUpBody" >
             <SignUpForm
               saveNewUser={(fn, ln, email, pwd, phn) => this.saveNewUser(fn, ln, email, pwd, phn)}

@@ -8,6 +8,7 @@ import HotelCardsContainer from '../HotelCardsContainer';
 import filterHotels from '../../helpers/filterHotels';
 import './MapAndListView.css';
 import constants from '../../constants.json';
+import Loader from '../Loader';
 
 class MapAndListView extends React.Component {
   constructor(props) {
@@ -27,7 +28,7 @@ class MapAndListView extends React.Component {
   render() {
     if (this.props.loaded === false) {
       return (
-        <p>Loading...</p>
+        <Loader />
       );
     }
     return (

@@ -1,0 +1,5 @@
+.userNameDisplay {
+    display: flex;
+    color: black;
+    align-items: center;
+}
