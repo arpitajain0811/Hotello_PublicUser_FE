@@ -27,6 +27,7 @@ const MyMapComponent = compose(
   })),
   withState('radius', 'changeRadius', 715),
   // withState('centr', 'onCenterChange'),
+
   withState('zoom', 'onZoomChange', 14),
   withState('cardShown', 'onMouseOver', false),
   withState('hid', 'changeHid', 0),
@@ -38,42 +39,12 @@ const MyMapComponent = compose(
       onMapMounted: () => (ref) => {
         refs.map = ref;
       },
+
       onCenterChanged: ({ changeRadius }) => () => {
+
         const newCenter = refs.map.getCenter();
         const newCenterObj = { lat: newCenter.lat(), lng: newCenter.lng() };
-        // onCenterChange(newCenterObj);
         props.updateCenter(newCenterObj);
-        console.log('inhandler:::', props.radius);
-        const zoom = (refs.map.getZoom());
-        let offset = 0;
-        if (zoom > 0 && zoom < 15) {
-          offset = 15;
-        } else if (zoom >= 15 && zoom < 17) {
-          offset = 17;
-        } else if (zoom >= 17 && zoom < 20) {
-          offset = 20;
-        }
-
-        const newRadius = (offset - zoom) * (1 / zoom) * (10000);
-        changeRadius(newRadius);
-        props.updateFilteredHotels(newCenterObj, newRadius);
-      },
-      onZoomChanged: ({ onZoomChange, changeRadius }) => () => {
-        onZoomChange(refs.map.getZoom());
-        const zoom = (refs.map.getZoom());
-        let offset = 0;
-        if (zoom > 0 && zoom < 15) {
-          offset = 15;
-        } else if (zoom >= 15 && zoom < 17) {
-          offset = 17;
-        } else if (zoom >= 17 && zoom < 20) {
-          offset = 20;
-        }
-        console.log('soomh', props.zoom);
-        const newRadius = (offset - zoom) * (1 / zoom) * (10000);
-        console.log('2222inhandler:::', newRadius);
-        changeRadius(newRadius);
-        props.updateFilteredHotels(props.center, newRadius);
       },
       showCard: ({ onMouseOver, changeHid }) => (hotelId) => {
         onMouseOver(true);
@@ -157,8 +128,9 @@ const MyMapComponent = compose(
   });
 
   return (
+
     <GoogleMap
-      defaultZoom={props.zoom}
+      defaultZoom={14}
       ref={props.onMapMounted}
       center={props.centr}
       onDragEnd={props.onCenterChanged}
