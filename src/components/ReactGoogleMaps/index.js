@@ -4,7 +4,6 @@ import {
   withScriptjs,
   withGoogleMap,
   GoogleMap,
-  Marker,
   Circle,
   OverlayView,
 } from 'react-google-maps';
@@ -108,18 +107,15 @@ const MyMapComponent = compose(
         onMouseOver={() => { props.showCard(hotel.hotel_id); }}
         onFocus={() => { props.showCard(); }}
       >
-        <div>
+        <div className="OverlayView-main">
           <div
-            className={(props.cardShown && hotel.hotel_id === props.hid) ? 'OverlayView-CardShow' : 'OverlayView-CardHide'}
+className="OverlayView-hover-trigger"
+            onMouseOver={() => { props.showCard(hotel.hotel_id); }}
+            onMouseOut={() => { props.hideCard(hotel.hotel_id); }}
           >
-            {hotel.hotel_name}
-          </div>
-          <div>
             <div
               className="OverlayView-content"
-              onMouseOver={() => { props.showCard(hotel.hotel_id); }}
               onFocus={() => { props.showCard(); }}
-              onMouseOut={() => { props.hideCard(hotel.hotel_id); }}
               onBlur={() => { props.hideCard(); }}
             >
               <div
@@ -137,6 +133,11 @@ const MyMapComponent = compose(
               &#8377; {Math.round(Number(hotel.min_rate.amount * 65) * 100) / 100}
               </div>
             </div>
+          </div>
+          <div
+            className={(props.cardShown && hotel.hotel_id === props.hid) ? 'OverlayView-CardShow' : 'OverlayView-CardHide'}
+          >
+            {hotel.hotel_name}
           </div>
         </div>
       </OverlayView>

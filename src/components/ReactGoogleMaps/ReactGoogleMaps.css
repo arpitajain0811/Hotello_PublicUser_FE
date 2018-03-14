@@ -1,10 +1,12 @@
 .OverlayView-outer {
     padding: 10px;
+    flex-wrap: wrap;
 }
 
 .OverlayView-content {
     display: flex;
-    position: relative;
+    /* position: fixed; */
+    box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.35);
     background: white;
     flex-direction: row;
     justify-content: space-between;
@@ -17,7 +19,7 @@
 .OverlayView-content:hover {
     height: 40px;
     width: 110px;
-    z-index: 30;
+    z-index: 200;
 }
 
 .OverlayView-stars-green {
@@ -77,4 +79,24 @@
 
 .OverlayView-stars-green:hover {
     z-index: 30;
+}
+
+.OverlayView-CardShow {
+    display: block;
+    z-index: 140;
+    background-color:white
+}
+
+.OverlayView-CardHide {
+    display: none;
+}
+
+.OverlayView-main{
+    display:flex;
+    flex-direction: column
+}
+
+.OverlayView-hover-trigger{
+    background-color:rgb(0,0,0,0.0);
+    z-index:10
 }
