@@ -74,11 +74,17 @@
   margin-bottom:5%;
   font-family: OpenSans-regular;
   font-size: 12px;
-  flex-grow: 1;
+  /* flex-grow: 1; */
   border-radius: 5px;
   font-weight: 500;
+  display: flex;
+  flex-direction: column;
 }
 .Roomtype2{
   margin-right:2%;
   margin-left: 2%;
+}
+.maleIcon{
+  height:8%;
+  width:8%;
 }
