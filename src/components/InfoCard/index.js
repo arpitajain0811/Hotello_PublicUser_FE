@@ -30,6 +30,7 @@ class InfoCard extends React.Component {
         <div className="info-card-name">{this.props.name}</div>
         <div className="info-card-desc">{this.props.desc}</div>
         <div onClick={() => { this.setState({ hidden: ' hide' }); }}>Hide</div>
+        <button className="HotelCard-btn">Book</button>
       </AnimateOnChange>);
   }
 }
