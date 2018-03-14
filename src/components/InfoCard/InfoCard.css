@@ -20,7 +20,7 @@
 
 
 .fadein{
-    animation: fade 0.5s ease-out forwards
+    animation: fade 1s ease-out forwards
 }
 
 .info-card-name{

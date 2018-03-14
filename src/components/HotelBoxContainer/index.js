@@ -19,14 +19,16 @@ class HotelBoxContainer extends React.Component {
         stars={hotel.stars}
         minRate={parseFloat(hotel.min_rate.amount.toFixed(2))}
         image={hotel.thumbnail}
+        onClickHandler={() => { this.props.displayCard(hotel.hotel_id, 'box'); }}
       />);
     });
     if (searchIndex > -1) {
       const infoCard = <InfoCard name={this.props.selectedHotelDetails.name} desc={this.props.selectedHotelDetails.desc} />;
-      // if (searchIndex % 2 === 0) { filteredHotelsBox.splice(searchIndex + 2, 0, infoCard); } else {
-      //   filteredHotelsBox.splice(searchIndex + 1, 0, infoCard);
-      // }
-      filteredHotelsBox.splice(0, 0, infoCard);
+      if (this.props.selectedHotelDetails.origin === 'map') {
+        filteredHotelsBox.splice(0, 0, infoCard);
+      } else if (searchIndex % 2 === 0) { filteredHotelsBox.splice(searchIndex + 2, 0, infoCard); } else {
+        filteredHotelsBox.splice(searchIndex + 1, 0, infoCard);
+      }
     }
     return (
       <div>
