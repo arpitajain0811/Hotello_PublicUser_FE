@@ -21,6 +21,10 @@ class ListingPage extends React.Component {
     this.state = {
       loaded: false,
       center: {},
+      loginState: {
+        isLoggedIn: false,
+        firstName: '',
+      },
     };
   }
 
@@ -31,7 +35,18 @@ class ListingPage extends React.Component {
         center: value.data.results[0].geometry.location,
       });
     });
+    console.log('in ListingPage componentWillMount, window.localStorage.getItem(userName)', window.localStorage.getItem('userName'), typeof (window.localStorage.getItem('userName')));
+    if (window.localStorage.getItem('userName') !== null) {
+      console.log('in ListingPage componentWillMount, inside if');
+      this.setState({
+        loginState: {
+          isLoggedIn: true,
+          firstName: window.localStorage.getItem('userName'),
+        },
+      });
+    }
   }
+
 
   componentDidMount() {
     let inDate = this.props.checkInDate.format();
@@ -48,6 +63,17 @@ class ListingPage extends React.Component {
       this.setState({ loaded: true });
     });
   }
+
+  logoutHandler = () => {
+    console.log('in ListingPage logoutHandler');
+    this.setState({
+      loginState: {
+        isLoggedIn: false,
+        firstName: '',
+      },
+    });
+  }
+
   updateCenter=(c) => {
     this.setState({ center: c });
   }
@@ -76,9 +102,14 @@ class ListingPage extends React.Component {
 
 
   render() {
+    console.log('in ListingPage render, state', this.state);
     return (
       <div className="listingPage" >
-        <SarchBarAndHeader updateSearch={this.updateSearch} />
+        <SarchBarAndHeader
+          updateSearch={this.updateSearch}
+          loginState={this.state.loginState}
+          logoutHandler={this.logoutHandler}
+        />
         <HotelParameterBox />
         <MapAndListView center={this.state.center} loaded={this.state.loaded} updateCenter={this.updateCenter} />
       </div>
