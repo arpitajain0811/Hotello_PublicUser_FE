@@ -11,14 +11,14 @@ class LandingPage extends React.Component {
     this.state = {
       loginState: {
         isLoggedIn: false,
-        firstName: 'loggedOut',
+        firstName: '',
       },
     };
   }
 
   componentWillMount() {
     console.log('in LandingPage componentWillMount, window.localStorage.getItem(userName)', window.localStorage.getItem('userName'), typeof (window.localStorage.getItem('userName')));
-    if (window.localStorage.getItem('userName') !== null && window.localStorage.getItem('userName') !== 'loggedOut') {
+    if (window.localStorage.getItem('userName') !== null) {
       this.setState({
         loginState: {
           isLoggedIn: true,
@@ -29,7 +29,7 @@ class LandingPage extends React.Component {
       this.setState({
         loginState: {
           isLoggedIn: false,
-          firstName: 'loggedOut',
+          firstName: '',
         },
       });
     }
@@ -40,7 +40,7 @@ class LandingPage extends React.Component {
     this.setState({
       loginState: {
         isLoggedIn: false,
-        firstName: 'loggedOut',
+        firstName: '',
       },
     });
   }

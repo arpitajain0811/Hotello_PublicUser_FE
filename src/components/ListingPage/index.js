@@ -23,7 +23,7 @@ class ListingPage extends React.Component {
       center: {},
       loginState: {
         isLoggedIn: false,
-        firstName: 'loggedOut',
+        firstName: '',
       },
     };
   }
@@ -69,7 +69,7 @@ class ListingPage extends React.Component {
     this.setState({
       loginState: {
         isLoggedIn: false,
-        firstName: 'loggedOut',
+        firstName: '',
       },
     });
   }
