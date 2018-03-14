@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { storeAllHotels, storeFilteredHotels } from '../../redux/actions';
 import ReactGoogleMaps from '../ReactGoogleMaps';
 import HotelCardsContainer from '../HotelCardsContainer';
+import HotelBoxContainer from '../HotelBoxContainer';
 import filterByPrice from '../../helpers/filterByPrice';
 import './MapAndListView.css';
 import constants from '../../constants.json';
@@ -17,6 +18,7 @@ class MapAndListView extends React.Component {
     this.state = {
       center: {},
       ctr: 0,
+      selectedHotelDetails: {},
     };
   }
 
@@ -26,6 +28,17 @@ class MapAndListView extends React.Component {
     this.props.saveFilteredHotels(newFilteredHotels);
   }
 
+  displayCard=(hotelId) => {
+    fetch(
+      `/viewHotelDetails/${hotelId}`,
+      {
+        headers:
+      { authorization: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MjA0MTY2NjUsImVtYWlsIjoiYWRtaW5AaG90ZWxsby5jb20iLCJpYXQiOjE1MjA0MTMwNjV9.7r28DUo3Mycw9dEwkZ7UB0sx6aJC1wizKyPpgVoD-eM' },
+        sessionId: window.localStorage.getItem('cookie'),
+      },
+    ).then(response => response.json()).then((respJSON) => { this.setState({ selectedHotelDetails: { id: hotelId, desc: respJSON.hotel_details.description, name: respJSON.hotel_details.hotel_name } }); });
+  }
+
   render() {
     if (this.props.loaded === false) {
       return (
@@ -33,7 +46,7 @@ class MapAndListView extends React.Component {
       );
     }
     return (
-      <div className="mapAndListView" >
+      <div className="">
         <Slider
           defaultValue={[25, 75]}
           withBars
@@ -41,16 +54,20 @@ class MapAndListView extends React.Component {
               this.updateFilteredHotels(v);
         }}
         />
-        <HotelCardsContainer filteredHotels={this.props.filteredHotels} />
+        <div className="mapAndListView" >
 
-        <div className="map-container">
-          <ReactGoogleMaps
-            centr={this.props.center}
-            isMarkerShown
-            allHotels={this.props.filteredHotels}
+          {/* <HotelCardsContainer filteredHotels={this.props.filteredHotels} /> */}
+          <HotelBoxContainer filteredHotels={this.props.filteredHotels} selectedHotelDetails={this.state.selectedHotelDetails} />
+          <div className="map-container">
+            <ReactGoogleMaps
+              centr={this.props.center}
+              isMarkerShown
+              allHotels={this.props.filteredHotels}
             // updateFilteredHotels={this.updateFilteredHotels}
-            updateCenter={this.props.updateCenter}
-          />
+              updateCenter={this.props.updateCenter}
+              displayCard={this.displayCard}
+            />
+          </div>
         </div>
       </div>
     );
