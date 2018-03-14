@@ -2,7 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './Header.css';
 import logo from '../../logo.svg';
-import UserProfileIcon from '../UserProfileIcon';
+import HeaderLinks from '../HeaderLinks';
+import UserGreetingAndIcon from '../UserGreetingAndIcon';
 
 class Header extends React.Component {
   constructor(props) {
@@ -46,33 +47,27 @@ class Header extends React.Component {
 
   render() {
     console.log('in header render, this.state', this.state);
-    let userIconBlock = null;
+    let userGreetingAndIcon = null;
     let signOptionsBlock = null;
     if (this.state.displayUserIcon) {
-      userIconBlock = (
-        <div className="userNameDisplay">
-          <h3>Hi {this.props.loginState.firstName}</h3>
-          <UserProfileIcon logoutHandler={this.props.logoutHandler} />
-        </div>
+      userGreetingAndIcon = (
+        <UserGreetingAndIcon loginState={this.props.loginState} logoutHandler={this.props.logoutHandler} />
       );
     }
     if (this.state.displaySignOptions) {
       signOptionsBlock = (
-        <div className="headerLinksContainer">
-          <Link to="/signUp" className="headerLink">SIGN UP</Link>
-          <Link to="/signIn" className="headerLink">SIGN IN</Link>
-        </div>
+        <HeaderLinks />
       );
     }
     console.log(signOptionsBlock);
-    console.log(userIconBlock);
+    console.log(userGreetingAndIcon);
     return (
       <div className="header">
         <div className="logo">
           <img src={logo} alt="logo" className="logo" />
         </div>
         {signOptionsBlock}
-        {userIconBlock}
+        {userGreetingAndIcon}
       </div>
     );
   }

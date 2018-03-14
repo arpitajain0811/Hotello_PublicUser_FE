@@ -48,23 +48,6 @@ class LandingPage extends React.Component {
   render() {
     console.log('In LandingPage render, window.localStorage.getItem(userName)', window.localStorage.getItem('userName'));
     console.log('In LandingPage render, this.state.loginState', this.state.loginState);
-    // if (window.localStorage.getItem('userName') !== null) {
-    //   this.setState({
-    //     loginState: {
-    //       isLoggedIn: true,
-    //       firstName: window.localStorage.getItem('userName'),
-    //     },
-    //   });
-    // } else {
-    //   this.setState({
-    //     loginState: {
-    //       isLoggedIn: false,
-    //       firstName: 'loggedOut',
-    //     },
-    //   });
-    // }
-    // console.log('In LandingPage render, window.localStorage.getItem(userName)', window.localStorage.getItem('userName'));
-    // console.log('In LandingPage render, this.state.loginState', this.state.loginState);
     return (
       <div className="landingPage">
         <Header
