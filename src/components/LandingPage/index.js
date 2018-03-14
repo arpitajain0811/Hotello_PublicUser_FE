@@ -11,14 +11,14 @@ class LandingPage extends React.Component {
     this.state = {
       loginState: {
         isLoggedIn: false,
-        firstName: null,
+        firstName: 'null',
       },
     };
   }
 
   componentWillMount() {
     console.log('in LandingPage componentWillMount, window.localStorage.getItem(userName)', window.localStorage.getItem('userName'));
-    if (window.localStorage.getItem('userName') !== 'null') {
+    if (window.localStorage.getItem('userName') !== null) {
       this.setState({
         loginState: {
           isLoggedIn: true,
