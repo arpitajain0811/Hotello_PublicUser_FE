@@ -4,7 +4,7 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import constants from '../../constants.json';
 import './ListingPage.css';
-import SarchBarAndHeader from '../SearchBarAndHeader';
+import SearchBarAndHeader from '../SearchBarAndHeader';
 import HotelParameterBox from '../HotelParameterBox';
 import MapAndListView from '../MapAndListView';
 import getAllHotels from '../../helpers/getAllHotels';
@@ -105,7 +105,7 @@ class ListingPage extends React.Component {
     console.log('in ListingPage render, state', this.state);
     return (
       <div className="listingPage" >
-        <SarchBarAndHeader
+        <SearchBarAndHeader
           updateSearch={this.updateSearch}
           loginState={this.state.loginState}
           logoutHandler={this.logoutHandler}

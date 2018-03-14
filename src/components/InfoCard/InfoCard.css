@@ -1,0 +1,41 @@
+@keyframes fade {
+    0% { opacity: 0 ;width: 0px;;height:0;color:#48bc48}
+
+    100% { opacity: 1;width:550px ; color:white}
+  }
+
+.info-card{
+    box-shadow:0px 0px 5px black;
+    border:1px solid rgb(151,151,151,0.5);
+    font-family:'Open Sans';
+    display:flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    /* padding:20px; */
+    width:550px;
+    margin:15px;
+    box-sizing: border-box;
+    
+}
+
+
+.fadein{
+    animation: fade 0.5s ease-out forwards
+}
+
+.info-card-name{
+    display:flex;
+    background-color:#48bc48;
+    color:white;
+    font-size:1.4em;
+    padding:20px
+}
+
+.info-card-desc{
+    display:flex;
+    padding:20px
+}
+
+.hide{
+    display:none
+}
