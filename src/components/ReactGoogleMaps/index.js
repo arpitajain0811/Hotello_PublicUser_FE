@@ -28,7 +28,8 @@ const MyMapComponent = compose(
   withState('radius', 'changeRadius', 715),
   // withState('centr', 'onCenterChange'),
   withState('zoom', 'onZoomChange', 14),
-
+  withState('cardShown', 'onMouseOver', false),
+  withState('hid', 'changeHid', 0),
   withHandlers((props) => {
     const refs = {
       map: undefined,
@@ -37,7 +38,7 @@ const MyMapComponent = compose(
       onMapMounted: () => (ref) => {
         refs.map = ref;
       },
-      onCenterChanged: ({ onCenterChange, changeRadius }) => () => {
+      onCenterChanged: ({ changeRadius }) => () => {
         const newCenter = refs.map.getCenter();
         const newCenterObj = { lat: newCenter.lat(), lng: newCenter.lng() };
         // onCenterChange(newCenterObj);
@@ -70,8 +71,16 @@ const MyMapComponent = compose(
         }
         console.log('soomh', props.zoom);
         const newRadius = (offset - zoom) * (1 / zoom) * (10000);
+        console.log('2222inhandler:::', newRadius);
         changeRadius(newRadius);
         props.updateFilteredHotels(props.center, newRadius);
+      },
+      showCard: ({ onMouseOver, changeHid }) => (hotelId) => {
+        onMouseOver(true);
+        changeHid(hotelId);
+      },
+      hideCard: ({ onMouseOver }) => () => {
+        onMouseOver(false);
       },
     };
   }),
@@ -96,16 +105,37 @@ const MyMapComponent = compose(
         key={hotel.hotel_id}
         position={{ lat: Number(hotel.latitude), lng: Number(hotel.longitude) }}
         mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
+        onMouseOver={() => { props.showCard(hotel.hotel_id); }}
+        onFocus={() => { props.showCard(); }}
       >
         <div>
-          <div className="OverlayView-content">
+          <div
+            className={(props.cardShown && hotel.hotel_id === props.hid) ? 'OverlayView-CardShow' : 'OverlayView-CardHide'}
+          >
+            {hotel.hotel_name}
+          </div>
+          <div>
             <div
-              className={hotel.stars <= 2 ? 'OverlayView-stars-red' : (((hotel.stars > 2) && (hotel.stars < 4)) ? 'OverlayView-stars-orange' : 'OverlayView-stars-green')}
+              className="OverlayView-content"
+              onMouseOver={() => { props.showCard(hotel.hotel_id); }}
+              onFocus={() => { props.showCard(); }}
+              onMouseOut={() => { props.hideCard(hotel.hotel_id); }}
+              onBlur={() => { props.hideCard(); }}
             >
-              {hotel.stars} &#9733;
-            </div>
-            <div className="OverlayView-price">
-             &#8377; {Math.round(Number(hotel.min_rate.amount * 65) * 100) / 100}
+              <div
+                className={hotel.stars <= 2 ? 'OverlayView-stars-red' : (((hotel.stars > 2) && (hotel.stars < 4)) ? 'OverlayView-stars-orange' : 'OverlayView-stars-green')}
+                onMouseOver={() => { props.showCard(hotel.hotel_id); }}
+                onFocus={() => { props.showCard(); }}
+              >
+                {hotel.stars} &#9733;
+              </div>
+              <div
+                className="OverlayView-price"
+                onMouseOver={() => { props.showCard(hotel.hotel_id); }}
+                onFocus={() => { props.showCard(); }}
+              >
+              &#8377; {Math.round(Number(hotel.min_rate.amount * 65) * 100) / 100}
+              </div>
             </div>
           </div>
         </div>
@@ -126,7 +156,6 @@ const MyMapComponent = compose(
         center={props.centr}
         radius={props.radius}
       />
-      {props.isMarkerShown && <Marker position={props.centr} />}
       {hotelOverlays}
 
     </GoogleMap>
