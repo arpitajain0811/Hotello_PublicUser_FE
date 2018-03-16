@@ -2,49 +2,50 @@
     display: flex;
     flex-direction: column;
     /* flex-grow: 0.2; */
-    height: 120px;
+    /* height: 120px; */
     justify-content: space-between;
-    padding: 20px 0 20px 0;
-    opacity: 0.75;
+    /* padding: 20px 0 20px 0; */
+    opacity: 0.65;
 }
 .footerBlackItem1 {
     display: flex;
     flex-direction: column;
 }
 .blackLine {
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid rgba(151, 151, 151, 0.45);
     height: 1px;
-    margin-bottom: 3px;
+    margin-bottom: 2%;
 }
 .footerBlackItem1LinksContainer {
-    width: 15%;
+    /* width: 15%; */
     display: flex;
-    justify-content: space-between;
+    margin-bottom: 4%;
+    /* justify-content: space-between; */
 }
 .footerBlackItem1Link {
-    height: 25px;
+    /* height: 25px; */
     font-family: Helvetica;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: normal;
     font-style: normal;
     font-stretch: normal;
-    line-height: 1.5;
+    /* line-height: 1.5; */
     letter-spacing: normal;
     text-align: left;
     color: #000000;
     text-decoration: none;
-    margin:5px 0px;
+    margin-right:2%;
 }
 .footerBlackItem2 {
-    margin:5px 0px;
+    /* margin:5px 0px; */
     display: flex;
     /* width: 15%; */
     /* justify-content: space-between; */
 }
 .footerBlackItem2Link {
-    height: 21px;
+    /* height: 21px; */
     font-family: Helvetica;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: normal;
     font-style: normal;
     font-stretch: normal;
@@ -53,5 +54,5 @@
     text-align: left;
     color: #000000;
     text-decoration: none;
-    margin-right:1%;
+    margin-right:2%;
 }

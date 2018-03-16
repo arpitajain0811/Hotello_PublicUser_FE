@@ -46,7 +46,8 @@ class UserProfileIcon extends React.Component {
       <div>
         <div className="profileIconBlock" >
           <button
-            className="profileButton"
+            // className="profileButtonWhite"
+            className={this.props.profileButtonClass}
             onClick={this.toggleDropDown}
           >
             <i className="material-icons">person</i>

@@ -53,6 +53,8 @@ class LandingPage extends React.Component {
         <Header
           loginState={this.state.loginState}
           logoutHandler={this.logoutHandler}
+          textColor="white"
+          profileButtonClass="profileButtonWhite"
         />
         <LandingPageBody />
         <Footer />

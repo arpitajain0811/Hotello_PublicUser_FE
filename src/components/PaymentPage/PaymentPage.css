@@ -1,11 +1,12 @@
 .PaymentPage{
-    width:100%;
+    /* width:100%; */
     padding:2%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    
-    
+    /* justify-content: space-between; */
+    height:100%;
+    box-sizing: border-box;
+    /* flex-grow: 1; */
 }
 .PaymentBody{
     display: flex;

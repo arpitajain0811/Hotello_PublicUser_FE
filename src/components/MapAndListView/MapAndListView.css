@@ -1,6 +1,8 @@
 .mapAndListView {
-    margin:30px 0px;
+    /* margin:30px 0px; */
     display: flex;
+    flex-grow:1;
+    padding:2%;
     /* flex-grow: 1; */
     /* background-color:yellow */
 }
@@ -11,7 +13,7 @@
 }
 .map-container {
     flex-grow: 1;
-    padding-top:23.5px;
+    /* width:50%; */
     /* background-color: red; */
     /* height:70vh */
 }

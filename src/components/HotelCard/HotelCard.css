@@ -4,7 +4,8 @@
     background-color:yellow;
     display:flex;
     flex-direction: column;
-    width:20%;
+    width:10%;
+    height:10%;
     justify-content: flex-end;
     color:white;
     font-family: 'OpenSans-Regular';

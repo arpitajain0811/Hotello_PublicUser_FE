@@ -39,7 +39,7 @@ class HotelParameterBox extends React.Component {
           </div>
         </div>
         <div className="RoomsDiv">
-          <RoomsDropDown showDropdownBlock={() => this.showDropdownBlock} />
+          <RoomsDropDown borderClass="GiveBorder" showDropdownBlock={() => this.showDropdownBlock} />
         </div>
       </div>
     );

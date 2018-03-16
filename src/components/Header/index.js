@@ -51,7 +51,12 @@ class Header extends React.Component {
     let signOptionsBlock = null;
     if (this.state.displayUserIcon) {
       userGreetingAndIcon = (
-        <UserGreetingAndIcon loginState={this.props.loginState} logoutHandler={this.props.logoutHandler} />
+        <UserGreetingAndIcon
+          loginState={this.props.loginState}
+          logoutHandler={this.props.logoutHandler}
+          textColor={this.props.textColor}
+          profileButtonClass={this.props.profileButtonClass}
+        />
       );
     }
     if (this.state.displaySignOptions) {
@@ -67,6 +72,7 @@ class Header extends React.Component {
           <img src={logo} alt="logo" className="logo" />
         </div>
         {signOptionsBlock}
+
         {userGreetingAndIcon}
       </div>
     );

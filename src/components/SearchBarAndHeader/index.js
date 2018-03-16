@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import './SearchBarAndHeader.css';
-import logo from '../../logo.svg';
+// import logo from '../../logo.svg';
 import searchLogo from '../../searchLogo.svg';
 import { setSearchCityText } from '../../redux/actions';
 import HeaderLinks from '../HeaderLinks';
@@ -50,7 +50,11 @@ class SearchBarAndHeader extends React.Component {
     let signOptionsBlock = null;
     if (this.state.displayUserIcon) {
       userGreetingAndIcon = (
-        <UserGreetingAndIcon loginState={this.props.loginState} logoutHandler={this.props.logoutHandler} />
+        <UserGreetingAndIcon
+          loginState={this.props.loginState}
+          logoutHandler={this.props.logoutHandler}
+          profileButtonClass="profileButtonBlack"
+        />
       );
     }
     if (this.state.displaySignOptions) {
@@ -63,9 +67,9 @@ class SearchBarAndHeader extends React.Component {
     return (
       <div className="searchbarAndHeader">
         <div className="searchbarAndHeader-LogoAndSearchBox" >
-          <div className="searchbarAndHeader-logo" >
-            <img src={logo} alt="logo" className="logoInListPage" />
-          </div>
+          {/* <div className="searchbarAndHeader-logo" > */}
+          <img src="/h-logo.png" alt="logo" className="logoInListPage" />
+          {/* </div> */}
           <div className="searchBox">
             <div className="searchLogoAndInputBoxContainer" >
               <img src={searchLogo} alt="searchLogo" className="searchLogo" />

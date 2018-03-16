@@ -8,14 +8,53 @@ import FooterBlack from '../FooterBlack';
 import PaymentForm from '../PaymentForm';
 
 class PaymentPage extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      loginState: {
+        isLoggedIn: false,
+        firstName: '',
+      },
+    };
+  }
+
+  componentWillMount() {
+    console.log('in LandingPage componentWillMount, window.localStorage.getItem(userName)', window.localStorage.getItem('userName'), typeof (window.localStorage.getItem('userName')));
+    if (window.localStorage.getItem('userName') !== null) {
+      this.setState({
+        loginState: {
+          isLoggedIn: true,
+          firstName: window.localStorage.getItem('userName'),
+        },
+      });
+    } else {
+      this.setState({
+        loginState: {
+          isLoggedIn: false,
+          firstName: '',
+        },
+      });
+    }
+  }
+
+  logoutHandler = () => {
+    console.log('in LandingPage logoutHandler');
+    this.setState({
+      loginState: {
+        isLoggedIn: false,
+        firstName: '',
+      },
+    });
+  }
+
   render() {
     // console.log(this.props.userName);
     return (
       <div className="PaymentPage">
         <Header
-          toHide={this.props.userName !== '' ? { display: 'none' } : { display: 'flex' }}
-          hideUserName={this.props.userName !== '' ? { display: 'block' } : { display: 'none' }}
-          userName={this.props.userName}
+          loginState={this.state.loginState}
+          logoutHandler={this.logoutHandler}
+          profileButtonClass="profileButtonBlack"
         />
         <div className="PaymentBody">
           <PaymentForm />
