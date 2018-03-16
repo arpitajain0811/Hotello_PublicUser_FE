@@ -19,7 +19,7 @@
 .footerBlackItem1LinksContainer {
     /* width: 15%; */
     display: flex;
-    margin-bottom: 4%;
+    margin-bottom: 3%;
     /* justify-content: space-between; */
 }
 .footerBlackItem1Link {
@@ -49,7 +49,7 @@
     font-weight: normal;
     font-style: normal;
     font-stretch: normal;
-    line-height: 1.43;
+    /* line-height: 1.43; */
     letter-spacing: normal;
     text-align: left;
     color: #000000;
