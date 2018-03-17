@@ -12,9 +12,11 @@ export const setCheckOutDate = date => ({
 });
 export const setSearchCityText = text => ({
   type: 'setSearchCityText',
-  payload: {
-    text,
-  },
+  payload: text,
+});
+export const setSearchCityLatLng = obj => ({
+  type: 'setSearchCityLatLng',
+  payload: obj,
 });
 export const changeAdultsInRoom = (value, id) => ({
   type: 'changeAdultsInRoom',
@@ -56,3 +58,4 @@ export const saveUser = userDetailsObj => ({
   type: 'saveUser',
   payload: userDetailsObj,
 });
+
