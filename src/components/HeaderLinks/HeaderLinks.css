@@ -2,11 +2,12 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: green;
+    /* background-color: green; */
 }
 .headerLink {
     height: 19px;
-    font-size: 14px;
+    font-family: Open Sans;
+    font-size: 12px;
     font-weight: normal;
     font-style: normal;
     font-stretch: normal;
@@ -15,7 +16,31 @@
     color: #ffffff;
     padding-left: 20px;
     text-decoration: none;
+    border:none;
+    outline: none;
 }
-.turnBlack {
+.headerLinkBlack {
     color: black;
+    font-family: Open Sans;
+    height: 19px;
+    font-size: 12px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: 0.6px;
+    padding-left: 20px;
+    text-decoration: none;
+    border:none;
+    outline: none;
+}
+.SignUpHeader{
+    font-family: Open Sans;
+    font-size: 26px;
+    color:black;
+    text-align: center;
+    margin:1%;
+}
+.close{
+    cursor: pointer;
 }

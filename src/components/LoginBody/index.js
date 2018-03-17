@@ -63,7 +63,7 @@ class LoginBody extends React.Component {
             <input type="email" required value={this.state.username} className="login-field" placeholder="Email ID" onChange={event => this.setState({ username: event.target.value, invalidCredentials: false })} />
             <input type="password" required value={this.state.password} className="login-field" placeholder="Password" onChange={event => this.setState({ password: event.target.value, invalidCredentials: false })} />
             <div className={this.state.invalidCredentials ? '' : 'InvalidLogin'}>Invalid Credentials!</div>
-            <button type="button" className="login-field login-button" onClick={() => { this.login(); }}>
+            <button type="button" className="login-field login-button" onClick={() => { this.login(); this.props.closeFunc(); }}>
           LOGIN
             </button>
           </div>

@@ -27,23 +27,22 @@ class SignUpBody extends Component {
     }
     render() {
       return (
-        <div className="SignUpPage" >
-          <Header loginState={{ isLoggedIn: false, noDisplay: true }} />
-          <div className="SignUpBody" >
-            <SignUpForm
-              saveNewUser={(fn, ln, email, pwd, phn) => this.saveNewUser(fn, ln, email, pwd, phn)}
-            />
-            <div
-              className="AlternateSignIn"
-            >Already have an account?
-              <Link
-                to="/signIn"
-                className="signInStyle"
-              >Sign In
-              </Link>
-            </div>
+      // <div className="SignUpPage" >
+      /* <Header loginState={{ isLoggedIn: false, noDisplay: true }} /> */
+        <div className="SignUpBody" >
+          <SignUpForm
+            saveNewUser={(fn, ln, email, pwd, phn) => this.saveNewUser(fn, ln, email, pwd, phn)}
+          />
+          <div
+            className="AlternateSignIn"
+          >Already a user?
+            <button
+              to="/signIn"
+              className="signInStyle"
+              onClick={() => this.props.closeFunc()}
+            >Sign In
+            </button>
           </div>
-          <Footer />
         </div>
       );
     }

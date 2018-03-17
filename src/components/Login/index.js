@@ -8,9 +8,9 @@ class Login extends React.Component {
   render() {
     return (
       <div className="Login">
-        <Header loginState={{ isLoggedIn: false, noDisplay: true }} />
+        {/* <Header loginState={{ isLoggedIn: false, noDisplay: true }} /> */}
         <LoginBody />
-        <Footer />
+        {/* <Footer /> */}
       </div>
     );
   }

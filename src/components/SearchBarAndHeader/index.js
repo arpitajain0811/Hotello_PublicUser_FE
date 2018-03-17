@@ -59,7 +59,7 @@ class SearchBarAndHeader extends React.Component {
     }
     if (this.state.displaySignOptions) {
       signOptionsBlock = (
-        <HeaderLinks />
+        <HeaderLinks changeColor="true" />
       );
     }
     console.log(signOptionsBlock);
