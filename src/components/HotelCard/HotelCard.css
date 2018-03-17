@@ -1,6 +1,13 @@
 .HotelCard-outer{
     background-color:white;
     display:flex;
+/*     flex-direction: column;
+    background-color:yellow;
+    display:flex;
+    flex-direction: column;
+    width:10%;
+    height:10%; */
+
     width:1200px;
     justify-content: flex-end;
     color:white;

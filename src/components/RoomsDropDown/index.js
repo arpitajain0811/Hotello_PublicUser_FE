@@ -19,6 +19,7 @@ showDropdownBlock=() => {
 }
 render() {
   let children = '';
+  let normalClass = 'DropDownBlock';
   if (this.props.totalChildren === 1) children = '1 child,';
   else if (this.props.totalChildren > 1) {
     children = `${this.props.totalChildren} children,`;
@@ -35,13 +36,16 @@ render() {
     />
     ));
   }
+  if (this.props.borderClass === 'GiveBorder') {
+    normalClass = 'GiveBorder';
+  }
   return (
     <div className="RoomsDropdown" >
       <div className="test" onClick={() => { this.showDropdownBlock(); }}>
         <div className="RoomPeopleSelectionText"> {this.props.totalAdults} Adults, {children} {this.props.totalRooms} Room</div>
         <img className="DropdownIcon" src={this.state.dropDownVisible === false ? '/dropdownarrow.png' : '/arrowUp.png'} alt="" />
       </div>
-      <div className={this.state.dropDownVisible ? 'DropDownBlock' : 'DropDownGone'} >
+      <div className={this.state.dropDownVisible ? normalClass : 'DropDownGone'} >
         {dropDownFieldsHolder}
         <div className="RoomsDropdownButtons">
           <button onClick={() => this.props.addRoom()} className="AddRoomButton">ADD ROOM</button>
@@ -86,4 +90,5 @@ RoomsDropdown.propTypes = {
   removeRoom: PropTypes.func.isRequired,
   addRoom: PropTypes.func.isRequired,
   confirmRooms: PropTypes.func.isRequired,
+  borderClass: PropTypes.string.isRequired,
 };

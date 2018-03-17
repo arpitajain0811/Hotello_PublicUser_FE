@@ -2,11 +2,19 @@
     display: flex;
     align-items: center;
 }
-.profileButton {
+.profileButtonWhite {
     outline: none;
     background: none;
     border: none;
     cursor: pointer;
+    color:white;
+}
+.profileButtonBlack{
+    outline: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color:black;
 }
 .dropDownBox {
     display: flex;

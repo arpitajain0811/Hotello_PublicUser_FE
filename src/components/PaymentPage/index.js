@@ -1,11 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import './LandingPage.css';
-import LandingPageBody from '../LandingPageBody';
+import PropTypes from 'prop-types';
+import './PaymentPage.css';
 import Header from '../Header';
-import Footer from '../Footer';
+import BookingSummary from '../BookingSummary';
+import FooterBlack from '../FooterBlack';
+import PaymentForm from '../PaymentForm';
 
-class LandingPage extends React.Component {
+class PaymentPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -46,18 +48,19 @@ class LandingPage extends React.Component {
   }
 
   render() {
-    console.log('In LandingPage render, window.localStorage.getItem(userName)', window.localStorage.getItem('userName'));
-    console.log('In LandingPage render, this.state.loginState', this.state.loginState);
+    // console.log(this.props.userName);
     return (
-      <div className="landingPage">
+      <div className="PaymentPage">
         <Header
           loginState={this.state.loginState}
           logoutHandler={this.logoutHandler}
-          textColor="white"
-          profileButtonClass="profileButtonWhite"
+          profileButtonClass="profileButtonBlack"
         />
-        <LandingPageBody />
-        <Footer />
+        <div className="PaymentBody">
+          <PaymentForm />
+          <BookingSummary />
+        </div>
+        <FooterBlack />
       </div>
     );
   }
@@ -65,7 +68,10 @@ class LandingPage extends React.Component {
 
 
 const mapStateToProps = state => ({
-  firstName: state.userReducer.firstName,
+  userName: state.userReducer.firstName,
 });
-export default connect(mapStateToProps, null)(LandingPage);
+export default connect(mapStateToProps, null)(PaymentPage);
 
+PaymentPage.propTypes = {
+  userName: PropTypes.string.isRequired,
+};
