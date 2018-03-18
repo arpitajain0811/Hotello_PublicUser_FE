@@ -1,9 +1,11 @@
 import React from 'react';
+import Popup from 'reactjs-popup';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { saveUser, changeLoginState } from '../../redux/actions';
 import './LoginBody.css';
+import SignUpBody from '../SignUpPage';
 
 class LoginBody extends React.Component {
   constructor(props) {
@@ -70,13 +72,20 @@ class LoginBody extends React.Component {
           </button>
           <div
             className="AlternateSignUp"
-          >Already a user?
-            <button
-              to="/signUp"
-              className="signUpStyle"
-              onClick={() => this.props.closeFunc()}
-            >Sign In
-            </button>
+          >New user?
+            <Popup className="MyPopup" trigger={<button className="signUpStyle" >Sign Up</button>} modal>
+              {close => (
+                <div className="modal">
+                  <a className="close" onClick={() => { close(); this.props.closeFunc(); }}>
+          &times;
+                  </a>
+                  <div className="SignUpHeader"> Sign Up </div>
+                  <div className="content">
+                    <SignUpBody closeFunc={() => { close(); this.props.closeFunc(); }} />
+                  </div>
+                </div>
+                  )}
+            </Popup>
           </div>
           {/* </div> */}
         </div>
