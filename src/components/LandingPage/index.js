@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import './LandingPage.css';
 import LandingPageBody from '../LandingPageBody';
 import { logout, changeLoginState } from '../../redux/actions';
@@ -39,7 +40,7 @@ class LandingPage extends React.Component {
   }
 
   logoutHandler = () => {
-    console.log('in LandingPage logoutHandler');
+    // console.log('in LandingPage logoutHandler');
     // this.setState({
     //   loginState: {
     //     isLoggedIn: false,
@@ -82,4 +83,9 @@ const mapStateToProps = state => ({
   isLoggedIn: state.userReducer.isLoggedIn,
 });
 export default connect(mapStateToProps, mapDispatchToProps)(LandingPage);
-
+LandingPage.propTypes = {
+  firstName: PropTypes.string.isRequired,
+  logout: PropTypes.func.isRequired,
+  isLoggedIn: PropTypes.bool.isRequired,
+  changeLoginState: PropTypes.func.isRequired,
+};

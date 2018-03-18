@@ -1,6 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import './Header.css';
 import logo from '../../logo.svg';
 import HeaderLinks from '../HeaderLinks';
@@ -9,7 +9,7 @@ import UserGreetingAndIcon from '../UserGreetingAndIcon';
 class Header extends React.Component {
   constructor(props) {
     super(props);
-    console.log('in Header constructor, props', this.props);
+    // console.log('in Header constructor, props', this.props);
     this.state = {
       displaySignOptions: null,
       displayUserIcon: null,
@@ -17,7 +17,7 @@ class Header extends React.Component {
   }
 
   componentWillMount() {
-    console.log('in header componentWillMount, this.props.loginState', this.props.loginState);
+    // console.log('in header componentWillMount, this.props.loginState', this.props.loginState);
     if (this.props.isLoggedIn) {
       this.setState({
         displaySignOptions: false,
@@ -80,8 +80,8 @@ class Header extends React.Component {
         <HeaderLinks />
       );
     }
-    console.log(signOptionsBlock);
-    console.log(userGreetingAndIcon);
+    // console.log(signOptionsBlock);
+    // console.log(userGreetingAndIcon);
     return (
       <div className="MyHeader">
         <div className="logo">
@@ -100,3 +100,10 @@ const mapStateToProps = state => ({
   isLoggedIn: state.userReducer.isLoggedIn,
 });
 export default connect(mapStateToProps, null)(Header);
+Header.propTypes = {
+  firstName: PropTypes.string.isRequired,
+  textColor: PropTypes.string.isRequired,
+  logoutHandler: PropTypes.func.isRequired,
+  profileButtonClass: PropTypes.string.isRequired,
+  isLoggedIn: PropTypes.bool.isRequired,
+};

@@ -30,14 +30,14 @@ class ListingPage extends React.Component {
 
   componentWillMount() {
     axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${this.props.city}&key=${constants.API_KEY}`).then((value) => {
-      console.log(value.data.results[0].geometry.location);
+      // console.log(value.data.results[0].geometry.location);
       this.setState({
         center: value.data.results[0].geometry.location,
       });
     });
     console.log('in ListingPage componentWillMount, window.localStorage.getItem(userName)', window.localStorage.getItem('userName'), typeof (window.localStorage.getItem('userName')));
     if (window.localStorage.getItem('userName') !== null) {
-      console.log('in ListingPage componentWillMount, inside if');
+      // console.log('in ListingPage componentWillMount, inside if');
       // this.setState({
       //   loginState: {
       //     isLoggedIn: true,
@@ -139,7 +139,7 @@ ListingPage.propTypes = {
   city: PropTypes.string.isRequired,
   rooms: PropTypes.arrayOf(Object).isRequired,
   saveAllHotels: PropTypes.func.isRequired,
-  // saveFilteredHotels: PropTypes.func,
+  logout: PropTypes.func.isRequired,
   // allHotels: PropTypes.arrayOf(Object),
 };
 

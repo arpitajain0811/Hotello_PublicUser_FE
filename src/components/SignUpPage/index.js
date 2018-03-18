@@ -5,8 +5,8 @@ import PropTypes from 'prop-types';
 import './SignUpPage.css';
 import SignUpForm from '../SignUpForm';
 import { saveUser, changeLoginState } from '../../redux/actions';
-import Header from '../Header';
-import Footer from '../Footer';
+// import Header from '../Header';
+// import Footer from '../Footer';
 
 class SignUpBody extends Component {
     saveNewUser=(firstName, lastName, email, password, phoneNumber) => {
@@ -22,6 +22,35 @@ class SignUpBody extends Component {
       }).then(response => response.json()).then((res) => {
         if (res.msg === 'User Signed Up!') {
           this.props.saveCurrentUser(res.userDetails);
+          console.log('res', res);
+          fetch('/publicLogin', {
+            method: 'post',
+            body: JSON.stringify({
+              username: res.userDetails.email,
+              password: res.userDetails.password,
+            }),
+          }).then(response => response.text()).then((token) => {
+            window.localStorage.setItem('token', token);
+            fetch('/userUpdateDetails', {
+              method: 'GET',
+              headers: {
+                authorization: window.localStorage.getItem('token'),
+              },
+            }).then(user => user.json()).then((data) => {
+              //   console.log(data);
+              console.log(data);
+              window.localStorage.setItem('userName', data.firstName);
+              // this.props.saveUser(data);
+              // this.props.changeLoginStatus(data.firstName);
+              this.setState({
+                email: '',
+                password: '',
+                // isLoggedIn: true,
+              });
+
+              this.props.closeFunc();
+            });
+          });
         }
       });
     }
@@ -32,7 +61,7 @@ class SignUpBody extends Component {
         <div className="SignUpBody" >
           <SignUpForm
             saveNewUser={(fn, ln, email, pwd, phn) => this.saveNewUser(fn, ln, email, pwd, phn)}
-            changeLoginState={() => this.props.changeLoginState()}
+            changeLoginState={fn => this.props.changeLoginState(fn)}
           />
           <div
             className="AlternateSignIn"
@@ -60,4 +89,5 @@ export default connect(null, mapDispatchToProps)(SignUpBody);
 SignUpBody.propTypes = {
   saveCurrentUser: PropTypes.func.isRequired,
   changeLoginState: PropTypes.func.isRequired,
+  closeFunc: PropTypes.func.isRequired,
 };
