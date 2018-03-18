@@ -13,7 +13,7 @@
     /* z-index:999 */
 }
 .paramBoxesContainer {
-    width: 40%;
+    width: 50%;
     display: flex;
     justify-content: space-between;
 }
