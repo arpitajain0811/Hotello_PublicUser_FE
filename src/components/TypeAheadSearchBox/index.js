@@ -1,10 +1,12 @@
 import React from 'react';
+import './TypeAheadSearchBox.css';
 
 const { compose, withProps, lifecycle } = require('recompose');
 const { withScriptjs } = require('react-google-maps');
 const {
   StandaloneSearchBox,
 } = require('react-google-maps/lib/components/places/StandaloneSearchBox');
+
 
 const getLocationDetails = (obj) => {
   const addressComps = obj.address_components;
@@ -53,7 +55,7 @@ const PlacesWithStandaloneSearchBox = compose(
   // console.log(props.places);
   // console.log(props.places[0].geometry.location.lat());
   (
-    <div style={{ height: '100%' }}>
+    <div className="typeAheadSearchBox">
       <StandaloneSearchBox
         ref={props.onSearchBoxMounted}
         bounds={props.bounds}

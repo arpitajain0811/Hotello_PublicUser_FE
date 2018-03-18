@@ -5,10 +5,10 @@ import { Link } from 'react-router-dom';
 import './SearchBarAndHeader.css';
 // import logo from '../../logo.svg';
 import searchLogo from '../../searchLogo.svg';
-import { setSearchCityText } from '../../redux/actions';
+import { setSearchCityText, setSearchCityLatLng } from '../../redux/actions';
 import HeaderLinks from '../HeaderLinks';
 import UserGreetingAndIcon from '../UserGreetingAndIcon';
-
+import TypeAheadSearchBox from '../TypeAheadSearchBox';
 
 class SearchBarAndHeader extends React.Component {
   constructor(props) {
@@ -67,18 +67,23 @@ class SearchBarAndHeader extends React.Component {
     return (
       <div className="searchbarAndHeader">
         <div className="searchbarAndHeader-LogoAndSearchBox" >
-          {/* <div className="searchbarAndHeader-logo" > */}
-          <img src="/h-logo.png" alt="logo" className="logoInListPage" />
-          {/* </div> */}
-          <div className="searchBox">
+          <div className="searchbarAndHeader-Logo" >
+            <img src="/h-logo.png" alt="logo" className="logoInListPage" />
+          </div>
+          <div className="searchBar">
             <div className="searchLogoAndInputBoxContainer" >
-              <img src={searchLogo} alt="searchLogo" className="searchLogo" />
-              <input
+              <div className="logoBox">
+                <img src={searchLogo} alt="searchLogo" className="searchLogo" />
+              </div>
+              {/* <input
                 className="searchCityInputBox"
                 value={this.props.city}
                 type="text"
                 onChange={text => this.props.saveSearchCityText(text)}
-              />
+              /> */}
+              <div className="searchInputBoxContainer">
+                <TypeAheadSearchBox saveSearchCityText={this.props.saveSearchCityText} saveSearchCityLatLng={this.props.saveSearchCityLatLng} />
+              </div>
             </div>
             <button className="searchHotelByCityButton" onClick={() => { this.props.updateSearch(); }}>Search</button>
           </div>
@@ -98,6 +103,9 @@ class SearchBarAndHeader extends React.Component {
 const mapDispatchToProps = dispatch => ({
   saveSearchCityText: (text) => {
     dispatch(setSearchCityText(text));
+  },
+  saveSearchCityLatLng: (obj) => {
+    dispatch(setSearchCityLatLng(obj));
   },
 });
 const mapStateToProps = state => ({
