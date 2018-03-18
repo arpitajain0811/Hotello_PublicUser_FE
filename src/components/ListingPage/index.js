@@ -9,7 +9,7 @@ import HotelParameterBox from '../HotelParameterBox';
 import MapAndListView from '../MapAndListView';
 import getAllHotels from '../../helpers/getAllHotels';
 import { storeAllHotels, storeFilteredHotels } from '../../redux/actions';
-import FooterBlack from '../FooterBlack';
+// import FooterBlack from '../FooterBlack';
 
 // import ReactGoogleMaps from '../ReactGoogleMaps';
 // import HotelCardsContainer from '../HotelCardsContainer';
@@ -21,10 +21,10 @@ class ListingPage extends React.Component {
     this.state = {
       loaded: false,
       center: {},
-      loginState: {
-        isLoggedIn: false,
-        firstName: '',
-      },
+      // loginState: {
+      //   isLoggedIn: false,
+      //   firstName: '',
+      // },
     };
   }
 
@@ -38,12 +38,12 @@ class ListingPage extends React.Component {
     console.log('in ListingPage componentWillMount, window.localStorage.getItem(userName)', window.localStorage.getItem('userName'), typeof (window.localStorage.getItem('userName')));
     if (window.localStorage.getItem('userName') !== null) {
       console.log('in ListingPage componentWillMount, inside if');
-      this.setState({
-        loginState: {
-          isLoggedIn: true,
-          firstName: window.localStorage.getItem('userName'),
-        },
-      });
+      // this.setState({
+      //   loginState: {
+      //     isLoggedIn: true,
+      //     firstName: window.localStorage.getItem('userName'),
+      //   },
+      // });
     }
   }
 
@@ -66,12 +66,7 @@ class ListingPage extends React.Component {
 
   logoutHandler = () => {
     console.log('in ListingPage logoutHandler');
-    this.setState({
-      loginState: {
-        isLoggedIn: false,
-        firstName: '',
-      },
-    });
+    this.props.logout();
   }
 
   updateCenter=(c) => {
@@ -107,7 +102,7 @@ class ListingPage extends React.Component {
       <div className="listingPage" >
         <SarchBarAndHeader
           updateSearch={this.updateSearch}
-          loginState={this.state.loginState}
+          // loginState={this.state.loginState}
           logoutHandler={this.logoutHandler}
         />
         <HotelParameterBox />

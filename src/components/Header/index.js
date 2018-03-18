@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import './Header.css';
 import logo from '../../logo.svg';
 import HeaderLinks from '../HeaderLinks';
@@ -17,49 +18,64 @@ class Header extends React.Component {
 
   componentWillMount() {
     console.log('in header componentWillMount, this.props.loginState', this.props.loginState);
-    if (this.props.loginState.isLoggedIn) {
+    if (this.props.isLoggedIn) {
       this.setState({
         displaySignOptions: false,
         displayUserIcon: true,
       });
-    } else if (this.props.loginState.noDisplay) {
-      this.setState({
-        displaySignOptions: false,
-        displayUserIcon: false,
-      });
-    } else if (this.props.loginState.isLoggedIn === false) {
-      this.setState({
-        displaySignOptions: true,
-        displayUserIcon: false,
-      });
     }
-  }
+    //  else if (this.props.loginState.noDisplay) {
+    //   this.setState({
+    //     displaySignOptions: false,
+    //     displayUserIcon: false,
+    //   });
+    // }
+  //   else if (this.props.isLoggedIn === false) {
+  //     this.setState({
+  //       displaySignOptions: true,
+  //       displayUserIcon: false,
+  //     });
+  //   }
+  // }
 
-  componentWillReceiveProps(newProps) {
-    console.log('in header componentWillReceiveProps, newProps', newProps);
-    if (newProps.loginState.isLoggedIn === false) {
-      this.setState({
-        displaySignOptions: true,
-        displayUserIcon: false,
-      });
-    }
+  // componentWillReceiveProps(newProps) {
+  //   console.log('in header componentWillReceiveProps, newProps', newProps);
+  //   if (newProps.loginState.isLoggedIn === false) {
+  //     this.setState({
+  //       displaySignOptions: true,
+  //       displayUserIcon: false,
+  //     });
+  //   }
   }
 
   render() {
+    if (this.props.isLoggedIn === true && this.state.displayUserIcon !== true) {
+      this.setState({
+        displaySignOptions: false,
+        displayUserIcon: true,
+      });
+    }
+    if (this.props.isLoggedIn === false && this.state.displaySignOptions === false) {
+      this.setState({
+        displaySignOptions: true,
+        displayUserIcon: false,
+      });
+    }
     console.log('in header render, this.state', this.state);
     let userGreetingAndIcon = null;
     let signOptionsBlock = null;
-    if (this.state.displayUserIcon) {
+    if (this.props.isLoggedIn === true) {
       userGreetingAndIcon = (
         <UserGreetingAndIcon
-          loginState={this.props.loginState}
+          // loginState={this.props.isLoggedIn}
+          firstName={this.props.firstName}
           logoutHandler={this.props.logoutHandler}
           textColor={this.props.textColor}
           profileButtonClass={this.props.profileButtonClass}
         />
       );
     }
-    if (this.state.displaySignOptions) {
+    if (this.props.isLoggedIn === false) {
       signOptionsBlock = (
         <HeaderLinks />
       );
@@ -67,7 +83,7 @@ class Header extends React.Component {
     console.log(signOptionsBlock);
     console.log(userGreetingAndIcon);
     return (
-      <div className="header">
+      <div className="MyHeader">
         <div className="logo">
           <img src={logo} alt="logo" className="logo" />
         </div>
@@ -79,4 +95,8 @@ class Header extends React.Component {
   }
 }
 
-export default Header;
+const mapStateToProps = state => ({
+  firstName: state.userReducer.firstName,
+  isLoggedIn: state.userReducer.isLoggedIn,
+});
+export default connect(mapStateToProps, null)(Header);

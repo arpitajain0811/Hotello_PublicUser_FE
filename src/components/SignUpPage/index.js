@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import './SignUpPage.css';
 import SignUpForm from '../SignUpForm';
-import { saveUser } from '../../redux/actions';
+import { saveUser, changeLoginState } from '../../redux/actions';
 import Header from '../Header';
 import Footer from '../Footer';
 
@@ -32,6 +32,7 @@ class SignUpBody extends Component {
         <div className="SignUpBody" >
           <SignUpForm
             saveNewUser={(fn, ln, email, pwd, phn) => this.saveNewUser(fn, ln, email, pwd, phn)}
+            changeLoginState={() => this.props.changeLoginState()}
           />
           <div
             className="AlternateSignIn"
@@ -51,8 +52,12 @@ const mapDispatchToProps = dispatch => ({
   saveCurrentUser: (userDetailsObj) => {
     dispatch(saveUser(userDetailsObj));
   },
+  changeLoginState: () => {
+    dispatch(changeLoginState());
+  },
 });
 export default connect(null, mapDispatchToProps)(SignUpBody);
 SignUpBody.propTypes = {
   saveCurrentUser: PropTypes.func.isRequired,
+  changeLoginState: PropTypes.func.isRequired,
 };
