@@ -8,7 +8,7 @@ import SarchBarAndHeader from '../SearchBarAndHeader';
 import HotelParameterBox from '../HotelParameterBox';
 import MapAndListView from '../MapAndListView';
 import getAllHotels from '../../helpers/getAllHotels';
-import { storeAllHotels, storeFilteredHotels } from '../../redux/actions';
+import { storeAllHotels, storeFilteredHotels, logout } from '../../redux/actions';
 // import FooterBlack from '../FooterBlack';
 
 // import ReactGoogleMaps from '../ReactGoogleMaps';
@@ -102,7 +102,6 @@ class ListingPage extends React.Component {
       <div className="listingPage" >
         <SarchBarAndHeader
           updateSearch={this.updateSearch}
-          // loginState={this.state.loginState}
           logoutHandler={this.logoutHandler}
         />
         <HotelParameterBox />
@@ -118,6 +117,9 @@ const mapDispatchToProps = dispatch => ({
   },
   saveFilteredHotels: (filteredHotelsArray) => {
     dispatch(storeFilteredHotels(filteredHotelsArray));
+  },
+  logout: () => {
+    dispatch(logout());
   },
 });
 const mapStateToProps = state => ({

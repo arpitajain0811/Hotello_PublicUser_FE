@@ -55,7 +55,7 @@ class Header extends React.Component {
         displayUserIcon: true,
       });
     }
-    if (this.props.isLoggedIn === false && this.state.displaySignOptions === false) {
+    if (this.props.isLoggedIn === false && this.state.displaySignOptions !== true) {
       this.setState({
         displaySignOptions: true,
         displayUserIcon: false,
