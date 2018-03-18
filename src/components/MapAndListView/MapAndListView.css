@@ -3,7 +3,7 @@
     display: flex;
     flex-grow:1;
     padding:2%;
-    /* flex-grow: 1; */
+    flex-grow: 4;
     /* background-color:yellow */
 }
 .hotelList {

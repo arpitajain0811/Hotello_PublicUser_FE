@@ -1,30 +1,47 @@
 .hotelParameterBox {
-    /* flex-grow: 0.08; */
+    flex-grow: 1;
     /* height: 70px; */
     display: flex;
-    align-items: center;
+    /* align-items: center; */
+    /* justify-content: space-between; */
     border-top: 1px solid rgba(151, 151, 151, 0.45);
     border-bottom: 1px solid rgba(151, 151, 151, 0.45);
     /* margin:8px 0px; */
     /* padding:10px; */
-    box-sizing:border-box;
-    padding:1%;
-    padding-left: 2%;
-    padding-right: 2%;
-    z-index:999
+    /* box-sizing:border-box; */
+    padding:1% 2%;
+    /* z-index:999 */
+}
+.paramBoxesContainer {
+    width: 40%;
+    display: flex;
+    justify-content: space-between;
 }
 .DatesDiv {
     border-radius: 4px;
     background-color: #48bc48;
-    height: 40px;
+    /* height: 100%; */
+    width: 70%;
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
     align-items: center;
-    margin-right: 20px;
-    padding: 0 26px 0 26px;
+    /* flex-grow: 2; */
+    margin-right: 3%;
+    /* padding: 0 26px 0 26px; */
+}
+.ListingPageDatePicker {
+    flex-grow: 2;
+}
+.ListingPageArrowContainer {
+    max-height: 30px;
+    max-width: 30px;
+}
+.ListingPageArrowImg {
+    height: 100%;
+    width: 100%;
 }
 .greenify {
-    width: 65px;
+    /* width: 65px; */
     background-color: #48bc48;
     color: white;
     font-family: "Open Sans";
@@ -33,9 +50,14 @@
     font-style: normal;
     font-stretch: normal;
     letter-spacing: 0px;
+    outline: none;
+    border: 0;
+    width: 100%;
+    text-align: center;
 }
 .RoomsDiv {
-    height: 40px;
+    /* height: 40px; */
+    flex-grow: 1;
     border-radius: 4px;
     background-color: #48bc48;
     display: flex;
@@ -46,9 +68,9 @@
     font-weight: 600;
     font-style: normal;
     font-stretch: normal;
-    line-height: 2;
+    /* line-height: 2; */
     letter-spacing: 0px;
-    padding: 0px 18px 0 18px;
+    /* padding: 0px 18px 0 18px; */
     color: white;
 }
 .RoomLabel{

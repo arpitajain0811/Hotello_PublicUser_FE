@@ -19,28 +19,31 @@ class HotelParameterBox extends React.Component {
     console.log(moment(this.props.checkInDate));
     return (
       <div className="hotelParameterBox" >
-        <div className="DatesDiv">
-          <div className="DatePicker">
-            <DatePicker
-              className="greenify"
-              selected={moment(this.props.checkInDate)}
-              onChange={date => this.verifyCheckinDate(date)}
-            />
+        <div className="paramBoxesContainer" >
+          <div className="DatesDiv">
+            <div className="ListingPageDatePicker">
+              <DatePicker
+                className="greenify"
+                selected={moment(this.props.checkInDate)}
+                onChange={date => this.verifyCheckinDate(date)}
+              />
+            </div>
+            <div className="ListingPageArrowContainer">
+              <img className="ListingPageArrowImg" src="/arrow.png" alt="" />
+            </div>
+            <div className="ListingPageDatePicker">
+              <DatePicker
+                className="greenify"
+                selected={moment(this.props.checkOutDate)}
+                onChange={date => this.verifyCheckoutDate(date)}
+              />
+            </div>
           </div>
-          <div className="Arrow">
-            <img className="ArrowImg" src="/arrow.png" alt="" />
-          </div>
-          <div className="DatePicker">
-            <DatePicker
-              className="greenify"
-              selected={moment(this.props.checkOutDate)}
-              onChange={date => this.verifyCheckoutDate(date)}
-            />
+          <div className="RoomsDiv">
+            <RoomsDropDown borderClass="GiveBorder" showDropdownBlock={() => this.showDropdownBlock} />
           </div>
         </div>
-        <div className="RoomsDiv">
-          <RoomsDropDown borderClass="GiveBorder" showDropdownBlock={() => this.showDropdownBlock} />
-        </div>
+
       </div>
     );
   }

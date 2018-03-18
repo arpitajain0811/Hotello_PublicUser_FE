@@ -2,7 +2,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    /* flex-grow: 1; */
+    flex-grow: 2;
     /* height: 6%; */
     border: solid 0 0 1px 0 rgba(151, 151, 151, 0.45);
     /* margin:29px 0px */
@@ -13,7 +13,7 @@
 }
 .searchbarAndHeader-LogoAndSearchBox {
     display: flex;
-    /* padding:1%; */
+    padding:1%;
     /* padding-left:0; */
     /* padding-right: 0; */
     /* align-items: center; */
@@ -25,14 +25,14 @@
 .searchbarAndHeader-Logo {
     display: flex;
     align-items: center;
-    max-height: 40px;
+    max-height: 100%;
     max-width: 40px;
     /* flex-grow: 1; */
     /* box-sizing: content-box; */
     /* margin-right:-10%; */
     /* width:100%; */
     /* width: 50px; */
-    /* margin-right: 20px; */
+    margin-right: 5%;
 }
 .logoInListPage{
     height:100%;
@@ -59,6 +59,7 @@
 .logoBox {
     display: flex;
     align-items: center;
+    padding: 1% 1%;
     /* flex-grow: 1; */
 }
 .searchLogo {
@@ -95,7 +96,7 @@
     font-stretch: normal;
     /* line-height: 3.5; */
     letter-spacing: 0.1px;
-    /* padding:3%; */
+    padding:3% 4%;
     /* padding-left:4%; */
     /* padding-right: 4%; */
     outline:none;
