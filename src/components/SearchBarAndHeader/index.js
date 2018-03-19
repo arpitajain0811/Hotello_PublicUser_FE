@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import './SearchBarAndHeader.css';
 // import logo from '../../logo.svg';
 import searchLogo from '../../searchLogo.svg';
@@ -22,12 +22,12 @@ class SearchBarAndHeader extends React.Component {
 
   componentWillMount() {
     console.log('in SearchBarAndHeader componentWillMount, this.props.loginState', this.props.loginState);
-    if (this.props.loginState.isLoggedIn) {
+    if (this.props.isLoggedIn) {
       this.setState({
         displaySignOptions: false,
         displayUserIcon: true,
       });
-    } else if (this.props.loginState.isLoggedIn === false) {
+    } else if (this.props.isLoggedIn === false) {
       this.setState({
         displaySignOptions: true,
         displayUserIcon: false,
@@ -35,31 +35,43 @@ class SearchBarAndHeader extends React.Component {
     }
   }
 
-  componentWillReceiveProps(newProps) {
-    console.log('in SearchBarAndHeader componentWillReceiveProps, newProps', newProps);
-    if (newProps.loginState.isLoggedIn === false) {
+  // componentWillReceiveProps(newProps) {
+  //   console.log('in SearchBarAndHeader componentWillReceiveProps, newProps', newProps);
+  //   if (newProps.loginState.isLoggedIn === false) {
+  //     this.setState({
+  //       displaySignOptions: true,
+  //       displayUserIcon: false,
+  //     });
+  //   }
+  // }
+  render() {
+    if (this.props.isLoggedIn === true && this.state.displayUserIcon === false) {
+      this.setState({
+        displaySignOptions: false,
+        displayUserIcon: true,
+      });
+    } else if (this.props.isLoggedIn === false && this.state.displayUserIcon === true) {
       this.setState({
         displaySignOptions: true,
         displayUserIcon: false,
       });
     }
-  }
-  render() {
-    console.log('in SearchBarAndHeader render, this.state', this.state);
+    // console.log('in SearchBarAndHeader render, this.state', this.state);
     let userGreetingAndIcon = null;
     let signOptionsBlock = null;
     if (this.state.displayUserIcon) {
       userGreetingAndIcon = (
         <UserGreetingAndIcon
-          loginState={this.props.loginState}
+          isLoggedIn={this.props.isLoggedIn}
           logoutHandler={this.props.logoutHandler}
+          firstName={this.props.firstName}
           profileButtonClass="profileButtonBlack"
         />
       );
     }
     if (this.state.displaySignOptions) {
       signOptionsBlock = (
-        <HeaderLinks />
+        <HeaderLinks changeColor="true" />
       );
     }
     console.log(signOptionsBlock);
@@ -102,10 +114,16 @@ const mapDispatchToProps = dispatch => ({
 });
 const mapStateToProps = state => ({
   city: state.searchOptions.city,
+  isLoggedIn: state.userReducer.isLoggedIn,
+  firstName: state.userReducer.firstName,
 });
 export default connect(mapStateToProps, mapDispatchToProps)(SearchBarAndHeader);
 SearchBarAndHeader.propTypes = {
   city: PropTypes.string.isRequired,
   saveSearchCityText: PropTypes.func.isRequired,
   updateSearch: PropTypes.func.isRequired,
+  isLoggedIn: PropTypes.bool.isRequired,
+  logoutHandler: PropTypes.func.isRequired,
+  firstName: PropTypes.string.isRequired,
 };
+

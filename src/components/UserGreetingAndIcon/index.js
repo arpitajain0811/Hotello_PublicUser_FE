@@ -6,7 +6,7 @@ class UserGreetingAndIcon extends React.Component {
   render() {
     return (
       <div className="userNameDisplay" style={{ color: this.props.textColor }} >
-        <p className="HiUser">Hi {this.props.loginState.firstName}</p>
+        <p className="HiUser">Hi {this.props.firstName}</p>
         <UserProfileIcon
           logoutHandler={this.props.logoutHandler}
           profileButtonClass={this.props.profileButtonClass}

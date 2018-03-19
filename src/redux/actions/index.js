@@ -56,3 +56,10 @@ export const saveUser = userDetailsObj => ({
   type: 'saveUser',
   payload: userDetailsObj,
 });
+export const changeLoginState = firstName => ({
+  type: 'changeLoginState',
+  payload: firstName,
+});
+export const logout = () => ({
+  type: 'logout',
+});

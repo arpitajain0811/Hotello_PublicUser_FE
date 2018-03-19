@@ -24,7 +24,7 @@ class UserProfileIcon extends React.Component {
     };
     fetch('/logout', config).then(response => response.json()).then((respJson) => {
       console.log(respJson);
-      window.localStorage.setItem('token', respJson.token);
+      window.localStorage.removeItem('token');
       window.localStorage.removeItem('userName');
       this.props.logoutHandler();
       // this.setState({
@@ -59,7 +59,7 @@ class UserProfileIcon extends React.Component {
                 Your Profile
             </div>
           </Link>
-          <div className="dropDown-item" onClick={this.doLogout}>
+          <div className="dropDown-item" onClick={() => this.doLogout()}>
                 Logout
           </div>
         </div>

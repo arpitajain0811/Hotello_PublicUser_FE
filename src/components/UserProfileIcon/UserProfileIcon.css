@@ -31,6 +31,7 @@
     text-align: center;
     font-size: 15px;
     background-color: #48bc48;
+    z-index: 998;
 }
 .noUnderLine {
     text-decoration: none;
