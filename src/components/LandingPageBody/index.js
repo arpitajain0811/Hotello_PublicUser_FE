@@ -5,9 +5,10 @@ import DatePicker from 'react-datepicker';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import 'react-datepicker/dist/react-datepicker.css';
-import { setCheckInDate, setCheckOutDate, setSearchCityText } from '../../redux/actions';
+import { setCheckInDate, setCheckOutDate, setSearchCityText, setSearchCityLatLng } from '../../redux/actions';
 import './LandingPageBody.css';
 import RoomsDropDown from '../RoomsDropDown';
+import TypeAheadSearchBox from '../TypeAheadSearchBox';
 
 class LandingPageBody extends React.Component {
   componentDidMount() {
@@ -37,7 +38,8 @@ class LandingPageBody extends React.Component {
           </div>
           <div className="LandingPageSearchBox">
             <div className="SearchByBox">
-              <input className="SearchByTextInput" value={this.props.city} type="text" placeholder="Search Hotels by City" onChange={text => this.props.saveSearchCityText(text)} />
+              <TypeAheadSearchBox cityPlaceholder="search places" saveSearchCityText={this.props.saveSearchCityText} saveSearchCityLatLng={this.props.saveSearchCityLatLng} />
+              {/* <input className="SearchByTextInput" value={this.props.city} type="text" placeholder="Search Hotels by City" onChange={text => this.props.saveSearchCityText(text)} /> */}
             </div>
             <div className="CheckInOutDates">
               <div className="CheckInPicker">
@@ -78,6 +80,9 @@ const mapDispatchToProps = dispatch => ({
   saveSearchCityText: (text) => {
     dispatch(setSearchCityText(text));
   },
+  saveSearchCityLatLng: (obj) => {
+    dispatch(setSearchCityLatLng(obj));
+  },
 });
 const mapStateToProps = state => ({
   checkInDate: state.searchOptions.checkInDate,
@@ -94,5 +99,6 @@ LandingPageBody.propTypes = {
   changeCheckoutDate: PropTypes.func.isRequired,
   city: PropTypes.string.isRequired,
   saveSearchCityText: PropTypes.func.isRequired,
+  saveSearchCityLatLng: PropTypes.func.isRequired,
 };
 

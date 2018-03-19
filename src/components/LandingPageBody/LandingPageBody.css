@@ -88,8 +88,8 @@
     align-items: center;
     width:30%;
     border-right: 1px solid rgba(0, 0, 0, 0.24);
-    margin:1%;
-    margin-right:0;
+    padding:1%;
+    /* margin-right:0; */
 }
 .ArrowImg{
     width:60%;
@@ -113,13 +113,14 @@ input{
     font-size: 15px;
 }
 .CheckInPicker{
-   width:30%;
-   margin-left:4%;
+   /* width:30%; */
+   width:85px;
+   /* margin-left:4%; */
    display: flex;
 }
 .CheckOutPicker{
-    width:30%;
-    margin-left:8%;
+    width:85px;
+    /* margin-left:8%; */
  }
  .RoomPeopleSelection{
    padding:2%;

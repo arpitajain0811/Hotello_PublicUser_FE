@@ -103,6 +103,7 @@ class ListingPage extends React.Component {
         <SarchBarAndHeader
           updateSearch={this.updateSearch}
           logoutHandler={this.logoutHandler}
+          cityPlaceholder={this.props.city}
         />
         <HotelParameterBox />
         <MapAndListView center={this.state.center} loaded={this.state.loaded} updateCenter={this.updateCenter} />

@@ -2,6 +2,7 @@ import moment from 'moment';
 
 const defaultState = {
   city: '',
+  LatLng: {},
   checkInDate: moment(new Date()),
   checkOutDate: moment((new Date()).setDate((new Date()).getDate() + 1)),
   rooms: [{
@@ -29,7 +30,13 @@ const searchOptionsReducer = (prevState = defaultState, action) => {
     case 'setSearchCityText': {
       return {
         ...prevState,
-        city: action.payload.text.target.value,
+        city: action.payload,
+      };
+    }
+    case 'setSearchCityLatLng': {
+      return {
+        ...prevState,
+        LatLng: action.payload,
       };
     }
     case 'changeAdultsInRoom': {
