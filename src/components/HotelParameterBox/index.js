@@ -6,6 +6,8 @@ import { connect } from 'react-redux';
 import './HotelParameterBox.css';
 import RoomsDropDown from '../RoomsDropDown';
 import { setCheckInDate, setCheckOutDate } from '../../redux/actions';
+import Slider from 'react-slider';
+import SliderPrice from '../SliderPrice';
 
 class HotelParameterBox extends React.Component {
   verifyCheckinDate=(date) => {
