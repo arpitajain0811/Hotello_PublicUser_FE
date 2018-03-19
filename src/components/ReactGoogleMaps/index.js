@@ -1,5 +1,5 @@
 import React from 'react';
-import { compose, withProps, withState, withHandlers } from 'recompose';
+import { compose, withProps, withState, withHandlers, lifecycle } from 'recompose';
 import {
   withScriptjs,
   withGoogleMap,
@@ -46,10 +46,22 @@ const MyMapComponent = compose(
         onMouseOver(true);
         changeHid(hotelId);
       },
-      hideCard: ({ onMouseOver }) => () => {
+      hideCard: ({ onMouseOver, changeHid }) => () => {
         onMouseOver(false);
+        changeHid('');
       },
     };
+  }),
+  lifecycle({
+    shouldComponentUpdate(nextProps) {
+      if (
+        (nextProps.allHotels.length === this.props.allHotels.length) &&
+        (nextProps.hid === this.props.hid)
+      ) {
+        return false;
+      }
+      return true;
+    },
   }),
   withScriptjs,
   withGoogleMap,
