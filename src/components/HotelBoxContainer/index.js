@@ -23,7 +23,7 @@ class HotelBoxContainer extends React.Component {
       />);
     });
     if (searchIndex > -1) {
-      const infoCard = <InfoCard name={this.props.selectedHotelDetails.name} desc={this.props.selectedHotelDetails.desc} />;
+      const infoCard = <InfoCard name={this.props.selectedHotelDetails.name} desc={this.props.selectedHotelDetails.desc} stars={this.props.selectedHotelDetails.stars} />;
       if (this.props.selectedHotelDetails.origin === 'map') {
         filteredHotelsBox.splice(0, 0, infoCard);
       } else if (searchIndex % 2 === 0) { filteredHotelsBox.splice(searchIndex + 2, 0, infoCard); } else {
