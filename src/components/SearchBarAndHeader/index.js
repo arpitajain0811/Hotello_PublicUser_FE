@@ -86,7 +86,7 @@ class SearchBarAndHeader extends React.Component {
           <div className="searchBox">
             <div className="searchLogoAndInputBoxContainer" >
               <img src={searchLogo} alt="searchLogo" className="searchLogo" />
-              <TypeAheadSearchBox saveSearchCityText={this.props.saveSearchCityText} saveSearchCityLatLng={this.props.saveSearchCityLatLng} />
+              <TypeAheadSearchBox cityPlaceholder={this.props.cityPlaceholder} saveSearchCityText={this.props.saveSearchCityText} saveSearchCityLatLng={this.props.saveSearchCityLatLng} />
               {/* <input
                 className="searchCityInputBox"
                 value={this.props.city}
