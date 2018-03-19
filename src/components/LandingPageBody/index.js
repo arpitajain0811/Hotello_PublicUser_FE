@@ -96,5 +96,6 @@ LandingPageBody.propTypes = {
   changeCheckoutDate: PropTypes.func.isRequired,
   city: PropTypes.string.isRequired,
   saveSearchCityText: PropTypes.func.isRequired,
+  saveSearchCityLatLng: PropTypes.func.isRequired,
 };
 
