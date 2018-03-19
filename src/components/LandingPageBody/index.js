@@ -8,6 +8,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { setCheckInDate, setCheckOutDate, setSearchCityText } from '../../redux/actions';
 import './LandingPageBody.css';
 import RoomsDropDown from '../RoomsDropDown';
+import TypeAheadSearchBox from '../TypeAheadSearchBox';
 
 class LandingPageBody extends React.Component {
   componentDidMount() {
@@ -37,7 +38,8 @@ class LandingPageBody extends React.Component {
           </div>
           <div className="LandingPageSearchBox">
             <div className="SearchByBox">
-              <input className="SearchByTextInput" value={this.props.city} type="text" placeholder="Search Hotels by City" onChange={text => this.props.saveSearchCityText(text)} />
+              <TypeAheadSearchBox saveSearchCityText={this.props.saveSearchCityText} saveSearchCityLatLng={this.props.saveSearchCityLatLng} />
+              {/* <input className="SearchByTextInput" value={this.props.city} type="text" placeholder="Search Hotels by City" onChange={text => this.props.saveSearchCityText(text)} /> */}
             </div>
             <div className="CheckInOutDates">
               <div className="CheckInPicker">

@@ -5,9 +5,10 @@ import PropTypes from 'prop-types';
 import './SearchBarAndHeader.css';
 // import logo from '../../logo.svg';
 import searchLogo from '../../searchLogo.svg';
-import { setSearchCityText } from '../../redux/actions';
+import { setSearchCityText, setSearchCityLatLng } from '../../redux/actions';
 import HeaderLinks from '../HeaderLinks';
 import UserGreetingAndIcon from '../UserGreetingAndIcon';
+import TypeAheadSearchBox from '../TypeAheadSearchBox';
 
 
 class SearchBarAndHeader extends React.Component {
@@ -85,12 +86,13 @@ class SearchBarAndHeader extends React.Component {
           <div className="searchBox">
             <div className="searchLogoAndInputBoxContainer" >
               <img src={searchLogo} alt="searchLogo" className="searchLogo" />
-              <input
+              <TypeAheadSearchBox saveSearchCityText={this.props.saveSearchCityText} saveSearchCityLatLng={this.props.saveSearchCityLatLng} />
+              {/* <input
                 className="searchCityInputBox"
                 value={this.props.city}
                 type="text"
                 onChange={text => this.props.saveSearchCityText(text)}
-              />
+              /> */}
             </div>
             <button className="searchHotelByCityButton" onClick={() => { this.props.updateSearch(); }}>Search</button>
           </div>
@@ -110,6 +112,9 @@ class SearchBarAndHeader extends React.Component {
 const mapDispatchToProps = dispatch => ({
   saveSearchCityText: (text) => {
     dispatch(setSearchCityText(text));
+  },
+  saveSearchCityLatLng: (obj) => {
+    dispatch(setSearchCityLatLng(obj));
   },
 });
 const mapStateToProps = state => ({
