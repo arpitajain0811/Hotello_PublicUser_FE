@@ -1,0 +1,154 @@
+.detailsPage{
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  padding: 0 30px 0 30px;
+  width: 100%;
+}
+
+.hotelImage{
+  width: 100%;
+  height: 50vh;
+  min-height: 300px;
+  object-fit:cover;
+}
+
+.mainBody{
+  display:flex;
+  flex-direction: row;
+}
+
+.hotelDetailsContainer{
+  flex-grow: 1;
+  max-width: 50vw;
+}
+
+.bookingDetailsContainer{
+  flex-grow: 1;
+  margin-top: 20px;
+}
+
+.hotelName{
+  font-size: 40px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: 0.1px;
+}
+
+.description{
+  text-align:justify;
+}
+
+.amenities {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content:flex-start;
+}
+
+.roomType{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+
+
+
+
+
+.BookingSummary{
+    border:1px solid #979797;
+    width:70%;
+    /* margin-left:5%; */
+    margin:auto;
+    padding:1%;
+    opacity: .85;
+}
+.SelectedHotelName{
+    font-family: OpenSans-regular;
+    font-size: 26px;
+    font-weight: bold;
+    letter-spacing: 0.1px;
+}
+.HotelNameWithStars{
+    /* border-bottom: 1px solid #9b9b9b; */
+    padding-bottom:1%;
+}
+.PaymentPageArrowImg{
+    width:65%;
+    height:45%;
+    /* object-fit: contain; */
+}
+.SearchSelectedCheckInOutDates{
+    /* margin-top:1%; */
+    display: flex;
+    flex-grow: 1;
+    border-radius: 4px;
+    border: solid 1px #979797;
+}
+.SearchSelectedRooms{
+  flex-grow: 1;
+  border-radius: 4px;
+  border: solid 1px #979797;
+}
+.PaymentpageArrow{
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    opacity: 0.45;
+}
+.SearchSelectedDetails{
+  font-family: OpenSans-regular;
+  display: flex;
+  flex-direction: row;
+  font-size: 12px;
+  font-weight: 600;
+  padding:2%;
+  /* border-bottom:1px solid #9b9b9b; */
+  padding-bottom:3%;
+
+}
+.PaymentPageLine{
+    opacity: 0.42;
+}
+.MakePaymentButton{
+    width:100%;
+    padding:4%;
+    border-radius: 4px;
+  background-color: #48bc48;
+  font-family: OpenSans-regular;
+  font-size: 18px;
+  font-weight: 500;
+  color:white;
+  outline: none;
+}
+.PriceDeatils{
+    font-family: OpenSans-regular;
+    font-size: 13px;
+}
+.BasePay{
+    display: flex;
+    justify-content: space-between;
+    padding:2%;
+}
+.ServiceFee{
+    display: flex;
+    justify-content: space-between;
+    padding:2%;
+}
+.Taxes{
+    display: flex;
+    justify-content: space-between;
+    padding:2%;
+}
+.TotalAmount{
+    display: flex;
+    justify-content: space-between;
+    padding:2%;
+    font-weight: 600;
+    padding-bottom: 5%;
+}

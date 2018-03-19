@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './HotelCard.css';
+import { Link } from 'react-router-dom';
 
 class HotelCard extends React.Component {
   render() {
@@ -22,15 +23,17 @@ class HotelCard extends React.Component {
       />));
     }
     return (
-      <div className="hotel-card" style={(this.props.image === '') ? { backgroundImage: 'url("/placeholder-hotel-image'+((this.props.hotelId%6)+1).toString()+'.jpeg")' } : { backgroundImage: `url(${this.props.image})` }}>
-        <div className="hotel-card-content">
-          <div className="hotel-card-name">{this.props.hotelName}</div>
-          <div className="hotel-card-details">
-            <p className="hotel-card-min-rate"> ₹{(Number(this.props.minRate) * 65).toFixed(2)}</p>
-            <p className="hotel-card-stars">{stars}</p>
+      <Link to={`/detailsPage/${this.props.hotelId}`}>
+        <div className="hotel-card" style={(this.props.image === '') ? { backgroundImage: `url("/placeholder-hotel-image${((this.props.hotelId % 6) + 1).toString()}.jpeg")` } : { backgroundImage: `url(${this.props.image})` }}>
+          <div className="hotel-card-content">
+            <div className="hotel-card-name">{this.props.hotelName}</div>
+            <div className="hotel-card-details">
+              <p className="hotel-card-min-rate"> ₹{(Number(this.props.minRate) * 65).toFixed(2)}</p>
+              <p className="hotel-card-stars">{stars}</p>
+            </div>
           </div>
         </div>
-      </div>
+      </Link>
     );
   }
 }

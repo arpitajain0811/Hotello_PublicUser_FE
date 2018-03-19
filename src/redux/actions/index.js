@@ -56,3 +56,7 @@ export const saveUser = userDetailsObj => ({
   type: 'saveUser',
   payload: userDetailsObj,
 });
+export const changeRoomId = roomId => ({
+  type: 'CHANGE_ROOM_ID',
+  payload: roomId,
+});
