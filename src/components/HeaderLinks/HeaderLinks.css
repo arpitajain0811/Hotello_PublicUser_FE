@@ -50,3 +50,8 @@
 .popup-content{
 width:40% !important;
 }
+@media only screen and (max-width: 1200px) {
+    .popup-content{
+    width:80% !important;
+    }
+}
