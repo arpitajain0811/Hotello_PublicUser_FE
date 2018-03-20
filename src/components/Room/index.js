@@ -42,9 +42,6 @@ class Room extends React.Component {
         }}
         onClick={() => {
           this.props.changeId(this.state.bookingId);
-          fetch(`/getRoomDetails/${this.props.hotelId}/${this.props.currentId}`).then(data => data.json()).then((response) => {
-            console.log('room details are: ', response);
-          });
       }}
       >
         <div className="crop">

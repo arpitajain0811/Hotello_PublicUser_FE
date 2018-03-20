@@ -8,7 +8,7 @@ import { storeAllHotels, storeFilteredHotels } from '../../redux/actions';
 import constants from '../../constants.json';
 import Amenity from '../Amenity';
 import Room from '../Room';
-
+import loader from '../../images/loader2.svg';
 
 class DetailsPage extends React.Component {
   constructor(props) {
@@ -16,14 +16,52 @@ class DetailsPage extends React.Component {
     this.state = {
       hotelDetails: {},
       currentPrice: 0,
+      rooms: {},
+      loaded: 0,
     };
+    this.imgSrc = '';
+    this.setImg();
   }
 
+  setImg = () => {
+    const context = require.context('../../images/rooms', true);
+    const obj = {};
+    context.keys().forEach((key) => {
+      obj[key] = context(key);
+    });
+    const imgKey = Math.floor(Math.random() * Object.keys(obj).length);
+    let imgSrc = Object.keys(obj)[imgKey];
+    imgSrc = `../../images/rooms${imgSrc.slice(1)}`;
+    this.imgSrc = imgSrc;
+  }
   componentDidMount() {
     fetch(`/viewHotelDetails/${this.props.match.params.value}`, {}).then(data => data.json()).then((response) => {
       console.log(response);
       this.setState({
         hotelDetails: response.hotel_details,
+      }, () => {
+        const usedRooms = [];
+        let flag;
+        this.state.hotelDetails.rooms.forEach((room) => {
+          flag = 1;
+          usedRooms.forEach((type) => {
+            if (type === room.description[0]) {
+              flag = 0;
+            }
+          });
+          if (flag === 1) {
+            usedRooms.push(room.description[0]);
+            fetch(`/getRoomDetails/${this.state.hotelDetails.hotel_code}/${room.booking_id}`).then(roomData => roomData.json()).then((roomJson) => {
+              // This line creates a clone of a nested object
+              const tempObj = JSON.parse(JSON.stringify(this.state.rooms));
+              tempObj[room.booking_id] = roomJson.hotel_room_details;
+              this.setState({
+                rooms: tempObj,
+                loaded: 1,
+              });
+            });
+          }
+        });
       });
     });
   }
@@ -55,14 +93,7 @@ class DetailsPage extends React.Component {
 
   render() {
     console.log(this.props.userName);
-    const context = require.context('../../images/rooms', true);
-    const obj = {};
-    context.keys().forEach((key) => {
-      obj[key] = context(key);
-    });
-    const imgKey = Math.floor(Math.random() * Object.keys(obj).length);
-    let imgSrc = Object.keys(obj)[imgKey];
-    imgSrc = `../../images/rooms${imgSrc.slice(1)}`;
+
     // console.log('The image source is: ', imgSrc);
     let roomsArray;
     const usedRooms = [];
@@ -127,42 +158,55 @@ class DetailsPage extends React.Component {
       />));
     }
 
+    if (this.state.loaded === 0) {
+      return (
+        <div className="detailsPage" >
+          <SearchBarAndHeader updateSearch={this.updateSearch} />
+          <img src={this.imgSrc} className="hotelImage" />
+          <div className="mainBody">
+            <img src={loader} />
+          </div>
+        </div>
+      );
+    }
+
     return (
       <div className="detailsPage" >
         <SearchBarAndHeader updateSearch={this.updateSearch} />
-        <img src={imgSrc} className="hotelImage" />
+        <img src={this.imgSrc} className="hotelImage" />
         <div className="mainBody">
           <div className="hotelDetailsContainer">
             <div className="hotelName">
               {this.state.hotelDetails.hotel_name}
             </div>
             {
-              this.state.hotelDetails.location && <div className="address">
-                {this.state.hotelDetails.location.address}
-              </div>
-            }
+                this.state.hotelDetails.location && <div className="address">
+                  {this.state.hotelDetails.location.address}
+                                                    </div>
+              }
             <div className="description">
               {this.state.hotelDetails.description}
             </div>
             <div className="subHeading">
-            Amenities
+              Amenities
             </div>
             <div className="amenities">
               {amenities}
             </div>
             <div className="subHeading">
-            Room Type
+              Room Type
             </div>
             <div className="roomType" >
               {roomsArray}
             </div>
           </div>
-          <div className="bookingDetailsContainer">
+
+          {this.state.rooms[this.props.currentId] && <div className="bookingDetailsContainer">
             <div className="BookingSummary" >
               <div className="HotelNameWithStars">
-                {this.state.hotelDetails.price && <div className="SelectedHotelName">
-                  ₹{(this.state.hotelDetails.price.maximum * 65).toFixed(0)}/NIGHT
-                </div>}
+                <div className="SelectedHotelName">
+                    ₹{(this.state.rooms[this.props.currentId].price.total * 65).toFixed(0)}/NIGHT
+                </div>
 
                 <div className="SelectedHotelStars">
                   {stars}
@@ -179,14 +223,18 @@ class DetailsPage extends React.Component {
 
                 </div>
                 <div className="SearchSelectedRooms">
-                  rooms,
+                    rooms,
                 </div>
               </div>
               <hr className="PaymentPageLine" />
               <div className="PriceDeatils" >
                 <div className="BasePay">
-                  <div>₹5000 X 1 X 1 </div>
-                  <div> ₹5000</div>
+                  <div>
+                      ₹{(this.state.rooms[this.props.currentId].price.total * 65).toFixed(0)} X {this.props.checkOutDate.diff(this.props.checkInDate, 'days')} X 1
+                  </div>
+                  <div>
+                      ₹{(this.state.rooms[this.props.currentId].price.total * 65).toFixed(0)}
+                  </div>
                 </div>
                 <hr className="PaymentPageLine" />
                 <div className="ServiceFee">
@@ -196,20 +244,24 @@ class DetailsPage extends React.Component {
                 <hr className="PaymentPageLine" />
                 <div className="Taxes">
                   <div>Taxes (18% GST)</div>
-                  <div> ₹{0.18 * 5000}</div>
+                  <div>
+                      ₹{(0.18 * (this.state.rooms[this.props.currentId].price.total * 65)).toFixed(0)}
+                  </div>
 
                 </div>
                 <hr className="PaymentPageLine" />
                 <div className="TotalAmount">
                   <div>Total</div>
-                  <div> ₹{(0.18 * 5000) + 500 + 5000}</div>
+                  <div>
+                      ₹{((this.state.rooms[this.props.currentId].price.total * 65) + 500 + (0.18 * (this.state.rooms[this.props.currentId].price.total * 65))).toFixed(0)}
+                  </div>
                 </div>
               </div>
               <div className="MakePaymentButtonDiv" >
                 <button className="MakePaymentButton">Book</button>
               </div>
             </div>
-          </div>
+                                                     </div>}
         </div>
       </div>
     );
@@ -233,5 +285,6 @@ const mapStateToProps = state => ({
   checkOutDate: state.searchOptions.checkOutDate,
   city: state.searchOptions.city,
   rooms: state.searchOptions.rooms,
+  currentId: state.manageRooms.currentRoomId,
 });
 export default connect(mapStateToProps, mapDispatchToProps)(DetailsPage);
