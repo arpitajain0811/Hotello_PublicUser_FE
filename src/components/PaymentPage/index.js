@@ -59,12 +59,14 @@ class PaymentPage extends React.Component {
     if (window.localStorage.getItem('token') !== null) {
       return (
         <div className="PaymentPage">
-          <Header
-            isLoggedIn={this.props.isLoggedIn}
-            logoutHandler={this.logoutHandler}
-            firstName={this.props.firstName}
-            profileButtonClass="profileButtonBlack"
-          />
+          <div className="PaymentHeader">
+            <Header
+              isLoggedIn={this.props.isLoggedIn}
+              logoutHandler={this.logoutHandler}
+              firstName={this.props.firstName}
+              profileButtonClass="profileButtonBlack"
+            />
+          </div>
           <div className="PaymentBody">
             <PaymentForm />
             <BookingSummary />

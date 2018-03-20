@@ -31,5 +31,9 @@
     padding-left:3%;
     padding-right:3%;
     justify-content: space-between;
+    margin-top:0;
+}
+.PaymentHeader{
+    padding:2%;
 }
 }
