@@ -8,7 +8,7 @@ import SarchBarAndHeader from '../SearchBarAndHeader';
 import HotelParameterBox from '../HotelParameterBox';
 import MapAndListView from '../MapAndListView';
 import getAllHotels from '../../helpers/getAllHotels';
-import { storeAllHotels, storeFilteredHotels, logout } from '../../redux/actions';
+import { storeAllHotels, storeFilteredHotels, logout, changeLoginState } from '../../redux/actions';
 // import FooterBlack from '../FooterBlack';
 
 // import ReactGoogleMaps from '../ReactGoogleMaps';
@@ -37,6 +37,7 @@ class ListingPage extends React.Component {
     });
     console.log('in ListingPage componentWillMount, window.localStorage.getItem(userName)', window.localStorage.getItem('userName'), typeof (window.localStorage.getItem('userName')));
     if (window.localStorage.getItem('userName') !== null) {
+      this.props.changeLoginState(window.localStorage.getItem('userName'));
       // console.log('in ListingPage componentWillMount, inside if');
       // this.setState({
       //   loginState: {
@@ -122,6 +123,9 @@ const mapDispatchToProps = dispatch => ({
   logout: () => {
     dispatch(logout());
   },
+  changeLoginState: (firstName) => {
+    dispatch(changeLoginState(firstName));
+  },
 });
 const mapStateToProps = state => ({
   allHotels: state.storeHotels.allHotels,
@@ -143,7 +147,7 @@ ListingPage.propTypes = {
   rooms: PropTypes.arrayOf(Object).isRequired,
   saveAllHotels: PropTypes.func.isRequired,
   logout: PropTypes.func.isRequired,
-  // allHotels: PropTypes.arrayOf(Object),
+  changeLoginState: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ListingPage);
