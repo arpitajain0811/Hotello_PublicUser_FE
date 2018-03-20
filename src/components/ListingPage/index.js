@@ -9,7 +9,9 @@ import HotelParameterBox from '../HotelParameterBox';
 import MapAndListView from '../MapAndListView';
 import getAllHotels from '../../helpers/getAllHotels';
 import { storeAllHotels, storeFilteredHotels, logout, changeLoginState } from '../../redux/actions';
-// import FooterBlack from '../FooterBlack';
+import FooterBlack from '../FooterBlack';
+import filterByPrice from '../../helpers/filterByPrice';
+
 
 // import ReactGoogleMaps from '../ReactGoogleMaps';
 // import HotelCardsContainer from '../HotelCardsContainer';
@@ -21,12 +23,14 @@ class ListingPage extends React.Component {
     this.state = {
       loaded: false,
       center: {},
-      // loginState: {
-      //   isLoggedIn: false,
-      //   firstName: '',
-      // },
+      selectedHotelDetails: {},
+      priceFilter: {
+        minPrice: 1000,
+        maxPrice: 20000,
+      },
     };
   }
+
 
   componentWillMount() {
     axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${this.props.city}&key=${constants.API_KEY}`).then((value) => {
@@ -63,6 +67,38 @@ class ListingPage extends React.Component {
       this.props.saveAllHotels(response.hotelResultSet);
       this.setState({ loaded: true });
     });
+  }
+
+
+  updateFilteredHotels = (priceRange) => {
+    // console.log('received', radius);
+    const newFilteredHotels = filterByPrice(this.props.allHotels, priceRange);
+    this.props.saveFilteredHotels(newFilteredHotels);
+    const currentMinPrice = 1000 + ((priceRange[0] / 100) * (20000 - 1000));
+    const currentMaxPrice = (1000 + ((priceRange[1] / 100) * (20000 - 1000)));
+    this.setState({ priceFilter: { minPrice: currentMinPrice.toFixed(0), maxPrice: currentMaxPrice.toFixed(0) } });
+  }
+
+  displayCard=(hotelId, hotelName, stars, origin) => {
+    const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+    const reqUrl = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=12.995460,%2077.696218&radius=1000&type=transit_station&key=AIzaSyCnIdPzEpfEV0b_6AGKeL6mF0AVw_yOgi4';
+    console.log('display');
+    fetch(proxyUrl + reqUrl)
+      .then(response => response.json())
+      .then(respJSON => respJSON.results)
+      .then((results) => {
+        const nearby = [];
+        for (let i = 0; i < 5; i += 1) {
+          if (results[i].types[0] === 'bus_station') {
+            nearby.push({ icon: 'https://maps.gstatic.com/mapfiles/place_api/icons/bus-71.png', name: results[i].name });
+          }
+        }
+        this.setState({
+          selectedHotelDetails: {
+            id: hotelId, name: hotelName, origin, stars, nearby,
+          },
+        });
+      });
   }
 
   logoutHandler = () => {
@@ -106,8 +142,8 @@ class ListingPage extends React.Component {
           logoutHandler={this.logoutHandler}
           cityPlaceholder={this.props.city}
         />
-        <HotelParameterBox />
-        <MapAndListView center={this.state.center} loaded={this.state.loaded} updateCenter={this.updateCenter} />
+        <HotelParameterBox priceFilter={this.state.priceFilter} updateFilteredHotels={this.updateFilteredHotels} />
+        <MapAndListView center={this.state.center} loaded={this.state.loaded} updateCenter={this.updateCenter} selectedHotelDetails={this.state.selectedHotelDetails} displayCard={this.displayCard} />
       </div>
     );
   }
@@ -148,6 +184,8 @@ ListingPage.propTypes = {
   saveAllHotels: PropTypes.func.isRequired,
   logout: PropTypes.func.isRequired,
   changeLoginState: PropTypes.func.isRequired,
+  saveFilteredHotels: PropTypes.func.isRequired,
+  allHotels: PropTypes.arrayOf(Object).isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ListingPage);

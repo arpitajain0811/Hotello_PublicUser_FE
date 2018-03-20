@@ -43,6 +43,17 @@ class HotelParameterBox extends React.Component {
         <div className="RoomsDiv">
           <RoomsDropDown borderClass="GiveBorder" showDropdownBlock={() => this.showDropdownBlock} />
         </div>
+        <div className="slider-row">
+          <SliderPrice price={this.props.priceFilter.minPrice} />
+          <Slider
+            defaultValue={[25, 75]}
+            withBars
+            onChange={(v) => {
+              this.props.updateFilteredHotels(v);
+        }}
+          />
+          <SliderPrice price={this.props.priceFilter.maxPrice} />
+        </div>
       </div>
     );
   }
