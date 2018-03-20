@@ -24,18 +24,22 @@ class HotelBoxContainer extends React.Component {
       />);
     });
     if (searchIndex > -1) {
-      const infoCard = <InfoCard name={this.props.selectedHotelDetails.name} nearby={this.props.selectedHotelDetails.nearby} stars={this.props.selectedHotelDetails.stars} />;
+      const infoCard = (<InfoCard
+        name={this.props.selectedHotelDetails.name}
+        nearby={this.props.selectedHotelDetails.nearby}
+        stars={this.props.selectedHotelDetails.stars}
+      />);
       if (this.props.selectedHotelDetails.origin === 'map') {
         filteredHotelsBox.splice(0, 0, infoCard);
-      } else if (searchIndex % 2 === 0) { filteredHotelsBox.splice(searchIndex + 2, 0, infoCard); } else {
+      } else if (searchIndex % 2 === 0) {
+        filteredHotelsBox.splice(searchIndex + 2, 0, infoCard);
+      } else {
         filteredHotelsBox.splice(searchIndex + 1, 0, infoCard);
       }
     }
     return (
       <div>
-        {/* <InfoCard name={this.props.selectedHotelDetails.name} desc={this.props.selectedHotelDetails.desc} /> */}
         <div className="hotel-box-container">
-
           {filteredHotelsBox.length === 0 ? <NoHotelsFound /> : filteredHotelsBox}
         </div>
       </div>);
@@ -46,5 +50,7 @@ HotelBoxContainer.defaultProps = {
 };
 HotelBoxContainer.propTypes = {
   filteredHotels: PropTypes.arrayOf(Object),
+  selectedHotelDetails: PropTypes.object.isRequired,
+  displayCard: PropTypes.func.isRequired,
 };
 export default HotelBoxContainer;

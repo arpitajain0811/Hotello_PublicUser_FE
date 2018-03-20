@@ -9,12 +9,8 @@ import HotelParameterBox from '../HotelParameterBox';
 import MapAndListView from '../MapAndListView';
 import getAllHotels from '../../helpers/getAllHotels';
 import { storeAllHotels, storeFilteredHotels, logout, changeLoginState } from '../../redux/actions';
-import FooterBlack from '../FooterBlack';
 import filterByPrice from '../../helpers/filterByPrice';
-<<<<<<< HEAD
 
-=======
->>>>>>> c9d21050bcec16c9dcb4ee676e555d63623e3dea
 
 // import ReactGoogleMaps from '../ReactGoogleMaps';
 // import HotelCardsContainer from '../HotelCardsContainer';
@@ -26,11 +22,6 @@ class ListingPage extends React.Component {
     this.state = {
       loaded: false,
       center: {},
-      selectedHotelDetails: {},
-      priceFilter: {
-        minPrice: 1000,
-        maxPrice: 20000,
-      },
       selectedHotelDetails: {},
       priceFilter: {
         minPrice: 1000,
@@ -73,10 +64,10 @@ class ListingPage extends React.Component {
       this.props.rooms,
     ).then((response) => {
       this.props.saveAllHotels(response.hotelResultSet);
+      this.updateFilteredHotels([25, 75]);
       this.setState({ loaded: true });
     });
   }
-
 
   updateFilteredHotels = (priceRange) => {
     // console.log('received', radius);
@@ -84,7 +75,10 @@ class ListingPage extends React.Component {
     this.props.saveFilteredHotels(newFilteredHotels);
     const currentMinPrice = 1000 + ((priceRange[0] / 100) * (20000 - 1000));
     const currentMaxPrice = (1000 + ((priceRange[1] / 100) * (20000 - 1000)));
-    this.setState({ priceFilter: { minPrice: currentMinPrice.toFixed(0), maxPrice: currentMaxPrice.toFixed(0) } });
+    this.setState({
+      priceFilter:
+      { minPrice: currentMinPrice.toFixed(0), maxPrice: currentMaxPrice.toFixed(0) },
+    });
   }
 
   displayCard=(hotelId, hotelName, stars, origin) => {
@@ -130,6 +124,7 @@ class ListingPage extends React.Component {
       this.props.rooms,
     ).then((response) => {
       this.props.saveAllHotels(response.hotelResultSet);
+      this.updateFilteredHotels([25, 75]);
       axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${this.props.city}&key=${constants.API_KEY}`).then((value) => {
         console.log(value.data.results[0].geometry.location);
         this.setState({
@@ -150,8 +145,17 @@ class ListingPage extends React.Component {
           logoutHandler={this.logoutHandler}
           cityPlaceholder={this.props.city}
         />
-        <HotelParameterBox priceFilter={this.state.priceFilter} updateFilteredHotels={this.updateFilteredHotels} />
-        <MapAndListView center={this.state.center} loaded={this.state.loaded} updateCenter={this.updateCenter} selectedHotelDetails={this.state.selectedHotelDetails} displayCard={this.displayCard} />
+        <HotelParameterBox
+          priceFilter={this.state.priceFilter}
+          updateFilteredHotels={this.updateFilteredHotels}
+        />
+        <MapAndListView
+          center={this.state.center}
+          loaded={this.state.loaded}
+          updateCenter={this.updateCenter}
+          selectedHotelDetails={this.state.selectedHotelDetails}
+          displayCard={this.displayCard}
+        />
       </div>
     );
   }
@@ -193,6 +197,7 @@ ListingPage.propTypes = {
   changeLoginState: PropTypes.func.isRequired,
   saveFilteredHotels: PropTypes.func.isRequired,
   allHotels: PropTypes.arrayOf(Object).isRequired,
+  saveAllHotels: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ListingPage);

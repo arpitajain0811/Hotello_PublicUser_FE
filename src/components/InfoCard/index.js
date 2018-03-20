@@ -71,5 +71,8 @@ class InfoCard extends React.Component {
 InfoCard.defaultProps = {
 };
 InfoCard.propTypes = {
+  name: PropTypes.string.isRequired,
+  stars: PropTypes.string.isRequired,
+  nearby: PropTypes.arrayOf(Object).isRequired,
 };
 export default InfoCard;

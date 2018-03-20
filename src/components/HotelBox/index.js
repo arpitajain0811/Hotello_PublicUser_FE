@@ -49,5 +49,7 @@ HotelBox.propTypes = {
   image: PropTypes.string,
   minRate: PropTypes.number,
   stars: PropTypes.string,
+  onClickHandler: PropTypes.func.isRequired,
+  hotelId: PropTypes.number.isRequired,
 };
 export default HotelBox;

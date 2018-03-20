@@ -26,7 +26,8 @@ class PaymentPage extends React.Component {
     }
   }
   // componentWillMount() {
-  //   console.log('in LandingPage componentWillMount, window.localStorage.getItem(userName)', window.localStorage.getItem('userName'), typeof (window.localStorage.getItem('userName')));
+  //   console.log('in LandingPage componentWillMount, window.localStorage.getItem(userName)',
+  //   window.localStorage.getItem('userName'), typeof (window.localStorage.getItem('userName')));
   //   if (window.localStorage.getItem('userName') !== null) {
   //     this.setState({
   //       loginState: {

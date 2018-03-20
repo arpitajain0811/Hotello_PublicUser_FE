@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './UserGreetingAndIcon.css';
 import UserProfileIcon from '../UserProfileIcon';
 
@@ -15,6 +16,13 @@ class UserGreetingAndIcon extends React.Component {
     );
   }
 }
+
+UserGreetingAndIcon.propTypes = {
+  logoutHandler: PropTypes.func.isRequired,
+  textColor: PropTypes.string.isRequired,
+  firstName: PropTypes.string.isRequired,
+  profileButtonClass: PropTypes.string.isRequired,
+};
 
 export default UserGreetingAndIcon;
 

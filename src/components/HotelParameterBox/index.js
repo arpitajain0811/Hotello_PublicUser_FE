@@ -3,10 +3,10 @@ import moment from 'moment';
 import PropTypes from 'prop-types';
 import DatePicker from 'react-datepicker';
 import { connect } from 'react-redux';
+import Slider from 'react-slider';
 import './HotelParameterBox.css';
 import RoomsDropDown from '../RoomsDropDown';
 import { setCheckInDate, setCheckOutDate } from '../../redux/actions';
-import Slider from 'react-slider';
 import SliderPrice from '../SliderPrice';
 
 class HotelParameterBox extends React.Component {
@@ -54,17 +54,6 @@ class HotelParameterBox extends React.Component {
           />
           <SliderPrice price={this.props.priceFilter.maxPrice} />
         </div>
-        <div className="slider-row">
-          <SliderPrice price={this.props.priceFilter.minPrice} />
-          <Slider
-            defaultValue={[25, 75]}
-            withBars
-            onChange={(v) => {
-              this.props.updateFilteredHotels(v);
-        }}
-          />
-          <SliderPrice price={this.props.priceFilter.maxPrice} />
-        </div>
       </div>
     );
   }
@@ -88,4 +77,6 @@ HotelParameterBox.propTypes = {
   checkOutDate: PropTypes.objectOf.isRequired,
   changeCheckinDate: PropTypes.func.isRequired,
   changeCheckoutDate: PropTypes.func.isRequired,
+  priceFilter: PropTypes.arrayOf(Number).isRequired,
+  updateFilteredHotels: PropTypes.func.isRequired,
 };
