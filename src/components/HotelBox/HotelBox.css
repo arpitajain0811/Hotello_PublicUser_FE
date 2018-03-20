@@ -10,7 +10,14 @@
     font-family: 'OpenSans-Regular';
     width:260px;
     height:208px;
-    margin:15px
+    margin:15px;
+    box-shadow: 5px 5px 20px 0 rgba(0, 0, 0, 0.5);
+    border-radius:5px;
+    cursor: pointer;
+}
+
+.hotel-box:hover{
+    box-shadow: 5px 5px 10px 0 rgba(0, 0, 0, 0.5);
 }
 
 .hotel-box-content{

@@ -81,7 +81,7 @@ const MyMapComponent = compose(
             className="OverlayView-hover-trigger"
             // onMouseOver={() => { props.showCard(hotel.hotel_id); props.displayCard(hotel.hotel_id); }}
             onFocus={() => { props.showCard(hotel.hotel_id); }}
-            onClick={() => { props.displayCard(hotel.hotel_id, hotel.stars, 'map'); }}
+            onClick={() => { props.displayCard(hotel.hotel_id, hotel.hotel_name, hotel.stars, 'map'); }}
           >
             <div
               className="OverlayView-content"

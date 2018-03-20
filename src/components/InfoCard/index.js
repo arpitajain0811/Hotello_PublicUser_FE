@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './InfoCard.css';
 import AnimateOnChange from 'react-animate-on-change';
+import './InfoCard.css';
 
 
 class InfoCard extends React.Component {
@@ -21,18 +21,50 @@ class InfoCard extends React.Component {
   }
 
   render() {
+    const stars = [];
+    for (let i = 0; i < Number(this.props.stars); i += 1) {
+      stars.push((<img
+        src="/star-white.svg"
+        className="star"
+        alt="star"
+        key={i}
+      />));
+    }
+    for (let i = 0; i < (5 - Number(this.props.stars)); i += 1) {
+      stars.push((<img
+        src="/star-grey.svg"
+        className="star-grey"
+        alt="star-grey"
+        key={Number(this.props.stars) + i}
+      />));
+    }
+    const nearbyArr = [];
+    this.props.nearby.forEach((element) => {
+      const nearbyElement = <div className="nearby-element" ><img src={element.icon} alt="icon" className="nearby-element-icon" /> {element.name} </div>;
+      nearbyArr.push(nearbyElement);
+    });
+
+
     return (
       <AnimateOnChange
         baseClassName={`info-card${this.state.hidden}`}
         animationClassName="fadein"
         animate={this.state.diff}
       >
-        <div className="info-card-name">
-          {this.props.name}
+        <div className="info-card-hide-btn" onClick={() => { this.setState({ hidden: ' hide' }); }}>x</div>
+        <div className="info-card-head">
+          <div className="info-card-name">
+            {this.props.name}
+            <span className="info-card-stars">{this.props.stars} {stars}</span>
+          </div>
+          <button className="info-card-btn">Book</button>
+
         </div>
-        <div className="info-card-desc">{this.props.desc}</div>
-        <div onClick={() => { this.setState({ hidden: ' hide' }); }}>Hide</div>
-        <button className="HotelCard-btn">Book</button>
+        <div className="info-card-desc">
+          {nearbyArr}
+        </div>
+
+
       </AnimateOnChange>);
   }
 }
