@@ -66,9 +66,6 @@ class PaymentPage extends React.Component {
           <div className="PaymentFooter">
             <FooterBlack />
           </div>
-          <div className="BookingSummaryFooter">
-            {/* <BookingSummaryFooter /> */}
-          </div>
         </div>
       );
     }

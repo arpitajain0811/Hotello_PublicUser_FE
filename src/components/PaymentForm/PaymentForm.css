@@ -72,6 +72,7 @@
 .RoomTypesContainer{
   display: flex;
   justify-content: space-between;
+  /* flex-wrap: wrap; */
 }
 .RoomType{
   border: 1px solid #979797;
@@ -110,10 +111,12 @@
     letter-spacing: 0.1px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-around;
     flex-grow: 1;
     padding:3%;
-    width:90%;
+    width:100%;
+    border-bottom:1px solid rgba(151, 151, 151, 0.45);
+    overflow-y: scroll;
   }
   .CardNumberInputField{
     padding:4%;

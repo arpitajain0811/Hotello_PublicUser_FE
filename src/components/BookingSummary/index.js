@@ -66,6 +66,9 @@ class BookingSummary extends React.Component {
             {stars}
           </div>
         </div>
+        <div className="TotalAmountForMobile">
+        ₹{(0.18 * amtPerNightPerRoom) + this.props.serviceFee + amtPerNightPerRoom}
+        </div>
         <hr className="PaymentPageLine" />
         <div className="SearchSelectedDetails">
           <div className="SearchSelectedCheckInOutDates">
