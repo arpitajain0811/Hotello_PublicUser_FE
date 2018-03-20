@@ -6,7 +6,7 @@
     opacity: .85;
 }
 .SelectedHotelName{
-    font-family: OpenSans-regular;
+    font-family: "Open Sans";
     font-size: 26px;
     font-weight: bold;
     letter-spacing: 0.1px;
@@ -31,7 +31,7 @@
     opacity: 0.45;
 }
 .SearchSelectedDetails{
-font-family: OpenSans-regular;
+font-family: "Open Sans";
   font-size: 12px;
   font-weight: 600;
   padding:2%;
@@ -47,14 +47,14 @@ font-family: OpenSans-regular;
     padding:4%;
     border-radius: 4px;
   background-color: #48bc48;
-  font-family: OpenSans-regular;
+  font-family: "Open Sans";
   font-size: 18px;
   font-weight: 500;
   color:white;
   outline: none;
 }
 .PriceDeatils{
-    font-family: OpenSans-regular;
+    font-family: "Open Sans";
     font-size: 13px;
 }
 .BasePay{
@@ -82,7 +82,7 @@ font-family: OpenSans-regular;
 .TotalAmountForMobile{
     display: none;
 }
-@media only screen and (max-width: 900px) {
+@media only screen and (max-width: 768px) {
     .SelectedHotelStars{
         display: none;
     }
@@ -94,13 +94,14 @@ font-family: OpenSans-regular;
         width:100%;
         margin:0;
         border:0;
+        padding-bottom:2%;
     }
     .PriceDeatils{
         display: none;
     }
     .TotalAmountForMobile{
         display: block;
-        font-family: Open Sans;
+        font-family: "Open Sans";
         font-size: 22px;
         font-weight: bold;
     }

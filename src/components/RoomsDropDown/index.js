@@ -20,9 +20,9 @@ showDropdownBlock=() => {
 render() {
   let children = '';
   let normalClass = 'DropDownBlock';
-  if (this.props.totalChildren === 1) children = '1 child,';
+  if (this.props.totalChildren === 1) children = '1 Child,';
   else if (this.props.totalChildren > 1) {
-    children = `${this.props.totalChildren} children,`;
+    children = `${this.props.totalChildren} Children,`;
   }
   const dropDownFieldsHolder = [];
   for (let i = 0; i < this.props.rooms.length; i += 1) {
