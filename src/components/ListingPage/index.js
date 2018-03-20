@@ -11,7 +11,10 @@ import getAllHotels from '../../helpers/getAllHotels';
 import { storeAllHotels, storeFilteredHotels, logout, changeLoginState } from '../../redux/actions';
 import FooterBlack from '../FooterBlack';
 import filterByPrice from '../../helpers/filterByPrice';
+<<<<<<< HEAD
 
+=======
+>>>>>>> c9d21050bcec16c9dcb4ee676e555d63623e3dea
 
 // import ReactGoogleMaps from '../ReactGoogleMaps';
 // import HotelCardsContainer from '../HotelCardsContainer';
@@ -23,6 +26,11 @@ class ListingPage extends React.Component {
     this.state = {
       loaded: false,
       center: {},
+      selectedHotelDetails: {},
+      priceFilter: {
+        minPrice: 1000,
+        maxPrice: 20000,
+      },
       selectedHotelDetails: {},
       priceFilter: {
         minPrice: 1000,
@@ -181,7 +189,6 @@ ListingPage.propTypes = {
   checkOutDate: PropTypes.objectOf.isRequired,
   city: PropTypes.string.isRequired,
   rooms: PropTypes.arrayOf(Object).isRequired,
-  saveAllHotels: PropTypes.func.isRequired,
   logout: PropTypes.func.isRequired,
   changeLoginState: PropTypes.func.isRequired,
   saveFilteredHotels: PropTypes.func.isRequired,
