@@ -79,3 +79,8 @@ font-family: OpenSans-regular;
     font-weight: 600;
     padding-bottom: 5%;
 }
+@media only screen and (max-width: 900px) {
+    .SelectedHotelStars{
+        display: none;
+    }
+  }

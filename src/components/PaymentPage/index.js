@@ -63,7 +63,12 @@ class PaymentPage extends React.Component {
             <PaymentForm />
             <BookingSummary />
           </div>
-          <FooterBlack />
+          <div className="PaymentFooter">
+            <FooterBlack />
+          </div>
+          <div className="BookingSummaryFooter">
+            {/* <BookingSummaryFooter /> */}
+          </div>
         </div>
       );
     }
