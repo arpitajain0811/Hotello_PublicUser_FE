@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import HotelBox from '../HotelBox';
 import './HotelBoxContainer.css';
 import InfoCard from '../InfoCard';
+import NoHotelsFound from '../NoHotelsFound';
 
 class HotelBoxContainer extends React.Component {
   render() {
@@ -35,7 +36,7 @@ class HotelBoxContainer extends React.Component {
         {/* <InfoCard name={this.props.selectedHotelDetails.name} desc={this.props.selectedHotelDetails.desc} /> */}
         <div className="hotel-box-container">
 
-          {filteredHotelsBox.length === 0 ? 'No hotels in this area.' : filteredHotelsBox}
+          {filteredHotelsBox.length === 0 ? <NoHotelsFound /> : filteredHotelsBox}
         </div>
       </div>);
   }
