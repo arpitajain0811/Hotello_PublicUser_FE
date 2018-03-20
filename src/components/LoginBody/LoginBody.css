@@ -3,52 +3,71 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    flex-grow: 7;
+    padding: 4%;
+    padding-left:7%;
+    padding-right:7%;
+    box-sizing: border-box;
+    /* flex-grow: 7; */
 }
-.loginForm{
+/* .loginForm{
     display:flex;
     flex-direction: column;
     justify-content: space-around;
-    align-items: center;
-    padding:5%;
+    align-items: center; */
+    /* padding:5%; */
     /* flex-grow: 1; */
     /* height: 80%; */
-    width: 30%;
-    border-radius:5px;
-    background-color: white;
-    font-family: 'Open Sans', sans-serif;
+    /* border:0; */
+    /* width: 30%; */
+    /* border-radius:5px; */
+    /* background-color: white;
+    font-family: 'Open Sans';
     font-size: 16px;
     font-weight: 600;
     font-style: normal;
     font-stretch: normal;
     line-height: 3.5;
     letter-spacing: 0.1px;
-    box-shadow: 0px 2px 10px 1px rgba(0, 0, 0, 0.5);
+    box-sizing: border-box; */
+    /* box-shadow: 0px 2px 10px 1px rgba(0, 0, 0, 0.5); */
+/* } */
+.loginForm{
+    box-sizing: border-box;
 }
 
 .login-field{
-    width:80%;
+    /* width:80%; */
     border:0;
+    box-sizing: border-box;
     outline: none;
     margin:5%;
     padding:3%;
     font-size: 15px;
-    box-shadow: 0 1px 3px 0 rgba(65, 80, 66, 0.5);
+    border-radius: 5px;
+    border:1px solid #979797;
+    opacity: 0.63;
+    /* opacity: 0.73; */
+    /* box-shadow: 0 1px 3px 0 rgba(65, 80, 66, 0.5); */
 }
 
 .login-button{
-  width:60%;
+  /* width:60%; */
   border-width: 0px 0px 2px 0px;
   outline: none;
   height: 15%;
   background-color:#48bc48;
   color:white;
-  font-size: 22px;
+  font-size: 15px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
+  cursor: pointer;
+  width:100%;
+  padding:3%;
+  margin:5%;
+  border-radius: 4px;
+  outline:none;
 }
 
 
@@ -62,4 +81,26 @@
 }
 .InvalidLogin{
     display:none;
+}
+.ValidLogin{
+    color:red;
+}
+.AlternateSignUp{
+    font-size: 15px;
+    /* margin-top:1%; */
+    color: black;
+    font-family: Open Sans;
+    text-align: center;
+    margin-bottom:1%;
+}
+.signUpStyle {
+    text-decoration: none;
+    color: #48bc48;
+    font-size: 15px;
+    margin-left: 10px;
+    border: none;
+    background-color: white;
+}
+.MyPopup{
+    text-align: left;
 }

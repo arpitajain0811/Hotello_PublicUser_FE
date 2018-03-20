@@ -1,9 +1,15 @@
 .landingPage {
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
+    /* width:100%; */
+    height:100%;
+    /* flex-grow: 1; */
     background-image: url("../../group-25.png");
     background-repeat: no-repeat;
     background-size: cover;
-    padding: 0 50px 20px 50px;
+    /* padding: 20px 50px 20px 50px; */
+    padding:2%;
+    box-sizing: border-box;
+    /* overflow-y: scroll; */
+    /* flex-flow: wrap; */
 }

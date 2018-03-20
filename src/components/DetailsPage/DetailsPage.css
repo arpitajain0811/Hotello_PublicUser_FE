@@ -22,17 +22,17 @@
 }
 
 .hotelDetailsContainer{
-  /* flex-grow: 1; */
-  /* max-width: 50vw; */
-  width:45%;
-  margin-right: 5%;
+  flex-grow: 1;
+  max-width: 50vw;
+  /* width:45%;
+  margin-right: 5%; */
 }
 
 .bookingDetailsContainer{
-  /* flex-grow: 1; */
-  /* margin-top: 20px; */
+   flex-grow: 1;
+  margin-top: 20px;
 
-  width:35%;
+  /* width:35%; */
 }
 
 .hotelName{
@@ -62,11 +62,11 @@
   justify-content: flex-start;
 }
 
-.BookingSummary{
+.Booking-Summary{
     border:1px solid #979797;
-    /* width:70%; */
-    /* margin-left:5%; */
-    /* margin:auto; */
+    width:70%;
+    margin-left:5%;
+    margin:auto;
     padding:2%;
     opacity: 0.85;
 }

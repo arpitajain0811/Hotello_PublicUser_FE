@@ -202,7 +202,7 @@ class DetailsPage extends React.Component {
           </div>
 
           {this.state.rooms[this.props.currentId] && <div className="bookingDetailsContainer">
-            <div className="BookingSummary" >
+            <div className="Booking-Summary" >
               <div className="HotelNameWithStars">
                 <div className="SelectedHotelName">
                     ₹{(this.state.rooms[this.props.currentId].price.total * 65).toFixed(0)}/NIGHT

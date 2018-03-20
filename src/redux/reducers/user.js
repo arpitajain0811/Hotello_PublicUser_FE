@@ -2,6 +2,8 @@ const defaultState = {
   firstName: '',
   lastName: '',
   email: '',
+  phoneNumber: '',
+  isLoggedIn: false,
 };
 
 const userReducer = (prevState = defaultState, action) => {
@@ -15,7 +17,23 @@ const userReducer = (prevState = defaultState, action) => {
         phoneNumber: action.payload.phoneNumber,
       };
     }
-
+    case 'changeLoginState': {
+      return {
+        ...prevState,
+        isLoggedIn: true,
+        firstName: action.payload,
+      };
+    }
+    case 'logout': {
+      return {
+        ...prevState,
+        isLoggedIn: false,
+        firstName: '',
+        lastName: '',
+        email: '',
+        phoneNumber: '',
+      };
+    }
     default: {
       return prevState;
     }

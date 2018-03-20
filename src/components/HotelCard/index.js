@@ -23,17 +23,24 @@ class HotelCard extends React.Component {
       />));
     }
     return (
-      <Link to={`/detailsPage/${this.props.hotelId}`}>
-        <div className="hotel-card" style={(this.props.image === '') ? { backgroundImage: `url("/placeholder-hotel-image${((this.props.hotelId % 6) + 1).toString()}.jpeg")` } : { backgroundImage: `url(${this.props.image})` }}>
-          <div className="hotel-card-content">
-            <div className="hotel-card-name">{this.props.hotelName}</div>
-            <div className="hotel-card-details">
-              <p className="hotel-card-min-rate"> ₹{(Number(this.props.minRate) * 65).toFixed(2)}</p>
-              <p className="hotel-card-stars">{stars}</p>
-            </div>
+
+
+      <div className="HotelCard-outer">
+        <div
+          className="hotel-image"
+          style={(this.props.image === '') ? { backgroundImage: `url("/placeholder-hotel-image${((this.props.hotelId % 6) + 1).toString()}.jpeg")` } : { backgroundImage: `url(${this.props.image})` }}
+        />
+        <div className="hotel-card-content">
+          <div className="hotel-card-name" title={this.props.hotelName}>{(this.props.hotelName.length > 14) ? (`${this.props.hotelName.slice(0, 11)}...`) : this.props.hotelName}</div>
+          <div className="hotel-card-details">
+            <p className="hotel-card-stars">{stars}</p>
+            <p className="hotel-card-min-rate"> ₹ {(Number(this.props.minRate) * 65).toFixed(2)}</p>
+            <Link to={`/detailsPage/${this.props.hotelId}`} className="Details-Link">
+              <button className="HotelCard-btn">Book</button>
+            </Link>
           </div>
         </div>
-      </Link>
+      </div>
     );
   }
 }
@@ -48,5 +55,6 @@ HotelCard.propTypes = {
   image: PropTypes.string,
   minRate: PropTypes.number,
   stars: PropTypes.string,
+  hotelId: PropTypes.number.isRequired,
 };
 export default HotelCard;

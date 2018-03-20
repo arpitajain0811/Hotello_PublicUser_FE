@@ -1,9 +1,11 @@
-.header {
+.MyHeader {
     display: flex;
-    opacity: 0.82;
+    /* opacity: 0.82; */
     justify-content: space-between;
     align-items: center;
-    flex-grow: 1;
+    font-family: "OpenSans-Regular";
+    /* flex-grow: 1; */
+    
 }
 .headerLinksContainer {
     display: flex;
@@ -11,7 +13,7 @@
     align-items: center;
 }
 .headerLink {
-    height: 19px;
+    /* height: 19px; */
     font-size: 14px;
     font-weight: normal;
     font-style: normal;
@@ -19,15 +21,22 @@
     line-height: normal;
     letter-spacing: 0.6px;
     color: #ffffff;
-    padding-left: 20px;
-    font-family: "OpenSans-Regular";
+    padding-left: 2%;
+    font-family: "Open Sans";
     text-decoration: none;
 }
 .logo {
+    /* height: 30%;
+    width: 30%; */
     height: 51px;
     width: 145px;
 }
-.userNameDisplay {
+/* .userNameDisplay {
+    display: flex;
     color: white;
-    font-family: "OpenSans-Regular";
+    font-family: "Open Sans";
+    align-items: center;
+} */
+.hide {
+    display: none;
 }

@@ -5,9 +5,11 @@ import { connect } from 'react-redux';
 import { storeAllHotels, storeFilteredHotels } from '../../redux/actions';
 import ReactGoogleMaps from '../ReactGoogleMaps';
 import HotelCardsContainer from '../HotelCardsContainer';
-import filterHotels from '../../helpers/filterHotels';
+import filterByPrice from '../../helpers/filterByPrice';
 import './MapAndListView.css';
 import constants from '../../constants.json';
+import Slider from 'react-slider';
+import Loader from '../Loader';
 
 class MapAndListView extends React.Component {
   constructor(props) {
@@ -18,28 +20,35 @@ class MapAndListView extends React.Component {
     };
   }
 
-  updateFilteredHotels = (center, radius) => {
-    console.log('received', radius);
-    const newFilteredHotels = filterHotels(center, radius, this.props.allHotels);
+  updateFilteredHotels = (priceRange) => {
+    // console.log('received', radius);
+    const newFilteredHotels = filterByPrice(this.props.allHotels, priceRange);
     this.props.saveFilteredHotels(newFilteredHotels);
   }
 
   render() {
     if (this.props.loaded === false) {
       return (
-        <p>Loading...</p>
+        <Loader />
       );
     }
     return (
       <div className="mapAndListView" >
+        <Slider
+          defaultValue={[25, 75]}
+          withBars
+          onAfterChange={(v) => {
+              this.updateFilteredHotels(v);
+        }}
+        />
         <HotelCardsContainer filteredHotels={this.props.filteredHotels} />
 
         <div className="map-container">
           <ReactGoogleMaps
             centr={this.props.center}
             isMarkerShown
-            allHotels={this.props.allHotels}
-            updateFilteredHotels={this.updateFilteredHotels}
+            allHotels={this.props.filteredHotels}
+            // updateFilteredHotels={this.updateFilteredHotels}
             updateCenter={this.props.updateCenter}
           />
         </div>

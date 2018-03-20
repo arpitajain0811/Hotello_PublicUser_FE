@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import './SignUpForm.css';
 import FormErrors from '../FormErrors';
@@ -82,6 +81,8 @@ class SignUpForm extends Component {
   saveUser(fn, ln, email, pwd, phn) {
     if (this.state.formValid) {
       this.props.saveNewUser(fn, ln, email, pwd, phn);
+      window.localStorage.setItem('userName', fn);
+      this.props.changeLoginState(fn);
     } else {
       const fieldValidationErrors = this.state.formErrors;
       fieldValidationErrors.fieldsRequired = 'Please fill in all the required fields';
@@ -152,9 +153,9 @@ class SignUpForm extends Component {
           <FormErrors formErrors={this.state.formErrors} />
         </div>
         <div className="SignUpBtnContainer">
-          <Link to="/signIn">
-            <button onClick={() => this.saveUser(this.state.firstName, this.state.lastName, this.state.email, this.state.password, this.state.phone)} className="SignUpButton" >Create a New Acoount</button>
-          </Link>
+          {/* <Link to="/signIn"> */}
+          <button onClick={() => this.saveUser(this.state.firstName, this.state.lastName, this.state.email, this.state.password, this.state.phone)} className="SignUpButton" >Sign Up</button>
+          {/* </Link> */}
         </div>
       </div>
 
@@ -165,5 +166,6 @@ class SignUpForm extends Component {
 export default SignUpForm;
 SignUpForm.propTypes = {
   saveNewUser: PropTypes.func.isRequired,
+  changeLoginState: PropTypes.func.isRequired,
 };
 

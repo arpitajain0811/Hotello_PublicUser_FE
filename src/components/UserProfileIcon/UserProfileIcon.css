@@ -1,0 +1,45 @@
+.profileIconBlock {
+    display: flex;
+    align-items: center;
+}
+.profileButtonWhite {
+    outline: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color:white;
+}
+.profileButtonBlack{
+    outline: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color:black;
+}
+.dropDownBox {
+    display: flex;
+    flex-direction: column;
+}
+.dropDownBlock-closed {
+    display: none;
+}
+.dropDownBlock-opened {
+    border-radius: 8px;
+    position: absolute;
+    right: 50px;
+    padding: 10px;
+    text-align: center;
+    font-size: 15px;
+    background-color: #48bc48;
+    z-index: 998;
+}
+.noUnderLine {
+    text-decoration: none;
+}
+.dropDown-item {
+    color: white;
+    font-family: "OpenSans-Regular";
+    padding: 5px;
+    cursor: pointer;
+    /* border-bottom: 2px solid black; */
+}
