@@ -14,9 +14,21 @@ class HeaderLinks extends React.Component {
     //     <Link to="/signIn" className={this.props.changeColor === 'true' ? 'headerLinkBlack' : 'headerLink'}>SIGN IN</Link>
     //   </div>
     // );
+    let bgColor = '';
+    let fontColor = '';
+    let size = '';
+    if (this.props.backgroundStyle === 1) {
+      bgColor = 'white';
+      fontColor = 'black';
+      size = '12px';
+    } else {
+      bgColor = 'transparent';
+      fontColor = 'white';
+      size = '16px';
+    }
     return (
       <div className="headerLinksContainer">
-        <Popup trigger={<button className={this.props.changeColor === 'true' ? 'headerLinkBlack' : 'headerLink'}> SIGN UP </button>} modal>
+        <Popup trigger={<button className={this.props.changeColor === 'true' ? 'headerLinkBlack' : 'headerLink'} style={{ backgroundColor: bgColor, color: fontColor, fontSize: size }}> SIGN UP </button>} modal>
           {close => (
             <div className="modal">
               <a className="close" onClick={close}>
@@ -40,7 +52,7 @@ class HeaderLinks extends React.Component {
             </div>
     )}
         </Popup>
-        <Popup trigger={<button className={this.props.changeColor === 'true' ? 'headerLinkBlack' : 'headerLink'}> SIGN IN </button>} modal>
+        <Popup trigger={<button className={this.props.changeColor === 'true' ? 'headerLinkBlack' : 'headerLink'} style={{ backgroundColor: bgColor, color: fontColor, fontSize: size }}> SIGN IN </button>} modal>
           {close => (
             <div className="modal">
               <a className="close" onClick={close}>
@@ -61,4 +73,8 @@ class HeaderLinks extends React.Component {
 export default HeaderLinks;
 HeaderLinks.propTypes = {
   changeColor: PropTypes.bool.isRequired,
+  backgroundStyle: PropTypes.number,
+};
+HeaderLinks.defaultProps = {
+  backgroundStyle: 1,
 };

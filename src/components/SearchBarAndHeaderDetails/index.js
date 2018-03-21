@@ -85,7 +85,7 @@ class SearchBarAndHeader extends React.Component {
     }
     if (this.state.displaySignOptions) {
       signOptionsBlock = (
-        <HeaderLinks changeColor="true" />
+        <HeaderLinks changeColor="true" backgroundStyle={this.props.type} />
       );
     }
     console.log(signOptionsBlock);
@@ -96,19 +96,8 @@ class SearchBarAndHeader extends React.Component {
           {/* <div className="searchbarAndHeader-logo" > */}
           <img src="/h-logo.png" alt="logo" className="logoInListPage" />
           {/* </div> */}
-          <div className="searchBox">
-            <div className="searchLogoAndInputBoxContainer" >
-              <img src={searchLogo} alt="searchLogo" className="searchLogo" />
-              <TypeAheadSearchBox cityPlaceholder={this.props.cityPlaceholder} saveSearchCityText={this.props.saveSearchCityText} saveSearchCityLatLng={this.props.saveSearchCityLatLng} />
-              {/* <input
-                className="searchCityInputBox"
-                value={this.props.city}
-                type="text"
-                onChange={text => this.props.saveSearchCityText(text)}
-              /> */}
-            </div>
-            <button className="searchHotelByCityButton" onClick={() => { this.props.updateSearch(); }}>Search</button>
-          </div>
+
+
         </div>
         {/* <div className="searchbarAndHeader-LinksContainer">
           <Link to="/contact" className="searchbarAndHeader-Link">CONTACT</Link>

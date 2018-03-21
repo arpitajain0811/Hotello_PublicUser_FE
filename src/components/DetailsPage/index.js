@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import './DetailsPage.css';
 import SearchBarAndHeader from '../SearchBarAndHeaderDetails';
@@ -83,7 +84,7 @@ class DetailsPage extends React.Component {
     } else {
       // console.log('else Fired');
       this.setState({
-        scrollState: 2,
+        scrollState: 0,
       });
     }
   }
@@ -238,8 +239,10 @@ class DetailsPage extends React.Component {
         <div className="detailsPage" >
           <SearchBarAndHeader updateSearch={this.updateSearch} />
           <img src={this.imgSrc} className="hotelImage" />
-          <div className="mainBody">
-            <img src={loader} />
+          <div className="detailsPageContainer">
+            <div className="mainBody">
+              <img src={loader} />
+            </div>
           </div>
         </div>
       );
@@ -249,122 +252,128 @@ class DetailsPage extends React.Component {
       <div className="detailsPage" >
         <SearchBarAndHeader updateSearch={this.updateSearch} type={this.state.scrollState} />
         <img src={this.imgSrc} className="hotelImage" />
-        Back
-        <div className="mainBody">
-          <div className="hotelDetailsContainer">
-            <div className="hotelName">
-              {this.state.hotelDetails.hotel_name}
+        <div className="detailsPageContainer">
+          <Link to="/listingPage" className="removeTextDecoration">
+            <div className="backSection">
+              <div className="backArrow">◀</div><div className="backButton">Back</div>
             </div>
-            {
+          </Link>
+          <div className="mainBody">
+            <div className="hotelDetailsContainer">
+              <div className="hotelName">
+                {this.state.hotelDetails.hotel_name}
+              </div>
+              {
                 this.state.hotelDetails.location && <div className="address">
                   {this.state.hotelDetails.location.address}
                                                     </div>
               }
-            <div className="description">
-              <div className="hotelDescription">
-                {hotelDescription}
-              </div>
-              <div
-                className="amenitiesButton"
-                onClick={() => {
+              <div className="description">
+                <div className="hotelDescription">
+                  {hotelDescription}
+                </div>
+                <div
+                  className="amenitiesButton"
+                  onClick={() => {
                 this.setState({
                   expandedDescription: !this.state.expandedDescription,
                 });
               }}
-              >
-                {moreDescription}
+                >
+                  {moreDescription}
+                </div>
               </div>
-            </div>
-            <hr className="PaymentPageLine" />
-            <div className="subHeading">
+              <hr className="PaymentPageLine" />
+              <div className="subHeading">
               Amenities
-            </div>
-            <div className="amenities">
-              {amenities}
-            </div>
-            <div className="moreAmenities">
-              <div className="expandedAmenities">
-                {allAmenities}
               </div>
-              <div
-                className="amenitiesButton"
-                onClick={() => {
+              <div className="amenities">
+                {amenities}
+              </div>
+              <div className="moreAmenities">
+                <div className="expandedAmenities">
+                  {allAmenities}
+                </div>
+                <div
+                  className="amenitiesButton"
+                  onClick={() => {
                 this.setState({
                   expandedAmenities: !this.state.expandedAmenities,
                 });
               }}
-              >
-                {moreAmenities}
+                >
+                  {moreAmenities}
+                </div>
               </div>
-            </div>
-            <hr className="PaymentPageLine" />
-            <div className="subHeading">
+              <hr className="PaymentPageLine" />
+              <div className="subHeading">
               Room Type
+              </div>
+              <div className="roomType" >
+                {roomsArray}
+              </div>
             </div>
-            <div className="roomType" >
-              {roomsArray}
-            </div>
-          </div>
 
-          {this.state.rooms[this.props.currentId] && <div className="bookingDetailsContainer">
-            <div className="Booking-Summary" >
-              <div className="HotelNameWithStars">
-                <div className="Selected-Hotel-Name">
+            {this.state.rooms[this.props.currentId] && <div className="bookingDetailsContainer">
+              <div className="Booking-Summary" >
+                <div className="HotelNameWithStars">
+                  <div className="Selected-Hotel-Name">
                     ₹{(this.state.rooms[this.props.currentId].price.total * 65).toFixed(0)}<span className="night">/NIGHT</span>
-                </div>
+                  </div>
 
-                <div className="SelectedHotelStars">
-                  {stars}
+                  <div className="SelectedHotelStars">
+                    {stars}
+                  </div>
                 </div>
-              </div>
-              <hr className="PaymentPageLine" />
-              <div className="Search-Selected-Details">
-                <div className="Search-Selected-CheckInOutDates">
-                  {this.props.checkInDate.toString().substring(0, 11)}
-                  <span className="dataArrow">→</span>
-                  {this.props.checkOutDate.toString().substring(0, 11)}
+                <hr className="PaymentPageLine" />
+                <div className="Search-Selected-Details">
+                  <div className="Search-Selected-CheckInOutDates">
+                    {this.props.checkInDate.toString().substring(0, 11)}
+                    <span className="dataArrow">→</span>
+                    {this.props.checkOutDate.toString().substring(0, 11)}
 
+                  </div>
+                  <div className="Search-Selected-Rooms">
+                    {finalRoomStatus}
+                  </div>
                 </div>
-                <div className="Search-Selected-Rooms">
-                  {finalRoomStatus}
-                </div>
-              </div>
-              <hr className="PaymentPageLine" />
-              <div >
-                <div className="BasePay">
-                  <div>
+                <hr className="PaymentPageLine" />
+                <div >
+                  <div className="BasePay">
+                    <div>
                       ₹{(this.state.rooms[this.props.currentId].price.total * 65).toFixed(0)} X {this.props.checkOutDate.diff(this.props.checkInDate, 'days')} X 1
-                  </div>
-                  <div>
+                    </div>
+                    <div>
                       ₹{(this.state.rooms[this.props.currentId].price.total * 65).toFixed(0)}
+                    </div>
                   </div>
-                </div>
-                <hr className="PaymentPageLine" />
-                <div className="ServiceFee">
-                  <div>Service Fee</div>
-                  <div> ₹500</div>
-                </div>
-                <hr className="PaymentPageLine" />
-                <div className="Taxes">
-                  <div>Taxes (18% GST)</div>
-                  <div>
+                  <hr className="PaymentPageLine" />
+                  <div className="ServiceFee">
+                    <div>Service Fee</div>
+                    <div> ₹500</div>
+                  </div>
+                  <hr className="PaymentPageLine" />
+                  <div className="Taxes">
+                    <div>Taxes (18% GST)</div>
+                    <div>
                       ₹{(0.18 * (this.state.rooms[this.props.currentId].price.total * 65)).toFixed(0)}
-                  </div>
+                    </div>
 
-                </div>
-                <hr className="PaymentPageLine" />
-                <div className="TotalAmount">
-                  <div>Total</div>
-                  <div>
+                  </div>
+                  <hr className="PaymentPageLine" />
+                  <div className="TotalAmount">
+                    <div>Total</div>
+                    <div>
                       ₹{((this.state.rooms[this.props.currentId].price.total * 65) + 500 + (0.18 * (this.state.rooms[this.props.currentId].price.total * 65))).toFixed(0)}
+                    </div>
                   </div>
                 </div>
+                <div className="MakePaymentButtonDiv" >
+                  <button className="MakePaymentButton">Book</button>
+                </div>
               </div>
-              <div className="MakePaymentButtonDiv" >
-                <button className="MakePaymentButton">Book</button>
-              </div>
-            </div>
-                                                     </div>}
+                                                       </div>}
+          </div>
         </div>
       </div>
     );
