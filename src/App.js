@@ -9,7 +9,6 @@ import ListingPage from '../src/components/ListingPage';
 // import { changeLoginState } from './redux/actions';
 // import Login from './components/Login';
 import PaymentPage from './components/PaymentPage';
-import ManageBookingsPage from './components/ManageBookingsPage';
 
 class App extends Component {
   // componentDidMount() {
@@ -26,7 +25,6 @@ class App extends Component {
           {/* <Route path="/signUp" component={SignUpPage} />
           <Route path="/signIn" component={Login} /> */}
           <Route path="/payment" component={PaymentPage} />
-          <Route path="/manageBookings" component={ManageBookingsPage} />
         </Switch>
       </div>
     );
