@@ -7,7 +7,7 @@
     width:20%;
     justify-content: flex-end;
     color:white;
-    font-family: 'OpenSans-Regular';
+    font-family: 'Open Sans';
     width:260px;
     height:208px;
     margin:15px;
@@ -29,11 +29,16 @@
   box-sizing: border-box;
 }
 
+.hotel-box-min-rate {
+    font-family: 'Open Sans';
+}
+
 .hotel-box-name{
 display:flex;
 font-size:16px;
 box-sizing: border-box;
 padding-left:13px;
+font-family: 'Open Sans';
 justify-content: flex-start
 }
 
