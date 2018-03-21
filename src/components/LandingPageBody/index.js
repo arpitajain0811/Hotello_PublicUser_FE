@@ -39,7 +39,11 @@ class LandingPageBody extends React.Component {
           <div className="LandingPageSearchBox">
             <div className="SearchByBox">
               <TypeAheadSearchBox cityPlaceholder="Search Places" saveSearchCityText={this.props.saveSearchCityText} saveSearchCityLatLng={this.props.saveSearchCityLatLng} />
-              {/* <input className="SearchByTextInput" value={this.props.city} type="text" placeholder="Search Hotels by City" onChange={text => this.props.saveSearchCityText(text)} /> */}
+              {/* <input
+               className="SearchByTextInput"
+               value={this.props.city} type="text"
+               placeholder="Search Hotels by City"
+               onChange={text => this.props.saveSearchCityText(text)} /> */}
             </div>
             <div className="CheckInOutDates">
               <div className="CheckInPicker">
@@ -97,7 +101,6 @@ LandingPageBody.propTypes = {
   checkOutDate: PropTypes.objectOf.isRequired,
   changeCheckinDate: PropTypes.func.isRequired,
   changeCheckoutDate: PropTypes.func.isRequired,
-  city: PropTypes.string.isRequired,
   saveSearchCityText: PropTypes.func.isRequired,
   saveSearchCityLatLng: PropTypes.func.isRequired,
 };
