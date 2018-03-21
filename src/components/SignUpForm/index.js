@@ -93,7 +93,11 @@ class SignUpForm extends Component {
   }
   validateForm() {
     this.setState({
-      formValid: this.state.emailValid && this.state.passwordValid && this.state.phoneValid && this.state.firstNameValid && this.state.confirmPwdValid,
+      formValid: this.state.emailValid &&
+      this.state.passwordValid &&
+       this.state.phoneValid &&
+        this.state.firstNameValid &&
+         this.state.confirmPwdValid,
     });
   }
   render() {

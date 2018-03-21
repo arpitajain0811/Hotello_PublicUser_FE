@@ -86,7 +86,11 @@ class SearchBarAndHeader extends React.Component {
           <div className="searchBox">
             <div className="searchLogoAndInputBoxContainer" >
               <img src={searchLogo} alt="searchLogo" className="searchLogo" />
-              <TypeAheadSearchBox cityPlaceholder={this.props.cityPlaceholder} saveSearchCityText={this.props.saveSearchCityText} saveSearchCityLatLng={this.props.saveSearchCityLatLng} />
+              <TypeAheadSearchBox
+                cityPlaceholder={this.props.cityPlaceholder}
+                saveSearchCityText={this.props.saveSearchCityText}
+                saveSearchCityLatLng={this.props.saveSearchCityLatLng}
+              />
               {/* <input
                 className="searchCityInputBox"
                 value={this.props.city}
@@ -124,11 +128,13 @@ const mapStateToProps = state => ({
 });
 export default connect(mapStateToProps, mapDispatchToProps)(SearchBarAndHeader);
 SearchBarAndHeader.propTypes = {
-  city: PropTypes.string.isRequired,
   saveSearchCityText: PropTypes.func.isRequired,
   updateSearch: PropTypes.func.isRequired,
   isLoggedIn: PropTypes.bool.isRequired,
   logoutHandler: PropTypes.func.isRequired,
   firstName: PropTypes.string.isRequired,
+  cityPlaceholder: PropTypes.string.isRequired,
+  saveSearchCityLatLng: PropTypes.func.isRequired,
+  loginState: PropTypes.bool.isRequired,
 };
 

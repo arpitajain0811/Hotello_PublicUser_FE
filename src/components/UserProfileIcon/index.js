@@ -1,5 +1,6 @@
 import React from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import './UserProfileIcon.css';
 
 class UserProfileIcon extends React.Component {
@@ -69,5 +70,10 @@ class UserProfileIcon extends React.Component {
     // return <Redirect to="/" />;
   }
 }
+
+UserProfileIcon.propTypes = {
+  logoutHandler: PropTypes.func.isRequired,
+  profileButtonClass: PropTypes.string.isRequired,
+};
 
 export default UserProfileIcon;

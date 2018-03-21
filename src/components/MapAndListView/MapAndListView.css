@@ -6,6 +6,11 @@
     /* flex-grow: 1; */
     /* background-color:yellow */
 }
+.map-and-list-view-page{
+    font-family: 'Open Sans';
+    padding-top:10px
+}
+
 .hotelList {
     flex-grow: 0.4;
     background-color: blue;
@@ -19,28 +24,3 @@
 }
 
 
-.slider{
-    height:40px;
-    width:20vw;
-    display:flex;
-    flex-direction: column;
-    justify-content: center
-}
-
-.handle{
-    height:100%;
-    width:5%;
-    background-color:#48bc48;
-    border:1px solid grey;
-    box-shadow: 0px 0px 5px;
-    border-radius:5px
-}
-
-.bar{
-    height:10%;
-    background-color:black
-}
-
-.bar-1{
-    background-color:green
-}

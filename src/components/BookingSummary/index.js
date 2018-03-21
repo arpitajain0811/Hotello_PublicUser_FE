@@ -17,7 +17,7 @@ class BookingSummary extends React.Component {
         basket: [this.props.RoomId],
         amount: this.props.amount,
       }),
-    }).then((res) => {
+    }).then(() => {
     });
   }
   render() {
