@@ -1,0 +1,55 @@
+.userProfilePage {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    font-family: "Open Sans";
+}
+.userProfileBody {
+    height: 100%;
+    display: flex;
+    border-top: solid 1px rgba(151, 151, 151, 0.45);
+}
+.userProfileBody-col1 {
+    width: 25%;
+    margin: 3% 0%;
+    display: flex;
+    flex-direction: column;
+    border-right: solid 1px rgba(151, 151, 151, 0.45);
+}
+.userProfileBody-col2 {
+    width: 100%;
+    margin: 3% 0%;
+    display: flex;
+    flex-direction: column;
+}
+.userPicBlock {
+    height: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-bottom: solid 1px rgba(151, 151, 151, 0.45);
+}
+.userPicCircle {
+    height: 60%;
+    width: 60%;
+    border-radius: 50%;
+    background-color: pink;
+}
+.userNameBelowPic {
+    margin-top: 9%;
+    font-weight: 600;
+}
+.editProfileAndBookingSidebar {
+    height: 15%;
+}
+.sidebarItemLink {
+    height: 50%;
+    border-bottom: solid 1px rgba(151, 151, 151, 0.45);
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: black;
+    font-weight: 600;
+    padding-left: 10%;
+}

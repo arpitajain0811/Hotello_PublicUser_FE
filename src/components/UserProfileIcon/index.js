@@ -54,8 +54,8 @@ class UserProfileIcon extends React.Component {
           </button>
         </div>
         <div className={this.state.isDropDownOpen ? 'dropDownBlock-opened' : 'dropDownBlock-closed'}>
-          <Link to="/adminMain/edit" className="noUnderLine">
-            <div className="dropDown-item" onClick={() => { alert('clicked user profile'); }}>
+          <Link to="/userProfile" className="noUnderLine">
+            <div className="dropDown-item">
                 Your Profile
             </div>
           </Link>

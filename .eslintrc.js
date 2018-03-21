@@ -14,6 +14,7 @@ module.exports = {
         'react/no-did-mount-set-state': 0,
         "no-nested-ternary": 0,
         "react/forbid-prop-types": 0,
-        "react/no-string-refs":0
+        "react/no-string-refs":0,
+        "no-param-reassign": 0,
     },
 };
