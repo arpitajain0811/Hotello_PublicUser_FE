@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import './ManageBookingsPage.css';
 import ManageBookingsRow from '../ManageBookingsRow';
 

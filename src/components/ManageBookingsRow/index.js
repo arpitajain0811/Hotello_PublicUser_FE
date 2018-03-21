@@ -60,7 +60,6 @@ ManageBookingsRow.defaultProps = {
 };
 ManageBookingsRow.propTypes = {
   amount: PropTypes.number.isRequired,
-  bookingDate: PropTypes.string.isRequired,
   bookingId: PropTypes.string.isRequired,
   checkIn: PropTypes.string.isRequired,
   checkOut: PropTypes.string.isRequired,
