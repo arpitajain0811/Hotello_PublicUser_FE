@@ -10,6 +10,7 @@ import PageUnderConstruction from '../src/components/PageUnderConstruction';
 // import { changeLoginState } from './redux/actions';
 // import Login from './components/Login';
 import PaymentPage from './components/PaymentPage';
+import UserProfilePage from './components/UserProfilePage';
 
 class App extends Component {
   // componentDidMount() {
@@ -27,6 +28,7 @@ class App extends Component {
           <Route path="/signIn" component={Login} /> */}
           <Route path="/pageunderconstruction" component={PageUnderConstruction} />
           <Route path="/payment" component={PaymentPage} />
+          <Route path="/userProfile" component={UserProfilePage} />
         </Switch>
       </div>
     );
