@@ -15,6 +15,9 @@ module.exports = {
         "no-nested-ternary": 0,
         "react/forbid-prop-types": 0,
         "react/no-string-refs":0,
+        "no-console":0,
+        "no-underscore-dangle" :0
         "no-param-reassign": 0,
+
     },
 };

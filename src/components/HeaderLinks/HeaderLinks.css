@@ -8,7 +8,7 @@
 }
 .headerLink {
     height: 19px;
-    font-family: Open Sans;
+    font-family: "Open Sans";
     font-size: 12px;
     font-weight: normal;
     font-style: normal;
@@ -24,7 +24,7 @@
 }
 .headerLinkBlack {
     color: black;
-    font-family: Open Sans;
+    font-family: "Open Sans";
     height: 19px;
     font-size: 12px;
     font-weight: normal;
@@ -38,7 +38,7 @@
     outline: none;
 }
 .SignUpHeader{
-    font-family: Open Sans;
+    font-family: "Open Sans";
     font-size: 26px;
     color:black;
     text-align: center;
@@ -46,12 +46,17 @@
 }
 .close{
     cursor: pointer;
+    position: absolute;
+    right:5%;
+    font-size: 30px;
 }
 .popup-content{
 width:40% !important;
 }
-@media only screen and (max-width: 1200px) {
+@media only screen and (max-width: 768px) {
     .popup-content{
     width:80% !important;
+    padding-top:2% !important;
+    padding-bottom:2% !important;
     }
 }

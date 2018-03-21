@@ -22,30 +22,29 @@ class CreditCard extends React.Component {
       this.setState({
         imgSrc: '/mastercard.png',
       });
-    }
-    if (type === 'visa') {
+    } else if (type === 'visa') {
       this.setState({
         imgSrc: '/visa.png',
       });
-    }
-    if (type === 'amex') {
+    } else if (type === 'amex') {
       this.setState({
         imgSrc: '/amex.png',
       });
-    }
-    if (type === 'jcb') {
+    } else if (type === 'jcb') {
       this.setState({
         imgSrc: '/jcb.png',
       });
-    }
-    if (type === 'dinersclub') {
+    } else if (type === 'dinersclub') {
       this.setState({
         imgSrc: '/dinersclub.png',
       });
-    }
-    if (type === 'discover') {
+    } else if (type === 'discover') {
       this.setState({
         imgSrc: '/discover.png',
+      });
+    } else {
+      this.setState({
+        imgSrc: '',
       });
     }
   }
@@ -86,7 +85,7 @@ class CreditCard extends React.Component {
             <input type="text" placeholder="Card Holder Name" className="CardHolderNameInputField" />
             <div className="ExpiryAndCvv">
               <input type="text" ref="expiration" placeholder="Expiry" className="ExpiryInputField" />
-              <input type="text" ref="cvc" placeholder="CVV" className="CvvInputField" />
+              <input type="password" ref="cvc" placeholder="CVV" className="CvvInputField" />
             </div>
             {/* { this.renderCardList() } */}
           </div>

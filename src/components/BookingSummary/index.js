@@ -17,7 +17,7 @@ class BookingSummary extends React.Component {
         basket: [this.props.RoomId],
         amount: this.props.amount,
       }),
-    }).then((res) => {
+    }).then(() => {
     });
   }
   render() {
@@ -65,6 +65,9 @@ class BookingSummary extends React.Component {
           <div className="SelectedHotelStars">
             {stars}
           </div>
+        </div>
+        <div className="TotalAmountForMobile">
+        ₹{(0.18 * amtPerNightPerRoom) + this.props.serviceFee + amtPerNightPerRoom}
         </div>
         <hr className="PaymentPageLine" />
         <div className="SearchSelectedDetails">
