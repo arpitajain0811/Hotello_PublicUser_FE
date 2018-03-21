@@ -57,7 +57,7 @@ class UserProfilePage extends React.Component {
               </Link>
               <Link
                 className="sidebarItemLink"
-                to="/userProfile/manageUserDetails"
+                to="/userProfile/manageUserBookings"
                 style={this.state.editProfileIsActive ? {} : { backgroundColor: '#77cc76', color: 'white' }}
                 onClick={this.setActiveLink}
               >
@@ -68,7 +68,7 @@ class UserProfilePage extends React.Component {
           <div className="userProfileBody-col2" >
             <Switch>
               <Route exact path="/userProfile/" component={EditUserDetails} />
-              <Route path="/userProfile/manageUserDetails" component={ManageUserBookings} />
+              <Route path="/userProfile/manageUserBookings" component={ManageUserBookings} />
             </Switch>
           </div>
         </div>
