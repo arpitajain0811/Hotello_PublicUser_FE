@@ -17,6 +17,26 @@
     flex-direction: column;
     border-right: solid 1px rgba(151, 151, 151, 0.45);
 }
+@media only screen and (max-width:411px) {
+    .userProfileBody-col1 {
+        z-index: 1;
+        position: absolute;
+        height: 100%;
+        background-color: white;
+        display: none;
+        width: 45%;
+    }
+}
+@media only screen and (min-width: 411px) {
+    .hamburger {
+        display: none;
+    }
+}
+.hamburger {
+    height: 20px;
+    width: 40px;
+    cursor: pointer;
+}
 .userProfileBody-col2 {
     width: 100%;
     margin: 3% 0%;

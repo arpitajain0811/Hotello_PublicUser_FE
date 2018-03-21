@@ -6,6 +6,14 @@
     padding: 36px
 }
 
+@media only screen and (max-width:411px){
+    .manage-bookings-row{
+        flex-direction: column;
+        align-items: flex-start;
+        margin-top:10%;
+    }
+}
+
 .manage-bookings-row-img-col{
     display:flex;
     flex-direction: column;
@@ -35,9 +43,17 @@
     display:flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: center;
-    
+    align-items: center;    
 }
+
+@media only screen and (max-width:952px){
+    .manage-bookings-row-foot{
+        flex-direction: column;
+        align-items: flex-start;
+        margin-top:10%;
+    }
+}
+
 .manage-bookings-row-foot-left{
     display:flex;
     flex-direction: column;

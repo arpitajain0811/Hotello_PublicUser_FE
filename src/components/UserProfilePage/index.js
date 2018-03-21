@@ -7,12 +7,13 @@ import SarchBarAndHeader from '../SearchBarAndHeader';
 import EditUserDetails from '../EditUserDetails';
 import ManageUserBookings from '../ManageUserBookings';
 import './UserProfilePage.css';
+import hamburger from '../../hamburger.svg'
 
 
 class UserProfilePage extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { editProfileIsActive: true };
+    this.state = { editProfileIsActive: true, showSidebar: true };
   }
   componentWillMount() {
     console.log('in UserProfilePage componentWillMount');
@@ -29,8 +30,14 @@ class UserProfilePage extends React.Component {
     this.props.logout();
   }
 
+  toggleUserPicSidebar = () => {
+    this.setState(prevState => ({
+      showSidebar: !prevState.showSidebar
+    }));
+  }
+
   render() {
-    console.log('in UserProfilePage render');
+    console.log('in UserProfilePage render, state', this.state);
     return (
       <div className="userProfilePage" >
         <SarchBarAndHeader
@@ -39,7 +46,8 @@ class UserProfilePage extends React.Component {
           cityPlaceholder={this.props.city}
         />
         <div className="userProfileBody" >
-          <div className="userProfileBody-col1" >
+          <div className="userProfileBody-col1" style={this.state.showSidebar ? {display: 'flex'} : {}}>
+          <img src={hamburger} onClick={this.toggleUserPicSidebar} className="hamburger" />
             <div className="userPicBlock" >
               <div className="userPicCircle" />
               <div className="userNameBelowPic" >
@@ -66,6 +74,7 @@ class UserProfilePage extends React.Component {
             </div>
           </div>
           <div className="userProfileBody-col2" >
+          <img src={hamburger} onClick={this.toggleUserPicSidebar} className="hamburger" />
             <Switch>
               <Route exact path="/userProfile/" component={EditUserDetails} />
               <Route path="/userProfile/manageUserBookings" component={ManageUserBookings} />

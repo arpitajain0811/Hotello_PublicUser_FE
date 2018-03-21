@@ -117,15 +117,6 @@ class EditUserDetails extends React.Component {
               {msgs}
             </div>
           </div>
-
-          My Billing Details
-          <div className="userDetailsFormBox" >
-            <input type="text" className="userDetailsInputBox" value="shit" />
-            <input type="text" className="userDetailsInputBox" value="shit" />
-            <input type="text" className="userDetailsInputBox" value="shit" />
-            <input type="text" className="userDetailsInputBox" value="shit" />
-            <input type="text" className="userDetailsInputBox" value="shit" />
-          </div>
           <div className="saveButtonRow" >
             <div style={{ color: 'red' }}>
               {this.state.submitErrorMsg}

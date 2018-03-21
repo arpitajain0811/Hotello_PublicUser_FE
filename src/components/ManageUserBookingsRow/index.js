@@ -15,7 +15,7 @@ class ManageUserBookingsRow extends React.Component {
       return (
         <div className="manage-bookings-row">
           <div className="manage-bookings-row-img-col">
-            <img src="/placeholder-hotel-image1.jpeg" className="manage-bookings-row-img" alt="hotel-img" />
+            <img src={`/placeholder-hotel-image${Number(this.props.amount)%6}.jpeg`} className="manage-bookings-row-img" alt="hotel-img" />
           </div>
           <div className="manage-bookings-row-content">
 
