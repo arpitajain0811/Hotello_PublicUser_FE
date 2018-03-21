@@ -37,26 +37,20 @@ class EditUserDetails extends React.Component {
     const { name, value } = event.target;
     const errorMsgs = {};
     const truthValues = {};
-    let isFirstNameValid;
-    let isLastNameValid;
-    let isPhoneNumberValid;
-    if (name === 'firstName') {
-      isFirstNameValid = value.match(/^[a-zA-Z ]{1,}$/);
-      const firstNameErrorMsg = isFirstNameValid ? '' : 'first name is invalid';
-      errorMsgs.firstNameErrorMsg = firstNameErrorMsg;
-      truthValues.isFirstNameValid = !!Array.isArray(isFirstNameValid);
-    } else if (name === 'lastName') {
-      isLastNameValid = value.match(/^[a-zA-Z ]{1,}$/);
-      const lastNameErrorMsg = isLastNameValid ? '' : 'last name is invalid';
-      errorMsgs.lastNameErrorMsg = lastNameErrorMsg;
-      truthValues.isLastNameValid = !!Array.isArray(isLastNameValid);
-    } else {
-      isPhoneNumberValid = value.match(/^\d{10}$/);
-      const phoneNumberErrorMsg = isPhoneNumberValid ? '' : 'phone number is invalid';
-      errorMsgs.phoneNumberErrorMsg = phoneNumberErrorMsg;
-      truthValues.isPhoneNumberValid = !!Array.isArray(isPhoneNumberValid);
-    }
     const otherMsgs = { submitErrorMsg: '', updateSuccessMsg: '' };
+    if (name === 'firstName') {
+      const isFirstNameValid = Array.isArray(value.match(/^[a-zA-Z ]{1,}$/));
+      errorMsgs.firstNameErrorMsg = isFirstNameValid ? '' : 'first name is invalid';
+      truthValues.isFirstNameValid = isFirstNameValid;
+    } else if (name === 'lastName') {
+      const isLastNameValid = Array.isArray(value.match(/^[a-zA-Z ]{1,}$/));
+      errorMsgs.lastNameErrorMsg = isLastNameValid ? '' : 'last name is invalid';
+      truthValues.isLastNameValid = isLastNameValid;
+    } else {
+      const isPhoneNumberValid = Array.isArray(value.match(/^\d{10}$/));
+      errorMsgs.phoneNumberErrorMsg = isPhoneNumberValid ? '' : 'phone number is invalid';
+      truthValues.isPhoneNumberValid = isPhoneNumberValid;
+    }
     this.setState((prevState) => {
       const newState = Object.assign({}, prevState, truthValues, otherMsgs);
       newState[name] = value;
