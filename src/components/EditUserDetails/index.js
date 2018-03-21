@@ -1,8 +1,7 @@
 import React from 'react';
 import fetch from 'node-fetch';
 import './EditUserDetails.css';
-import loaderGif from './ajax-loader.gif';
-import FormErrors from '../FormErrors';
+import loaderGif from '../../ajax-loader.gif';
 
 class EditUserDetails extends React.Component {
   constructor(props) {
@@ -106,6 +105,12 @@ class EditUserDetails extends React.Component {
   render() {
     console.log('in EditUserDetails render state = ', this.state);
     if (this.state) {
+      let msgs = Object.values(this.state.validationErrorMsgs);
+      msgs = msgs.filter(msg => (msg !== ''));
+      if (msgs.length) {
+        msgs = msgs.map(msg => `${msg},  `);
+        msgs[msgs.length - 1] = msgs[msgs.length - 1].replace(',  ', '');
+      }
       return (
         <div className="editUserDetailsComp" >
           My Details
@@ -115,7 +120,7 @@ class EditUserDetails extends React.Component {
             <input type="text" className="userDetailsInputBox" name="email" value={this.state.email} />
             <input type="text" className="userDetailsInputBox" name="phoneNumber" value={this.state.phoneNumber} onChange={this.editDetailHandler} />
             <div className="validationErrorMsgsBlock">
-              {Object.values(this.state.validationErrorMsgs)}
+              {msgs}
             </div>
           </div>
 
