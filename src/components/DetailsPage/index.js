@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import './DetailsPage.css';
-import SearchBarAndHeader from '../SearchBarAndHeader';
+import SearchBarAndHeader from '../SearchBarAndHeaderDetails';
 import getAllHotels from '../../helpers/getAllHotels';
 import { storeAllHotels, storeFilteredHotels } from '../../redux/actions';
 import constants from '../../constants.json';
@@ -18,6 +18,9 @@ class DetailsPage extends React.Component {
       currentPrice: 0,
       rooms: {},
       loaded: 0,
+      scrollState: 0,
+      expandedAmenities: false,
+      expandedDescription: false,
     };
     this.imgSrc = '';
     this.setImg();
@@ -35,6 +38,8 @@ class DetailsPage extends React.Component {
     this.imgSrc = imgSrc;
   }
   componentDidMount() {
+    console.log('Rooms are:', this.props.rooms);
+    window.addEventListener('scroll', this.handleScroll);
     fetch(`/viewHotelDetails/${this.props.match.params.value}`, {}).then(data => data.json()).then((response) => {
       console.log(response);
       this.setState({
@@ -66,6 +71,22 @@ class DetailsPage extends React.Component {
     });
   }
 
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.handleScroll);
+  }
+
+  handleScroll = () => {
+    if (window.scrollY > (0.4 * window.innerHeight)) {
+      this.setState({
+        scrollState: 1,
+      });
+    } else {
+      // console.log('else Fired');
+      this.setState({
+        scrollState: 2,
+      });
+    }
+  }
   updatePrice = (value) => {
     this.setState({
       currentPrice: value,
@@ -93,7 +114,28 @@ class DetailsPage extends React.Component {
 
   render() {
     console.log(this.props.userName);
+    let roomString = `${this.props.rooms.length} Room`;
+    if (this.props.rooms.length > 1) {
+      roomString = `${this.props.rooms.length} Rooms`;
+    }
+    let noOfAdults = 0;
+    let noOfChildren = 0;
+    this.props.rooms.forEach((room) => {
+      noOfAdults += room.ADT;
+      noOfChildren += room.CHD;
+    });
+    let adultString = `${noOfAdults} Adult`;
+    if (noOfAdults > 1) {
+      adultString = `${noOfAdults} Adults`;
+    }
+    let childrenString = `${noOfChildren} Child`;
+    if (noOfChildren > 1) {
+      childrenString = `${noOfChildren} Children`;
+    } else if (noOfChildren === 0) {
+      childrenString = '';
+    }
 
+    const finalRoomStatus = `${roomString}, ${adultString}, ${childrenString}`;
     // console.log('The image source is: ', imgSrc);
     let roomsArray;
     const usedRooms = [];
@@ -133,12 +175,45 @@ class DetailsPage extends React.Component {
       });
       // console.log('The buttons are: ', buttons);
     }
+    // roomsArray = Array.prototype.slice.call(roomsArray)
+
+
+    let allAmenities;
 
     if (this.state.hotelDetails.amenities) {
       amenities = Object.keys(this.state.hotelDetails.amenities).map(key => (
         <Amenity text={key} />
       ));
+      allAmenities = Array.prototype.slice.call(amenities);
+      amenities = allAmenities.slice(1, 5);
+      if (!this.state.expandedAmenities) {
+        allAmenities = [];
+      } else {
+        allAmenities = allAmenities.slice(5);
+      }
     }
+
+    let moreAmenities = '';
+    if (this.state.expandedAmenities) {
+      moreAmenities = 'Less  ▴';
+    } else {
+      moreAmenities = 'More Amenities ▾';
+    }
+    let hotelDescription = '';
+    if (this.state.hotelDetails.description) {
+      if (this.state.expandedDescription) {
+        hotelDescription = this.state.hotelDetails.description;
+      } else {
+        hotelDescription = `${this.state.hotelDetails.description.substring(0, 550)} ...`;
+      }
+    }
+    let moreDescription = '';
+    if (this.state.expandedDescription) {
+      moreDescription = 'Less  ▴';
+    } else {
+      moreDescription = 'Read More About Hotels ▾';
+    }
+
 
     const stars = [];
     for (let i = 0; i < Number(this.state.hotelDetails.stars); i += 1) {
@@ -172,8 +247,9 @@ class DetailsPage extends React.Component {
 
     return (
       <div className="detailsPage" >
-        <SearchBarAndHeader updateSearch={this.updateSearch} />
+        <SearchBarAndHeader updateSearch={this.updateSearch} type={this.state.scrollState} />
         <img src={this.imgSrc} className="hotelImage" />
+        Back
         <div className="mainBody">
           <div className="hotelDetailsContainer">
             <div className="hotelName">
@@ -185,14 +261,43 @@ class DetailsPage extends React.Component {
                                                     </div>
               }
             <div className="description">
-              {this.state.hotelDetails.description}
+              <div className="hotelDescription">
+                {hotelDescription}
+              </div>
+              <div
+                className="amenitiesButton"
+                onClick={() => {
+                this.setState({
+                  expandedDescription: !this.state.expandedDescription,
+                });
+              }}
+              >
+                {moreDescription}
+              </div>
             </div>
+            <hr className="PaymentPageLine" />
             <div className="subHeading">
               Amenities
             </div>
             <div className="amenities">
               {amenities}
             </div>
+            <div className="moreAmenities">
+              <div className="expandedAmenities">
+                {allAmenities}
+              </div>
+              <div
+                className="amenitiesButton"
+                onClick={() => {
+                this.setState({
+                  expandedAmenities: !this.state.expandedAmenities,
+                });
+              }}
+              >
+                {moreAmenities}
+              </div>
+            </div>
+            <hr className="PaymentPageLine" />
             <div className="subHeading">
               Room Type
             </div>
@@ -204,8 +309,8 @@ class DetailsPage extends React.Component {
           {this.state.rooms[this.props.currentId] && <div className="bookingDetailsContainer">
             <div className="Booking-Summary" >
               <div className="HotelNameWithStars">
-                <div className="SelectedHotelName">
-                    ₹{(this.state.rooms[this.props.currentId].price.total * 65).toFixed(0)}/NIGHT
+                <div className="Selected-Hotel-Name">
+                    ₹{(this.state.rooms[this.props.currentId].price.total * 65).toFixed(0)}<span className="night">/NIGHT</span>
                 </div>
 
                 <div className="SelectedHotelStars">
@@ -213,21 +318,19 @@ class DetailsPage extends React.Component {
                 </div>
               </div>
               <hr className="PaymentPageLine" />
-              <div className="SearchSelectedDetails">
-                <div className="SearchSelectedCheckInOutDates">
-                  {this.props.checkInDate.toString().substring(0, 15)}
-                  <div className="PaymentpageArrow">
-                    <img className="PaymentPageArrowImg" src="/arrow.png" alt="" />
-                  </div>
-                  {this.props.checkOutDate.toString().substring(0, 15)}
+              <div className="Search-Selected-Details">
+                <div className="Search-Selected-CheckInOutDates">
+                  {this.props.checkInDate.toString().substring(0, 11)}
+                  <span className="dataArrow">→</span>
+                  {this.props.checkOutDate.toString().substring(0, 11)}
 
                 </div>
-                <div className="SearchSelectedRooms">
-                    rooms,
+                <div className="Search-Selected-Rooms">
+                  {finalRoomStatus}
                 </div>
               </div>
               <hr className="PaymentPageLine" />
-              <div className="PriceDeatils" >
+              <div >
                 <div className="BasePay">
                   <div>
                       ₹{(this.state.rooms[this.props.currentId].price.total * 65).toFixed(0)} X {this.props.checkOutDate.diff(this.props.checkInDate, 'days')} X 1

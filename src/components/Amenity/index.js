@@ -28,7 +28,7 @@ const Amenity = (props) => {
   }
 
   return (
-    <div className="container">
+    <div className="Amenitycontainer">
       <div className="crop">
         <img src={imgSrc} className="icon" />
       </div>
