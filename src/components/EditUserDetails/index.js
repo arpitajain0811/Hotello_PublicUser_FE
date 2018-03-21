@@ -19,6 +19,7 @@ class EditUserDetails extends React.Component {
         phoneNumberErrorMsg: '',
       },
       submitErrorMsg: '',
+      updateSuccessMsg: '',
     };
   }
 
@@ -45,22 +46,20 @@ class EditUserDetails extends React.Component {
       const firstNameErrorMsg = isFirstNameValid ? '' : 'first name is invalid';
       errorMsgs.firstNameErrorMsg = firstNameErrorMsg;
       truthValues.isFirstNameValid = !!Array.isArray(isFirstNameValid);
-      // errorMsgs.isFirstNameValid = isFirstNameValid;
     } else if (name === 'lastName') {
       isLastNameValid = value.match(/^[a-zA-Z ]{1,}$/);
       const lastNameErrorMsg = isLastNameValid ? '' : 'last name is invalid';
       errorMsgs.lastNameErrorMsg = lastNameErrorMsg;
       truthValues.isLastNameValid = !!Array.isArray(isLastNameValid);
-      // errorMsgs.isLastNameValid = isLastNameValid;
     } else {
       isPhoneNumberValid = value.match(/^\d{10}$/);
       const phoneNumberErrorMsg = isPhoneNumberValid ? '' : 'phone number is invalid';
       errorMsgs.phoneNumberErrorMsg = phoneNumberErrorMsg;
       truthValues.isPhoneNumberValid = !!Array.isArray(isPhoneNumberValid);
-      // errorMsgs.isPhoneNumberValid = isPhoneNumberValid;
     }
+    const otherMsgs = { submitErrorMsg: '', updateSuccessMsg: '' };
     this.setState((prevState) => {
-      const newState = Object.assign({}, prevState, truthValues, { submitErrorMsg: '' });
+      const newState = Object.assign({}, prevState, truthValues, otherMsgs);
       newState[name] = value;
       newState.validationErrorMsgs = { ...newState.validationErrorMsgs, ...errorMsgs };
       return newState;
@@ -81,7 +80,12 @@ class EditUserDetails extends React.Component {
           firstName, lastName, phoneNumber,
         }),
 
-      }).then(resp => console.log(resp));
+      }).then((resp) => {
+        console.log(resp);
+        this.setState({
+          updateSuccessMsg: 'Details updated successfully!',
+        });
+      });
     } else {
       this.setState({
         submitErrorMsg: 'Please fill valid values and then submit',
@@ -104,7 +108,7 @@ class EditUserDetails extends React.Component {
     if (this.state) {
       return (
         <div className="editUserDetailsComp" >
-            My Details
+          My Details
           <div className="userDetailsFormBox" >
             <input type="text" className="userDetailsInputBox" name="firstName" value={this.state.firstName} onChange={this.editDetailHandler} />
             <input type="text" className="userDetailsInputBox" name="lastName" value={this.state.lastName} onChange={this.editDetailHandler} />
@@ -115,7 +119,7 @@ class EditUserDetails extends React.Component {
             </div>
           </div>
 
-        My Billing Details
+          My Billing Details
           <div className="userDetailsFormBox" >
             <input type="text" className="userDetailsInputBox" value="shit" />
             <input type="text" className="userDetailsInputBox" value="shit" />
@@ -124,7 +128,12 @@ class EditUserDetails extends React.Component {
             <input type="text" className="userDetailsInputBox" value="shit" />
           </div>
           <div className="saveButtonRow" >
-            {this.state.submitErrorMsg}
+            <div style={{ color: 'red' }}>
+              {this.state.submitErrorMsg}
+            </div>
+            <div style={{ color: '#48bc48' }} >
+              {this.state.updateSuccessMsg}
+            </div>
             <button className="saveDetailsButton" onClick={this.handleSaveUserDetails} >Save Details</button>
           </div>
 
