@@ -7,11 +7,12 @@
     border: solid 0 0 1px 0 rgba(151, 151, 151, 0.45);
     /* margin:29px 0px */
     padding:1%;
-    padding-left:2%;
-    padding-right:2%;
+    padding-left: 1%;
+    /* padding-left:2%; */
+    padding-right:4%;
     z-index: 3;
     position: fixed;
-    width: 100%;
+    width: 98vw;
     height: 7%;
     margin-left: 0px;
     margin-right: 2%;

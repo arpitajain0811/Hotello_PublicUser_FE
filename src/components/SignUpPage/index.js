@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Popup from 'reactjs-popup';
 import PropTypes from 'prop-types';
@@ -44,11 +43,11 @@ class SignUpBody extends Component {
               window.localStorage.setItem('userName', data.firstName);
               // this.props.saveUser(data);
               // this.props.changeLoginStatus(data.firstName);
-              this.setState({
-                email: '',
-                password: '',
-                // isLoggedIn: true,
-              });
+              // this.setState({
+              //   email: '',
+              //   password: '',
+              //   isLoggedIn: true,
+              // });
 
               this.props.closeFunc();
             });

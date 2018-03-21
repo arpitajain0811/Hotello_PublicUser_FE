@@ -11,7 +11,7 @@
     width:1200px;
     justify-content: flex-end;
     color:white;
-    font-family: 'Open Sans';
+    font-family: "Open Sans";
     width:260px;
     padding: 10px;
 }
@@ -19,7 +19,7 @@
 .hotel-image {
     background-color:white;
     color:white;
-    font-family: 'Open Sans';
+    font-family: "Open Sans";
     width:40%;
     height:108px;
 }

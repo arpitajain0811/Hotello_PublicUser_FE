@@ -12,7 +12,7 @@
     height:100vh;
     width:100vw;
     background-color:black;
-    opacity:0.9;
+    /* opacity:0.9; */
     display:flex;
     justify-content: center;
     align-items: center;
@@ -44,7 +44,19 @@
     color:white;
     opacity:1;
     font-size:2em;
-    font-family: 'Open Sans';
+    font-family: "Open Sans";
     /* position:relative;
     top:20% */
 }
+
+
+/* @keyframes grow-in {
+    0% {height:0;}
+
+    100% { height:100vh}
+  }
+
+
+.loader-anim{
+animation: grow-in 0.5s ease-in forwards;
+} */

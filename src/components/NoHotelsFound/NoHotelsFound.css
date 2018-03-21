@@ -1,0 +1,19 @@
+.no-hotels-found{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height:60vh;
+    background-color:#dedede;
+    color:#777777;
+    width:96%;
+    margin: 0 2%;
+    font-weight:bold;
+    font-size:1.1em;
+}
+
+.no-hotels-img{
+    height:30vh;
+    width:30vh;
+    margin:20px
+}

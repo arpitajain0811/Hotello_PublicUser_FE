@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import './PaymentPage.css';
 import Header from '../Header';
-import { logout } from '../../redux/actions';
+import { logout, changeLoginState } from '../../redux/actions';
 import BookingSummary from '../BookingSummary';
 import FooterBlack from '../FooterBlack';
 import PaymentForm from '../PaymentForm';
@@ -18,9 +18,16 @@ class PaymentPage extends React.Component {
   //     },
   //   };
   // }
-
+  componentWillMount() {
+    console.log('in LandingPage componentWillMount, window.localStorage.getItem(userName)', window.localStorage.getItem('userName'), typeof (window.localStorage.getItem('userName')));
+    if (window.localStorage.getItem('userName') !== null) {
+      // console.log('hi');
+      this.props.changeLoginState(window.localStorage.getItem('userName'));
+    }
+  }
   // componentWillMount() {
-  //   console.log('in LandingPage componentWillMount, window.localStorage.getItem(userName)', window.localStorage.getItem('userName'), typeof (window.localStorage.getItem('userName')));
+  //   console.log('in LandingPage componentWillMount, window.localStorage.getItem(userName)',
+  //   window.localStorage.getItem('userName'), typeof (window.localStorage.getItem('userName')));
   //   if (window.localStorage.getItem('userName') !== null) {
   //     this.setState({
   //       loginState: {
@@ -53,17 +60,21 @@ class PaymentPage extends React.Component {
     if (window.localStorage.getItem('token') !== null) {
       return (
         <div className="PaymentPage">
-          <Header
-            isLoggedIn={this.props.isLoggedIn}
-            logoutHandler={this.logoutHandler}
-            firstName={this.props.firstName}
-            profileButtonClass="profileButtonBlack"
-          />
+          <div className="PaymentHeader">
+            <Header
+              isLoggedIn={this.props.isLoggedIn}
+              logoutHandler={this.logoutHandler}
+              firstName={this.props.firstName}
+              profileButtonClass="profileButtonBlack"
+            />
+          </div>
           <div className="PaymentBody">
             <PaymentForm />
             <BookingSummary />
           </div>
-          <FooterBlack />
+          <div className="PaymentFooter">
+            <FooterBlack />
+          </div>
         </div>
       );
     }
@@ -75,6 +86,9 @@ class PaymentPage extends React.Component {
 const mapDispatchToProps = dispatch => ({
   logout: () => {
     dispatch(logout());
+  },
+  changeLoginState: (firstName) => {
+    dispatch(changeLoginState(firstName));
   },
 });
 
@@ -89,4 +103,5 @@ PaymentPage.propTypes = {
   firstName: PropTypes.string.isRequired,
   logout: PropTypes.func.isRequired,
   isLoggedIn: PropTypes.func.isRequired,
+  changeLoginState: PropTypes.func.isRequired,
 };

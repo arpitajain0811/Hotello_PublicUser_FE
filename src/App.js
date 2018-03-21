@@ -8,9 +8,7 @@ import ListingPage from './components/ListingPage';
 import SignUpPage from './components/SignUpPage';
 import Login from './components/Login';
 import DetailsPage from './components/DetailsPage';
-// import SignUpPage from './components/SignUpPage';
-// import { changeLoginState } from './redux/actions';
-// import Login from './components/Login';
+import PageUnderConstruction from '../src/components/PageUnderConstruction';
 import PaymentPage from './components/PaymentPage';
 
 
@@ -33,6 +31,7 @@ class App extends Component {
 
           {/* <Route path="/signUp" component={SignUpPage} />
           <Route path="/signIn" component={Login} /> */}
+          <Route path="/pageunderconstruction" component={PageUnderConstruction} />
           <Route path="/payment" component={PaymentPage} />
         </Switch>
       </div>

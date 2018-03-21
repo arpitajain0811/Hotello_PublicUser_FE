@@ -17,3 +17,23 @@
     margin-top:2%;
     
 }
+
+@media only screen and (max-width: 768px) {
+.PaymentFooter{
+    display: none;
+}
+.PaymentPage{
+    padding:0;
+}
+.PaymentBody{
+    /* border-bottom:1px solid rgba(151, 151, 151, 0.45); */
+    flex-direction: column;
+    padding-left:3%;
+    padding-right:3%;
+    justify-content: space-between;
+    margin-top:0;
+}
+.PaymentHeader{
+    padding:2%;
+}
+}
