@@ -1,8 +1,8 @@
 import React from 'react';
-import './ManageBookingsPage.css';
-import ManageBookingsRow from '../ManageBookingsRow';
+import './ManageUserBookings.css';
+import ManageUserBookingsRow from '../ManageUserBookingsRow';
 
-class ManageBookingsPage extends React.Component {
+class ManageUserBookings extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -26,7 +26,7 @@ class ManageBookingsPage extends React.Component {
   render() {
     const allBookingRows = [];
     this.state.allBookings.forEach((booking) => {
-      const bookingRow = (<ManageBookingsRow
+      const bookingRow = (<ManageUserBookingsRow
         key={booking.bookingid}
         amount={booking.amount}
         bookingDate={booking.bookingdate}
@@ -46,8 +46,8 @@ class ManageBookingsPage extends React.Component {
     );
   }
 }
-ManageBookingsPage.defaultProps = {
+ManageUserBookings.defaultProps = {
 };
-ManageBookingsPage.propTypes = {
+ManageUserBookings.propTypes = {
 };
-export default ManageBookingsPage;
+export default ManageUserBookings;

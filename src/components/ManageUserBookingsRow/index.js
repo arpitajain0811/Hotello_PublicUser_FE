@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './ManageBookingsRow.css';
+import './ManageUserBookingsRow.css';
 
-class ManageBookingsRow extends React.Component {
+class ManageUserBookingsRow extends React.Component {
     formatDate=(dateString) => {
       const d = new Date(dateString);
       const options = {
@@ -56,9 +56,9 @@ class ManageBookingsRow extends React.Component {
       );
     }
 }
-ManageBookingsRow.defaultProps = {
+ManageUserBookingsRow.defaultProps = {
 };
-ManageBookingsRow.propTypes = {
+ManageUserBookingsRow.propTypes = {
   amount: PropTypes.number.isRequired,
   bookingId: PropTypes.string.isRequired,
   checkIn: PropTypes.string.isRequired,
@@ -68,4 +68,4 @@ ManageBookingsRow.propTypes = {
   numOfRooms: PropTypes.number.isRequired,
 
 };
-export default ManageBookingsRow;
+export default ManageUserBookingsRow;
