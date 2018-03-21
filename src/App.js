@@ -5,6 +5,7 @@ import { Switch, Route } from 'react-router-dom';
 import './App.css';
 import LandingPage from '../src/components/LandingPage';
 import ListingPage from '../src/components/ListingPage';
+import PageUnderConstruction from '../src/components/PageUnderConstruction';
 // import SignUpPage from './components/SignUpPage';
 // import { changeLoginState } from './redux/actions';
 // import Login from './components/Login';
@@ -24,6 +25,7 @@ class App extends Component {
           <Route path="/listingPage" component={ListingPage} />
           {/* <Route path="/signUp" component={SignUpPage} />
           <Route path="/signIn" component={Login} /> */}
+          <Route path="/pageunderconstruction" component={PageUnderConstruction} />
           <Route path="/payment" component={PaymentPage} />
         </Switch>
       </div>

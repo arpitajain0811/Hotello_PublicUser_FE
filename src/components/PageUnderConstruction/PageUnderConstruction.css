@@ -1,0 +1,40 @@
+.PUC-Main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: black;
+    height: 100vh;
+    justify-content: space-around;
+}
+
+.PUC-logo-container {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 30px;
+    margin-top: -150px;
+}
+
+.PUC-text {
+    color: white;
+    font-family: 'Open Sans';
+    text-align: center;
+    padding: 20px;
+}
+
+.PUC-btn-outer {
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
+}
+
+.PUC-btn {
+    outline: none;
+    background-color: #48BC48;
+    color: white;
+    border: none;
+    border-radius: 2px;
+    width: 80px;
+    font-family: 'Open Sans';
+    height: 20px;
+}
