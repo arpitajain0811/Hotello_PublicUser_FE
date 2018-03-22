@@ -7,7 +7,8 @@
     margin:2%;
     padding:3%;
     font-family: 'Open Sans';
-    background-color:white
+    background-color:white;
+    cursor: pointer;
 }
 
 .stars-filter-item-active{

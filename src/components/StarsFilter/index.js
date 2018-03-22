@@ -16,6 +16,7 @@ class StarsFilter extends React.Component {
     }
     return (
       <div className="stars-filter">
+        <span>Stars:</span>
         {starsItems}
       </div>
     );
