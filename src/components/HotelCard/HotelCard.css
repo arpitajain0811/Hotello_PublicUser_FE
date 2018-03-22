@@ -57,7 +57,7 @@ justify-content: flex-start
     }
 .hotel-card-stars{
     display:flex;
-    
+
 }
 .star{
     width: 13px;
@@ -76,7 +76,16 @@ justify-content: flex-start
 .HotelCard-btn {
     background: #48bc48;
     color: white;
-    height: 100px;
+    height: 30px;
+    width: 100%;
     font-size: 12px;
-    font-family: "Open Sans";
+    font-family: 'Open Sans';
+}
+
+.Details-Link{
+  background: #48bc48;
+  color: white;
+  width: 100%;
+  font-size: 12px;
+  font-family: 'Open Sans';
 }

@@ -9,7 +9,7 @@ class HeaderLinks extends React.Component {
   render() {
     return (
       <div className="headerLinksContainer">
-        <Popup trigger={<button className={this.props.changeColor === 'true' ? 'headerLinkBlack' : 'headerLink'}> SIGN UP </button>} modal>
+        <Popup trigger={<button className={this.props.changeColor === 'true' ? 'headerLinkBlack' : 'headerLink'} > SIGN UP </button>} modal>
           {close => (
             <div className="modal">
               <a className="close" onClick={close}>
@@ -33,7 +33,7 @@ class HeaderLinks extends React.Component {
             </div>
     )}
         </Popup>
-        <Popup trigger={<button className={this.props.changeColor === 'true' ? 'headerLinkBlack' : 'headerLink'}> SIGN IN </button>} modal>
+        <Popup trigger={<button className={this.props.changeColor === 'true' ? 'headerLinkBlack' : 'headerLink'} > SIGN IN </button>} modal>
           {close => (
             <div className="modal">
               <a className="close" onClick={close}>
@@ -54,4 +54,8 @@ class HeaderLinks extends React.Component {
 export default HeaderLinks;
 HeaderLinks.propTypes = {
   changeColor: PropTypes.bool.isRequired,
+  backgroundStyle: PropTypes.number,
+};
+HeaderLinks.defaultProps = {
+  backgroundStyle: 1,
 };
