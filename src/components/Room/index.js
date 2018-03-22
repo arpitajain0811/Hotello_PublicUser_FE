@@ -47,7 +47,7 @@ class Room extends React.Component {
         <div className="crop">
           <img src={imgSrc} className="icon" />
         </div>
-        {this.props.type}
+        <div className="roomDesc">{this.props.type}</div>
       </div>
     );
   }
