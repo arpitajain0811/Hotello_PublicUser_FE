@@ -36,6 +36,7 @@ class EditUserDetails extends React.Component {
     console.log('in editDetailHandler');
     const { name, value } = event.target;
     const errorMsgs = {};
+    errorMsgs.emailErrorMsg = "";
     const truthValues = {};
     const otherMsgs = { submitErrorMsg: '', updateSuccessMsg: '' };
     if (name === 'firstName') {
@@ -46,14 +47,17 @@ class EditUserDetails extends React.Component {
       const isLastNameValid = Array.isArray(value.match(/^[a-zA-Z ]{1,}$/));
       errorMsgs.lastNameErrorMsg = isLastNameValid ? '' : 'last name is invalid';
       truthValues.isLastNameValid = isLastNameValid;
-    } else {
+    } else if (name === 'email') {
+      errorMsgs.emailErrorMsg = 'email cannot be changed.'
+    }
+     else {
       const isPhoneNumberValid = Array.isArray(value.match(/^\d{10}$/));
       errorMsgs.phoneNumberErrorMsg = isPhoneNumberValid ? '' : 'phone number is invalid';
       truthValues.isPhoneNumberValid = isPhoneNumberValid;
     }
     this.setState((prevState) => {
       const newState = Object.assign({}, prevState, truthValues, otherMsgs);
-      newState[name] = value;
+      newState[name] = name !== 'email' ? value : newState[name] ;
       newState.validationErrorMsgs = { ...newState.validationErrorMsgs, ...errorMsgs };
       return newState;
     });
@@ -111,7 +115,7 @@ class EditUserDetails extends React.Component {
           <div className="userDetailsFormBox" >
             <input type="text" className="userDetailsInputBox" name="firstName" value={this.state.firstName} onChange={this.editDetailHandler} />
             <input type="text" className="userDetailsInputBox" name="lastName" value={this.state.lastName} onChange={this.editDetailHandler} />
-            <input type="text" className="userDetailsInputBox" name="email" value={this.state.email} />
+            <input type="text" className="userDetailsInputBox" name="email" value={this.state.email} onChange={this.editDetailHandler} />
             <input type="text" className="userDetailsInputBox" name="phoneNumber" value={this.state.phoneNumber} onChange={this.editDetailHandler} />
           </div>
           <div className="validationErrorMsgsBlock">
