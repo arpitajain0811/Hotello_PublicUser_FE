@@ -10,10 +10,7 @@ import MapAndListView from '../MapAndListView';
 import getAllHotels from '../../helpers/getAllHotels';
 import { storeAllHotels, storeFilteredHotels, logout, changeLoginState } from '../../redux/actions';
 import filterByPrice from '../../helpers/filterByPrice';
-
-
-// import ReactGoogleMaps from '../ReactGoogleMaps';
-// import HotelCardsContainer from '../HotelCardsContainer';
+import FooterBlack from '../FooterBlack';
 
 
 class ListingPage extends React.Component {
@@ -156,6 +153,7 @@ class ListingPage extends React.Component {
           selectedHotelDetails={this.state.selectedHotelDetails}
           displayCard={this.displayCard}
         />
+        <FooterBlack />
       </div>
     );
   }

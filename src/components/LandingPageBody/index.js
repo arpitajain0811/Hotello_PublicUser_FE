@@ -11,21 +11,43 @@ import RoomsDropDown from '../RoomsDropDown';
 import TypeAheadSearchBox from '../TypeAheadSearchBox';
 
 class LandingPageBody extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isValid: false,
+    };
+  }
+
   componentDidMount() {
     const cookie = Math.random().toString(36).substring(2, 15)
                     + Math.random().toString(36).substring(2, 15);
     window.localStorage.setItem('cookie', cookie);
   }
+  checkValidation=() => {
+    if (this.props.city.length > 0 && this.props.checkOutDate > this.props.checkInDate) {
+      this.setState({
+        isValid: true,
+      });
+    }
+  }
   verifyCheckinDate=(date) => {
-    if (date >= moment(new Date())) {
+    const selectedDate = new Date(date.format().split('T')[0]);
+    const todaysDate = new Date();
+    if (
+      selectedDate.getDate() >= todaysDate.getDate()
+      && selectedDate.getMonth() >= todaysDate.getMonth()
+      && selectedDate.getFullYear() >= todaysDate.getFullYear()
+    ) {
       this.props.changeCheckinDate(date);
     }
+    this.checkValidation();
   }
   verifyCheckoutDate=(date) => {
     if (date >= this.props.checkInDate) {
       console.log('inside handler:', date.format());
       this.props.changeCheckoutDate(date);
     }
+    this.checkValidation();
   }
   render() {
     return (
@@ -38,7 +60,7 @@ class LandingPageBody extends React.Component {
           </div>
           <div className="LandingPageSearchBox">
             <div className="SearchByBox">
-              <TypeAheadSearchBox cityPlaceholder="Search Places" saveSearchCityText={this.props.saveSearchCityText} saveSearchCityLatLng={this.props.saveSearchCityLatLng} />
+              <TypeAheadSearchBox cityPlaceholder="Search Places" saveSearchCityText={this.props.saveSearchCityText} saveSearchCityLatLng={this.props.saveSearchCityLatLng} checkValidation={this.checkValidation} />
               {/* <input
                className="SearchByTextInput"
                value={this.props.city} type="text"
@@ -49,7 +71,7 @@ class LandingPageBody extends React.Component {
               <div className="CheckInPicker">
                 <DatePicker
                   selected={moment(this.props.checkInDate)}
-                  onChange={date => this.verifyCheckinDate(date)}
+                  onChange={this.verifyCheckinDate}
                 />
               </div>
               <div className="Arrow">
@@ -65,7 +87,7 @@ class LandingPageBody extends React.Component {
             <div className="RoomPeopleSelection">
               <RoomsDropDown borderClass="" showDropdownBlock={() => this.showDropdownBlock} />
             </div>
-            <Link to="/listingPage" className="LandingPageButtonContainer" >
+            <Link to={this.state.isValid ? '/listingPage' : '/'} className="LandingPageButtonContainer" >
               <button className="LandingPageSearchButton">Search</button>
             </Link>
           </div>
@@ -103,5 +125,6 @@ LandingPageBody.propTypes = {
   changeCheckoutDate: PropTypes.func.isRequired,
   saveSearchCityText: PropTypes.func.isRequired,
   saveSearchCityLatLng: PropTypes.func.isRequired,
+  city: PropTypes.string.isRequired,
 };
 
