@@ -113,9 +113,9 @@ class EditUserDetails extends React.Component {
             <input type="text" className="userDetailsInputBox" name="lastName" value={this.state.lastName} onChange={this.editDetailHandler} />
             <input type="text" className="userDetailsInputBox" name="email" value={this.state.email} />
             <input type="text" className="userDetailsInputBox" name="phoneNumber" value={this.state.phoneNumber} onChange={this.editDetailHandler} />
-            <div className="validationErrorMsgsBlock">
+          </div>
+          <div className="validationErrorMsgsBlock">
               {msgs}
-            </div>
           </div>
           <div className="saveButtonRow" >
             <div style={{ color: 'red' }}>
