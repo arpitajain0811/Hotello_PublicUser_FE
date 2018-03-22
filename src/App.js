@@ -11,6 +11,7 @@ import PageUnderConstruction from '../src/components/PageUnderConstruction';
 // import Login from './components/Login';
 import PaymentPage from './components/PaymentPage';
 import UserBookingDetails from './components/UserBookingDetails';
+import UserProfilePage from './components/UserProfilePage';
 
 class App extends Component {
   // componentDidMount() {
@@ -29,6 +30,7 @@ class App extends Component {
           <Route path="/pageunderconstruction" component={PageUnderConstruction} />
           <Route path="/payment" component={PaymentPage} />
           <Route path="/userbookingdetails" component={UserBookingDetails} />
+          <Route path="/userProfile" component={UserProfilePage} />
         </Switch>
       </div>
     );

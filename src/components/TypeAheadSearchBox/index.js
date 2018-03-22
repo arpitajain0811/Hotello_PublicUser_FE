@@ -46,6 +46,7 @@ const PlacesWithStandaloneSearchBox = compose(
           this.setState({
             places,
           });
+          this.props.checkValidation();
         },
       });
     },
