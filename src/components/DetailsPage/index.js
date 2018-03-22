@@ -1,43 +1,35 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import Popup from 'reactjs-popup';
 import axios from 'axios';
 import './DetailsPage.css';
 import SearchBarAndHeader from '../SearchBarAndHeaderDetails';
 import getAllHotels from '../../helpers/getAllHotels';
-import { storeAllHotels, storeFilteredHotels } from '../../redux/actions';
+import { storeAllHotels, storeFilteredHotels, logout } from '../../redux/actions';
 import constants from '../../constants.json';
 import Amenity from '../Amenity';
 import Room from '../Room';
 import loader from '../../images/loader2.svg';
+import LoginBody from '../LoginBody';
 
 class DetailsPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       hotelDetails: {},
-      currentPrice: 0,
       rooms: {},
       loaded: 0,
       scrollState: 0,
       expandedAmenities: false,
       expandedDescription: false,
+      redirect: false,
     };
     this.imgSrc = '';
     this.setImg();
   }
 
-  setImg = () => {
-    const context = require.context('../../images/rooms', true);
-    const obj = {};
-    context.keys().forEach((key) => {
-      obj[key] = context(key);
-    });
-    const imgKey = Math.floor(Math.random() * Object.keys(obj).length);
-    let imgSrc = Object.keys(obj)[imgKey];
-    imgSrc = `../../images/rooms${imgSrc.slice(1)}`;
-    this.imgSrc = imgSrc;
-  }
+
   componentDidMount() {
     console.log('Rooms are:', this.props.rooms);
     window.addEventListener('scroll', this.handleScroll);
@@ -76,6 +68,19 @@ class DetailsPage extends React.Component {
     window.removeEventListener('scroll', this.handleScroll);
   }
 
+
+  setImg = () => {
+    const context = require.context('../../images/rooms', true);
+    const obj = {};
+    context.keys().forEach((key) => {
+      obj[key] = context(key);
+    });
+    const imgKey = Math.floor(Math.random() * Object.keys(obj).length);
+    let imgSrc = Object.keys(obj)[imgKey];
+    imgSrc = `../../images/rooms${imgSrc.slice(1)}`;
+    this.imgSrc = imgSrc;
+  }
+
   handleScroll = () => {
     if (window.scrollY > (0.4 * window.innerHeight)) {
       this.setState({
@@ -88,12 +93,16 @@ class DetailsPage extends React.Component {
       });
     }
   }
-  updatePrice = (value) => {
-    this.setState({
-      currentPrice: value,
-    });
-  }
 
+  // updatePrice = (value) => {
+  //   this.setState({
+  //     currentPrice: value,
+  //   });
+  // }
+  logoutHandler = () => {
+    // console.log('in ListingPage logoutHandler');
+    this.props.logout();
+  }
   updateSearch=() => {
     let inDate = this.props.checkInDate.format();
     let outDate = this.props.checkOutDate.format();
@@ -233,11 +242,37 @@ class DetailsPage extends React.Component {
         key={Number(this.state.hotelDetails.stars) + i}
       />));
     }
+    let bookButton;
+    if (this.props.isLoggedIn) {
+      bookButton = (<button
+        className="MakePaymentButton"
+        onClick={() => {
+        this.setState({
+          redirect: true,
+        });
+      }}
+      >Book
+      </button>);
+    } else {
+      bookButton = (<Popup className="MyPopup" trigger={<button className="MakePaymentButton" >Book</button>} modal>
+        {close => (
+          <div className="modal">
+            <a className="close" onClick={() => { close(); }}>
+    &times;
+            </a>
+            <div className="SignUpHeader"> Sign In </div>
+            <div className="content">
+              <LoginBody closeFunc={() => { close(); }} />
+            </div>
+          </div>
+)}
+      </Popup>);
+    }
 
     if (this.state.loaded === 0) {
       return (
         <div className="detailsPage" >
-          <SearchBarAndHeader updateSearch={this.updateSearch} />
+          <SearchBarAndHeader updateSearch={this.updateSearch} logoutHandler={this.logoutHandler} />
           <img src={this.imgSrc} className="hotelImage" />
           <div className="detailsPageContainer">
             <div className="mainBody">
@@ -250,7 +285,7 @@ class DetailsPage extends React.Component {
 
     return (
       <div className="detailsPage" >
-        <SearchBarAndHeader updateSearch={this.updateSearch} type={this.state.scrollState} />
+        <SearchBarAndHeader updateSearch={this.updateSearch} type={this.state.scrollState} logoutHandler={this.logoutHandler} />
         <img src={this.imgSrc} className="hotelImage" />
         <div className="detailsPageContainer">
           <Link to="/listingPage" className="removeTextDecoration">
@@ -369,10 +404,10 @@ class DetailsPage extends React.Component {
                   </div>
                 </div>
                 <div className="MakePaymentButtonDiv" >
-                  <button className="MakePaymentButton">Book</button>
+                  {bookButton}
                 </div>
               </div>
-                                                       </div>}
+            </div>}
           </div>
         </div>
       </div>
@@ -388,6 +423,9 @@ const mapDispatchToProps = dispatch => ({
   saveFilteredHotels: (filteredHotelsArray) => {
     dispatch(storeFilteredHotels(filteredHotelsArray));
   },
+  logout: () => {
+    dispatch(logout());
+  },
 });
 
 const mapStateToProps = state => ({
@@ -398,5 +436,6 @@ const mapStateToProps = state => ({
   city: state.searchOptions.city,
   rooms: state.searchOptions.rooms,
   currentId: state.manageRooms.currentRoomId,
+  isLoggedIn: state.userReducer.isLoggedIn,
 });
 export default connect(mapStateToProps, mapDispatchToProps)(DetailsPage);
