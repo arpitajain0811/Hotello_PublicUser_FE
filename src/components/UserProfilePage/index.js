@@ -49,7 +49,7 @@ class UserProfilePage extends React.Component {
           <div className="userProfileBody-col1" style={this.state.showSidebar ? {display: 'flex'} : {}}>
           <img src={hamburger} onClick={this.toggleUserPicSidebar} className="hamburger" />
             <div className="userPicBlock" >
-              <div className="userPicCircle" />
+              <div className="userPicCircle">{window.localStorage.getItem('userName')[0]}</div>
               <div className="userNameBelowPic" >
                 {window.localStorage.getItem('userName')}
               </div>
