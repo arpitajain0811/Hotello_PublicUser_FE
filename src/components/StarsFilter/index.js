@@ -8,7 +8,11 @@ class StarsFilter extends React.Component {
     console.log('selectedStars:', this.props.starsFilter);
     const starsItems = [];
     for (let i = 1; i < 6; i += 1) {
-      starsItems.push(<StarsFilterItem number={i} selected={this.props.starsFilter[i]} updateFilteredHotels={this.props.updateFilteredHotels} />);
+      starsItems.push(<StarsFilterItem
+        number={i}
+        selected={this.props.starsFilter[i]}
+        updateFilteredHotels={this.props.updateFilteredHotels}
+      />);
     }
     return (
       <div className="stars-filter">

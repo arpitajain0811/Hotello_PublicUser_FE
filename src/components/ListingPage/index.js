@@ -9,7 +9,7 @@ import HotelParameterBox from '../HotelParameterBox';
 import MapAndListView from '../MapAndListView';
 import getAllHotels from '../../helpers/getAllHotels';
 import { storeAllHotels, storeFilteredHotels, logout, changeLoginState } from '../../redux/actions';
-import filterByPrice from '../../helpers/filterByPrice';
+import filterByPriceAndStars from '../../helpers/filterByPriceAndStars';
 import FooterBlack from '../FooterBlack';
 
 
@@ -29,7 +29,7 @@ class ListingPage extends React.Component {
         2: true,
         3: true,
         4: true,
-        5: false,
+        5: true,
       },
     };
   }
@@ -80,7 +80,7 @@ class ListingPage extends React.Component {
       starsFilter[stars] = !starsFilter[stars];
     }
     console.log('received', priceFilter, starsFilter);
-    const newFilteredHotels = filterByPrice(this.props.allHotels, priceFilter, starsFilter);
+    const newFilteredHotels = filterByPriceAndStars(this.props.allHotels, priceFilter, starsFilter);
     this.props.saveFilteredHotels(newFilteredHotels);
     this.setState({
       priceFilter,

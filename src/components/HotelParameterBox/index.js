@@ -57,7 +57,10 @@ class HotelParameterBox extends React.Component {
           />
           <SliderPrice price={this.props.priceFilter[1]} />
         </div>
-        <StarsFilter updateFilteredHotels={this.props.updateFilteredHotels} starsFilter={this.props.starsFilter} />
+        <StarsFilter
+          updateFilteredHotels={this.props.updateFilteredHotels}
+          starsFilter={this.props.starsFilter}
+        />
       </div>
     );
   }
