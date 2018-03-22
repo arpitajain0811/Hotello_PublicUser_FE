@@ -1,0 +1,10 @@
+.stars-filter-item{
+    display:flex;
+    flex-direction: row;
+    border:1px solid #E9A944;
+    border-radius:3%;
+    align-items: center;
+    margin:2%;
+    padding:3%;
+    font-family: 'Open Sans'
+}

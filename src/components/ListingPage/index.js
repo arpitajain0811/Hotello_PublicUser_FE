@@ -24,6 +24,13 @@ class ListingPage extends React.Component {
         minPrice: 1000,
         maxPrice: 20000,
       },
+      starsFilter: {
+        1: true,
+        2: true,
+        3: true,
+        4: true,
+        5: true,
+      },
     };
   }
 
@@ -61,7 +68,7 @@ class ListingPage extends React.Component {
       this.props.rooms,
     ).then((response) => {
       this.props.saveAllHotels(response.hotelResultSet);
-      this.updateFilteredHotels([25, 75]);
+      this.updateFilteredHotels([5000, 17000]);
       this.setState({ loaded: true });
     });
   }
@@ -70,13 +77,12 @@ class ListingPage extends React.Component {
     // console.log('received', radius);
     const newFilteredHotels = filterByPrice(this.props.allHotels, priceRange);
     this.props.saveFilteredHotels(newFilteredHotels);
-    const currentMinPrice = 1000 + ((priceRange[0] / 100) * (20000 - 1000));
-    const currentMaxPrice = (1000 + ((priceRange[1] / 100) * (20000 - 1000)));
     this.setState({
       priceFilter:
-      { minPrice: currentMinPrice.toFixed(0), maxPrice: currentMaxPrice.toFixed(0) },
+      { minPrice: priceRange[0].toFixed(0), maxPrice: priceRange[1].toFixed(0) },
     });
   }
+
 
   displayCard=(hotelId, hotelName, stars, origin) => {
     const proxyUrl = 'https://cors-anywhere.herokuapp.com/';

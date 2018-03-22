@@ -8,6 +8,7 @@ import './HotelParameterBox.css';
 import RoomsDropDown from '../RoomsDropDown';
 import { setCheckInDate, setCheckOutDate } from '../../redux/actions';
 import SliderPrice from '../SliderPrice';
+import StarsFilter from '../StarsFilter';
 
 class HotelParameterBox extends React.Component {
   verifyCheckinDate=(date) => {
@@ -46,7 +47,9 @@ class HotelParameterBox extends React.Component {
         <div className="slider-row">
           <SliderPrice price={this.props.priceFilter.minPrice} />
           <Slider
-            defaultValue={[25, 75]}
+            min={1000}
+            max={20000}
+            defaultValue={[5000, 17000]}
             withBars
             onChange={(v) => {
               this.props.updateFilteredHotels(v);
@@ -54,6 +57,7 @@ class HotelParameterBox extends React.Component {
           />
           <SliderPrice price={this.props.priceFilter.maxPrice} />
         </div>
+        <StarsFilter />
       </div>
     );
   }
