@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Popup from 'reactjs-popup';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 import './DetailsPage.css';
 import SearchBarAndHeader from '../SearchBarAndHeaderDetails';
 import getAllHotels from '../../helpers/getAllHotels';
@@ -12,6 +13,7 @@ import Amenity from '../Amenity';
 import Room from '../Room';
 import loader from '../../images/loader2.svg';
 import LoginBody from '../LoginBody';
+
 
 class DetailsPage extends React.Component {
   constructor(props) {
@@ -33,6 +35,7 @@ class DetailsPage extends React.Component {
   componentDidMount() {
     // console.log('Rooms are:', this.props.rooms);
     window.addEventListener('scroll', this.handleScroll);
+    console.log('Match type is: ', typeof this.props.match);
     fetch(`/viewHotelDetails/${this.props.match.params.value}`, {}).then(data => data.json()).then((response) => {
       console.log(response);
       this.setState({
