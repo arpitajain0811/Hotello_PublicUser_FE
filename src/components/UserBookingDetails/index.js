@@ -26,38 +26,42 @@ class UserBookingDetails extends React.Component {
           Room {i + 1}
                    </div>);
       for (let j = 0; j < rooms[i].ADT; j += 1) {
-        paxRows.push(<div>
-          <div className="UBD-Adult">
+        paxRows.push(<div className="UBD-Adult-outer">
+          <div className="UBD-AdCh">
             Adult {j + 1}
+          <hr />
           </div>
-          <div className="UBD-Adult-Details">
-            <div>
-              <select>
+          <div className="UBD-AdCh-Details">
+            <div className="UBD-title-out">
+              <select className="UBD-title">
                 <option value="Mr">Mr.</option>
                 <option value="Mrs">Mrs.</option>
               </select>
             </div>
-            <div><input type="text" placeholder="First Name" /></div>
-            <div><input type="text" placeholder="Last Name" /></div>
-            <div><label>Birth Date</label><input type="date" /></div>
+            <div><input className="UBD-form-input" type="text" placeholder="First Name" /></div>
+            <div><input className="UBD-form-input" type="text" placeholder="Last Name" /></div>
+            <div className="DOB-label"><label>DOB</label></div>
+            <div><input className="UBD-form-input-dob" type="date" /></div>
           </div>
                      </div>);
       }
       for (let j = 0; j < rooms[i].CHD; j += 1) {
-        paxRows.push(<div>
-          <div className="UBD-Child">
+        paxRows.push(<div className="UBD-Child-outer">
+          <div className="UBD-AdCh">
             Child {j + 1}
+          <hr />
           </div>
-          <div className="UBD-Child-Details">
-            <div>
-              <select>
+          <div className="UBD-AdCh-Details">
+            <div className="UBD-title-out">
+              <select className="UBD-title">
                 <option value="Mr">Mr.</option>
                 <option value="Mrs">Mrs.</option>
               </select>
             </div>
-            <div><input type="text" placeholder="First Name" /></div>
-            <div><input type="text" placeholder="Last Name" /></div>
-            <div><label>Birth Date</label><input type="date" /></div>
+            <div><input className="UBD-form-input" type="text" placeholder="First Name" /></div>
+            <div><input className="UBD-form-input" type="text" placeholder="Last Name" /></div>
+            <div className="DOB-label"><label>DOB</label></div>
+            <div><input className="UBD-form-input-dob" type="date" /></div>
           </div>
                      </div>);
       }
@@ -71,8 +75,12 @@ class UserBookingDetails extends React.Component {
           textColor="white"
           profileButtonClass="profileButtonWhite"
         />
-        <PrimaryTravellerDetails />
-        {paxRows}
+        <div className="UBD-pax-details">
+          <PrimaryTravellerDetails />
+          <div className="PAXRows">
+            {paxRows}
+          </div>
+        </div>
       </div>
     );
   }

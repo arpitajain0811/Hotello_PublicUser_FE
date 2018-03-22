@@ -1,3 +1,74 @@
-.UBD-Room {
+.UBD-Main {
+    position: relative;
+}
+
+.PAXRows {
+    position: relative;
     font-family: 'Open Sans';
+}
+
+.UBD-pax-details {
+    position: relative;
+    top: 30px;
+    margin-right: 60px;
+    margin-left: 60px;
+}
+
+.UBD-Room {
+    background-color: #48bc48;
+    color: white;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    margin-top: 20px;
+}
+
+.UBD-AdCh {
+    font-size: 10px;
+    padding-left: 10px;
+    padding-top: 10px;
+}
+
+.UBD-AdCh-Details {
+    display: flex;
+    margin-left: 10px;
+    /* border: 1px solid black; */
+    padding-left: 10px;
+}
+
+.UBD-form-input {
+    /* width: 120px; */
+    height: 25px;
+    opacity: 0.43;
+    margin-left: 10px;
+    border-radius: 5px;
+    border: solid 1px #979797;
+}
+
+.UBD-form-input-dob {
+    /* width: 150px; */
+    height: 25px;
+    opacity: 0.43;
+    margin-left: 10px;
+    border-radius: 5px;
+    border: solid 1px #979797;
+}
+
+.DOB-label {
+    margin-left: 10px; 
+    display: flex;
+    align-items: center;
+}
+
+.UBD-title-out {
+    width: 10%;
+}
+
+.UBD-title {
+    height: 29px;
+    opacity: 0.43;
+    width: 100%;
+    border-radius: 5px;
+    border: solid 1px #979797;
 }
