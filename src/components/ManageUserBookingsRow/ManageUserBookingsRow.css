@@ -1,0 +1,134 @@
+.manage-bookings-row{
+    display:flex;
+    flex-direction:row;
+    border-bottom: solid 1px #9b9b9b57;
+    font-family: 'Open Sans';
+    padding: 36px
+}
+
+@media only screen and (max-width:411px){
+    .manage-bookings-row{
+        flex-direction: column;
+        align-items: flex-start;
+        margin-top:10%;
+    }
+}
+
+.manage-bookings-row-img-col{
+    display:flex;
+    flex-direction: column;
+    width:260px;
+    height:95%;
+    margin:5px;
+}
+
+.manage-bookings-row-content{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: stretch;
+    margin:5px 10px;
+    width:80%
+}
+
+
+.manage-bookings-row-head{
+    display:flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start
+}
+
+.manage-bookings-row-foot{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;    
+}
+
+@media only screen and (max-width:952px){
+    .manage-bookings-row-foot{
+        flex-direction: column;
+        align-items: flex-start;
+        margin-top:10%;
+    }
+}
+
+.manage-bookings-row-foot-left{
+    display:flex;
+    flex-direction: column;
+    flex-grow: 1
+}
+
+.manage-bookings-row-foot-right{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color:rgba(0, 0, 0, 0.609);
+    font-weight:300;
+    flex-grow: 1
+}
+
+.manage-bookings-row-hotelname{
+    display:flex;
+    flex-direction: row;
+    font-size:30px;
+    justify-content: flex-start;
+    align-items:center;
+    font-weight: bold;
+}
+
+.manage-bookings-row-bookingid{
+    display:flex;
+    flex-direction: row;
+    font-size:14px;
+    justify-content: flex-start;
+    align-items:center;
+    font-weight: 600;
+}
+
+.manage-bookings-row-bookingdate{
+    display:flex;
+    flex-direction: row;
+    font-size:14px;
+    justify-content: flex-start;
+    align-items:center;
+    font-weight: 600;
+}
+
+.manage-bookings-row-dates{
+    display:flex;
+    flex-direction: row;
+    font-size:14px;
+    justify-content: flex-start;
+    align-items:center;
+    font-weight: 600;
+}
+
+.date-arrow{
+    opacity:0.45;
+    font-size:25px;
+    margin:0 10px
+}
+
+
+.manage-bookings-row-guests{
+    display:flex;
+    flex-direction: row;
+    font-size:14px;
+    justify-content: flex-start;
+    align-items:center;
+    font-weight: 600;
+}
+
+.manage-bookings-row-amount{
+    display:flex;
+    flex-direction: column;
+    font-size:14px;
+    justify-content: flex-start;
+    align-items:center;
+    font-weight: 600;
+    color:black;
+    font-size:30px
+}

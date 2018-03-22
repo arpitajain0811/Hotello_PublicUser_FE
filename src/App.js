@@ -10,6 +10,7 @@ import Login from './components/Login';
 import DetailsPage from './components/DetailsPage';
 import PageUnderConstruction from '../src/components/PageUnderConstruction';
 import PaymentPage from './components/PaymentPage';
+import UserProfilePage from './components/UserProfilePage';
 
 
 class App extends Component {
@@ -33,6 +34,7 @@ class App extends Component {
           <Route path="/signIn" component={Login} /> */}
           <Route path="/pageunderconstruction" component={PageUnderConstruction} />
           <Route path="/payment" component={PaymentPage} />
+          <Route path="/userProfile" component={UserProfilePage} />
         </Switch>
       </div>
     );
