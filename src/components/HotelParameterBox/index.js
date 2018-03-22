@@ -45,19 +45,19 @@ class HotelParameterBox extends React.Component {
           <RoomsDropDown borderClass="GiveBorder" showDropdownBlock={() => this.showDropdownBlock} />
         </div>
         <div className="slider-row">
-          <SliderPrice price={this.props.priceFilter.minPrice} />
+          <SliderPrice price={this.props.priceFilter[0]} />
           <Slider
             min={1000}
             max={20000}
             defaultValue={[5000, 17000]}
             withBars
-            onChange={(v) => {
-              this.props.updateFilteredHotels(v);
+            onAfterChange={(v) => {
+              this.props.updateFilteredHotels(v, null);
         }}
           />
-          <SliderPrice price={this.props.priceFilter.maxPrice} />
+          <SliderPrice price={this.props.priceFilter[1]} />
         </div>
-        <StarsFilter />
+        <StarsFilter updateFilteredHotels={this.props.updateFilteredHotels} starsFilter={this.props.starsFilter} />
       </div>
     );
   }
@@ -83,4 +83,5 @@ HotelParameterBox.propTypes = {
   changeCheckoutDate: PropTypes.func.isRequired,
   priceFilter: PropTypes.arrayOf(Number).isRequired,
   updateFilteredHotels: PropTypes.func.isRequired,
+  starsFilter: PropTypes.object.isRequired,
 };

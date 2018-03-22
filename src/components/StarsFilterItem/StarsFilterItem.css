@@ -1,10 +1,16 @@
 .stars-filter-item{
     display:flex;
     flex-direction: row;
-    border:1px solid #E9A944;
+    border:1px solid #f6a623;
     border-radius:3%;
     align-items: center;
     margin:2%;
     padding:3%;
-    font-family: 'Open Sans'
+    font-family: 'Open Sans';
+    background-color:white
+}
+
+.stars-filter-item-active{
+    background-color:#f6a623;
+    border:1px solid red;
 }

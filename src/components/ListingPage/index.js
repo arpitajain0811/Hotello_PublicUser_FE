@@ -20,10 +20,10 @@ class ListingPage extends React.Component {
       loaded: false,
       center: {},
       selectedHotelDetails: {},
-      priceFilter: {
-        minPrice: 1000,
-        maxPrice: 20000,
-      },
+      priceFilter: [
+        1000,
+        20000,
+      ],
       starsFilter: {
         1: true,
         2: true,
@@ -73,13 +73,19 @@ class ListingPage extends React.Component {
     });
   }
 
-  updateFilteredHotels = (priceRange) => {
-    // console.log('received', radius);
-    const newFilteredHotels = filterByPrice(this.props.allHotels, priceRange);
+  updateFilteredHotels = (priceRange, stars) => {
+    const priceFilter = (priceRange || this.state.priceFilter);
+    const starsFilter = Object.assign(this.state.starsFilter);
+    if (stars) {
+      starsFilter[stars] = !starsFilter[stars];
+    }
+
+    console.log('received', priceFilter, starsFilter);
+    const newFilteredHotels = filterByPrice(this.props.allHotels, priceFilter, starsFilter);
     this.props.saveFilteredHotels(newFilteredHotels);
     this.setState({
-      priceFilter:
-      { minPrice: priceRange[0].toFixed(0), maxPrice: priceRange[1].toFixed(0) },
+      priceFilter,
+      starsFilter,
     });
   }
 
@@ -150,6 +156,7 @@ class ListingPage extends React.Component {
         />
         <HotelParameterBox
           priceFilter={this.state.priceFilter}
+          starsFilter={this.state.starsFilter}
           updateFilteredHotels={this.updateFilteredHotels}
         />
         <MapAndListView
