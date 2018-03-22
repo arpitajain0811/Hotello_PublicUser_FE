@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Switch, Route, Link } from 'react-router-dom';
-import { logout } from '../../redux/actions';
+import { logout, changeLoginState } from '../../redux/actions';
 import SarchBarAndHeader from '../SearchBarAndHeader';
 import EditUserDetails from '../EditUserDetails';
 import ManageUserBookings from '../ManageUserBookings';
@@ -17,6 +17,9 @@ class UserProfilePage extends React.Component {
   }
   componentWillMount() {
     console.log('in UserProfilePage componentWillMount');
+    if (window.localStorage.getItem('userName') !== null) {
+      this.props.changeLoginState(window.localStorage.getItem('userName'));
+    }
   }
 
   setActiveLink =() => {
@@ -89,6 +92,9 @@ class UserProfilePage extends React.Component {
 const mapDispatchToProps = dispatch => ({
   logout: () => {
     dispatch(logout());
+  },
+  changeLoginState: (firstName) => {
+    dispatch(changeLoginState(firstName));
   },
 });
 
