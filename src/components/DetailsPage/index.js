@@ -255,7 +255,7 @@ class DetailsPage extends React.Component {
         });
       }}
       >Book
-      </button>);
+                    </button>);
     } else {
       bookButton = (<Popup
         className="MyPopup"
@@ -267,7 +267,7 @@ class DetailsPage extends React.Component {
       });
     }}
         >Book
-        </button>}
+                 </button>}
         modal
       >
         {close => (
@@ -281,7 +281,7 @@ class DetailsPage extends React.Component {
             </div>
           </div>
 )}
-      </Popup>);
+                    </Popup>);
     }
 
     if (this.state.loaded === 0) {
@@ -427,7 +427,7 @@ class DetailsPage extends React.Component {
                   {bookButton}
                 </div>
               </div>
-            </div>}
+                                                       </div>}
           </div>
         </div>
       </div>
