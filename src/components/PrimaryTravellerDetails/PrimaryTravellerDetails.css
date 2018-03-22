@@ -1,0 +1,32 @@
+.PTD-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.PTD-head {
+
+}
+
+.PTD-form-input {
+  opacity: 0.43;
+  border-radius: 5px;
+  border: solid 1px #979797;
+}
+
+.PTD-form-fields {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.PTD-title {
+    opacity: 0.43;
+    width: 50px;
+    border-radius: 5px;
+    border: solid 1px #979797;
+}
+
+.PTD-form-fields2 {
+    display: flex;
+    justify-content: space-evenly;
+}
