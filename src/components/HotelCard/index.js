@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './HotelCard.css';
 import { Link } from 'react-router-dom';
+import './HotelCard.css';
 
 class HotelCard extends React.Component {
   render() {

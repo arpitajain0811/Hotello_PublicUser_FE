@@ -23,7 +23,7 @@ class DetailsPage extends React.Component {
       scrollState: 0,
       expandedAmenities: false,
       expandedDescription: false,
-      redirect: false,
+      // redirect: false,
     };
     this.imgSrc = '';
     this.setImg();
@@ -31,7 +31,7 @@ class DetailsPage extends React.Component {
 
 
   componentDidMount() {
-    console.log('Rooms are:', this.props.rooms);
+    // console.log('Rooms are:', this.props.rooms);
     window.addEventListener('scroll', this.handleScroll);
     fetch(`/viewHotelDetails/${this.props.match.params.value}`, {}).then(data => data.json()).then((response) => {
       console.log(response);
@@ -297,8 +297,12 @@ class DetailsPage extends React.Component {
 
     return (
       <div className="detailsPage" >
-        <SearchBarAndHeader updateSearch={this.updateSearch} type={this.state.scrollState} logoutHandler={this.logoutHandler} />
-        <img src={this.imgSrc} className="hotelImage" />
+        <SearchBarAndHeader
+          updateSearch={this.updateSearch}
+          type={this.state.scrollState}
+          logoutHandler={this.logoutHandler}
+        />
+        <img src={this.imgSrc} alt="" className="hotelImage" />
         <div className="detailsPageContainer">
           <Link to="/listingPage" className="removeTextDecoration">
             <div className="backSection">
@@ -311,9 +315,10 @@ class DetailsPage extends React.Component {
                 {this.state.hotelDetails.hotel_name}
               </div>
               {
-                this.state.hotelDetails.location && <div className="address">
+                this.state.hotelDetails.location &&
+                <div className="address">
                   {this.state.hotelDetails.location.address}
-                                                    </div>
+                </div>
               }
               <div className="description">
                 <div className="hotelDescription">
@@ -451,3 +456,9 @@ const mapStateToProps = state => ({
   isLoggedIn: state.userReducer.isLoggedIn,
 });
 export default connect(mapStateToProps, mapDispatchToProps)(DetailsPage);
+DetailsPage.propTypes = {
+  currentId: PropTypes.string.isRequired,
+  logout: PropTypes.func.isRequired,
+  isLoggedIn: PropTypes.bool.isRequired,
+  changeLoginState: PropTypes.func.isRequired,
+};
