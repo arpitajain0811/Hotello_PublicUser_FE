@@ -29,7 +29,7 @@ class ListingPage extends React.Component {
         2: true,
         3: true,
         4: true,
-        5: true,
+        5: false,
       },
     };
   }
@@ -75,11 +75,10 @@ class ListingPage extends React.Component {
 
   updateFilteredHotels = (priceRange, stars) => {
     const priceFilter = (priceRange || this.state.priceFilter);
-    const starsFilter = Object.assign(this.state.starsFilter);
+    const starsFilter = Object.assign({}, this.state.starsFilter);
     if (stars) {
       starsFilter[stars] = !starsFilter[stars];
     }
-
     console.log('received', priceFilter, starsFilter);
     const newFilteredHotels = filterByPrice(this.props.allHotels, priceFilter, starsFilter);
     this.props.saveFilteredHotels(newFilteredHotels);

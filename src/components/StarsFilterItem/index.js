@@ -8,7 +8,7 @@ class StarsFilterItem extends React.Component {
     const stars = [];
     for (let i = 0; i < this.props.number; i += 1) {
       stars.push(<img
-        src={`/star${this.props.selected ? '-white' : ''}.svg`}
+        src={`/star${this.props.selected ? '-white' : '-grey'}.svg`}
         className="star-grey"
         alt="star"
         key={i + 1}
