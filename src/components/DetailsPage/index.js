@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Popup from 'reactjs-popup';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 import './DetailsPage.css';
 import SearchBarAndHeader from '../SearchBarAndHeaderDetails';
 import getAllHotels from '../../helpers/getAllHotels';
@@ -252,7 +253,7 @@ class DetailsPage extends React.Component {
         });
       }}
       >Book
-      </button>);
+                    </button>);
     } else {
       bookButton = (<Popup
         className="MyPopup"
@@ -264,7 +265,7 @@ class DetailsPage extends React.Component {
       });
     }}
         >Book
-        </button>}
+                 </button>}
         modal
       >
         {close => (
@@ -278,7 +279,7 @@ class DetailsPage extends React.Component {
             </div>
           </div>
 )}
-      </Popup>);
+                    </Popup>);
     }
 
     if (this.state.loaded === 0) {
@@ -424,7 +425,7 @@ class DetailsPage extends React.Component {
                   {bookButton}
                 </div>
               </div>
-            </div>}
+                                                       </div>}
           </div>
         </div>
       </div>
