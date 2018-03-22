@@ -254,7 +254,19 @@ class DetailsPage extends React.Component {
       >Book
       </button>);
     } else {
-      bookButton = (<Popup className="MyPopup" trigger={<button className="MakePaymentButton" >Book</button>} modal>
+      bookButton = (<Popup
+        className="MyPopup"
+        trigger={<button
+          className="MakePaymentButton"
+          onClick={() => {
+      this.setState({
+        redirect: true,
+      });
+    }}
+        >Book
+        </button>}
+        modal
+      >
         {close => (
           <div className="modal">
             <a className="close" onClick={() => { close(); }}>
