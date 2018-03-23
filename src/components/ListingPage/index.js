@@ -132,7 +132,7 @@ class ListingPage extends React.Component {
       this.props.rooms,
     ).then((response) => {
       this.props.saveAllHotels(response.hotelResultSet);
-      this.updateFilteredHotels([25, 75]);
+      this.updateFilteredHotels([5000, 17000]);
       axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${this.props.city}&key=${constants.API_KEY}`).then((value) => {
         console.log(value.data.results[0].geometry.location);
         this.setState({
