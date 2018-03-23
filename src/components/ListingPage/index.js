@@ -98,7 +98,9 @@ class ListingPage extends React.Component {
 
   displayCard=(hotelId, hotelName, stars, origin) => {
     const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
-    const reqUrl = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=12.995460,%2077.696218&radius=1000&type=transit_station&key=AIzaSyCnIdPzEpfEV0b_6AGKeL6mF0AVw_yOgi4';
+    const lat = this.props.latLng.lat;
+    const lng = this.props.latLng.lng;
+    const reqUrl = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lng}&radius=1000&type=transit_station&key=AIzaSyCnIdPzEpfEV0b_6AGKeL6mF0AVw_yOgi4`;
     console.log('display');
     fetch(proxyUrl + reqUrl)
       .then(response => response.json())
@@ -106,9 +108,9 @@ class ListingPage extends React.Component {
       .then((results) => {
         const nearby = [];
         for (let i = 0; i < 5; i += 1) {
-          if (results[i].types[0] === 'bus_station') {
-            nearby.push({ icon: 'https://maps.gstatic.com/mapfiles/place_api/icons/bus-71.png', name: results[i].name });
-          }
+          // if (results[i].types[0] === 'bus_station') {
+            nearby.push({ icon: results[i].icon, name: results[i].name });
+          // }
         }
         this.setState({
           selectedHotelDetails: {
@@ -206,6 +208,7 @@ const mapStateToProps = state => ({
   checkInDate: state.searchOptions.checkInDate,
   checkOutDate: state.searchOptions.checkOutDate,
   city: state.searchOptions.city,
+  latLng: state.searchOptions.LatLng,
   rooms: state.searchOptions.rooms,
 });
 
@@ -224,6 +227,7 @@ ListingPage.propTypes = {
   saveFilteredHotels: PropTypes.func.isRequired,
   allHotels: PropTypes.arrayOf(Object).isRequired,
   saveAllHotels: PropTypes.func.isRequired,
+  latLng : PropTypes.object.isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ListingPage);
