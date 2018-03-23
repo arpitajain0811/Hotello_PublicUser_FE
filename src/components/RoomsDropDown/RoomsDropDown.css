@@ -76,6 +76,9 @@
         width: 30%;
         min-width:300px;
     }
+   
+}
+@media only screen and (max-width: 860px) {
     .DropDownBlock{
         width:70%;
         margin-top:38px;

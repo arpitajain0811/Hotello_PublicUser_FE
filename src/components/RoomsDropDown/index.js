@@ -27,6 +27,7 @@ render() {
   const dropDownFieldsHolder = [];
   for (let i = 0; i < this.props.rooms.length; i += 1) {
     dropDownFieldsHolder.push((<RoomsDropdownField
+      key={Date.now()}
       id={i + 1}
       adults={this.props.rooms[i].adults}
       childrenProp={this.props.rooms[i].children}
@@ -84,7 +85,7 @@ RoomsDropdown.propTypes = {
   totalRooms: PropTypes.number.isRequired,
   totalAdults: PropTypes.number.isRequired,
   totalChildren: PropTypes.number.isRequired,
-  rooms: PropTypes.arrayOf(PropTypes.objectOf.isRequired).isRequired,
+  rooms: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
   changeAdults: PropTypes.func.isRequired,
   changeChildren: PropTypes.func.isRequired,
   removeRoom: PropTypes.func.isRequired,

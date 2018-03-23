@@ -119,8 +119,8 @@ const mapStateToProps = state => ({
 export default connect(mapStateToProps, mapDispatchToProps)(LandingPageBody);
 
 LandingPageBody.propTypes = {
-  checkInDate: PropTypes.objectOf.isRequired,
-  checkOutDate: PropTypes.objectOf.isRequired,
+  checkInDate: PropTypes.object.isRequired,
+  checkOutDate: PropTypes.object.isRequired,
   changeCheckinDate: PropTypes.func.isRequired,
   changeCheckoutDate: PropTypes.func.isRequired,
   saveSearchCityText: PropTypes.func.isRequired,

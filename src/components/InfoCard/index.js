@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import AnimateOnChange from 'react-animate-on-change';
+import { Link } from 'react-router-dom';
 import './InfoCard.css';
 
 
@@ -57,14 +58,13 @@ class InfoCard extends React.Component {
             {this.props.name}
             <span className="info-card-stars">{this.props.stars} {stars}</span>
           </div>
+
           <button className="info-card-btn">Book</button>
 
         </div>
         <div className="info-card-desc">
           {nearbyArr}
         </div>
-
-
       </AnimateOnChange>);
   }
 }

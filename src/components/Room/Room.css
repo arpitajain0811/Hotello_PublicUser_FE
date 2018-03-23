@@ -1,0 +1,25 @@
+.icon{
+  width: 100%;
+  height: 120%;
+  /* margin-top: 10px; */
+  min-width: 25px;
+}
+
+.crop{
+  width:7vh;
+  height:7vh;
+  margin: 5px;
+  overflow: hidden;
+}
+
+.roomContainer{
+  border: solid 1px #979797;
+  border-radius: 5px;
+  width: 14vw;
+  min-width: 100px;
+  margin: 10px;
+}
+
+.roomDesc{
+  padding-left: 3%;
+}

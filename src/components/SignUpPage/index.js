@@ -67,7 +67,7 @@ class SignUpBody extends Component {
           <div
             className="AlternateSignIn"
           >Already a user?
-            <Popup className="MyPopup" trigger={<button onClick={() => this.props.closeFunc()}className="signInStyle"> Sign In </button>} modal>
+            <Popup className="MyPopup" trigger={<button onClick={() => { this.props.closeFunc(); }}className="signInStyle" > Sign In </button>} modal>
               {close => (
                 <div className="modal">
                   <a className="close" onClick={() => { close(); this.props.closeFunc(); }}>
@@ -99,3 +99,4 @@ SignUpBody.propTypes = {
   changeLoginState: PropTypes.func.isRequired,
   closeFunc: PropTypes.func.isRequired,
 };
+

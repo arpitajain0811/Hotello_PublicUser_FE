@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import './HotelCard.css';
 
 class HotelCard extends React.Component {
@@ -22,17 +23,21 @@ class HotelCard extends React.Component {
       />));
     }
     return (
+
+
       <div className="HotelCard-outer">
         <div
           className="hotel-image"
-          style={(this.props.image === '') ? { backgroundImage: `url("/placeholder-hotel-image${((this.props.hotelId % 6) + 1).toString()}.jpeg")` } : { backgroundImage: `url(${this.props.image})` }}
+          style={{ backgroundImage: `url("/placeholder-hotel-image${((this.props.image% 6) + 1).toString()}.jpeg")`}}
         />
         <div className="hotel-card-content">
           <div className="hotel-card-name" title={this.props.hotelName}>{(this.props.hotelName.length > 14) ? (`${this.props.hotelName.slice(0, 11)}...`) : this.props.hotelName}</div>
           <div className="hotel-card-details">
             <p className="hotel-card-stars">{stars}</p>
             <p className="hotel-card-min-rate"> ₹ {(Number(this.props.minRate) * 65).toFixed(2)}</p>
-            <button className="HotelCard-btn">Book</button>
+            <Link to={`/detailsPage/${this.props.hotelId}`} className="Details-Link">
+              <button className="HotelCard-btn">Book</button>
+            </Link>
           </div>
         </div>
       </div>
