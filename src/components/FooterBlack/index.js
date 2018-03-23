@@ -8,17 +8,17 @@ function FooterBlack() {
       <div className="footerBlackItem1">
         <div className="blackLine" />
         <div className="footerBlackItem1LinksContainer" >
-          <Link to="/about" className="footerBlackItem1Link">
+          <Link to="/pageunderconstruction" className="footerBlackItem1Link">
             <div >
              About
             </div>
           </Link>
-          <Link to="/blog" className="footerBlackItem1Link">
+          <Link to="/pageunderconstruction" className="footerBlackItem1Link">
             <div >
             Blog
             </div>
           </Link>
-          <Link to="/Contact" className="footerBlackItem1Link">
+          <Link to="/pageunderconstruction" className="footerBlackItem1Link">
             <div >
             Contact
             </div>
@@ -26,10 +26,10 @@ function FooterBlack() {
         </div>
       </div>
       <div className="footerBlackItem2">
-        <Link to="/legalNotice" className="footerBlackItem2Link" >
+        <Link to="/pageunderconstruction" className="footerBlackItem2Link" >
             Legal Notice
         </Link>
-        <Link to="/privacyPolicy" className="footerBlackItem2Link" >
+        <Link to="/pageunderconstruction" className="footerBlackItem2Link" >
             Privacy policy
         </Link>
       </div>

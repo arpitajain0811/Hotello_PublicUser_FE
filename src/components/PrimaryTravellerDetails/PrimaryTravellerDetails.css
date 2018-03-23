@@ -5,6 +5,12 @@
     /* border: 1px solid black; */
 }
 
+.PTD-outer {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
 .PTD-head { 
     font-family: 'Open Sans';
 }
@@ -13,7 +19,7 @@
     /* width: 120px; */
     height: 25px;
     width:100%;
-    opacity: 0.43;
+    /* opacity: 0.43; */
     /* margin-left: 10px; */
     border-radius: 5px;
     border: solid 1px #979797;
@@ -28,7 +34,7 @@
 .PTD-form-input2 {
     /* width: 53px; */
     height: 25px;
-    opacity: 0.43;
+    /* opacity: 0.43; */
     /* margin-left: 10px; */
     border-radius: 5px;
     border: solid 1px #979797;
@@ -55,7 +61,7 @@
 
 .PTD-title {
     height: 29px;
-    opacity: 0.43;
+    /* opacity: 0.43; */
     width: 90%;
     border-radius: 5px;
     border: solid 1px #979797;

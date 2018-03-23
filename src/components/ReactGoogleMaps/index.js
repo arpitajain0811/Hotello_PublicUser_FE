@@ -69,7 +69,7 @@ const MyMapComponent = compose(
   const hotelOverlays = [];
   // const someHotels = props.allHotels.slice(0, 30);
   const someHotels = props.allHotels.slice(0, 50);
-  someHotels.forEach((hotel) => {
+  someHotels.forEach((hotel, index) => {
     const hotelOverlay = (
       <OverlayView
         className="Maps-OverlayView"

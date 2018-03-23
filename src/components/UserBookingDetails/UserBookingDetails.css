@@ -1,5 +1,11 @@
 .UBD-Main {
-    position: relative;
+    /* width:100%; */
+    padding:2%;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-between; */
+    height:100%;
+    box-sizing: border-box;
 }
 
 .PAXRows {
@@ -8,10 +14,12 @@
 }
 
 .UBD-pax-details {
-    position: relative;
-    top: 30px;
-    margin-right: 60px;
-    margin-left: 60px;
+    display: flex;
+    flex-grow:1;
+    justify-content: center;
+    align-items: center;
+    border-top:1px solid rgba(151, 151, 151, 0.45);
+    margin-top:2%;
 }
 
 .UBD-Room {
@@ -82,9 +90,29 @@
 }
 
 .UBD-title {
-    height: 29px;
+    height: 35px;
     opacity: 0.43;
     width: 100%;
     border-radius: 5px;
     border: solid 1px #979797;
 }
+
+@media only screen and (max-width: 768px) {
+    .UBD-Footer{
+        display: none;
+    }
+    .UBD-Main{
+        padding:0;
+    }
+    .UBD-pax-details{
+        /* border-bottom:1px solid rgba(151, 151, 151, 0.45); */
+        flex-direction: column;
+        padding-left:3%;
+        padding-top: 8%;
+        padding-right:3%;
+        justify-content: space-between;
+    }
+    .UBD-Header{
+        padding:2%;
+    }
+    }
