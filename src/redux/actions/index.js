@@ -72,3 +72,9 @@ export const changeLoginState = firstName => ({
 export const logout = () => ({
   type: 'logout',
 });
+
+export const userBookingDetails = userBookDetails => ({
+  type: 'userBookingDetails',
+  payload: userBookDetails,
+});
+

@@ -2,7 +2,7 @@ import React from 'react';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
 import Header from '../Header';
-import { logout, changeLoginState } from '../../redux/actions';
+import { logout, changeLoginState, userBookingDetails } from '../../redux/actions';
 import PrimaryTravellerDetails from '../PrimaryTravellerDetails';
 import './UserBookingDetails.css';
 import FooterBlack from '../FooterBlack';
@@ -18,7 +18,7 @@ class UserBookingDetails extends React.Component {
       firstName: PropTypes.string.isRequired,
       changeLoginState: PropTypes.func.isRequired,
       logout: PropTypes.func.isRequired,
-
+      userBookingDetails: PropTypes.func.isRequired,
     };
   }
 
@@ -102,7 +102,7 @@ class UserBookingDetails extends React.Component {
         />
         </div>
         <div className="UBD-pax-details">
-          <PrimaryTravellerDetails />
+          <PrimaryTravellerDetails userBookingDetails={this.props.userBookingDetails} />
         </div>
         <div className="UBD-btn-div">
           <button className="UBD-btn">Continue</button>
@@ -121,6 +121,7 @@ class UserBookingDetails extends React.Component {
 const mapDispatchToProps = dispatch => ({
   logout: () => { dispatch(logout()); },
   changeLoginState: (firstName) => { dispatch(changeLoginState(firstName)); },
+  userBookingDetails: (bookDetails) => { dispatch(userBookingDetails(bookDetails)); },
 });
 
 const mapStateToProps = state => ({
