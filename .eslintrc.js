@@ -17,7 +17,7 @@ module.exports = {
         "react/no-string-refs":0,
         "no-console":0,
         "jsx-a11y/label-has-for": 0,
-        "react/jsx-indent": 0
+        "react/jsx-indent": 0,
         "no-underscore-dangle" :0,
         "no-param-reassign": 0,
     },

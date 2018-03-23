@@ -115,7 +115,7 @@ class UserBookingDetails extends React.Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  logout: () => { dispatch.logout(); },
+  logout: () => { dispatch(logout()); },
   changeLoginState: (firstName) => { dispatch(changeLoginState(firstName)); },
 });
 
