@@ -1,0 +1,102 @@
+.searchbarAndHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* flex-grow: 1; */
+    height: 6%;
+    border: solid 0 0 1px 0 rgba(151, 151, 151, 0.45);
+    /* margin:29px 0px */
+    padding:1%;
+    padding-left:2%;
+    padding-right:2%;
+
+}
+.searchbarAndHeader-LogoAndSearchBox {
+    display: flex;
+    padding:1%;
+    padding-left:0;
+    padding-right: 0;
+    align-items: center;
+    width:40%;
+    max-height: 70px;
+    box-sizing: border-box;
+    /* justify-content: space-between; */
+}
+.searchbarAndHeader-logo {
+    display: flex;
+    align-items: center;
+    box-sizing: content-box;
+    /* margin-right:-10%; */
+    /* width:100%; */
+    /* width: 50px; */
+    /* margin-right: 20px; */
+}
+.searchBox {
+    display: flex;
+    width:100%;
+    box-sizing: border-box;
+  /* padding:1%; */
+    border-radius: 4px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.25);
+}
+.searchLogoAndInputBoxContainer{
+    display: flex;
+    width:100%;
+    /* width: 75%; */
+}
+.searchLogo {
+    margin-left:3%;
+    /* height:50%; */
+}
+.searchCityInputBox {
+    font-size: 14px;
+    font-weight: 400;
+    font-family: "Open Sans";
+    font-style: normal;
+    font-stretch: normal;
+    /* line-height: 3.5; */
+    letter-spacing: 0.1px;
+    text-align: left;
+    margin:1%;
+    width:100%;
+}
+.searchHotelByCityButton {
+    width: 25%;
+    border-radius: 0 4px 4px 0;
+    border-style: none;
+    background-color: #48bc48;
+    color:white;
+    font-size: 14px;
+    font-family: "Open Sans";
+    font-weight: 600;
+    font-style: normal;
+    font-stretch: normal;
+    /* line-height: 3.5; */
+    letter-spacing: 0.1px;
+    padding:3%;
+    padding-left:4%;
+    padding-right: 4%;
+    outline:none;
+}
+.searchbarAndHeader-LinksContainer {
+    width: 20%;
+    display: flex;
+    justify-content: space-between;
+}
+.searchbarAndHeader-Link {
+    /* height: 19px; */
+    font-family: "Open Sans";
+    font-size: 14px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    letter-spacing: 0.6px;
+    text-decoration: none;
+    color: grey;
+}
+.logoInListPage{
+    height:10%;
+    width:10%;
+    margin-right:5%;
+}

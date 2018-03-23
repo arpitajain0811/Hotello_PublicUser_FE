@@ -1,0 +1,30 @@
+.mapAndListView {
+    /* margin:30px 0px; */
+    display: flex;
+    flex-grow:1;
+    padding:0;
+    padding-left:2%;
+    padding-right:2%;
+    /* flex-grow: 1; */
+    /* background-color:yellow */
+}
+.map-and-list-view-page{
+    font-family: 'Open Sans';
+    padding-top:10px;
+    flex-grow:1;
+
+}
+
+.hotelList {
+    flex-grow: 0.4;
+    background-color: blue;
+    /* overflow: hidden; */
+}
+.map-container {
+    flex-grow: 1;
+    /* width:50%; */
+    /* background-color: red; */
+    /* height:70vh */
+}
+
+

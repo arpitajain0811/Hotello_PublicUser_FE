@@ -1,0 +1,12 @@
+.userNameDisplay {
+    display: flex;
+    font-family: "Open Sans";
+    font-size: 14px;
+    /* font-weight: 400; */
+    /* padding */
+    /* color: black; */
+    align-items: center;
+}
+.HiUser{
+    /* margin-right:2%; */
+}

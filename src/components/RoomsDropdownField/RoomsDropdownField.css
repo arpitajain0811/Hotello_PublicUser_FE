@@ -1,0 +1,48 @@
+.RoomsDropdownField{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding:2%;
+}
+.RemoveButton button{
+    border:0;
+    outline: none;
+    font-size: 12px;
+    color:#9b9b9b;
+}
+.RemoveButtonDisabled{
+    display: none;
+    outline: none;
+}
+.ChildrenInputBox{
+    border: 1px solid #e0e0e0;
+    outline: none;
+}
+.AdultsInputBox{
+    border: 1px solid #e0e0e0;
+}
+select{
+    background: #fff !important;
+    border:0;
+    outline: none;
+}
+.RoomLabel{
+    font-size: 12px;
+}
+
+.Room1Label{
+    font-size: 12px;
+    color:#9b9b9b;
+}
+.Room1LabelDisabled{
+    display: none;
+}
+@media only screen and (max-width: 1200px) {
+    .RemoveButton button{
+        border:0;
+        outline: none;
+        font-size: 12px;
+        color:#9b9b9b;
+        background-color: white;
+    }
+}

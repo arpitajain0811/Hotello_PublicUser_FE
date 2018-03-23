@@ -1,0 +1,149 @@
+.PaymentForm{
+    font-family:"Open Sans";
+  font-size: 15px;
+  font-weight: 600;
+    width:40%;
+    letter-spacing: 0.1px;
+    /* opacity: 0.75; */
+}
+
+.CardNumberInputField{
+    /* box-shadow: 0 1px 4px 0 rgba(65, 80, 66, 0.5); */
+    padding:2%;
+    font-family: "Open Sans";
+  font-size: 15px;
+  font-weight: 600;
+  border-radius:5px;
+  box-sizing: border-box;
+}
+.CreditCard{
+    display: flex;
+    flex-direction: column;
+    opacity: 0.75;
+}
+.CardHolderNameInputField{
+    border:1px solid  #979797;
+    padding:2%;
+    margin-bottom:2%;
+    margin-top:2%;
+    font-family: "Open Sans";
+  font-size: 15px;
+  font-weight: 600;
+  box-sizing: border-box;
+  border-radius:5px;
+}
+.ExpiryAndCvv{
+    display: flex;
+    flex-basis: 50%;
+}
+.ExpiryInputField{
+    border:1px solid  #979797;
+    padding:2%;
+    margin-bottom:2%;
+    margin-top:2%;
+    margin-right:2%;
+    font-family: "Open Sans";
+  font-size: 15px;
+  font-weight: 600;
+  border-radius:5px;
+}
+.CvvInputField{
+    border:1px solid  #979797;
+    padding:2%;
+    margin-bottom:2%;
+    margin-top:2%;
+    font-family: "Open Sans";
+  font-size: 15px;
+  font-weight: 600;
+  border-radius:5px;
+}
+.CardNumberWithImage{
+  display: flex;
+  border:1px solid  #979797;
+  margin-bottom:2%;
+    margin-top:2%;
+    align-items: center;
+    border-radius:5px;
+}
+.CreditCardImage{
+  margin-right:1%;
+  width:7%;
+}
+.RoomTypesContainer{
+  display: flex;
+  justify-content: space-between;
+  /* flex-wrap: wrap; */
+}
+.RoomType{
+  border: 1px solid #979797;
+  padding:2%;
+  margin-top:3%;
+  margin-bottom:5%;
+  font-family: "Open Sans";
+  font-size: 12px;
+  /* flex-grow: 1; */
+  border-radius: 5px;
+  font-weight: 500;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  border-radius: 5px;
+  font-weight: 500;
+  display: flex;
+  flex-direction: column;
+}
+.Roomtype2{
+  margin-right:2%;
+  margin-left: 2%;
+}
+.maleIcon{
+  height:8%;
+  width:8%;
+}
+.CredidCardDetailsForm{
+  font-weight: bold;
+}
+::placeholder{
+  font-size:15px;
+}
+@media only screen and (max-width: 768px) {
+  .PaymentForm{
+    font-family: "Open Sans";
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.1px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    flex-grow: 1;
+    padding:3%;
+    width:100%;
+    border-bottom:1px solid rgba(151, 151, 151, 0.45);
+    overflow-y: scroll;
+  }
+  .CardNumberInputField{
+    padding:4%;
+  }
+.CardHolderNameInputField{
+  padding:4%;
+  margin-bottom:3%;
+    margin-top:3%;
+  }
+  .ExpiryInputField{
+    padding:4%;
+    margin-bottom:3%;
+    margin-top:3%;
+  }
+  .CvvInputField{
+    padding:4%;
+    margin-bottom:3%;
+    margin-top:3%;
+  }
+  .CreditCardImage{
+    width:12%;
+  }
+  .CardNumberWithImage{
+    margin-bottom:3%;
+    margin-top:3%;
+  }
+}

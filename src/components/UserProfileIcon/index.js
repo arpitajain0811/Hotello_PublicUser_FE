@@ -1,0 +1,80 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+import './UserProfileIcon.css';
+
+class UserProfileIcon extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isDropDownOpen: false,
+      // isLoggedIn: true,
+    };
+  }
+
+  componentWillMount() {
+
+  }
+
+  doLogout = () => {
+    const config = {
+      method: 'POST',
+      headers: {
+        authorization: window.localStorage.getItem('token'),
+      },
+    };
+    fetch('/logout', config).then(response => response.json()).then((respJson) => {
+      console.log(respJson);
+      window.localStorage.removeItem('token');
+      window.localStorage.removeItem('userName');
+      this.props.logoutHandler();
+      // console.log('LOGOUT HANDLER: ', this.props.logoutHandler);
+      // this.setState({
+      //   isLoggedIn: false,
+      // });
+    });
+  }
+
+  toggleDropDown = () => {
+    this.setState(prevState => ({
+      isDropDownOpen: !prevState.isDropDownOpen,
+    }));
+  }
+
+  render() {
+    // console.log(this.state);
+    // if (this.state.isLoggedIn) {
+    return (
+      <div>
+        <div className="profileIconBlock" >
+          <button
+            // className="profileButtonWhite"
+            className={this.props.profileButtonClass}
+            onClick={this.toggleDropDown}
+          >
+            <i className="material-icons">person</i>
+          </button>
+        </div>
+        <div className={this.state.isDropDownOpen ? 'dropDownBlock-opened' : 'dropDownBlock-closed'}>
+          <Link to="/userProfile" className="noUnderLine">
+            <div className="dropDown-item">
+                Your Profile
+            </div>
+          </Link>
+          <div className="dropDown-item" onClick={() => this.doLogout()}>
+                Logout
+          </div>
+        </div>
+      </div>
+    );
+    // }
+    // return <Redirect to="/" />;
+  }
+}
+
+UserProfileIcon.propTypes = {
+  logoutHandler: PropTypes.func.isRequired,
+  profileButtonClass: PropTypes.string.isRequired,
+};
+
+export default UserProfileIcon;
