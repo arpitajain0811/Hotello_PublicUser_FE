@@ -6,14 +6,9 @@ const defaultState = {
   checkInDate: moment(new Date()),
   checkOutDate: moment((new Date()).setDate((new Date()).getDate() + 1)),
   rooms: [{
-    ADT: 2,
-    CHD: 1,
-  },
-  {
     ADT: 1,
-    CHD: 2,
-  },
-  ],
+    CHD: 0,
+  }],
   totalRooms: 1,
   totalAdults: 1,
   totalChildren: 0,

@@ -26,7 +26,7 @@ class UserBookingDetails extends React.Component {
           Room {i + 1}
                    </div>);
       for (let j = 0; j < rooms[i].ADT; j += 1) {
-        paxRows.push(<div className="UBD-Adult-outer">
+        paxRows.push(<div className="UBD-AdCh-outer">
           <div className="UBD-AdCh">
             Adult {j + 1}
           <hr />
@@ -46,7 +46,7 @@ class UserBookingDetails extends React.Component {
                      </div>);
       }
       for (let j = 0; j < rooms[i].CHD; j += 1) {
-        paxRows.push(<div className="UBD-Child-outer">
+        paxRows.push(<div className="UBD-AdCh-outer">
           <div className="UBD-AdCh">
             Child {j + 1}
           <hr />
