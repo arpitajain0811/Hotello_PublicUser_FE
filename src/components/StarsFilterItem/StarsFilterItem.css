@@ -9,9 +9,11 @@
     font-family: 'Open Sans';
     background-color:white;
     cursor: pointer;
+    color:grey
 }
 
 .stars-filter-item-active{
     background-color:#f6a623;
     border:1px solid #f6a623;
+    color:white
 }

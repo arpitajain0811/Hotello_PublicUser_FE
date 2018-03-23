@@ -15,7 +15,17 @@ const getAllHotels = (cityName, checkIn, checkOut, rooms) => {
   };
   console.log(cookie);
   return fetch('/checkAvailability', options)
-    .then(response => response.json());
+    .then(response => response.json())
+    .then(respJSON=>{
+      if (respJSON.hotelResultSet)
+      {
+        return respJSON
+      }
+      else{
+        return 'No city entered'
+      }
+    })
+    .catch(()=>{return {hotelResultSet:[]}});
 };
 
 

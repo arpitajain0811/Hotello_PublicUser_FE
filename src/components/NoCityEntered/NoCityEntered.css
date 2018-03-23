@@ -1,0 +1,19 @@
+.no-city-entered{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height:60vh;
+    background-color:#f1f1f1;
+    color:#777777;
+    /* width:96%; */
+    /* margin: 0 2%; */
+    font-weight:bold;
+    font-size:1.1em;
+}
+
+.no-city-img{
+    height:30vh;
+    width:30vh;
+    margin:20px
+}

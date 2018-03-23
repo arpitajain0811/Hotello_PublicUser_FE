@@ -6,7 +6,7 @@ class NoHotelsFound extends React.Component {
     return (
       <div className="no-hotels-found">
         <img className="no-hotels-img" src="/door-hang-sign.svg" alt="no-hotels-found" />
-      Sorry! No Hotels Found In This Price Range
+      Sorry! No Hotels Found
       </div>);
   }
 }
