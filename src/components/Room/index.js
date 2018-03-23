@@ -34,21 +34,36 @@ class Room extends React.Component {
     } else {
       color = '#FFFFFF';
     }
-    return (
-      <div
-        className="roomContainer"
-        style={{
-          backgroundColor: color,
+    if (this.props.clickable === 1) {
+      return (
+        <div
+          className="roomContainer"
+          style={{
+            backgroundColor: color,
+          }}
+          onClick={() => {
+            this.props.changeId(this.state.bookingId);
         }}
-        onClick={() => {
-          this.props.changeId(this.state.bookingId);
-      }}
-      >
-        <div className="crop">
-          <img src={imgSrc} className="icon" />
+        >
+          <div className="crop">
+            <img src={imgSrc} className="icon" />
+          </div>
+          <div className="roomDesc">{this.props.type}</div>
         </div>
-        <div className="roomDesc">{this.props.type}</div>
-      </div>
+      );
+    }
+    return (
+        <div
+          className="roomContainer"
+          style={{
+            backgroundColor: color,
+          }}
+        >
+          <div className="crop">
+            <img src={imgSrc} className="icon" />
+          </div>
+          <div className="roomDesc">{this.props.type}</div>
+        </div>
     );
   }
 }
@@ -62,4 +77,8 @@ const mapDispatchToProps = dispatch => ({
     dispatch(changeRoomId(bookingId));
   },
 });
+
+Room.defaultProps = {
+  clickable: 1,
+};
 export default connect(mapStateToProps, mapDispatchToProps)(Room);

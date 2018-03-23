@@ -72,3 +72,9 @@ export const changeLoginState = firstName => ({
 export const logout = () => ({
   type: 'logout',
 });
+
+export const updateHotelDetails = (hotelDetails, rooms) => ({
+  type: 'UPDATE_HOTEL_DETAILS',
+  payload: {hotelDetails: hotelDetails,
+            rooms: rooms},
+});

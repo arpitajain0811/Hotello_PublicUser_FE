@@ -4,24 +4,26 @@ import { Link } from 'react-router-dom';
 import Popup from 'reactjs-popup';
 import axios from 'axios';
 import PropTypes from 'prop-types';
-import './DetailsPage.css';
+import './InvoicePage.css';
 import SearchBarAndHeader from '../SearchBarAndHeaderDetails';
 import getAllHotels from '../../helpers/getAllHotels';
-import { storeAllHotels, storeFilteredHotels, logout, updateHotelDetails } from '../../redux/actions';
+import { storeAllHotels, storeFilteredHotels, logout } from '../../redux/actions';
 import constants from '../../constants.json';
 import Amenity from '../Amenity';
 import Room from '../Room';
 import loader from '../../images/loader2.svg';
+import greenTick from '../../images/greenTick.png';
 import LoginBody from '../LoginBody';
+import Header from '../Header';
 
 
-class DetailsPage extends React.Component {
+class InvoicePage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       hotelDetails: {},
       rooms: {},
-      loaded: 0,
+      loaded: 1,
       scrollState: 0,
       expandedAmenities: false,
       expandedDescription: false,
@@ -33,44 +35,11 @@ class DetailsPage extends React.Component {
 
 
   componentDidMount() {
-    // console.log('Rooms are:', this.props.rooms);
-    window.addEventListener('scroll', this.handleScroll);
-    console.log('Match type is: ', typeof this.props.match);
-    fetch(`/viewHotelDetails/${this.props.match.params.value}`, {}).then(data => data.json()).then((response) => {
-      console.log(response);
-      this.setState({
-        hotelDetails: response.hotel_details,
-      }, () => {
-        const usedRooms = [];
-        let flag;
-        this.state.hotelDetails.rooms.forEach((room) => {
-          flag = 1;
-          usedRooms.forEach((type) => {
-            if (type === room.description[0]) {
-              flag = 0;
-            }
-          });
-          if (flag === 1) {
-            usedRooms.push(room.description[0]);
-            fetch(`/getRoomDetails/${this.state.hotelDetails.hotel_code}/${room.booking_id}`).then(roomData => roomData.json()).then((roomJson) => {
-              // This line creates a clone of a nested object
-              const tempObj = JSON.parse(JSON.stringify(this.state.rooms));
-              tempObj[room.booking_id] = roomJson.hotel_room_details;
-              this.setState({
-                rooms: tempObj,
-                loaded: 1,
-              }, () => {
-                this.props.updateHotelDetails(this.state.hotelDetails, this.state.rooms);
-              });
-            });
-          }
-        });
-      });
+    this.setState({
+      hotelDetails: this.props.hotelDetails,
+      rooms: this.props.roomsArray,
     });
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('scroll', this.handleScroll);
+    console.log('HotelsDetails: ', this.props.hotelDetails);
   }
 
 
@@ -86,24 +55,6 @@ class DetailsPage extends React.Component {
     this.imgSrc = imgSrc;
   }
 
-  handleScroll = () => {
-    if (window.scrollY > (0.4 * window.innerHeight)) {
-      this.setState({
-        scrollState: 1,
-      });
-    } else {
-      // console.log('else Fired');
-      this.setState({
-        scrollState: 0,
-      });
-    }
-  }
-
-  // updatePrice = (value) => {
-  //   this.setState({
-  //     currentPrice: value,
-  //   });
-  // }
   logoutHandler = () => {
     // console.log('in ListingPage logoutHandler');
     this.props.logout();
@@ -158,25 +109,8 @@ class DetailsPage extends React.Component {
     let flag;
     if (this.state.hotelDetails.rooms) {
       roomsArray = this.state.hotelDetails.rooms.map((room, i) => {
-        flag = 1;
-        usedRooms.forEach((type) => {
-          if (type === room.description[0]) {
-            flag = 0;
-          }
-        });
-        if (flag === 1) {
-          usedRooms.push(room.description[0]);
-          if (i === 0) {
-            return (
-              <Room
-                type={room.description[0]}
-                bookingId={room.booking_id}
-                selected={1}
-                updatePrice={this.updatePrice}
-                hotelId={this.state.hotelDetails.hotel_code}
-              />
-            );
-          }
+        if (this.props.currentId === room.booking_id) {
+          console.log('inside room match');
           return (
             <Room
               type={room.description[0]}
@@ -184,6 +118,7 @@ class DetailsPage extends React.Component {
               selected={0}
               updatePrice={this.updatePrice}
               hotelId={this.state.hotelDetails.hotel_code}
+              clickable={0}
             />
           );
         }
@@ -230,62 +165,6 @@ class DetailsPage extends React.Component {
     }
 
 
-    const stars = [];
-    for (let i = 0; i < Number(this.state.hotelDetails.stars); i += 1) {
-      stars.push((<img
-        src="/star.svg"
-        className="star"
-        alt="star"
-        key={i}
-      />));
-    }
-    for (let i = 0; i < (5 - Number(this.state.hotelDetails.stars)); i += 1) {
-      stars.push((<img
-        src="/star-grey.svg"
-        className="star-grey"
-        alt="star-grey"
-        key={Number(this.state.hotelDetails.stars) + i}
-      />));
-    }
-    let bookButton;
-    if (this.props.isLoggedIn) {
-      bookButton = (<button
-        className="MakePaymentButton"
-        onClick={() => {
-        this.setState({
-          redirect: true,
-        });
-      }}
-      >Book
-      </button>);
-    } else {
-      bookButton = (<Popup
-        className="MyPopup"
-        trigger={<button
-          className="MakePaymentButton"
-          onClick={() => {
-      this.setState({
-        redirect: true,
-      });
-    }}
-        >Book
-        </button>}
-        modal
-      >
-        {close => (
-          <div className="modal">
-            <a className="close" onClick={() => { close(); }}>
-    &times;
-            </a>
-            <div className="SignUpHeader"> Sign In </div>
-            <div className="content">
-              <LoginBody closeFunc={() => { close(); }} />
-            </div>
-          </div>
-)}
-      </Popup>);
-    }
-
     if (this.state.loaded === 0) {
       return (
         <div className="detailsPage" >
@@ -302,18 +181,20 @@ class DetailsPage extends React.Component {
 
     return (
       <div className="detailsPage" >
-        <SearchBarAndHeader
-          updateSearch={this.updateSearch}
-          type={this.state.scrollState}
-          logoutHandler={this.logoutHandler}
-        />
-        <img src={this.imgSrc} alt="" className="hotelImage" />
-        <div className="detailsPageContainer">
-          <Link to="/listingPage" className="removeTextDecoration">
-            <div className="backSection">
-              <div className="backArrow">◀</div><div className="backButton">Back</div>
-            </div>
-          </Link>
+      <Header
+        isLoggedIn={this.props.isLoggedIn}
+        logoutHandler={this.logoutHandler}
+        firstName={this.props.firstName}
+        profileButtonClass="profileButtonBlack"
+        logoGreen
+      />
+        <div className="bookingConfirmation" >
+          <img src={greenTick} alt="" className="greenTick" />
+          <div className="bookingText">Booking Confirmed </div>
+
+        </div>
+        <div className="invoicePageContainer">
+
           <div className="mainBody">
             <div className="hotelDetailsContainer">
               <div className="hotelName">
@@ -371,18 +252,8 @@ class DetailsPage extends React.Component {
               </div>
             </div>
 
-            {this.state.rooms[this.props.currentId] && <div className="bookingDetailsContainer">
+              {this.state.rooms[this.props.currentId] && <div className="bookingDetailsContainer">
               <div className="Booking-Summary" >
-                <div className="HotelNameWithStars">
-                  <div className="Selected-Hotel-Name">
-                    ₹{(this.state.rooms[this.props.currentId].price.total * 65).toFixed(0)}<span className="night">/NIGHT</span>
-                  </div>
-
-                  <div className="SelectedHotelStars">
-                    {stars}
-                  </div>
-                </div>
-                <hr className="PaymentPageLine" />
                 <div className="Search-Selected-Details">
                   <div className="Search-Selected-CheckInOutDates">
                     {this.props.checkInDate.toString().substring(0, 11)}
@@ -419,19 +290,14 @@ class DetailsPage extends React.Component {
                   </div>
                   <hr className="PaymentPageLine" />
                   <div className="TotalAmount">
-                    <div>Total</div>
+                    <div className="boldText">Amount Paid</div>
                     <div>
                       ₹{((this.state.rooms[this.props.currentId].price.total * 65) + 500 + (0.18 * (this.state.rooms[this.props.currentId].price.total * 65))).toFixed(0)}
                     </div>
                   </div>
                 </div>
-                <Link to="/invoice">
-                <div className="MakePaymentButtonDiv" >
-                  {bookButton}
-                </div>
-                </Link>
               </div>
-            </div>}
+                                                         </div>}
           </div>
         </div>
       </div>
@@ -450,9 +316,6 @@ const mapDispatchToProps = dispatch => ({
   logout: () => {
     dispatch(logout());
   },
-  updateHotelDetails: (hotelDetails, rooms) => {
-    dispatch(updateHotelDetails(hotelDetails, rooms));
-  },
 });
 
 const mapStateToProps = state => ({
@@ -464,9 +327,11 @@ const mapStateToProps = state => ({
   rooms: state.searchOptions.rooms,
   currentId: state.manageRooms.currentRoomId,
   isLoggedIn: state.userReducer.isLoggedIn,
+  hotelDetails: state.manageRooms.hotelDetails,
+  roomsArray: state.manageRooms.rooms,
 });
-export default connect(mapStateToProps, mapDispatchToProps)(DetailsPage);
-DetailsPage.propTypes = {
+export default connect(mapStateToProps, mapDispatchToProps)(InvoicePage);
+InvoicePage.propTypes = {
   currentId: PropTypes.string.isRequired,
   logout: PropTypes.func.isRequired,
   isLoggedIn: PropTypes.bool.isRequired,
