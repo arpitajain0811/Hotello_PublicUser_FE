@@ -141,14 +141,14 @@ class DetailsPage extends React.Component {
     if (noOfAdults > 1) {
       adultString = `${noOfAdults} Adults`;
     }
-    let childrenString = `${noOfChildren} Child`;
+    let childrenString = `, ${noOfChildren} Child`;
     if (noOfChildren > 1) {
-      childrenString = `${noOfChildren} Children`;
+      childrenString = `, ${noOfChildren} Children`;
     } else if (noOfChildren === 0) {
       childrenString = '';
     }
 
-    const finalRoomStatus = `${roomString}, ${adultString}, ${childrenString}`;
+    const finalRoomStatus = `${roomString}, ${adultString} ${childrenString}`;
     // console.log('The image source is: ', imgSrc);
     let roomsArray;
     const usedRooms = [];
@@ -362,7 +362,7 @@ class DetailsPage extends React.Component {
               </div>
               <hr className="PaymentPageLine" />
               <div className="subHeading">
-              Room Type
+              Select Room Type
               </div>
               <div className="roomType" >
                 {roomsArray}
@@ -373,7 +373,11 @@ class DetailsPage extends React.Component {
               <div className="Booking-Summary" >
                 <div className="HotelNameWithStars">
                   <div className="Selected-Hotel-Name">
-                    ₹{(this.state.rooms[this.props.currentId].price.total * 65).toFixed(0)}<span className="night">/NIGHT</span>
+                    {/* ₹{(this.state.rooms[this.props.currentId].price.total * 65).toFixed(0)}<span className="night">/NIGHT</span> */}
+                    ₹{((this.state.rooms[this.props.currentId].price.total * 65) + 500 + (0.18 * (this.state.rooms[this.props.currentId].price.total * 65))).toFixed(0)}
+
+                    <span className="night">/NIGHT</span>
+
                   </div>
 
                   <div className="SelectedHotelStars">
@@ -393,7 +397,7 @@ class DetailsPage extends React.Component {
                   </div>
                 </div>
                 <hr className="PaymentPageLine" />
-                <div >
+                <div className="ConstantFooter-DetailsPage">
                   <div className="BasePay">
                     <div>
                       ₹{(this.state.rooms[this.props.currentId].price.total * 65).toFixed(0)} X {this.props.checkOutDate.diff(this.props.checkInDate, 'days')} X 1
