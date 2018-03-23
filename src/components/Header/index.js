@@ -85,7 +85,7 @@ class Header extends React.Component {
     return (
       <div className="MyHeader">
         <div className="logo">
-          <img src={logo} alt="logo" className="logo" />
+          <img src={this.props.logoGreen?'/group-26.svg':logo} alt="logo" className="logo" />
         </div>
         {signOptionsBlock}
 
