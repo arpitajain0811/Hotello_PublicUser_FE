@@ -1,0 +1,75 @@
+.PTD-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* border: 1px solid black; */
+}
+
+.PTD-head { 
+    font-family: 'Open Sans';
+}
+
+.PTD-form-input {
+    /* width: 120px; */
+    height: 25px;
+    width:100%;
+    opacity: 0.43;
+    /* margin-left: 10px; */
+    border-radius: 5px;
+    border: solid 1px #979797;
+}
+
+.PTD-form-empty {
+    /* width: 120px; */
+    height: 25px;
+    margin-left: 10px;
+}
+
+.PTD-form-input2 {
+    /* width: 53px; */
+    height: 25px;
+    opacity: 0.43;
+    /* margin-left: 10px; */
+    border-radius: 5px;
+    border: solid 1px #979797;
+   
+}
+.PTD-inp{
+    width:45%;
+}
+.PTD-inpx2{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.PTD-form-fields {
+    display: flex;
+    flex-direction: row;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+    width:90%;
+    box-sizing: border-box;
+    justify-content: space-between;
+}
+
+.PTD-title {
+    height: 29px;
+    opacity: 0.43;
+    width: 90%;
+    border-radius: 5px;
+    border: solid 1px #979797;
+}
+
+.PTD-title-outer {
+    width: 90%;
+}
+.PTD-Address{
+    width:20%;
+}
+.PTD-form-fields2 {
+    display: flex;
+    flex-direction: row;
+    width:20%;
+    flex-basis: 50%;
+}

@@ -28,6 +28,7 @@ class UserProfileIcon extends React.Component {
       window.localStorage.removeItem('token');
       window.localStorage.removeItem('userName');
       this.props.logoutHandler();
+      // console.log('LOGOUT HANDLER: ', this.props.logoutHandler);
       // this.setState({
       //   isLoggedIn: false,
       // });

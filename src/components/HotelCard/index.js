@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import './HotelCard.css';
 
 class HotelCard extends React.Component {
@@ -22,6 +23,8 @@ class HotelCard extends React.Component {
       />));
     }
     return (
+
+
       <div className="HotelCard-outer">
         <div
           className="hotel-image"
@@ -32,7 +35,9 @@ class HotelCard extends React.Component {
           <div className="hotel-card-details">
             <p className="hotel-card-stars">{stars}</p>
             <p className="hotel-card-min-rate"> ₹ {(Number(this.props.minRate) * 65).toFixed(2)}</p>
-            <button className="HotelCard-btn">Book</button>
+            <Link to={`/detailsPage/${this.props.hotelId}`} className="Details-Link">
+              <button className="HotelCard-btn">Book</button>
+            </Link>
           </div>
         </div>
       </div>

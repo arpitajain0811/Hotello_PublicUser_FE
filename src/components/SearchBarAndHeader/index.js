@@ -38,7 +38,7 @@ class SearchBarAndHeader extends React.Component {
 
   // componentWillReceiveProps(newProps) {
   //   console.log('in SearchBarAndHeader componentWillReceiveProps, newProps', newProps);
-  //   if (newProps.loginState.isLoggedIn === false) {
+  //   if (newProps.isLoggedIn === false) {
   //     this.setState({
   //       displaySignOptions: true,
   //       displayUserIcon: false,
@@ -46,6 +46,7 @@ class SearchBarAndHeader extends React.Component {
   //   }
   // }
   render() {
+    console.log('rerendered HEADER');
     if (this.props.isLoggedIn === true && this.state.displayUserIcon === false) {
       this.setState({
         displaySignOptions: false,
