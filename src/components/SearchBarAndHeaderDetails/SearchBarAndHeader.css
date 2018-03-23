@@ -103,8 +103,8 @@
     text-decoration: none;
     color: grey;
 }
-.logoInListPage{
-    height:10%;
-    width:10%;
+.logoInDetailsPage{
+    height:130px;
+    width:130px;
     margin-right:5%;
 }

@@ -58,9 +58,9 @@ class InfoCard extends React.Component {
             {this.props.name}
             <span className="info-card-stars">{this.props.stars} {stars}</span>
           </div>
-
+          <Link to={`/detailsPage/${this.props.hotelId}`} className="Details-Link">
           <button className="info-card-btn">Book</button>
-
+          </Link>
         </div>
         <div className="info-card-desc">
           {nearbyArr}
