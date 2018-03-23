@@ -66,6 +66,7 @@ class PaymentPage extends React.Component {
               logoutHandler={this.logoutHandler}
               firstName={this.props.firstName}
               profileButtonClass="profileButtonBlack"
+              logoGreen={true}
             />
           </div>
           <div className="PaymentBody">
