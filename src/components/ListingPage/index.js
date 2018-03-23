@@ -9,7 +9,7 @@ import HotelParameterBox from '../HotelParameterBox';
 import MapAndListView from '../MapAndListView';
 import getAllHotels from '../../helpers/getAllHotels';
 import { storeAllHotels, storeFilteredHotels, logout, changeLoginState } from '../../redux/actions';
-import filterByPrice from '../../helpers/filterByPrice';
+import filterByPriceAndStars from '../../helpers/filterByPriceAndStars';
 import FooterBlack from '../FooterBlack';
 
 
@@ -20,9 +20,16 @@ class ListingPage extends React.Component {
       loaded: false,
       center: {},
       selectedHotelDetails: {},
-      priceFilter: {
-        minPrice: 1000,
-        maxPrice: 20000,
+      priceFilter: [
+        1000,
+        20000,
+      ],
+      starsFilter: {
+        1: true,
+        2: true,
+        3: true,
+        4: true,
+        5: true,
       },
     };
   }
@@ -61,22 +68,26 @@ class ListingPage extends React.Component {
       this.props.rooms,
     ).then((response) => {
       this.props.saveAllHotels(response.hotelResultSet);
-      this.updateFilteredHotels([25, 75]);
+      this.updateFilteredHotels([5000, 17000]);
       this.setState({ loaded: true });
     });
   }
 
-  updateFilteredHotels = (priceRange) => {
-    // console.log('received', radius);
-    const newFilteredHotels = filterByPrice(this.props.allHotels, priceRange);
+  updateFilteredHotels = (priceRange, stars) => {
+    const priceFilter = (priceRange || this.state.priceFilter);
+    const starsFilter = Object.assign({}, this.state.starsFilter);
+    if (stars) {
+      starsFilter[stars] = !starsFilter[stars];
+    }
+    console.log('received', priceFilter, starsFilter);
+    const newFilteredHotels = filterByPriceAndStars(this.props.allHotels, priceFilter, starsFilter);
     this.props.saveFilteredHotels(newFilteredHotels);
-    const currentMinPrice = 1000 + ((priceRange[0] / 100) * (20000 - 1000));
-    const currentMaxPrice = (1000 + ((priceRange[1] / 100) * (20000 - 1000)));
     this.setState({
-      priceFilter:
-      { minPrice: currentMinPrice.toFixed(0), maxPrice: currentMaxPrice.toFixed(0) },
+      priceFilter,
+      starsFilter,
     });
   }
+
 
   displayCard=(hotelId, hotelName, stars, origin) => {
     const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
@@ -121,7 +132,7 @@ class ListingPage extends React.Component {
       this.props.rooms,
     ).then((response) => {
       this.props.saveAllHotels(response.hotelResultSet);
-      this.updateFilteredHotels([25, 75]);
+      this.updateFilteredHotels([5000, 17000]);
       axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${this.props.city}&key=${constants.API_KEY}`).then((value) => {
         console.log(value.data.results[0].geometry.location);
         this.setState({
@@ -144,6 +155,7 @@ class ListingPage extends React.Component {
         />
         <HotelParameterBox
           priceFilter={this.state.priceFilter}
+          starsFilter={this.state.starsFilter}
           updateFilteredHotels={this.updateFilteredHotels}
         />
         <MapAndListView

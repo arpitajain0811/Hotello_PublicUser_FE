@@ -120,7 +120,7 @@ const MyMapComponent = compose(
             <HotelCard
               hotelId={hotel.hotel_id}
               hotelName={hotel.hotel_name}
-              image=""
+              image={index}
               minRate={hotel.min_rate.amount}
               stars={hotel.stars}
             />

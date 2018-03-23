@@ -24,7 +24,7 @@ class HotelBox extends React.Component {
     return (
       <div
         className="hotel-box"
-        style={(this.props.image === '') ? { backgroundImage: `url("/placeholder-hotel-image${((this.props.hotelId % 6) + 1).toString()}.jpeg")` } : { backgroundImage: `url(${this.props.image})` }}
+        style={{ backgroundImage: `url("/placeholder-hotel-image${((this.props.image% 6) + 1).toString()}.jpeg")`}}
         onClick={this.props.onClickHandler}
       >
         <div className="hotel-box-content">
