@@ -98,10 +98,14 @@ class UserBookingDetails extends React.Component {
           logoutHandler={this.logoutHandler}
           firstName={this.props.firstName}
           profileButtonClass="profileButtonBlack"
+          logoGreen
         />
         </div>
         <div className="UBD-pax-details">
           <PrimaryTravellerDetails />
+        </div>
+        <div className="UBD-btn-div">
+          <button className="UBD-btn">Continue</button>
         </div>
         <div className="UBD-Footer">
         <FooterBlack />

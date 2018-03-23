@@ -17,10 +17,11 @@ class PrimaryTravellerDetails extends React.Component {
         </div>
         <div className="PTD-form">
         <div className="PTD-form-fields">
-            <div className="PTD-inp"><select className="PTD-form-input">
+            <div className="PTD-inp PTD-title-div">
+              <select className="PTD-form-input PTD-title">
             <option value="Mr">Mr.</option>
             <option value="Mrs">Mrs.</option>
-                                     </select>
+              </select>
             </div>
             <div className="PTD-inp"><input className="PTD-form-empty" type="text" /></div>
         </div>

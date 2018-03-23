@@ -97,6 +97,25 @@
     border: solid 1px #979797;
 }
 
+.UBD-btn-div {
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+    width: 30%;
+}
+
+.UBD-btn {
+    width:100%;
+    padding:2%;
+    border-radius: 4px;
+  background-color: #48bc48;
+  font-family: "Open Sans";
+  font-size: 18px;
+  font-weight: 500;
+  color:white;
+  outline: none;
+}
+
 @media only screen and (max-width: 768px) {
     .UBD-Footer{
         display: none;
