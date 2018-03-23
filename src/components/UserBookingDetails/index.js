@@ -77,9 +77,6 @@ class UserBookingDetails extends React.Component {
         />
         <div className="UBD-pax-details">
           <PrimaryTravellerDetails />
-          <div className="PAXRows">
-            {paxRows}
-          </div>
         </div>
       </div>
     );
