@@ -10,7 +10,7 @@ class InfoCard extends React.Component {
     super(props);
     this.state = {
       hidden: '',
-      diff: false,
+      diff: true,
     };
   }
   componentWillReceiveProps(nextProps) {

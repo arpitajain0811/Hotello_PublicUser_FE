@@ -1,8 +1,9 @@
 @keyframes fadein {
-    0% { opacity: 0 ;width: 0px;height:0;color:#48bc48}
-
-    100% { opacity: 1;width:550px ; color:white}
+    0% { opacity: 0; height:0;}
+    99%{opacity:0.01}
+    100% { opacity: 1;height:409px}
   }
+
 
   @keyframes fadeout {
     0% { opacity: 1; }
@@ -26,7 +27,7 @@
 
 
 .fadein{
-    animation: fadein 1s ease-out forwards
+    animation: fadein 0.35s ease-out forwards
 }
 
 .info-card-head{
@@ -38,7 +39,7 @@
     padding:0px 20px 30px 20px;
     flex-direction:row;
     justify-content: space-between;
-    align-items: center
+    align-items: center;
 }
 
 .info-card-name{
@@ -52,12 +53,12 @@
     display:flex;
     flex-direction:column;
     padding:20px;
-    font-size:0.75em
+    font-size:0.75em;
 }
 
 .hide{
     display:none;
-    animation: fadeout 1s ease-out forwards
+    animation: fadeout 0.5s ease-out forwards
 }
 
 
@@ -103,10 +104,7 @@
     height:20px;
     background-color:#48bc48;
     color:white;
-    padding:5px 10px
-
-}
-
-.info-card-hide-btn:hover{
+    padding:5px 10px;
     cursor: pointer;
+
 }
