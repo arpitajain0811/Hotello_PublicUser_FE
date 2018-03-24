@@ -103,41 +103,56 @@ class ListingPage extends React.Component {
     const reqUrlAir = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lng}&radius=5000&type=airport&key=AIzaSyCnIdPzEpfEV0b_6AGKeL6mF0AVw_yOgi4`;
     console.log('display');
 
-    const nearbyPromiseBus = fetch(proxyUrl + reqUrlBus).then(response => response.json()).then(respJSON => respJSON.results);
-    const nearbyPromiseTrain = fetch(proxyUrl + reqUrlTrain).then(response => response.json()).then(respJSON => respJSON.results);
-    const nearbyPromiseAir = fetch(proxyUrl + reqUrlAir).then(response => response.json()).then(respJSON => respJSON.results);
+    const nearbyPromiseBus = fetch(proxyUrl + reqUrlBus)
+      .then(response => response.json()).then(respJSON => respJSON.results);
+
+    const nearbyPromiseTrain = fetch(proxyUrl + reqUrlTrain)
+      .then(response => response.json()).then(respJSON => respJSON.results);
+
+    const nearbyPromiseAir = fetch(proxyUrl + reqUrlAir)
+      .then(response => response.json()).then(respJSON => respJSON.results);
+
     const detailsPromise = fetch(`/viewHotelDetails/${hotelId}`).then(details => details.json()).then(detailsJSON => detailsJSON.hotel_details);
-    Promise.all([nearbyPromiseBus, nearbyPromiseTrain, nearbyPromiseAir, detailsPromise]).then((promiseResults) => {
-      const nearbyResultsBus = promiseResults[0];
-      const nearbyResultsTrain = promiseResults[1];
-      const nearbyResultsAir = promiseResults[2];
+    Promise.all([nearbyPromiseBus, nearbyPromiseTrain, nearbyPromiseAir, detailsPromise])
+      .then((promiseResults) => {
+        const nearbyResultsBus = promiseResults[0];
+        const nearbyResultsTrain = promiseResults[1];
+        const nearbyResultsAir = promiseResults[2];
 
-      const detailsResults = promiseResults[3];
-      const nearby = [];
-      const { location } = detailsResults;
-      for (let i = 0; i < nearbyResultsBus.length; i += 1) {
-        const distance = calcDistance(lat, nearbyResultsBus[i].geometry.location.lat, lng, nearbyResultsBus[i].geometry.location.lng);
-        nearby.push({ icon: '/icon.svg', name: nearbyResultsBus[i].name, distance });
-        if (i === 2) { break; }
-      }
-      for (let i = 0; i < nearbyResultsTrain.length; i += 1) {
-        const distance = calcDistance(lat, nearbyResultsTrain[i].geometry.location.lat, lng, nearbyResultsTrain[i].geometry.location.lng);
-        nearby.push({ icon: '/underground.svg', name: nearbyResultsTrain[i].name, distance });
-        if (i === 1) { break; }
-      }
-      for (let i = 0; i < nearbyResultsAir.length; i += 1) {
-        const distance = calcDistance(lat, nearbyResultsAir[i].geometry.location.lat, lng, nearbyResultsAir[i].geometry.location.lng);
-        nearby.push({ icon: '/plane.svg', name: nearbyResultsAir[i].name, distance });
-        break;
-      }
+        const detailsResults = promiseResults[3];
+        const nearby = [];
+        const { location } = detailsResults;
+        for (let i = 0; i < nearbyResultsBus.length; i += 1) {
+          const distance = calcDistance(
+            lat, nearbyResultsBus[i].geometry.location.lat,
+            lng, nearbyResultsBus[i].geometry.location.lng,
+          );
 
-
-      this.setState({
-        selectedHotelDetails: {
-          id: hotelId, name: hotelName, origin, stars, nearby, location, lat, lng,
-        },
+          nearby.push({ icon: '/icon.svg', name: nearbyResultsBus[i].name, distance });
+          if (i === 2) { break; }
+        }
+        for (let i = 0; i < nearbyResultsTrain.length; i += 1) {
+          const distance = calcDistance(
+            lat, nearbyResultsTrain[i].geometry.location.lat,
+            lng, nearbyResultsTrain[i].geometry.location.lng,
+          );
+          nearby.push({ icon: '/underground.svg', name: nearbyResultsTrain[i].name, distance });
+          if (i === 1) { break; }
+        }
+        for (let i = 0; i < nearbyResultsAir.length; i += 1) {
+          const distance = calcDistance(
+            lat, nearbyResultsAir[i].geometry.location.lat,
+            lng, nearbyResultsAir[i].geometry.location.lng,
+          );
+          nearby.push({ icon: '/plane.svg', name: nearbyResultsAir[i].name, distance });
+          break;
+        }
+        this.setState({
+          selectedHotelDetails: {
+            id: hotelId, name: hotelName, origin, stars, nearby, location, lat, lng,
+          },
+        });
       });
-    });
   }
 
   logoutHandler = () => {
@@ -146,7 +161,6 @@ class ListingPage extends React.Component {
   }
 
   updateCenter=(c) => {
-    console.log('updatingcenter');
     this.setState({ center: c });
   }
   updateSearch=() => {
@@ -245,7 +259,6 @@ ListingPage.propTypes = {
   saveFilteredHotels: PropTypes.func.isRequired,
   allHotels: PropTypes.arrayOf(Object).isRequired,
   saveAllHotels: PropTypes.func.isRequired,
-  latLng: PropTypes.object.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ListingPage);

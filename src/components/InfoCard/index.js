@@ -49,7 +49,7 @@ class InfoCard extends React.Component {
     const nearbyArr = [];
     this.props.nearby.forEach((element) => {
       const nearbyElement = (
-    <div className="nearby-element" >
+    <div className="nearby-element" key={element.name}>
       <img src={element.icon} alt="icon" className="nearby-element-icon" />
       <div className="nearby-element-text">
         <span>{element.name}</span>
@@ -97,5 +97,7 @@ InfoCard.propTypes = {
   name: PropTypes.string.isRequired,
   stars: PropTypes.string.isRequired,
   nearby: PropTypes.arrayOf(Object).isRequired,
+  hotelId: PropTypes.string.isRequired,
+  location: PropTypes.object.isRequired,
 };
 export default InfoCard;

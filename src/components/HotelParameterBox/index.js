@@ -19,7 +19,6 @@ class HotelParameterBox extends React.Component {
   }
 
   render() {
-    console.log('selstars', this.props.starsFilter);
     return (
       <div className="hotelParameterBox" >
         <div className="DatesDiv">

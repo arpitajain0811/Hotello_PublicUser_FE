@@ -71,7 +71,8 @@ MapAndListView.propTypes = {
   filteredHotels: PropTypes.arrayOf(Object),
   loaded: PropTypes.bool,
   center: PropTypes.object.isRequired,
-  selectedHotelDetails: PropTypes.func.isRequired,
+  selectedHotelDetails: PropTypes.object.isRequired,
   displayCard: PropTypes.func.isRequired,
   updateCenter: PropTypes.func.isRequired,
+  noCity: PropTypes.bool.isRequired,
 };

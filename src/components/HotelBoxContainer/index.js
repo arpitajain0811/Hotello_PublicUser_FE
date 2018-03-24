@@ -28,6 +28,7 @@ class HotelBoxContainer extends React.Component {
     });
     if (searchIndex > -1) {
       const infoCard = (<InfoCard
+        key="infoCard"
         name={this.props.selectedHotelDetails.name}
         nearby={this.props.selectedHotelDetails.nearby}
         stars={this.props.selectedHotelDetails.stars}
@@ -57,5 +58,6 @@ HotelBoxContainer.propTypes = {
   filteredHotels: PropTypes.arrayOf(Object),
   selectedHotelDetails: PropTypes.object.isRequired,
   displayCard: PropTypes.func.isRequired,
+  updateCenter: PropTypes.func.isRequired,
 };
 export default HotelBoxContainer;
