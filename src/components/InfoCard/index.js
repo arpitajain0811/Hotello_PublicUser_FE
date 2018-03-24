@@ -41,7 +41,14 @@ class InfoCard extends React.Component {
     }
     const nearbyArr = [];
     this.props.nearby.forEach((element) => {
-      const nearbyElement = <div className="nearby-element" ><img src={element.icon} alt="icon" className="nearby-element-icon" /> {element.name} </div>;
+      const nearbyElement = (
+    <div className="nearby-element" >
+      <img src={element.icon} alt="icon" className="nearby-element-icon" />
+      <div className="nearby-element-text">
+        <span>{element.name}</span>
+        <span>{`${element.distance} km.`}</span>
+      </div>
+    </div>);
       nearbyArr.push(nearbyElement);
     });
 
@@ -63,7 +70,14 @@ class InfoCard extends React.Component {
           </Link>
         </div>
         <div className="info-card-desc">
-          {nearbyArr}
+          <div className="info-card-dec-section">
+            <span className="info-card-desc-title">Address:</span>
+            {this.props.location.address + this.props.location.city}
+          </div>
+          <div className="info-card-desc-section">
+            <span className="info-card-desc-title">Nearby transit points:</span>
+            {nearbyArr}
+          </div>
         </div>
       </AnimateOnChange>);
   }

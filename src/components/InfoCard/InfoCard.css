@@ -108,3 +108,22 @@
     cursor: pointer;
 
 }
+
+.info-card-desc-title{
+    font-size: 1.2em;
+    font-weight: bold;
+    margin: 3px 0px;
+    display:flex;
+}
+
+.info-card-desc-section{
+    margin:10px 0px
+}
+
+.nearby-element-text{
+    display:flex;
+    flex-direction: row;
+    flex-grow:1;
+    justify-content: space-between;
+    align-items: center
+}

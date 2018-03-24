@@ -11,7 +11,7 @@ import getAllHotels from '../../helpers/getAllHotels';
 import { storeAllHotels, storeFilteredHotels, logout, changeLoginState } from '../../redux/actions';
 import filterByPriceAndStars from '../../helpers/filterByPriceAndStars';
 import FooterBlack from '../FooterBlack';
-
+import calcDistance from '../../helpers/filterHotels';
 
 class ListingPage extends React.Component {
   constructor(props) {
@@ -97,23 +97,36 @@ class ListingPage extends React.Component {
 
   displayCard=(hotelId, hotelName, lat, lng, stars, origin) => {
     const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
-    const reqUrl = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lng}&radius=1000&type=transit_station&key=AIzaSyCnIdPzEpfEV0b_6AGKeL6mF0AVw_yOgi4`;
+    const reqUrl = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lng}&radius=5000&type=transit_station&key=AIzaSyCnIdPzEpfEV0b_6AGKeL6mF0AVw_yOgi4`;
     console.log('display');
     fetch(proxyUrl + reqUrl)
       .then(response => response.json())
       .then(respJSON => respJSON.results)
       .then((results) => {
-        const nearby = [];
-        for (let i = 0; i < 5; i += 1) {
-          // if (results[i].types[0] === 'bus_station') {
-          nearby.push({ icon: results[i].icon, name: results[i].name });
-          // }
-        }
-        this.setState({
-          selectedHotelDetails: {
-            id: hotelId, name: hotelName, origin, stars, nearby,
-          },
-        });
+        fetch(`/viewHotelDetails/${hotelId}`).then(details => details.json())
+          .then((detailsJSON) => {
+            const { location } = detailsJSON.hotel_details;
+            const nearby = [];
+            for (let i = 0; i < results.length; i += 3) {
+              const distance = calcDistance(lat, results[i].geometry.location.lat, lng, results[i].geometry.location.lng);
+              // if (results[i].types.includes('bus_station') || results[i].types.includes('railway_station') || results[i].types.includes('airport')) {
+              if (results[i].types.includes('bus_station')) {
+                nearby.push({ icon: '/icon.svg', name: results[i].name, distance });
+              }
+              if (results[i].types.includes('train_station')) {
+                nearby.push({ icon: '/underground.svg', name: results[i].name, distance });
+              }
+              if (results[i].types.includes('airport')) {
+                nearby.push({ icon: '/plane.svg', name: results[i].name, distance });
+              }
+              // }
+            }
+            this.setState({
+              selectedHotelDetails: {
+                id: hotelId, name: hotelName, origin, stars, nearby, location,
+              },
+            });
+          });
       });
   }
 

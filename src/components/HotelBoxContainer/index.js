@@ -29,6 +29,7 @@ class HotelBoxContainer extends React.Component {
         nearby={this.props.selectedHotelDetails.nearby}
         stars={this.props.selectedHotelDetails.stars}
         hotelId={this.props.selectedHotelDetails.id}
+        location={this.props.selectedHotelDetails.location}
       />);
       if (this.props.selectedHotelDetails.origin === 'map') {
         filteredHotelsBox.splice(0, 0, infoCard);
