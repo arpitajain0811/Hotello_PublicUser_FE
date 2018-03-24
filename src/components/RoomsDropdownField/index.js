@@ -9,15 +9,15 @@ class RoomsDropdownField extends React.Component {
       <div className="RoomsDropdownField">
         <div className="RoomLabel"> Room {this.props.id}</div>
         <div className="AdultsInputBox">
-          <select onChange={value => this.props.changeAdults(value.target.value, this.props.id)} defaultValue={1} className="AdultsSelector">
-            <option value={1} >1 Adult</option>
+          <select onChange={value => this.props.changeAdults(value.target.value, this.props.id)} className="AdultsSelector">
+            <option value={1} selected>1 Adult</option>
             <option value={2}>2 Adults</option>
             <option value={3}>3 Adults</option>
           </select>
         </div>
         <div className="ChildrenInputBox">
-          <select onChange={value => this.props.changeChildren(value.target.value, this.props.id)} defaultValue={0} className="ChildrenSelector">
-            <option value={0} >Children</option>
+          <select onChange={value => this.props.changeChildren(value.target.value, this.props.id)} className="ChildrenSelector">
+            <option value={0} selected>Children</option>
             <option value={1}>1 Child</option>
             <option value={2}>2 Children</option>
           </select>

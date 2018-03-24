@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import './PaymentPage.css';
 import Header from '../Header';
-import { logout, changeLoginState } from '../../redux/actions';
+import { logout, changeLoginState, setRoomTypeUneditable } from '../../redux/actions';
 import BookingSummary from '../BookingSummary';
 import FooterBlack from '../FooterBlack';
 import PaymentForm from '../PaymentForm';
@@ -24,6 +24,7 @@ class PaymentPage extends React.Component {
       // console.log('hi');
       this.props.changeLoginState(window.localStorage.getItem('userName'));
     }
+    this.props.setRoomTypeUneditable();
   }
   // componentWillMount() {
   //   console.log('in LandingPage componentWillMount, window.localStorage.getItem(userName)',
@@ -79,7 +80,6 @@ class PaymentPage extends React.Component {
         </div>
       );
     }
-
     return null;
   }
 }
@@ -90,6 +90,9 @@ const mapDispatchToProps = dispatch => ({
   },
   changeLoginState: (firstName) => {
     dispatch(changeLoginState(firstName));
+  },
+  setRoomTypeUneditable: () => {
+    dispatch(setRoomTypeUneditable());
   },
 });
 
@@ -105,4 +108,5 @@ PaymentPage.propTypes = {
   logout: PropTypes.func.isRequired,
   isLoggedIn: PropTypes.func.isRequired,
   changeLoginState: PropTypes.func.isRequired,
+  setRoomTypeUneditable: PropTypes.func.isRequired,
 };

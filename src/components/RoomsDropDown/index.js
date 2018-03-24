@@ -27,7 +27,7 @@ render() {
   const dropDownFieldsHolder = [];
   for (let i = 0; i < this.props.rooms.length; i += 1) {
     dropDownFieldsHolder.push((<RoomsDropdownField
-      key={Date.now()}
+      // key={Date.now()}
       id={i + 1}
       adults={this.props.rooms[i].adults}
       childrenProp={this.props.rooms[i].children}

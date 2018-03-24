@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import './DetailsPage.css';
 import SearchBarAndHeader from '../SearchBarAndHeaderDetails';
 import getAllHotels from '../../helpers/getAllHotels';
-import { storeAllHotels, storeFilteredHotels, logout } from '../../redux/actions';
+import { storeAllHotels, storeFilteredHotels, logout, setRoomTypeArray, setRoomTypeEditable } from '../../redux/actions';
 import constants from '../../constants.json';
 import Amenity from '../Amenity';
 import Room from '../Room';
@@ -33,6 +33,7 @@ class DetailsPage extends React.Component {
 
 
   componentDidMount() {
+    this.props.setRoomTypeEditable();
     // console.log('Rooms are:', this.props.rooms);
     window.addEventListener('scroll', this.handleScroll);
     console.log('Match type is: ', typeof this.props.match);
@@ -189,7 +190,7 @@ class DetailsPage extends React.Component {
       // console.log('The buttons are: ', buttons);
     }
     // roomsArray = Array.prototype.slice.call(roomsArray)
-
+    this.props.setRoomTypeArray(roomsArray);
 
     let allAmenities;
 
@@ -288,10 +289,10 @@ class DetailsPage extends React.Component {
       return (
         <div className="detailsPage" >
           <SearchBarAndHeader updateSearch={this.updateSearch} logoutHandler={this.logoutHandler} />
-          <img src={this.imgSrc} className="hotelImage" />
+          <img src={this.imgSrc} className="hotelImage" alt="" />
           <div className="detailsPageContainer">
             <div className="mainBody">
-              <img src={loader} />
+              <img src={loader} alt="" />
             </div>
           </div>
         </div>
@@ -427,9 +428,11 @@ class DetailsPage extends React.Component {
                     </div>
                   </div>
                 </div>
+                {/* <Link to="/payment"> */}
                 <div className="MakePaymentButtonDiv" >
                   {bookButton}
                 </div>
+                {/* </Link> */}
               </div>
                                                        </div>}
           </div>
@@ -450,6 +453,12 @@ const mapDispatchToProps = dispatch => ({
   logout: () => {
     dispatch(logout());
   },
+  setRoomTypeArray: (roomsArray) => {
+    dispatch(setRoomTypeArray(roomsArray));
+  },
+  setRoomTypeEditable: () => {
+    dispatch(setRoomTypeEditable());
+  },
 });
 
 const mapStateToProps = state => ({
@@ -467,5 +476,7 @@ DetailsPage.propTypes = {
   currentId: PropTypes.string.isRequired,
   logout: PropTypes.func.isRequired,
   isLoggedIn: PropTypes.bool.isRequired,
-  changeLoginState: PropTypes.func.isRequired,
+  setRoomTypeArray: PropTypes.func.isRequired,
+  saveAllHotels: PropTypes.func.isRequired,
+  setRoomTypeEditable: PropTypes.func.isRequired,
 };

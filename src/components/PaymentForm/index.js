@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import Payment from 'payment';
 import './PaymentForm.css';
 
@@ -62,17 +64,8 @@ class CreditCard extends React.Component {
       <div className="PaymentForm">
         <div className="RoomDetailsSection">
     Room type
-          <div className="RoomTypesContainer">
-            <div className="RoomType">
-              <div>   <img src="/male.svg" className="maleIcon" alt="" /></div>
-              <div>  Single Bed - standard</div>
-            </div>
-            <div className="RoomType Roomtype2">
-    Double Bed - standard
-            </div>
-            <div className="RoomType">
-    Double Bed - Deluxe
-            </div>
+          <div className="RoomType">
+          {this.props.roomsArray}
           </div>
         </div>
         <div className="CredidCardDetailsForm">
@@ -94,6 +87,12 @@ class CreditCard extends React.Component {
     );
   }
 }
+const mapStateToProps = state => ({
+  roomsArray: state.manageRooms.roomsArrayOfSelectedHotel,
 
+});
 CreditCard.propTypes = {};
-export default CreditCard;
+export default connect(mapStateToProps, null)(CreditCard);
+CreditCard.propTypes = {
+  roomsArray: PropTypes.array.isRequired,
+};
