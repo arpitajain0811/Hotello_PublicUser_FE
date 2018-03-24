@@ -1,5 +1,4 @@
 import React from 'react';
-import fetch from 'node-fetch';
 import './EditUserDetails.css';
 import loaderGif from '../../ajax-loader.gif';
 
@@ -36,7 +35,7 @@ class EditUserDetails extends React.Component {
     console.log('in editDetailHandler');
     const { name, value } = event.target;
     const errorMsgs = {};
-    errorMsgs.emailErrorMsg = "";
+    errorMsgs.emailErrorMsg = '';
     const truthValues = {};
     const otherMsgs = { submitErrorMsg: '', updateSuccessMsg: '' };
     if (name === 'firstName') {
@@ -48,16 +47,15 @@ class EditUserDetails extends React.Component {
       errorMsgs.lastNameErrorMsg = isLastNameValid ? '' : 'last name is invalid';
       truthValues.isLastNameValid = isLastNameValid;
     } else if (name === 'email') {
-      errorMsgs.emailErrorMsg = 'email cannot be changed.'
-    }
-     else {
+      errorMsgs.emailErrorMsg = 'email cannot be changed.';
+    } else {
       const isPhoneNumberValid = Array.isArray(value.match(/^\d{10}$/));
       errorMsgs.phoneNumberErrorMsg = isPhoneNumberValid ? '' : 'phone number is invalid';
       truthValues.isPhoneNumberValid = isPhoneNumberValid;
     }
     this.setState((prevState) => {
       const newState = Object.assign({}, prevState, truthValues, otherMsgs);
-      newState[name] = name !== 'email' ? value : newState[name] ;
+      newState[name] = name !== 'email' ? value : newState[name];
       newState.validationErrorMsgs = { ...newState.validationErrorMsgs, ...errorMsgs };
       return newState;
     });
