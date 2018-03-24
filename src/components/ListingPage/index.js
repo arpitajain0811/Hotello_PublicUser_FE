@@ -96,6 +96,7 @@ class ListingPage extends React.Component {
 
 
   displayCard=(hotelId, hotelName, lat, lng, stars, origin) => {
+    // this.updateCenter({ lat: Number(lat), lng: Number(lng) });
     const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
     const reqUrl = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lng}&radius=5000&type=transit_station&key=AIzaSyCnIdPzEpfEV0b_6AGKeL6mF0AVw_yOgi4`;
     console.log('display');
@@ -123,7 +124,7 @@ class ListingPage extends React.Component {
             }
             this.setState({
               selectedHotelDetails: {
-                id: hotelId, name: hotelName, origin, stars, nearby, location,
+                id: hotelId, name: hotelName, origin, stars, nearby, location, lat, lng,
               },
             });
           });
@@ -136,6 +137,7 @@ class ListingPage extends React.Component {
   }
 
   updateCenter=(c) => {
+    console.log('updatingcenter');
     this.setState({ center: c });
   }
   updateSearch=() => {

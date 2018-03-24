@@ -12,6 +12,10 @@ class InfoCard extends React.Component {
       hidden: '',
       diff: true,
     };
+    this.scroll = this.scroll.bind(this);
+  }
+  componentDidMount() {
+    this.scroll();
   }
   componentWillReceiveProps(nextProps) {
     if (nextProps.name !== this.props.name) {
@@ -21,6 +25,9 @@ class InfoCard extends React.Component {
     }
   }
 
+  scroll=() => {
+    this.top.scrollIntoView();
+  }
   render() {
     const stars = [];
     for (let i = 0; i < Number(this.props.stars); i += 1) {
@@ -59,7 +66,7 @@ class InfoCard extends React.Component {
         animationClassName="fadein"
         animate={this.state.diff}
       >
-        <div className="info-card-hide-btn-row" >
+        <div className="info-card-hide-btn-row" ref={(infoCardTop) => { this.top = infoCardTop; }}>
         <span className="info-card-hide-btn" onClick={() => { this.setState({ hidden: ' hide' }); }}>x</span>
         </div>
         <div className="info-card-head">

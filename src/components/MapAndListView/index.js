@@ -30,6 +30,7 @@ class MapAndListView extends React.Component {
             filteredHotels={this.props.filteredHotels}
             selectedHotelDetails={this.props.selectedHotelDetails}
             displayCard={this.props.displayCard}
+            updateCenter={this.props.updateCenter}
           />
           <div className="map-container">
             <ReactGoogleMaps

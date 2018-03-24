@@ -20,7 +20,10 @@ class HotelBoxContainer extends React.Component {
         stars={hotel.stars}
         minRate={parseFloat(hotel.min_rate.amount.toFixed(2))}
         image={index}
-        onClickHandler={() => { this.props.displayCard(hotel.hotel_id, hotel.hotel_name, hotel.latitude, hotel.longitude, hotel.stars, 'box'); }}
+        onClickHandler={() => {
+          this.props.updateCenter({ lat: Number(hotel.latitude), lng: Number(hotel.longitude) });
+           this.props.displayCard(hotel.hotel_id, hotel.hotel_name, hotel.latitude, hotel.longitude, hotel.stars, 'box');
+}}
       />);
     });
     if (searchIndex > -1) {
