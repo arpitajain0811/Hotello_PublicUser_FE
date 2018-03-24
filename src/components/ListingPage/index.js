@@ -98,30 +98,40 @@ class ListingPage extends React.Component {
   displayCard=(hotelId, hotelName, lat, lng, stars, origin) => {
     // this.updateCenter({ lat: Number(lat), lng: Number(lng) });
     const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
-    const reqUrl = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lng}&radius=5000&type=transit_station&key=AIzaSyCnIdPzEpfEV0b_6AGKeL6mF0AVw_yOgi4`;
+    const reqUrlBus = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lng}&radius=5000&type=bus_station&key=AIzaSyCnIdPzEpfEV0b_6AGKeL6mF0AVw_yOgi4`;
+    const reqUrlTrain = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lng}&radius=5000&type=train_station&key=AIzaSyCnIdPzEpfEV0b_6AGKeL6mF0AVw_yOgi4`;
+    const reqUrlAir = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lng}&radius=5000&type=airport&key=AIzaSyCnIdPzEpfEV0b_6AGKeL6mF0AVw_yOgi4`;
     console.log('display');
 
-    const nearbyPromise = fetch(proxyUrl + reqUrl).then(response => response.json()).then(respJSON => respJSON.results);
+    const nearbyPromiseBus = fetch(proxyUrl + reqUrlBus).then(response => response.json()).then(respJSON => respJSON.results);
+    const nearbyPromiseTrain = fetch(proxyUrl + reqUrlTrain).then(response => response.json()).then(respJSON => respJSON.results);
+    const nearbyPromiseAir = fetch(proxyUrl + reqUrlAir).then(response => response.json()).then(respJSON => respJSON.results);
     const detailsPromise = fetch(`/viewHotelDetails/${hotelId}`).then(details => details.json()).then(detailsJSON => detailsJSON.hotel_details);
-    Promise.all([nearbyPromise, detailsPromise]).then((promiseResults) => {
-      const nearbyResults = promiseResults[0];
-      const detailsResults = promiseResults[1];
+    Promise.all([nearbyPromiseBus, nearbyPromiseTrain, nearbyPromiseAir, detailsPromise]).then((promiseResults) => {
+      const nearbyResultsBus = promiseResults[0];
+      const nearbyResultsTrain = promiseResults[1];
+      const nearbyResultsAir = promiseResults[2];
+
+      const detailsResults = promiseResults[3];
       const nearby = [];
       const { location } = detailsResults;
-      for (let i = 0; i < nearbyResults.length; i += 3) {
-        const distance = calcDistance(lat, nearbyResults[i].geometry.location.lat, lng, nearbyResults[i].geometry.location.lng);
-        // if (nearbyResults[i].types.includes('bus_station') || nearbyResults[i].types.includes('railway_station') || nearbyResults[i].types.includes('airport')) {
-        if (nearbyResults[i].types.includes('bus_station')) {
-          nearby.push({ icon: '/icon.svg', name: nearbyResults[i].name, distance });
-        }
-        if (nearbyResults[i].types.includes('train_station')) {
-          nearby.push({ icon: '/underground.svg', name: nearbyResults[i].name, distance });
-        }
-        if (nearbyResults[i].types.includes('airport')) {
-          nearby.push({ icon: '/plane.svg', name: nearbyResults[i].name, distance });
-        }
-        // }
+      for (let i = 0; i < nearbyResultsBus.length; i += 1) {
+        const distance = calcDistance(lat, nearbyResultsBus[i].geometry.location.lat, lng, nearbyResultsBus[i].geometry.location.lng);
+        nearby.push({ icon: '/icon.svg', name: nearbyResultsBus[i].name, distance });
+        if (i === 2) { break; }
       }
+      for (let i = 0; i < nearbyResultsTrain.length; i += 1) {
+        const distance = calcDistance(lat, nearbyResultsTrain[i].geometry.location.lat, lng, nearbyResultsTrain[i].geometry.location.lng);
+        nearby.push({ icon: '/underground.svg', name: nearbyResultsTrain[i].name, distance });
+        if (i === 1) { break; }
+      }
+      for (let i = 0; i < nearbyResultsAir.length; i += 1) {
+        const distance = calcDistance(lat, nearbyResultsAir[i].geometry.location.lat, lng, nearbyResultsAir[i].geometry.location.lng);
+        nearby.push({ icon: '/plane.svg', name: nearbyResultsAir[i].name, distance });
+        break;
+      }
+
+
       this.setState({
         selectedHotelDetails: {
           id: hotelId, name: hotelName, origin, stars, nearby, location, lat, lng,
