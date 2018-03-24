@@ -97,12 +97,126 @@
     border: solid 1px #979797;
 }
 
+.UBD-btn-div {
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+    width: 30%;
+}
+
+.UBD-btn {
+    width:100%;
+    padding:2%;
+    border-radius: 4px;
+  background-color: #48bc48;
+  font-family: "Open Sans";
+  font-size: 18px;
+  font-weight: 500;
+  color:white;
+  outline: none;
+}
+
+.PTD-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* border: 1px solid black; */
+}
+
+.PTD-outer {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.PTD-head { 
+    font-family: 'Open Sans';
+}
+
+.PTD-form-input {
+    /* width: 120px; */
+    /* height: 40px; */
+    padding: 3%;
+    width:100%;
+    /* opacity: 0.43; */
+    /* margin-left: 10px; */
+    border-radius: 5px;
+    border: solid 1px #979797;
+}
+
+.PTD-form-empty {
+    /* width: 120px; */
+    height: 100%;
+    margin-left: 10px;
+}
+
+.PTD-title {
+    height: 30px;
+}
+
+.PTD-form-input2 {
+    /* width: 53px; */
+    /* height: 40px; */
+    padding: 7%;
+    width: 100%;
+    /* opacity: 0.43; */
+    /* margin-left: 10px; */
+    border-radius: 5px;
+    border: solid 1px #979797;
+   
+}
+.PTD-inp{
+    width:45%;
+}
+.PTD-inpx2{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.PTD-form-fields {
+    display: flex;
+    flex-direction: row;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+    width:90%;
+    box-sizing: border-box;
+    justify-content: space-between;
+}
+
+.PTD-title-div {
+    padding-top: 3%;
+}
+
+.PTD-title {
+    /* height: 29px; */
+    padding: 2%;
+    /* opacity: 0.43; */
+    width: 90%;
+    border-radius: 5px;
+    border: solid 1px #979797;
+}
+
+.PTD-title-outer {
+    width: 90%;
+}
+.PTD-Address{
+    width:20%;
+}
+.PTD-form-fields2 {
+    display: flex;
+    flex-direction: row;
+    width:20%;
+    flex-basis: 50%;
+}
+
 @media only screen and (max-width: 768px) {
     .UBD-Footer{
         display: none;
     }
     .UBD-Main{
-        padding:0;
+        width: 100vw;
+        height: 100vh;
     }
     .UBD-pax-details{
         /* border-bottom:1px solid rgba(151, 151, 151, 0.45); */
@@ -115,4 +229,17 @@
     .UBD-Header{
         padding:2%;
     }
+
+    .UBD-btn-div {
+        padding-left: 2%;
+        padding-right: 2%;
+        width: 100%;
+    }
+
+    .UBD-btn {
+        width: 100%;
+        height: 100%;
+        padding: 4%;
+    }
+
     }

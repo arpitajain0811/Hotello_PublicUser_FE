@@ -2,8 +2,8 @@ import React from 'react';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
 import Header from '../Header';
-import { logout, changeLoginState } from '../../redux/actions';
-import PrimaryTravellerDetails from '../PrimaryTravellerDetails';
+import { logout, changeLoginState, userBookingDetails } from '../../redux/actions';
+// import PrimaryTravellerDetails from '../PrimaryTravellerDetails';
 import './UserBookingDetails.css';
 import FooterBlack from '../FooterBlack';
 
@@ -11,14 +11,39 @@ class UserBookingDetails extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      bookDetails: {
+        bookBasket: [],
+        address: {
+          addressLine1: '',
+          addressLine2: '',
+          addressLine3: '',
+          cityName: '',
+          zipCode: '',
+          countryCode: '',
+          province: '',
+        },
+        email: '',
+        firstName: '',
+        lastName: '',
+        phoneNumber: 0,
+        persons: {
+          namePrefix: 'Mr',
+          firstName: '',
+          lastName: '',
+          birthDate: '1997-03-21',
+          room_index: 0,
+          passengerTypeCode: 'ADT',
+          baggage: '0',
+        },
+      },
     };
+
     UserBookingDetails.propTypes = {
       isLoggedIn: PropTypes.bool.isRequired,
       firstName: PropTypes.string.isRequired,
       changeLoginState: PropTypes.func.isRequired,
       logout: PropTypes.func.isRequired,
-
+      userBookingDetails: PropTypes.func.isRequired,
     };
   }
 
@@ -39,6 +64,162 @@ class UserBookingDetails extends React.Component {
     //   },
     // });
     this.props.logout();
+  }
+
+  changeTitle = (event) => {
+    this.setState({
+      ...this.state,
+      bookDetails: {
+        ...this.state.bookDetails,
+        persons: {
+          ...this.state.bookDetails.persons,
+          namePrefix: event.target.value,
+        },
+      },
+    });
+  }
+
+  changeFirstName = (event) => {
+    this.setState({
+      ...this.state,
+      bookDetails: {
+        ...this.state.bookDetails,
+        firstName: event.target.value,
+        persons: {
+          ...this.state.bookDetails.persons,
+          firstName: event.target.value,
+        },
+      },
+    });
+  }
+
+  changeLastName = (event) => {
+    this.setState({
+      ...this.state,
+      bookDetails: {
+        ...this.state.bookDetails,
+        lastName: event.target.value,
+        persons: {
+          ...this.state.bookDetails.persons,
+          lastName: event.target.value,
+        },
+      },
+    });
+  }
+
+  changeEmail = (event) => {
+    this.setState({
+      ...this.state,
+      bookDetails: {
+        ...this.state.bookDetails,
+        email: event.target.value,
+      },
+    });
+  }
+
+  changePhone = (event) => {
+    this.setState({
+      ...this.state,
+      bookDetails: {
+        ...this.state.bookDetails,
+        phoneNumber: event.target.value,
+      },
+    });
+  }
+
+  changeAdd1 = (event) => {
+    this.setState({
+      ...this.state,
+      bookDetails: {
+        ...this.state.bookDetails,
+        address: {
+          ...this.state.bookDetails.address,
+          addressLine1: event.target.value,
+        },
+      },
+    });
+  }
+
+  changeAdd2 = (event) => {
+    this.setState({
+      ...this.state,
+      bookDetails: {
+        ...this.state.bookDetails,
+        address: {
+          ...this.state.bookDetails.address,
+          addressLine2: event.target.value,
+        },
+      },
+    });
+  }
+
+  changeAdd3 = (event) => {
+    this.setState({
+      ...this.state,
+      bookDetails: {
+        ...this.state.bookDetails,
+        address: {
+          ...this.state.bookDetails.address,
+          addressLine3: event.target.value,
+        },
+      },
+    });
+  }
+
+  changeCity = (event) => {
+    this.setState({
+      ...this.state,
+      bookDetails: {
+        ...this.state.bookDetails,
+        address: {
+          ...this.state.bookDetails.address,
+          cityName: event.target.value,
+        },
+      },
+    });
+  }
+
+  changeZip = (event) => {
+    this.setState({
+      ...this.state,
+      bookDetails: {
+        ...this.state.bookDetails,
+        address: {
+          ...this.state.bookDetails.address,
+          zipCode: event.target.value,
+        },
+      },
+    });
+  }
+
+  changeCountry = (event) => {
+    this.setState({
+      ...this.state,
+      bookDetails: {
+        ...this.state.bookDetails,
+        address: {
+          ...this.state.bookDetails.address,
+          countryCode: event.target.value,
+        },
+      },
+    });
+  }
+
+  changeProvince = (event) => {
+    this.setState({
+      ...this.state,
+      bookDetails: {
+        ...this.state.bookDetails,
+        address: {
+          ...this.state.bookDetails.address,
+          province: event.target.value,
+        },
+      },
+    });
+  }
+
+  saveDetails = () => {
+    this.props.userBookingDetails(this.state.bookDetails);
   }
 
   render() {
@@ -98,10 +279,53 @@ class UserBookingDetails extends React.Component {
           logoutHandler={this.logoutHandler}
           firstName={this.props.firstName}
           profileButtonClass="profileButtonBlack"
+          logoGreen
         />
         </div>
         <div className="UBD-pax-details">
-          <PrimaryTravellerDetails />
+        <div className="PTD-outer">
+        <div className="PTD-head">
+            Primary Traveller Details
+            <hr />
+        </div>
+        <div className="PTD-form">
+        <div className="PTD-form-fields">
+            <div className="PTD-inp PTD-title-div">
+              <select className="PTD-form-input PTD-title" onChange={(event) => { this.changeTitle(event); }}>
+            <option value="Mr">Mr.</option>
+            <option value="Mrs">Mrs.</option>
+              </select>
+            </div>
+            <div className="PTD-inp"><input className="PTD-form-empty" type="text" /></div>
+        </div>
+          <div className="PTD-form-fields">
+            <div className="PTD-inp"><input onChange={(event) => { this.changeFirstName(event); }} className="PTD-form-input" type="text" placeholder="First Name" /></div>
+            <div className="PTD-inp"><input onChange={(event) => { this.changeLastName(event); }} className="PTD-form-input" type="text" placeholder="Last Name" /></div>
+          </div>
+          <div className="PTD-form-fields">
+            <div className="PTD-inp"><input onChange={(event) => { this.changeEmail(event); }} className="PTD-form-input" type="email" placeholder="Email" /></div>
+            <div className="PTD-inp"><input onChange={(event) => { this.changePhone(event); }} className="PTD-form-input" type="number" placeholder="Mobile No." /></div>
+          </div>
+          <div className="PTD-form-fields">
+            <div className="PTD-inp"><input onChange={(event) => { this.changeAdd1(event); }} className="PTD-form-input" type="text" placeholder="Address Line 1" /></div>
+            <div className="PTD-inp"><input onChange={(event) => { this.changeCity(event); }} className="PTD-form-input" type="text" placeholder="City" /></div>
+          </div>
+          <div className="PTD-form-fields">
+            <div className="PTD-inp"><input onChange={(event) => { this.changeAdd2(event); }} className="PTD-form-input" type="text" placeholder="Address Line 2" /></div>
+            <div className="PTD-inp PTD-inpx2">
+              <div className="PTD-inp"><input onChange={(event) => { this.changeZip(event); }} className="PTD-form-input2" type="number" placeholder="Zip" /></div>
+              <div className="PTD-inp"><input onChange={(event) => { this.changeCountry(event); }} className="PTD-form-input2" type="text" placeholder="Country Code" /></div>
+            </div>
+          </div>
+          <div className="PTD-form-fields">
+            <div className="PTD-inp"><input onChange={(event) => { this.changeAdd3(event); }} className="PTD-form-input" type="text" placeholder="Address Line 3" /></div>
+            <div className="PTD-inp"><input onChange={(event) => { this.changeProvince(event); }} className="PTD-form-input" type="text" placeholder="Province" /></div>
+          </div>
+        </div>
+        </div>
+        </div>
+        <div className="UBD-btn-div">
+          <button onClick={() => { this.saveDetails(); }} className="UBD-btn">Continue</button>
         </div>
         <div className="UBD-Footer">
         <FooterBlack />
@@ -117,6 +341,7 @@ class UserBookingDetails extends React.Component {
 const mapDispatchToProps = dispatch => ({
   logout: () => { dispatch(logout()); },
   changeLoginState: (firstName) => { dispatch(changeLoginState(firstName)); },
+  userBookingDetails: (bookDetails) => { dispatch(userBookingDetails(bookDetails)); },
 });
 
 const mapStateToProps = state => ({
