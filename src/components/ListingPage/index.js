@@ -100,35 +100,34 @@ class ListingPage extends React.Component {
     const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
     const reqUrl = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lng}&radius=5000&type=transit_station&key=AIzaSyCnIdPzEpfEV0b_6AGKeL6mF0AVw_yOgi4`;
     console.log('display');
-    fetch(proxyUrl + reqUrl)
-      .then(response => response.json())
-      .then(respJSON => respJSON.results)
-      .then((results) => {
-        fetch(`/viewHotelDetails/${hotelId}`).then(details => details.json())
-          .then((detailsJSON) => {
-            const { location } = detailsJSON.hotel_details;
-            const nearby = [];
-            for (let i = 0; i < results.length; i += 3) {
-              const distance = calcDistance(lat, results[i].geometry.location.lat, lng, results[i].geometry.location.lng);
-              // if (results[i].types.includes('bus_station') || results[i].types.includes('railway_station') || results[i].types.includes('airport')) {
-              if (results[i].types.includes('bus_station')) {
-                nearby.push({ icon: '/icon.svg', name: results[i].name, distance });
-              }
-              if (results[i].types.includes('train_station')) {
-                nearby.push({ icon: '/underground.svg', name: results[i].name, distance });
-              }
-              if (results[i].types.includes('airport')) {
-                nearby.push({ icon: '/plane.svg', name: results[i].name, distance });
-              }
-              // }
-            }
-            this.setState({
-              selectedHotelDetails: {
-                id: hotelId, name: hotelName, origin, stars, nearby, location, lat, lng,
-              },
-            });
-          });
+
+    const nearbyPromise = fetch(proxyUrl + reqUrl).then(response => response.json()).then(respJSON => respJSON.results);
+    const detailsPromise = fetch(`/viewHotelDetails/${hotelId}`).then(details => details.json()).then(detailsJSON => detailsJSON.hotel_details);
+    Promise.all([nearbyPromise, detailsPromise]).then((promiseResults) => {
+      const nearbyResults = promiseResults[0];
+      const detailsResults = promiseResults[1];
+      const nearby = [];
+      const { location } = detailsResults;
+      for (let i = 0; i < nearbyResults.length; i += 3) {
+        const distance = calcDistance(lat, nearbyResults[i].geometry.location.lat, lng, nearbyResults[i].geometry.location.lng);
+        // if (nearbyResults[i].types.includes('bus_station') || nearbyResults[i].types.includes('railway_station') || nearbyResults[i].types.includes('airport')) {
+        if (nearbyResults[i].types.includes('bus_station')) {
+          nearby.push({ icon: '/icon.svg', name: nearbyResults[i].name, distance });
+        }
+        if (nearbyResults[i].types.includes('train_station')) {
+          nearby.push({ icon: '/underground.svg', name: nearbyResults[i].name, distance });
+        }
+        if (nearbyResults[i].types.includes('airport')) {
+          nearby.push({ icon: '/plane.svg', name: nearbyResults[i].name, distance });
+        }
+        // }
+      }
+      this.setState({
+        selectedHotelDetails: {
+          id: hotelId, name: hotelName, origin, stars, nearby, location, lat, lng,
+        },
       });
+    });
   }
 
   logoutHandler = () => {
