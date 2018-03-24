@@ -56,7 +56,8 @@ const MyMapComponent = compose(
     shouldComponentUpdate(nextProps) {
       if (
         (nextProps.allHotels.length === this.props.allHotels.length) &&
-        (nextProps.hid === this.props.hid)
+        (nextProps.hid === this.props.hid) &&
+        (nextProps.selectedHotelDetails.id === this.props.selectedHotelDetails.id)
       ) {
         return false;
       }
@@ -98,7 +99,7 @@ const MyMapComponent = compose(
             onClick={() => { props.displayCard(hotel.hotel_id, hotel.hotel_name, hotel.latitude, hotel.longitude, hotel.stars, 'map'); }}
           >
             <div
-              className="OverlayView-content"
+              className={`OverlayView-content${props.selectedHotelDetails.id === hotel.hotel_id ? ' selectedOverlay' : ''}`}
               onMouseOver={() => { props.showCard(hotel.hotel_id); }}
               onFocus={() => { props.showCard(hotel.hotel_id); }}
             >

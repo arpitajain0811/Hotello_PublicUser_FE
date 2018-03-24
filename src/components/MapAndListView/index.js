@@ -14,14 +14,12 @@ class MapAndListView extends React.Component {
       return (
         <Loader />
       );
-    }
-    else if(this.props.noCity===true){
+    } else if (this.props.noCity === true) {
       return (
         <div className="map-and-list-view-page">
-        <NoCityEntered/>
+        <NoCityEntered />
         </div>
-      )
-
+      );
     }
     return (
       <div className="map-and-list-view-page">
@@ -38,7 +36,7 @@ class MapAndListView extends React.Component {
               centr={this.props.center}
               isMarkerShown
               allHotels={this.props.filteredHotels}
-            // updateFilteredHotels={this.updateFilteredHotels}
+              selectedHotelDetails={this.props.selectedHotelDetails}
               updateCenter={this.props.updateCenter}
               displayCard={this.props.displayCard}
             />
