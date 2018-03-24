@@ -18,7 +18,7 @@ class ListingPage extends React.Component {
     super(props);
     this.state = {
       loaded: false,
-      noCity:false,
+      noCity: false,
       center: {},
       selectedHotelDetails: {},
       priceFilter: [
@@ -68,13 +68,12 @@ class ListingPage extends React.Component {
       inDate, outDate,
       this.props.rooms,
     ).then((response) => {
-      if(response.hotelResultSet){
-      this.props.saveAllHotels(response.hotelResultSet);
-      this.updateFilteredHotels([5000, 17000]);
-      this.setState({noCity:false})
-      }
-      else{
-        this.setState({noCity:true})
+      if (response.hotelResultSet) {
+        this.props.saveAllHotels(response.hotelResultSet);
+        this.updateFilteredHotels([5000, 17000]);
+        this.setState({ noCity: false });
+      } else {
+        this.setState({ noCity: true });
       }
       this.setState({ loaded: true });
     });
@@ -96,10 +95,8 @@ class ListingPage extends React.Component {
   }
 
 
-  displayCard=(hotelId, hotelName, stars, origin) => {
+  displayCard=(hotelId, hotelName, lat, lng, stars, origin) => {
     const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
-    const lat = this.props.latLng.lat;
-    const lng = this.props.latLng.lng;
     const reqUrl = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lng}&radius=1000&type=transit_station&key=AIzaSyCnIdPzEpfEV0b_6AGKeL6mF0AVw_yOgi4`;
     console.log('display');
     fetch(proxyUrl + reqUrl)
@@ -109,7 +106,7 @@ class ListingPage extends React.Component {
         const nearby = [];
         for (let i = 0; i < 5; i += 1) {
           // if (results[i].types[0] === 'bus_station') {
-            nearby.push({ icon: results[i].icon, name: results[i].name });
+          nearby.push({ icon: results[i].icon, name: results[i].name });
           // }
         }
         this.setState({
@@ -140,10 +137,10 @@ class ListingPage extends React.Component {
       inDate, outDate,
       this.props.rooms,
     ).then((response) => {
-      if(response.hotelResultSet){
+      if (response.hotelResultSet) {
         this.props.saveAllHotels(response.hotelResultSet);
         this.updateFilteredHotels([5000, 17000]);
-        this.setState({noCity:false})
+        this.setState({ noCity: false });
         axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${this.props.city}&key=${constants.API_KEY}`).then((value) => {
           console.log(value.data.results[0].geometry.location);
           this.setState({
@@ -151,12 +148,9 @@ class ListingPage extends React.Component {
             loaded: true,
           });
         });
-        }
-        else{
-          this.setState({noCity:true})
-        }
-
-
+      } else {
+        this.setState({ noCity: true });
+      }
     });
   }
 
@@ -227,7 +221,7 @@ ListingPage.propTypes = {
   saveFilteredHotels: PropTypes.func.isRequired,
   allHotels: PropTypes.arrayOf(Object).isRequired,
   saveAllHotels: PropTypes.func.isRequired,
-  latLng : PropTypes.object.isRequired
+  latLng: PropTypes.object.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ListingPage);
