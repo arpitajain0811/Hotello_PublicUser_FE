@@ -5,6 +5,7 @@ import './BookingSummary.css';
 
 class BookingSummary extends React.Component {
   makePayment=() => {
+    console.log('ho');
     const auth = window.localStorage.getItem('token');
     const cookie = window.localStorage.getItem('cookie');
     fetch('/makePayment', {
@@ -107,7 +108,7 @@ class BookingSummary extends React.Component {
           </div>
         </div>
         <div className="MakePaymentButtonDiv" >
-          <button onClick={() => this.makePayment()} className="MakePaymentButton">Make Payment</button>
+          <button disabled={this.props.isAnyFieldEmpty} onClick={() => this.makePayment()} className="MakePaymentButton">Make Payment</button>
         </div>
       </div>
     );
@@ -145,4 +146,5 @@ BookingSummary.propTypes = {
   serviceFee: PropTypes.number,
   RoomId: PropTypes.string,
   amount: PropTypes.number,
+  isAnyFieldEmpty: PropTypes.bool.isRequired,
 };

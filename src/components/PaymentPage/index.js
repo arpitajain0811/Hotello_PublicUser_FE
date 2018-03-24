@@ -9,15 +9,12 @@ import FooterBlack from '../FooterBlack';
 import PaymentForm from '../PaymentForm';
 
 class PaymentPage extends React.Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     loginState: {
-  //       isLoggedIn: false,
-  //       firstName: '',
-  //     },
-  //   };
-  // }
+  constructor(props) {
+    super(props);
+    this.state = {
+      isAnyFieldEmpty: true,
+    };
+  }
   componentWillMount() {
     console.log('in LandingPage componentWillMount, window.localStorage.getItem(userName)', window.localStorage.getItem('userName'), typeof (window.localStorage.getItem('userName')));
     if (window.localStorage.getItem('userName') !== null) {
@@ -45,7 +42,12 @@ class PaymentPage extends React.Component {
   //     });
   //   }
   // }
-
+  setNoFieldsEmpty=(value) => {
+    console.log('setNoFieldsEmpty called with', value);
+    this.setState({
+      isAnyFieldEmpty: value,
+    });
+  }
   logoutHandler = () => {
     console.log('in LandingPage logoutHandler');
     // this.setState({
@@ -71,8 +73,8 @@ class PaymentPage extends React.Component {
             />
           </div>
           <div className="PaymentBody">
-            <PaymentForm />
-            <BookingSummary />
+            <PaymentForm setNoFieldsEmpty={value => this.setNoFieldsEmpty(value)} />
+            <BookingSummary isAnyFieldEmpty={this.state.isAnyFieldEmpty} />
           </div>
           <div className="PaymentFooter">
             <FooterBlack />

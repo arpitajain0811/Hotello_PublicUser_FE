@@ -9,6 +9,10 @@ class CreditCard extends React.Component {
     super(props);
     this.state = {
       imgSrc: '',
+      cardNumber: '',
+      cardHolderName: '',
+      expiry: '',
+      cvv: '',
     };
   }
   componentDidMount() {
@@ -17,6 +21,7 @@ class CreditCard extends React.Component {
     Payment.formatCardExpiry(expiration);
     Payment.formatCardCVC(cvc);
   }
+
   getCardType=(event) => {
     const type = Payment.fns.cardType(event.target.value);
     console.log(type);
@@ -47,7 +52,32 @@ class CreditCard extends React.Component {
     } else {
       this.setState({
         imgSrc: '',
+        cardNumber: event.target.value,
       });
+    }
+    this.setState({
+      cardNumber: event.target.value,
+    }, () => this.checkIfNoFieldEmpty());
+  }
+  handleCardHolderName=(event) => {
+    this.setState({
+      cardHolderName: event.target.value,
+    }, () => this.checkIfNoFieldEmpty());
+  }
+  handleCvv=(event) => {
+    this.setState({
+      cvv: event.target.value,
+    }, () => this.checkIfNoFieldEmpty());
+  }
+   handleExpiration=(event) => {
+     this.setState({
+       expiry: event.target.value,
+     }, () => this.checkIfNoFieldEmpty());
+   }
+  checkIfNoFieldEmpty=() => {
+    console.log('checkIfNoFieldEmpty called', this.state.cardNumber, this.state.cardHolderName, this.state.cvv, this.state.expiry);
+    if (this.state.cardNumber !== '' && this.state.cardHolderName !== '' && this.state.expiry !== '' && this.state.cvv !== '') { this.props.setNoFieldsEmpty(false); } else {
+      this.props.setNoFieldsEmpty(true);
     }
   }
   renderCardList=() => (
@@ -75,10 +105,10 @@ class CreditCard extends React.Component {
               <input type="text" ref="number" placeholder="Card Number" className="CardNumberInputField" onChange={event => this.getCardType(event)} />
               <img className="CreditCardImage" src={this.state.imgSrc} alt="" />
             </div>
-            <input type="text" placeholder="Card Holder Name" className="CardHolderNameInputField" />
+            <input type="text" placeholder="Card Holder Name" onChange={event => this.handleCardHolderName(event)} className="CardHolderNameInputField" />
             <div className="ExpiryAndCvv">
-              <input type="text" ref="expiration" placeholder="Expiry" className="ExpiryInputField" />
-              <input type="password" ref="cvc" placeholder="CVV" className="CvvInputField" />
+              <input type="text" ref="expiration" onChange={event => this.handleExpiration(event)} placeholder="Expiry" className="ExpiryInputField" />
+              <input type="password" ref="cvc" onChange={event => this.handleCvv(event)} placeholder="CVV" className="CvvInputField" />
             </div>
             {/* { this.renderCardList() } */}
           </div>
@@ -95,4 +125,5 @@ CreditCard.propTypes = {};
 export default connect(mapStateToProps, null)(CreditCard);
 CreditCard.propTypes = {
   roomsArray: PropTypes.array.isRequired,
+  setNoFieldsEmpty: PropTypes.func.isRequired,
 };
