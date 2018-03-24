@@ -44,24 +44,29 @@ class HotelParameterBox extends React.Component {
         <div className="RoomsDiv">
           <RoomsDropDown borderClass="GiveBorder" showDropdownBlock={() => this.showDropdownBlock} />
         </div>
-        <div className="slider-row">
-        Price:
-          <SliderPrice price={this.props.priceFilter[0]} />
-          <Slider
-            min={1000}
-            max={20000}
-            defaultValue={[5000, 17000]}
-            withBars
-            onAfterChange={(v) => {
-              this.props.updateFilteredHotels(v, null);
-        }}
-          />
-          <SliderPrice price={this.props.priceFilter[1]} />
+        <div className="filter-row">
+        <div className="filter-icon-div">
+          <img src="/filter.svg" alt="filter" className="filter-icon" />
         </div>
-        <StarsFilter
-          updateFilteredHotels={this.props.updateFilteredHotels}
-          starsFilter={this.props.starsFilter}
-        />
+          <div className="slider-row">
+          Price:
+            <SliderPrice price={this.props.priceFilter[0]} />
+            <Slider
+              min={1000}
+              max={20000}
+              defaultValue={[5000, 17000]}
+              withBars
+              onAfterChange={(v) => {
+                this.props.updateFilteredHotels(v, null);
+          }}
+            />
+            <SliderPrice price={this.props.priceFilter[1]} />
+          </div>
+          <StarsFilter
+            updateFilteredHotels={this.props.updateFilteredHotels}
+            starsFilter={this.props.starsFilter}
+          />
+        </div>
       </div>
     );
   }
