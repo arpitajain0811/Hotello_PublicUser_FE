@@ -59,7 +59,9 @@ class InfoCard extends React.Component {
         animationClassName="fadein"
         animate={this.state.diff}
       >
-        <div className="info-card-hide-btn" onClick={() => { this.setState({ hidden: ' hide' }); }}>x</div>
+        <div className="info-card-hide-btn-row" >
+        <span className="info-card-hide-btn" onClick={() => { this.setState({ hidden: ' hide' }); }}>x</span>
+        </div>
         <div className="info-card-head">
           <div className="info-card-name">
             {this.props.name}
@@ -70,9 +72,9 @@ class InfoCard extends React.Component {
           </Link>
         </div>
         <div className="info-card-desc">
-          <div className="info-card-dec-section">
+          <div className="info-card-desc-section">
             <span className="info-card-desc-title">Address:</span>
-            {this.props.location.address + this.props.location.city}
+            {this.props.location.address}
           </div>
           <div className="info-card-desc-section">
             <span className="info-card-desc-title">Nearby transit points:</span>
