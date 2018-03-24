@@ -388,9 +388,9 @@ class DetailsPage extends React.Component {
                 <hr className="PaymentPageLine" />
                 <div className="Search-Selected-Details">
                   <div className="Search-Selected-CheckInOutDates">
-                    {this.props.checkInDate.toString().substring(0, 11)}
-                    <span className="dataArrow">→</span>
-                    {this.props.checkOutDate.toString().substring(0, 11)}
+                  {this.props.checkInDate.toString().substring(0, 3)}, {this.props.checkInDate.toString().substring(4, 11)}
+                  <span className="dataArrow">→</span>
+                  {this.props.checkOutDate.toString().substring(0, 3)}, {this.props.checkOutDate.toString().substring(4, 11)}
 
                   </div>
                   <div className="Search-Selected-Rooms">

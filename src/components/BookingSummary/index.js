@@ -73,11 +73,11 @@ class BookingSummary extends React.Component {
         <hr className="PaymentPageLine" />
         <div className="SearchSelectedDetails">
           <div className="SearchSelectedCheckInOutDates">
-            {this.props.checkInDate.format('MM/DD/YYYY')}
-            <div className="PaymentpageArrow">
+          {this.props.checkInDate.toString().substring(0, 3)}, {this.props.checkInDate.toString().substring(4, 11)}
+          <div className="PaymentpageArrow">
               <img className="PaymentPageArrowImg" src="/arrow.png" alt="" />
-            </div>
-            {this.props.checkOutDate.format('MM/DD/YYYY')}
+          </div>
+            {this.props.checkOutDate.toString().substring(0, 3)}, {this.props.checkOutDate.toString().substring(4, 11)}
 
           </div>
           <div className="SearchSelectedRooms">
