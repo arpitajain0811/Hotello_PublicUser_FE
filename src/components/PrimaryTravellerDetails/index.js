@@ -1,4 +1,5 @@
 import React from 'react';
+// import { PropTypes } from 'prop-types';
 import './PrimaryTravellerDetails.css';
 
 class PrimaryTravellerDetails extends React.Component {
@@ -6,6 +7,9 @@ class PrimaryTravellerDetails extends React.Component {
     super(props);
     this.state = {
 
+    };
+    PrimaryTravellerDetails.propTypes = {
+      // userBookingDetails: PropTypes.func.isRequired,
     };
   }
   render() {

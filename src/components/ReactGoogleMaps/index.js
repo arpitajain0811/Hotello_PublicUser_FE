@@ -134,7 +134,7 @@ const MyMapComponent = compose(
   return (
 
     <GoogleMap
-      defaultZoom={14}
+      defaultZoom={12}
       ref={props.onMapMounted}
       center={props.centr}
       onDragEnd={props.onCenterChanged}
