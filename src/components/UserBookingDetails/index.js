@@ -1,6 +1,5 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Header from '../Header';
 import { logout, changeLoginState, userBookingDetails } from '../../redux/actions';
@@ -36,11 +35,6 @@ class UserBookingDetails extends React.Component {
           passengerTypeCode: 'ADT',
           baggage: '0',
         },
-        amount: this.props.rooms[this.props.currentId].price.total.toString(),
-        hotelname: this.props.hotelname,
-        checkin: this.props.checkin,
-        checkout: this.props.checkout,
-        city: this.props.city,
       },
     };
 
@@ -298,11 +292,11 @@ class UserBookingDetails extends React.Component {
         <div className="PTD-form-fields">
             <div className="PTD-inp PTD-title-div">
               <select className="PTD-form-input PTD-title" onChange={(event) => { this.changeTitle(event); }}>
-            <option value="Mr">Mr.</option>
-            <option value="Mrs">Mrs.</option>
+            <option className="PTD-title" value="Mr">Mr.</option>
+            <option className="PTD-title" value="Mrs">Mrs.</option>
               </select>
             </div>
-            <div className="PTD-inp"><input className="PTD-form-empty" type="text" /></div>
+            <div className="PTD-inp"><input className="PTD-form-empty" type="text" disabled /></div>
         </div>
           <div className="PTD-form-fields">
             <div className="PTD-inp"><input onChange={(event) => { this.changeFirstName(event); }} className="PTD-form-input" type="text" placeholder="First Name" /></div>
@@ -331,9 +325,7 @@ class UserBookingDetails extends React.Component {
         </div>
         </div>
         <div className="UBD-btn-div">
-          <Link to="/payment" >
           <button onClick={() => { this.saveDetails(); }} className="UBD-btn">Continue</button>
-          </Link>
         </div>
         <div className="UBD-Footer">
         <FooterBlack />
@@ -356,13 +348,8 @@ const mapStateToProps = state => ({
   userName: state.userReducer.firstName,
   isLoggedIn: state.userReducer.isLoggedIn,
   firstName: state.userReducer.firstName,
-  currentId: state.manageRooms.currentRoomId,
-  rooms: state.manageRooms.rooms,
-  hotelname: state.manageRooms.hotelDetails.hotel_name,
-  checkin: state.searchOptions.checkInDate,
-  checkout: state.searchOptions.checkOutDate,
-  city: state.searchOptions.city,
   // rooms: state.searchOptions.rooms,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserBookingDetails);
+

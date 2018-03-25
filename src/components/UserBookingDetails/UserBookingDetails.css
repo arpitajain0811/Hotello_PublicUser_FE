@@ -91,6 +91,7 @@
 
 .UBD-title {
     height: 35px;
+    font-size: 15px;
     opacity: 0.43;
     width: 100%;
     border-radius: 5px;
@@ -98,8 +99,6 @@
 }
 
 .UBD-btn-div {
-    display: flex;
-    flex-direction: row;
     align-self: center;
     width: 30%;
 }
@@ -151,7 +150,7 @@
 }
 
 .PTD-title {
-    height: 30px;
+    height: 35px;
 }
 
 .PTD-form-input2 {
