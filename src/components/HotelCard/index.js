@@ -28,7 +28,7 @@ class HotelCard extends React.Component {
       <div className="HotelCard-outer">
         <div
           className="hotel-image"
-          style={{ backgroundImage: `url("/placeholder-hotel-image${((this.props.image% 6) + 1).toString()}.jpeg")`}}
+          style={{ backgroundImage: `url("/placeholder-hotel-image${((this.props.image % 6) + 1).toString()}.jpeg")` }}
         />
         <div className="hotel-card-content">
           <div className="hotel-card-name" title={this.props.hotelName}>{(this.props.hotelName.length > 14) ? (`${this.props.hotelName.slice(0, 11)}...`) : this.props.hotelName}</div>
@@ -46,15 +46,14 @@ class HotelCard extends React.Component {
 }
 HotelCard.defaultProps = {
   hotelName: 'Hotel Name',
-  image: '',
   minRate: 0,
   stars: '0',
 };
 HotelCard.propTypes = {
   hotelName: PropTypes.string,
-  image: PropTypes.string,
+  image: PropTypes.number.isRequired,
   minRate: PropTypes.number,
   stars: PropTypes.string,
-  hotelId: PropTypes.number.isRequired,
+  hotelId: PropTypes.string.isRequired,
 };
 export default HotelCard;

@@ -10,8 +10,12 @@ class InfoCard extends React.Component {
     super(props);
     this.state = {
       hidden: '',
-      diff: false,
+      diff: true,
     };
+    this.scroll = this.scroll.bind(this);
+  }
+  componentDidMount() {
+    this.scroll();
   }
   componentWillReceiveProps(nextProps) {
     if (nextProps.name !== this.props.name) {
@@ -21,6 +25,9 @@ class InfoCard extends React.Component {
     }
   }
 
+  scroll=() => {
+    this.top.scrollIntoView();
+  }
   render() {
     const stars = [];
     for (let i = 0; i < Number(this.props.stars); i += 1) {
@@ -41,7 +48,14 @@ class InfoCard extends React.Component {
     }
     const nearbyArr = [];
     this.props.nearby.forEach((element) => {
-      const nearbyElement = <div className="nearby-element" ><img src={element.icon} alt="icon" className="nearby-element-icon" /> {element.name} </div>;
+      const nearbyElement = (
+    <div className="nearby-element" key={element.name}>
+      <img src={element.icon} alt="icon" className="nearby-element-icon" />
+      <div className="nearby-element-text">
+        <span>{element.name}</span>
+        <span>{`${element.distance} km.`}</span>
+      </div>
+    </div>);
       nearbyArr.push(nearbyElement);
     });
 
@@ -52,18 +66,27 @@ class InfoCard extends React.Component {
         animationClassName="fadein"
         animate={this.state.diff}
       >
-        <div className="info-card-hide-btn" onClick={() => { this.setState({ hidden: ' hide' }); }}>x</div>
+        <div className="info-card-hide-btn-row" ref={(infoCardTop) => { this.top = infoCardTop; }}>
+        <span className="info-card-hide-btn" onClick={() => { this.setState({ hidden: ' hide' }); }}>x</span>
+        </div>
         <div className="info-card-head">
           <div className="info-card-name">
             {this.props.name}
             <span className="info-card-stars">{this.props.stars} {stars}</span>
           </div>
-          <Link to={`/detailsPage/${this.props.hotelId}`} className="Details-Link">
+          <Link to={`/detailsPage/${this.props.hotelId}`} className="info-card-link">
           <button className="info-card-btn">Book</button>
           </Link>
         </div>
         <div className="info-card-desc">
-          {nearbyArr}
+          <div className="info-card-desc-section">
+            <span className="info-card-desc-title">Address:</span>
+            {this.props.location.address}
+          </div>
+          <div className="info-card-desc-section">
+            <span className="info-card-desc-title">Nearby transit points:</span>
+            {nearbyArr}
+          </div>
         </div>
       </AnimateOnChange>);
   }
@@ -74,5 +97,7 @@ InfoCard.propTypes = {
   name: PropTypes.string.isRequired,
   stars: PropTypes.string.isRequired,
   nearby: PropTypes.arrayOf(Object).isRequired,
+  hotelId: PropTypes.string.isRequired,
+  location: PropTypes.object.isRequired,
 };
 export default InfoCard;

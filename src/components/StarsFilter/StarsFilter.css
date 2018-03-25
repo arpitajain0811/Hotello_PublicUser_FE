@@ -1,7 +1,12 @@
 .stars-filter{
     display:flex;
-    flex-direction: row;
     justify-content: space-between;
     align-items: center;
     font-family: 'Open Sans';
+    /* border: 2px solid #48bc48; */
+    border-radius:5px;
+    margin:0px 2px;
+    padding:0px 5px;
+    background-color:white;
+    /* color:white */
 }

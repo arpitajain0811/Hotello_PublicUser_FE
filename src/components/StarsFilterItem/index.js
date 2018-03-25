@@ -22,10 +22,10 @@ class StarsFilterItem extends React.Component {
         {/* {stars} */}
         {this.props.number}
         <img
-        src={`/star${this.props.selected ? '-white' : '-black'}.svg`}
-        className="star-grey"
-        alt="star"
-      />
+          src={`/star${this.props.selected ? '-white' : '-black'}.svg`}
+          className="star-grey"
+          alt="star"
+        />
       </div>
     );
   }
