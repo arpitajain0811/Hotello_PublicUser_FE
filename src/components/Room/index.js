@@ -34,6 +34,10 @@ class Room extends React.Component {
     } else {
       color = '#FFFFFF';
     }
+    if (this.props.selected === 2) {
+      color = '#FFFFFF';
+    }
+
     if (this.props.clickable === 1) {
       return (
         <div

@@ -115,7 +115,7 @@ class InvoicePage extends React.Component {
             <Room
               type={room.description[0]}
               bookingId={room.booking_id}
-              selected={0}
+              selected={2}
               updatePrice={this.updatePrice}
               hotelId={this.state.hotelDetails.hotel_code}
               clickable={0}
@@ -188,11 +188,13 @@ class InvoicePage extends React.Component {
         profileButtonClass="profileButtonBlack"
         logoGreen
       />
+        <hr className="lineStyle fullWidth" />
         <div className="bookingConfirmation" >
           <img src={greenTick} alt="" className="greenTick" />
           <div className="bookingText">Booking Confirmed </div>
-
         </div>
+        <hr className="lineStyle" />
+        <br />
         <div className="invoicePageContainer">
 
           <div className="mainBody">
