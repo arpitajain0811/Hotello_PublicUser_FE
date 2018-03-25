@@ -20,5 +20,6 @@ module.exports = {
         "react/jsx-indent": 0,
         "no-underscore-dangle" :0,
         "no-param-reassign": 0,
+        "jsx-a11y/no-noninteractive-element-interactions": 0
     },
 };

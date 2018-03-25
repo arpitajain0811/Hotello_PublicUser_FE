@@ -1,13 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Switch, Route, Link } from 'react-router-dom';
+import { Switch, Route, Link, Redirect } from 'react-router-dom';
 import { logout, changeLoginState } from '../../redux/actions';
 import SarchBarAndHeader from '../SearchBarAndHeader';
 import EditUserDetails from '../EditUserDetails';
 import ManageUserBookings from '../ManageUserBookings';
 import './UserProfilePage.css';
-import hamburger from '../../hamburger.svg'
+import hamburger from '../../hamburger.svg';
 
 
 class UserProfilePage extends React.Component {
@@ -35,12 +35,21 @@ class UserProfilePage extends React.Component {
 
   toggleUserPicSidebar = () => {
     this.setState(prevState => ({
-      showSidebar: !prevState.showSidebar
+      showSidebar: !prevState.showSidebar,
     }));
+  }
+
+  goBack = () => {
+    this.props.history.goBack();
   }
 
   render() {
     console.log('in UserProfilePage render, state', this.state);
+    if (!window.localStorage.getItem('userName')) {
+      return (
+        <Redirect to="/" />
+      );
+    }
     return (
       <div className="userProfilePage" >
         <SarchBarAndHeader
@@ -49,8 +58,8 @@ class UserProfilePage extends React.Component {
           cityPlaceholder={this.props.city}
         />
         <div className="userProfileBody" >
-          <div className="userProfileBody-col1" style={this.state.showSidebar ? {display: 'flex'} : {}}>
-          <img src={hamburger} onClick={this.toggleUserPicSidebar} className="hamburger" />
+          <div className="userProfileBody-col1" style={this.state.showSidebar ? { display: 'flex' } : {}}>
+          <img src={hamburger} onClick={this.toggleUserPicSidebar} alt="hamburger" className="hamburger" />
             <div className="userPicBlock" >
               <div className="userPicCircle">{window.localStorage.getItem('userName')[0]}</div>
               <div className="userNameBelowPic" >
@@ -77,7 +86,12 @@ class UserProfilePage extends React.Component {
             </div>
           </div>
           <div className="userProfileBody-col2" >
-          <img src={hamburger} onClick={this.toggleUserPicSidebar} className="hamburger" />
+            <img src={hamburger} onClick={this.toggleUserPicSidebar} alt="hamburger" className="hamburger" />
+            <div
+              className="backButtonContainer"
+            >
+                <div className="backArrow">◀</div><div onClick={this.goBack} className="backButton">Back</div>
+            </div>
             <Switch>
               <Route exact path="/userProfile/" component={EditUserDetails} />
               <Route path="/userProfile/manageUserBookings" component={ManageUserBookings} />
@@ -108,4 +122,5 @@ export default connect(mapStateToProps, mapDispatchToProps)(UserProfilePage);
 UserProfilePage.propTypes = {
   logout: PropTypes.func.isRequired,
   city: PropTypes.string.isRequired,
+  history: PropTypes.object,
 };
