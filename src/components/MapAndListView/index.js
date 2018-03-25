@@ -6,6 +6,7 @@ import ReactGoogleMaps from '../ReactGoogleMaps';
 import HotelBoxContainer from '../HotelBoxContainer';
 import './MapAndListView.css';
 import Loader from '../Loader';
+import NoCityEntered from '../NoCityEntered';
 
 class MapAndListView extends React.Component {
   render() {
@@ -13,6 +14,14 @@ class MapAndListView extends React.Component {
       return (
         <Loader />
       );
+    }
+    else if(this.props.noCity===true){
+      return (
+        <div className="map-and-list-view-page">
+        <NoCityEntered/>
+        </div>
+      )
+
     }
     return (
       <div className="map-and-list-view-page">

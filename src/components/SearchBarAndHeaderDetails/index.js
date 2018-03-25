@@ -7,6 +7,7 @@ import './SearchBarAndHeader.css';
 import searchLogo from '../../searchLogo.svg';
 import { setSearchCityText, setSearchCityLatLng } from '../../redux/actions';
 import HeaderLinks from '../HeaderLinks';
+import logo from '../../logo.svg';
 import UserGreetingAndIcon from '../UserGreetingAndIcon';
 import TypeAheadSearchBox from '../TypeAheadSearchBox';
 
@@ -90,7 +91,7 @@ class SearchBarAndHeader extends React.Component {
         );
       } else {
         signOptionsBlock = (
-          <HeaderLinks />
+          <HeaderLinks changeColor="false"/>
         );
       }
     }
@@ -100,7 +101,7 @@ class SearchBarAndHeader extends React.Component {
       <div className="searchbarAndHeaderDetails" style={{ backgroundColor: bgColor, boxShadow: shadow }}>
         <div className="searchbarAndHeader-LogoAndSearchBox" >
           {/* <div className="searchbarAndHeader-logo" > */}
-          <img src="/h-logo.png" alt="logo" className="logoInListPage" />
+          <img src={this.props.type===1?'/group-26.svg':logo} alt="logo" className="logoInDetailsPage" />
           {/* </div> */}
 
 

@@ -19,7 +19,13 @@ class StarsFilterItem extends React.Component {
         className={`stars-filter-item${this.props.selected ? ' stars-filter-item-active' : ''}`}
         onClick={() => { this.props.updateFilteredHotels(null, this.props.number); }}
       >
-        {stars}
+        {/* {stars} */}
+        {this.props.number}
+        <img
+        src={`/star${this.props.selected ? '-white' : '-black'}.svg`}
+        className="star-grey"
+        alt="star"
+      />
       </div>
     );
   }

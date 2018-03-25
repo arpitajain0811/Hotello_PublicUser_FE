@@ -18,6 +18,7 @@ class ListingPage extends React.Component {
     super(props);
     this.state = {
       loaded: false,
+      noCity:false,
       center: {},
       selectedHotelDetails: {},
       priceFilter: [
@@ -67,8 +68,14 @@ class ListingPage extends React.Component {
       inDate, outDate,
       this.props.rooms,
     ).then((response) => {
+      if(response.hotelResultSet){
       this.props.saveAllHotels(response.hotelResultSet);
       this.updateFilteredHotels([5000, 17000]);
+      this.setState({noCity:false})
+      }
+      else{
+        this.setState({noCity:true})
+      }
       this.setState({ loaded: true });
     });
   }
@@ -91,7 +98,9 @@ class ListingPage extends React.Component {
 
   displayCard=(hotelId, hotelName, stars, origin) => {
     const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
-    const reqUrl = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=12.995460,%2077.696218&radius=1000&type=transit_station&key=AIzaSyCnIdPzEpfEV0b_6AGKeL6mF0AVw_yOgi4';
+    const lat = this.props.latLng.lat;
+    const lng = this.props.latLng.lng;
+    const reqUrl = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lng}&radius=1000&type=transit_station&key=AIzaSyCnIdPzEpfEV0b_6AGKeL6mF0AVw_yOgi4`;
     console.log('display');
     fetch(proxyUrl + reqUrl)
       .then(response => response.json())
@@ -99,9 +108,9 @@ class ListingPage extends React.Component {
       .then((results) => {
         const nearby = [];
         for (let i = 0; i < 5; i += 1) {
-          if (results[i].types[0] === 'bus_station') {
-            nearby.push({ icon: 'https://maps.gstatic.com/mapfiles/place_api/icons/bus-71.png', name: results[i].name });
-          }
+          // if (results[i].types[0] === 'bus_station') {
+            nearby.push({ icon: results[i].icon, name: results[i].name });
+          // }
         }
         this.setState({
           selectedHotelDetails: {
@@ -131,15 +140,23 @@ class ListingPage extends React.Component {
       inDate, outDate,
       this.props.rooms,
     ).then((response) => {
-      this.props.saveAllHotels(response.hotelResultSet);
-      this.updateFilteredHotels([5000, 17000]);
-      axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${this.props.city}&key=${constants.API_KEY}`).then((value) => {
-        console.log(value.data.results[0].geometry.location);
-        this.setState({
-          center: value.data.results[0].geometry.location,
-          loaded: true,
+      if(response.hotelResultSet){
+        this.props.saveAllHotels(response.hotelResultSet);
+        this.updateFilteredHotels([5000, 17000]);
+        this.setState({noCity:false})
+        axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${this.props.city}&key=${constants.API_KEY}`).then((value) => {
+          console.log(value.data.results[0].geometry.location);
+          this.setState({
+            center: value.data.results[0].geometry.location,
+            loaded: true,
+          });
         });
-      });
+        }
+        else{
+          this.setState({noCity:true})
+        }
+
+
     });
   }
 
@@ -161,6 +178,7 @@ class ListingPage extends React.Component {
         <MapAndListView
           center={this.state.center}
           loaded={this.state.loaded}
+          noCity={this.state.noCity}
           updateCenter={this.updateCenter}
           selectedHotelDetails={this.state.selectedHotelDetails}
           displayCard={this.displayCard}
@@ -190,6 +208,7 @@ const mapStateToProps = state => ({
   checkInDate: state.searchOptions.checkInDate,
   checkOutDate: state.searchOptions.checkOutDate,
   city: state.searchOptions.city,
+  latLng: state.searchOptions.LatLng,
   rooms: state.searchOptions.rooms,
 });
 
@@ -208,6 +227,7 @@ ListingPage.propTypes = {
   saveFilteredHotels: PropTypes.func.isRequired,
   allHotels: PropTypes.arrayOf(Object).isRequired,
   saveAllHotels: PropTypes.func.isRequired,
+  latLng : PropTypes.object.isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ListingPage);

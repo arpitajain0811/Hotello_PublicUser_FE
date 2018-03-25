@@ -73,8 +73,16 @@ export const logout = () => ({
   type: 'logout',
 });
 
+
 export const updateHotelDetails = (hotelDetails, rooms) => ({
   type: 'UPDATE_HOTEL_DETAILS',
-  payload: {hotelDetails: hotelDetails,
-            rooms: rooms},
+  payload: {
+    hotelDetails,
+    rooms,
+  },
+});
+
+export const userBookingDetails = userBookDetails => ({
+  type: 'userBookingDetails',
+  payload: userBookDetails,
 });
