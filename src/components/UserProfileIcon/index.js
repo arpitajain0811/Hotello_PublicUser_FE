@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import './UserProfileIcon.css';
 
 class UserProfileIcon extends React.Component {
@@ -25,6 +25,7 @@ class UserProfileIcon extends React.Component {
     };
     fetch('/logout', config).then(response => response.json()).then((respJson) => {
       console.log(respJson);
+      console.log(this.props);
       window.localStorage.removeItem('token');
       window.localStorage.removeItem('userName');
       this.props.logoutHandler();

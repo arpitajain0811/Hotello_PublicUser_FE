@@ -11,7 +11,7 @@ import getAllHotels from '../../helpers/getAllHotels';
 import { storeAllHotels, storeFilteredHotels, logout, changeLoginState } from '../../redux/actions';
 import filterByPriceAndStars from '../../helpers/filterByPriceAndStars';
 import FooterBlack from '../FooterBlack';
-
+import calcDistance from '../../helpers/filterHotels';
 
 class ListingPage extends React.Component {
   constructor(props) {
@@ -95,25 +95,61 @@ class ListingPage extends React.Component {
   }
 
 
-  displayCard=(hotelId, hotelName, stars, origin) => {
+  displayCard=(hotelId, hotelName, lat, lng, stars, origin) => {
+    // this.updateCenter({ lat: Number(lat), lng: Number(lng) });
     const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
-    const lat = this.props.latLng.lat;
-    const lng = this.props.latLng.lng;
-    const reqUrl = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lng}&radius=1000&type=transit_station&key=AIzaSyCnIdPzEpfEV0b_6AGKeL6mF0AVw_yOgi4`;
+    const reqUrlBus = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lng}&radius=5000&type=bus_station&key=AIzaSyCnIdPzEpfEV0b_6AGKeL6mF0AVw_yOgi4`;
+    const reqUrlTrain = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lng}&radius=5000&type=train_station&key=AIzaSyCnIdPzEpfEV0b_6AGKeL6mF0AVw_yOgi4`;
+    const reqUrlAir = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lng}&radius=5000&type=airport&key=AIzaSyCnIdPzEpfEV0b_6AGKeL6mF0AVw_yOgi4`;
     console.log('display');
-    fetch(proxyUrl + reqUrl)
-      .then(response => response.json())
-      .then(respJSON => respJSON.results)
-      .then((results) => {
+
+    const nearbyPromiseBus = fetch(proxyUrl + reqUrlBus)
+      .then(response => response.json()).then(respJSON => respJSON.results);
+
+    const nearbyPromiseTrain = fetch(proxyUrl + reqUrlTrain)
+      .then(response => response.json()).then(respJSON => respJSON.results);
+
+    const nearbyPromiseAir = fetch(proxyUrl + reqUrlAir)
+      .then(response => response.json()).then(respJSON => respJSON.results);
+
+    const detailsPromise = fetch(`/viewHotelDetails/${hotelId}`).then(details => details.json()).then(detailsJSON => detailsJSON.hotel_details);
+    Promise.all([nearbyPromiseBus, nearbyPromiseTrain, nearbyPromiseAir, detailsPromise])
+      .then((promiseResults) => {
+        const nearbyResultsBus = promiseResults[0];
+        const nearbyResultsTrain = promiseResults[1];
+        const nearbyResultsAir = promiseResults[2];
+
+        const detailsResults = promiseResults[3];
         const nearby = [];
-        for (let i = 0; i < 5; i += 1) {
-          // if (results[i].types[0] === 'bus_station') {
-          nearby.push({ icon: results[i].icon, name: results[i].name });
-          // }
+        const { location } = detailsResults;
+        for (let i = 0; i < nearbyResultsBus.length; i += 1) {
+          const distance = calcDistance(
+            lat, nearbyResultsBus[i].geometry.location.lat,
+            lng, nearbyResultsBus[i].geometry.location.lng,
+          );
+
+          nearby.push({ icon: '/icon.svg', name: nearbyResultsBus[i].name, distance });
+          if (i === 2) { break; }
+        }
+        for (let i = 0; i < nearbyResultsTrain.length; i += 1) {
+          const distance = calcDistance(
+            lat, nearbyResultsTrain[i].geometry.location.lat,
+            lng, nearbyResultsTrain[i].geometry.location.lng,
+          );
+          nearby.push({ icon: '/underground.svg', name: nearbyResultsTrain[i].name, distance });
+          if (i === 1) { break; }
+        }
+        for (let i = 0; i < nearbyResultsAir.length; i += 1) {
+          const distance = calcDistance(
+            lat, nearbyResultsAir[i].geometry.location.lat,
+            lng, nearbyResultsAir[i].geometry.location.lng,
+          );
+          nearby.push({ icon: '/plane.svg', name: nearbyResultsAir[i].name, distance });
+          break;
         }
         this.setState({
           selectedHotelDetails: {
-            id: hotelId, name: hotelName, origin, stars, nearby,
+            id: hotelId, name: hotelName, origin, stars, nearby, location, lat, lng,
           },
         });
       });

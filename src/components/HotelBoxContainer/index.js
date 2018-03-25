@@ -20,15 +20,20 @@ class HotelBoxContainer extends React.Component {
         stars={hotel.stars}
         minRate={parseFloat(hotel.min_rate.amount.toFixed(2))}
         image={index}
-        onClickHandler={() => { this.props.displayCard(hotel.hotel_id, hotel.hotel_name, hotel.stars, 'box'); }}
+        onClickHandler={() => {
+          this.props.updateCenter({ lat: Number(hotel.latitude), lng: Number(hotel.longitude) });
+           this.props.displayCard(hotel.hotel_id, hotel.hotel_name, hotel.latitude, hotel.longitude, hotel.stars, 'box');
+}}
       />);
     });
     if (searchIndex > -1) {
       const infoCard = (<InfoCard
+        key="infoCard"
         name={this.props.selectedHotelDetails.name}
         nearby={this.props.selectedHotelDetails.nearby}
         stars={this.props.selectedHotelDetails.stars}
         hotelId={this.props.selectedHotelDetails.id}
+        location={this.props.selectedHotelDetails.location}
       />);
       if (this.props.selectedHotelDetails.origin === 'map') {
         filteredHotelsBox.splice(0, 0, infoCard);
@@ -53,5 +58,6 @@ HotelBoxContainer.propTypes = {
   filteredHotels: PropTypes.arrayOf(Object),
   selectedHotelDetails: PropTypes.object.isRequired,
   displayCard: PropTypes.func.isRequired,
+  updateCenter: PropTypes.func.isRequired,
 };
 export default HotelBoxContainer;

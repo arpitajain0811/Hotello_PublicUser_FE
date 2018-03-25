@@ -12,6 +12,7 @@ import PageUnderConstruction from '../src/components/PageUnderConstruction';
 import PaymentPage from './components/PaymentPage';
 import UserBookingDetails from './components/UserBookingDetails';
 import UserProfilePage from './components/UserProfilePage';
+import RedirectHome from './components/RedirectHome';
 
 
 class App extends Component {
@@ -37,6 +38,7 @@ class App extends Component {
           <Route path="/payment" component={PaymentPage} />
           <Route path="/userbookingdetails" component={UserBookingDetails} />
           <Route path="/userProfile" component={UserProfilePage} />
+          <Route component={RedirectHome} />
         </Switch>
       </div>
     );
