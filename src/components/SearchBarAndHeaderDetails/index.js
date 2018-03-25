@@ -91,7 +91,7 @@ class SearchBarAndHeader extends React.Component {
         );
       } else {
         signOptionsBlock = (
-          <HeaderLinks changeColor="false"/>
+          <HeaderLinks changeColor="false" />
         );
       }
     }
@@ -101,7 +101,7 @@ class SearchBarAndHeader extends React.Component {
       <div className="searchbarAndHeaderDetails" style={{ backgroundColor: bgColor, boxShadow: shadow }}>
         <div className="searchbarAndHeader-LogoAndSearchBox" >
           {/* <div className="searchbarAndHeader-logo" > */}
-          <img src={this.props.type===1?'/group-26.svg':logo} alt="logo" className="logoInDetailsPage" />
+          <img src={this.props.type === 1 ? '/group-26.svg' : logo} alt="logo" className="logoInDetailsPage" />
           {/* </div> */}
 
 
