@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import './DetailsPage.css';
 import SearchBarAndHeader from '../SearchBarAndHeaderDetails';
 import getAllHotels from '../../helpers/getAllHotels';
-import { storeAllHotels, storeFilteredHotels, logout, updateHotelDetails, updateRedirect, updateBookBasket , setRoomTypeArray, setRoomTypeEditable } from '../../redux/actions';
+import { storeAllHotels, storeFilteredHotels, logout, updateHotelDetails, updateRedirect, updateBookBasket, setRoomTypeArray, setRoomTypeEditable } from '../../redux/actions';
 import constants from '../../constants.json';
 import Amenity from '../Amenity';
 import Room from '../Room';
@@ -292,6 +292,7 @@ class DetailsPage extends React.Component {
               <img src={loader} alt="" />
             </div>
           </div>
+        </div>
       );
     }
 
@@ -457,6 +458,7 @@ const mapDispatchToProps = dispatch => ({
   },
   updateBookBasket: (bookingId) => {
     dispatch(updateBookBasket(bookingId));
+  },
   setRoomTypeArray: (roomsArray) => {
     dispatch(setRoomTypeArray(roomsArray));
   },
