@@ -14,10 +14,20 @@ class BookingSummary extends React.Component {
         sessionId: cookie,
       },
       body: JSON.stringify({
-        basket: [this.props.RoomId],
-        amount: this.props.amount,
+        basket: this.props.bookDetails.bookBasket,
+        amount: this.props.rooms[this.props.currentId].price.total,
       }),
     }).then(() => {
+      fetch('/bookHotel', {
+        method: 'POST',
+        headers: {
+          authorization: auth,
+          sessionId: cookie,
+        },
+        body: JSON.stringify(this.props.bookDetails),
+      }).then(data => data.json()).then((response) => {
+        console.log('Server booking response is: ', response);
+      });
     });
   }
   render() {
@@ -131,6 +141,9 @@ const mapStateToProps = state => ({
   totalAdults: state.searchOptions.totalAdults,
   totalChildren: state.searchOptions.totalChildren,
   totalRooms: state.searchOptions.totalRooms,
+  bookDetails: state.userReducer.bookDetails,
+  currentId: state.manageRooms.currentRoomId,
+  rooms: state.manageRooms.rooms,
 });
 export default connect(mapStateToProps, null)(BookingSummary);
 BookingSummary.propTypes = {
