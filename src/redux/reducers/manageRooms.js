@@ -3,6 +3,8 @@ const defaultState = {
   hotelDetails: {},
   rooms: {},
   redirect: false,
+  bookingId: '',
+  bookingStatus: '',
 };
 
 const storeHotelsReducer = (prevState = defaultState, action) => {
@@ -15,6 +17,13 @@ const storeHotelsReducer = (prevState = defaultState, action) => {
     }
     case 'UPDATE_REDIRECT': {
       return { ...prevState, redirect: !prevState.redirect };
+    }
+    case 'UPDATE_BOOKING_STATUS': {
+      return {
+        ...prevState,
+        bookingId: action.payload.bookingId,
+        bookingStatus: action.payload.status,
+      };
     }
     default: {
       return prevState;

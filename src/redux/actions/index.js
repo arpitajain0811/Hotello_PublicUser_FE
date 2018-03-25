@@ -95,3 +95,11 @@ export const updateBookBasket = bookingId => ({
   type: 'UPDATE_BOOK_BASKET',
   payload: bookingId,
 });
+
+export const updateBookingStatus = (bookingId, status) => ({
+  type: 'UPDATE_BOOKING_STATUS',
+  payload: {
+    bookingId,
+    status,
+  },
+});

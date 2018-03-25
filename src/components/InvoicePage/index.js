@@ -115,7 +115,7 @@ class InvoicePage extends React.Component {
             <Room
               type={room.description[0]}
               bookingId={room.booking_id}
-              selected={2}
+              selected={0}
               updatePrice={this.updatePrice}
               hotelId={this.state.hotelDetails.hotel_code}
               clickable={0}
@@ -188,13 +188,12 @@ class InvoicePage extends React.Component {
         profileButtonClass="profileButtonBlack"
         logoGreen
       />
-        <hr className="lineStyle fullWidth" />
         <div className="bookingConfirmation" >
           <img src={greenTick} alt="" className="greenTick" />
           <div className="bookingText">Booking Confirmed </div>
+          <div className="bookingId">{this.props.bookingId}</div>
+
         </div>
-        <hr className="lineStyle" />
-        <br />
         <div className="invoicePageContainer">
 
           <div className="mainBody">
@@ -331,6 +330,7 @@ const mapStateToProps = state => ({
   isLoggedIn: state.userReducer.isLoggedIn,
   hotelDetails: state.manageRooms.hotelDetails,
   roomsArray: state.manageRooms.rooms,
+  bookingId: state.manageRooms.bookingId,
 });
 export default connect(mapStateToProps, mapDispatchToProps)(InvoicePage);
 InvoicePage.propTypes = {

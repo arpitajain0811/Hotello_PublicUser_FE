@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { updateBookingStatus } from '../../redux/actions';
 import './BookingSummary.css';
 
 class BookingSummary extends React.Component {
@@ -27,6 +29,7 @@ class BookingSummary extends React.Component {
         body: JSON.stringify(this.props.bookDetails),
       }).then(data => data.json()).then((response) => {
         console.log('Server booking response is: ', response);
+        this.props.updateBookingStatus(response.bookingid, response.status);
       });
     });
   }
@@ -64,7 +67,7 @@ class BookingSummary extends React.Component {
     numOfNights = checkOut - checkIn;
     if (numOfNights > 1) nights = `${numOfNights} Nights`;
     else nights = `${numOfNights} Night`;
-    const amtPerNightPerRoom = this.props.amountPerNight * numOfNights * this.props.totalRooms;
+    const amtPerNightPerRoom = this.props.rooms[this.props.currentId].price.total * numOfNights * this.props.totalRooms;
     return (
       <div className="BookingSummary" >
         <div className="HotelNameWithStars">
@@ -117,7 +120,9 @@ class BookingSummary extends React.Component {
           </div>
         </div>
         <div className="MakePaymentButtonDiv" >
+          <Link to="/invoice">
           <button onClick={() => this.makePayment()} className="MakePaymentButton">Make Payment</button>
+          </Link>
         </div>
       </div>
     );
@@ -145,7 +150,13 @@ const mapStateToProps = state => ({
   currentId: state.manageRooms.currentRoomId,
   rooms: state.manageRooms.rooms,
 });
-export default connect(mapStateToProps, null)(BookingSummary);
+
+const mapDispatchToProps = dispatch => ({
+  updateBookingStatus: (bookingId, status) => {
+    dispatch(updateBookingStatus(bookingId, status));
+  },
+});
+export default connect(mapStateToProps, mapDispatchToProps)(BookingSummary);
 BookingSummary.propTypes = {
   hotelName: PropTypes.string,
   stars: PropTypes.string,

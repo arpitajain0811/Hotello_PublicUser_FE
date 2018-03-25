@@ -9,26 +9,13 @@
 
 .bookingConfirmation{
   width: 100%;
-  height: 35vh;
+  height: 40vh;
   min-height: 300px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   /* margin-top: 5%; */
-}
-.lineStyle{
-  border: 0;
-  clear:both;
-  display:block;
-  width: 96%;
-  background-color:#000000;
-  height: 1px;
-  opacity: 0.3;
-}
-
-.fullWidth{
-  width: 100%;
 }
 
 .bookingText{
@@ -107,6 +94,10 @@
   margin-top: 2%;
 }
 
+.bookingId{
+  font-size: 16px;
+  font-weight: 600;
+}
 .roomType{
   display: flex;
   flex-direction: row;
