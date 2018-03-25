@@ -14,14 +14,12 @@ class MapAndListView extends React.Component {
       return (
         <Loader />
       );
-    }
-    else if(this.props.noCity===true){
+    } else if (this.props.noCity === true) {
       return (
         <div className="map-and-list-view-page">
-        <NoCityEntered/>
+        <NoCityEntered />
         </div>
-      )
-
+      );
     }
     return (
       <div className="map-and-list-view-page">
@@ -32,13 +30,14 @@ class MapAndListView extends React.Component {
             filteredHotels={this.props.filteredHotels}
             selectedHotelDetails={this.props.selectedHotelDetails}
             displayCard={this.props.displayCard}
+            updateCenter={this.props.updateCenter}
           />
           <div className="map-container">
             <ReactGoogleMaps
               centr={this.props.center}
               isMarkerShown
               allHotels={this.props.filteredHotels}
-            // updateFilteredHotels={this.updateFilteredHotels}
+              selectedHotelDetails={this.props.selectedHotelDetails}
               updateCenter={this.props.updateCenter}
               displayCard={this.props.displayCard}
             />
@@ -72,7 +71,8 @@ MapAndListView.propTypes = {
   filteredHotels: PropTypes.arrayOf(Object),
   loaded: PropTypes.bool,
   center: PropTypes.object.isRequired,
-  selectedHotelDetails: PropTypes.func.isRequired,
+  selectedHotelDetails: PropTypes.object.isRequired,
   displayCard: PropTypes.func.isRequired,
   updateCenter: PropTypes.func.isRequired,
+  noCity: PropTypes.bool.isRequired,
 };

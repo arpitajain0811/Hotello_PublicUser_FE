@@ -15,7 +15,7 @@ const CalcHaversineDistance = (lat1, lat2, long1, long2) => {
   const a = (sinLat ** 2.0) + (Math.cos(radianLat1) * Math.cos(radianLat2) * (sinLong ** 2.0));
   const distance = radiusOfEarthKm * 2 * Math.asin(Math.min(1, Math.sqrt(a)));
 
-  return distance;
+  return distance.toFixed(2);
 };
 
 const filterHotels = (center, radius, allHotels) => {
@@ -36,5 +36,5 @@ const filterHotels = (center, radius, allHotels) => {
 };
 
 
-module.exports = filterHotels;
+module.exports = CalcHaversineDistance;
 

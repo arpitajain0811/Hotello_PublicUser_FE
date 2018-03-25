@@ -264,6 +264,7 @@
   letter-spacing: 0.1px;
   color: #48bc48;
   /* margin-left: 5%; */
+  cursor: pointer;
 }
 
 .backArrow{

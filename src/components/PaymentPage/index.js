@@ -3,27 +3,25 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import './PaymentPage.css';
 import Header from '../Header';
-import { logout, changeLoginState } from '../../redux/actions';
+import { logout, changeLoginState, setRoomTypeUneditable } from '../../redux/actions';
 import BookingSummary from '../BookingSummary';
 import FooterBlack from '../FooterBlack';
 import PaymentForm from '../PaymentForm';
 
 class PaymentPage extends React.Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     loginState: {
-  //       isLoggedIn: false,
-  //       firstName: '',
-  //     },
-  //   };
-  // }
+  constructor(props) {
+    super(props);
+    this.state = {
+      isAnyFieldEmpty: true,
+    };
+  }
   componentWillMount() {
     console.log('in LandingPage componentWillMount, window.localStorage.getItem(userName)', window.localStorage.getItem('userName'), typeof (window.localStorage.getItem('userName')));
     if (window.localStorage.getItem('userName') !== null) {
       // console.log('hi');
       this.props.changeLoginState(window.localStorage.getItem('userName'));
     }
+    this.props.setRoomTypeUneditable();
   }
   // componentWillMount() {
   //   console.log('in LandingPage componentWillMount, window.localStorage.getItem(userName)',
@@ -44,7 +42,12 @@ class PaymentPage extends React.Component {
   //     });
   //   }
   // }
-
+  setNoFieldsEmpty=(value) => {
+    console.log('setNoFieldsEmpty called with', value);
+    this.setState({
+      isAnyFieldEmpty: value,
+    });
+  }
   logoutHandler = () => {
     console.log('in LandingPage logoutHandler');
     // this.setState({
@@ -70,8 +73,8 @@ class PaymentPage extends React.Component {
             />
           </div>
           <div className="PaymentBody">
-            <PaymentForm />
-            <BookingSummary />
+            <PaymentForm setNoFieldsEmpty={value => this.setNoFieldsEmpty(value)} />
+            <BookingSummary isAnyFieldEmpty={this.state.isAnyFieldEmpty} />
           </div>
           <div className="PaymentFooter">
             <FooterBlack />
@@ -79,7 +82,6 @@ class PaymentPage extends React.Component {
         </div>
       );
     }
-
     return null;
   }
 }
@@ -90,6 +92,9 @@ const mapDispatchToProps = dispatch => ({
   },
   changeLoginState: (firstName) => {
     dispatch(changeLoginState(firstName));
+  },
+  setRoomTypeUneditable: () => {
+    dispatch(setRoomTypeUneditable());
   },
 });
 
@@ -105,4 +110,5 @@ PaymentPage.propTypes = {
   logout: PropTypes.func.isRequired,
   isLoggedIn: PropTypes.func.isRequired,
   changeLoginState: PropTypes.func.isRequired,
+  setRoomTypeUneditable: PropTypes.func.isRequired,
 };

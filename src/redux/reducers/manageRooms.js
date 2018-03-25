@@ -5,6 +5,8 @@ const defaultState = {
   redirect: false,
   bookingId: '',
   bookingStatus: '',
+  roomsArrayOfSelectedHotel: [],
+  isRoomSelectionDisabled: false,
 };
 
 const storeHotelsReducer = (prevState = defaultState, action) => {
@@ -24,6 +26,15 @@ const storeHotelsReducer = (prevState = defaultState, action) => {
         bookingId: action.payload.bookingId,
         bookingStatus: action.payload.status,
       };
+    }
+    case 'setRoomTypeArray': {
+      return { ...prevState, roomsArrayOfSelectedHotel: action.payload };
+    }
+    case 'setRoomTypeEditable': {
+      return { ...prevState, isRoomSelectionDisabled: false };
+    }
+    case 'setRoomTypeUneditable': {
+      return { ...prevState, isRoomSelectionDisabled: true };
     }
     default: {
       return prevState;

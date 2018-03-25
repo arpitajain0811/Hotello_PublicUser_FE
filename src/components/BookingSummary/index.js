@@ -7,6 +7,7 @@ import './BookingSummary.css';
 
 class BookingSummary extends React.Component {
   makePayment=() => {
+    console.log('ho');
     const auth = window.localStorage.getItem('token');
     const cookie = window.localStorage.getItem('cookie');
     fetch('/makePayment', {
@@ -85,11 +86,11 @@ class BookingSummary extends React.Component {
         <hr className="PaymentPageLine" />
         <div className="SearchSelectedDetails">
           <div className="SearchSelectedCheckInOutDates">
-            {this.props.checkInDate.format('MM/DD/YYYY')}
-            <div className="PaymentpageArrow">
+          {this.props.checkInDate.toString().substring(0, 3)}, {this.props.checkInDate.toString().substring(4, 11)}
+          <div className="PaymentpageArrow">
               <img className="PaymentPageArrowImg" src="/arrow.png" alt="" />
-            </div>
-            {this.props.checkOutDate.format('MM/DD/YYYY')}
+          </div>
+            {this.props.checkOutDate.toString().substring(0, 3)}, {this.props.checkOutDate.toString().substring(4, 11)}
 
           </div>
           <div className="SearchSelectedRooms">
@@ -121,7 +122,7 @@ class BookingSummary extends React.Component {
         </div>
         <div className="MakePaymentButtonDiv" >
           <Link to="/invoice">
-          <button onClick={() => this.makePayment()} className="MakePaymentButton">Make Payment</button>
+          <button onClick={() => this.makePayment()} disabled={this.props.isAnyFieldEmpty} className="MakePaymentButton">Make Payment</button>
           </Link>
         </div>
       </div>
@@ -169,4 +170,5 @@ BookingSummary.propTypes = {
   serviceFee: PropTypes.number,
   RoomId: PropTypes.string,
   amount: PropTypes.number,
+  isAnyFieldEmpty: PropTypes.bool.isRequired,
 };

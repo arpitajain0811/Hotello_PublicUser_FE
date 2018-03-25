@@ -1,8 +1,9 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import './Room.css';
 import single from '../../images/icons/single.svg';
 import double from '../../images/icons/double.svg';
-import { connect } from 'react-redux';
 import { changeRoomId } from '../../redux/actions';
 
 class Room extends React.Component {
@@ -45,9 +46,9 @@ class Room extends React.Component {
           style={{
             backgroundColor: color,
           }}
-          onClick={() => {
-            this.props.changeId(this.state.bookingId);
-        }}
+          onClick={!this.props.isRoomSelectionDisabled ? () => {
+          this.props.changeId(this.state.bookingId);
+      } : () => {}}
         >
           <div className="crop">
             <img src={imgSrc} className="icon" />
@@ -74,6 +75,7 @@ class Room extends React.Component {
 
 const mapStateToProps = state => ({
   currentId: state.manageRooms.currentRoomId,
+  isRoomSelectionDisabled: state.manageRooms.isRoomSelectionDisabled,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -86,3 +88,6 @@ Room.defaultProps = {
   clickable: 1,
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Room);
+Room.propTypes = {
+  isRoomSelectionDisabled: PropTypes.bool.isRequired,
+};

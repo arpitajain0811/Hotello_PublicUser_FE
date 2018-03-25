@@ -24,7 +24,7 @@ class HotelBox extends React.Component {
     return (
       <div
         className="hotel-box"
-        style={{ backgroundImage: `url("/placeholder-hotel-image${((this.props.image% 6) + 1).toString()}.jpeg")`}}
+        style={{ backgroundImage: `url("/placeholder-hotel-image${((this.props.image % 6) + 1).toString()}.jpeg")` }}
         onClick={this.props.onClickHandler}
       >
         <div className="hotel-box-content">
@@ -40,16 +40,14 @@ class HotelBox extends React.Component {
 }
 HotelBox.defaultProps = {
   hotelName: 'Hotel Name',
-  image: '',
   minRate: 0,
   stars: '0',
 };
 HotelBox.propTypes = {
   hotelName: PropTypes.string,
-  image: PropTypes.string,
+  image: PropTypes.number.isRequired,
   minRate: PropTypes.number,
   stars: PropTypes.string,
   onClickHandler: PropTypes.func.isRequired,
-  hotelId: PropTypes.number.isRequired,
 };
 export default HotelBox;

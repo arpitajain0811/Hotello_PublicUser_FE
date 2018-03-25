@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import './DetailsPage.css';
 import SearchBarAndHeader from '../SearchBarAndHeaderDetails';
 import getAllHotels from '../../helpers/getAllHotels';
-import { storeAllHotels, storeFilteredHotels, logout, updateHotelDetails, updateRedirect, updateBookBasket } from '../../redux/actions';
+import { storeAllHotels, storeFilteredHotels, logout, updateHotelDetails, updateRedirect, updateBookBasket , setRoomTypeArray, setRoomTypeEditable } from '../../redux/actions';
 import constants from '../../constants.json';
 import Amenity from '../Amenity';
 import Room from '../Room';
@@ -32,6 +32,7 @@ class DetailsPage extends React.Component {
 
 
   componentDidMount() {
+    this.props.setRoomTypeEditable();
     // console.log('Rooms are:', this.props.rooms);
     window.addEventListener('scroll', this.handleScroll);
     console.log('Match type is: ', typeof this.props.match);
@@ -190,7 +191,7 @@ class DetailsPage extends React.Component {
       // console.log('The buttons are: ', buttons);
     }
     // roomsArray = Array.prototype.slice.call(roomsArray)
-
+    this.props.setRoomTypeArray(roomsArray);
 
     let allAmenities;
 
@@ -283,13 +284,12 @@ class DetailsPage extends React.Component {
 
     if (this.state.loaded === 0) {
       return (
-          <div className="detailsPage" >
-            <SearchBarAndHeader updateSearch={this.updateSearch} logoutHandler={this.logoutHandler} />
-            <img src={this.imgSrc} className="hotelImage" />
-            <div className="detailsPageContainer">
-              <div className="mainBody">
-                <img src={loader} />
-              </div>
+        <div className="detailsPage" >
+          <SearchBarAndHeader updateSearch={this.updateSearch} logoutHandler={this.logoutHandler} />
+          <img src={this.imgSrc} className="hotelImage" alt="" />
+          <div className="detailsPageContainer">
+            <div className="mainBody">
+              <img src={loader} alt="" />
             </div>
           </div>
       );
@@ -380,9 +380,9 @@ class DetailsPage extends React.Component {
                   <hr className="PaymentPageLine" />
                   <div className="Search-Selected-Details">
                     <div className="Search-Selected-CheckInOutDates">
-                      {this.props.checkInDate.toString().substring(0, 11)}
+                     {this.props.checkInDate.toString().substring(0, 3)}, {this.props.checkInDate.toString().substring(4, 11)}
                       <span className="dataArrow">→</span>
-                      {this.props.checkOutDate.toString().substring(0, 11)}
+                      {this.props.checkOutDate.toString().substring(0, 3)}, {this.props.checkOutDate.toString().substring(4, 11)}
 
                     </div>
                     <div className="Search-Selected-Rooms">
@@ -457,6 +457,11 @@ const mapDispatchToProps = dispatch => ({
   },
   updateBookBasket: (bookingId) => {
     dispatch(updateBookBasket(bookingId));
+  setRoomTypeArray: (roomsArray) => {
+    dispatch(setRoomTypeArray(roomsArray));
+  },
+  setRoomTypeEditable: () => {
+    dispatch(setRoomTypeEditable());
   },
 });
 
@@ -476,5 +481,7 @@ DetailsPage.propTypes = {
   currentId: PropTypes.string.isRequired,
   logout: PropTypes.func.isRequired,
   isLoggedIn: PropTypes.bool.isRequired,
-  changeLoginState: PropTypes.func.isRequired,
+  setRoomTypeArray: PropTypes.func.isRequired,
+  saveAllHotels: PropTypes.func.isRequired,
+  setRoomTypeEditable: PropTypes.func.isRequired,
 };
