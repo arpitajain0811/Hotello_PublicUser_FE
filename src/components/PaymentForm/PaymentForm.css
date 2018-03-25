@@ -119,12 +119,13 @@
     letter-spacing: 0.1px;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    /* justify-content: space-around; */
     flex-grow: 1;
     padding:3%;
     width:100%;
     border-bottom:1px solid rgba(151, 151, 151, 0.45);
     overflow-y: scroll;
+    align-items: flex-start;
   }
   .CardNumberInputField{
     padding:4%;

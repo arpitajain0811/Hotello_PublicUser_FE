@@ -1,24 +1,22 @@
-.detailsPage{
+.detailsPage1{
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  /* padding: 0 30px 0 30px; */
   width: 100%;
   font-family: 'Open Sans';
 }
 
-.bookingConfirmation{
+.bookingConfirmation1{
   width: 100%;
-  height: 40vh;
-  min-height: 300px;
+  height: 30vh;
+  min-height: 250px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* margin-top: 5%; */
 }
 
-.bookingText{
+.bookingText1{
   font-size: 25px;
   font-weight: 600;
   font-style: normal;
@@ -28,11 +26,10 @@
   margin-top: 1%;
 }
 
-.mainBody{
+.mainBody1{
   display:flex;
   flex-direction: row;
   padding: 0 5%;
-  /* margin-top:2%; */
   justify-content: center;
 
 }
@@ -52,21 +49,18 @@
   padding-top: 3%;
 }
 
-.hotelDetailsContainer{
+.hotelDetailsContainer1{
   flex-grow: 1;
   max-width: 50vw;
-  /* width:45%;
-  margin-right: 5%; */
 }
 
-.bookingDetailsContainer{
+.bookingDetailsContainer1{
    flex-grow: 1;
   margin-top: 20px;
 
-  /* width:35%; */
 }
 
-.hotelName{
+.hotelName1{
   font-size: 40px;
   font-weight: bold;
   font-style: normal;
@@ -98,7 +92,7 @@
   font-size: 16px;
   font-weight: 600;
 }
-.roomType{
+.roomType1{
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -106,38 +100,33 @@
   margin-top: 2%;
 }
 
-.Booking-Summary{
+.Booking-Summary1{
     border:1px solid #979797;
     width:70%;
     margin-left:5%;
-    margin:auto;
+    justify-content: center;
     padding:2%;
-    /* opacity: 0.85; */
     font-family: 'Open Sans';
     font-size: 15px;
     font-weight: normal;
     font-style: normal;
     font-stretch: normal;
-    /* line-height: 3.5; */
     letter-spacing: 0.1px;
 }
-.Selected-Hotel-Name{
+.Selected-Hotel-Name1{
     font-family: 'Open Sans';
     font-size: 30px;
     font-weight: bold;
     letter-spacing: 0.1px;
 }
 .HotelNameWithStars{
-    /* border-bottom: 1px solid #9b9b9b; */
     padding-bottom:1%;
 }
 .PaymentPageArrowImg{
     width:65%;
     height:45%;
-    /* object-fit: contain; */
 }
-.Search-Selected-CheckInOutDates{
-    /* margin-top:1%; */
+.Search-Selected-CheckInOutDates1{
     margin-right: 5%;
     display: flex;
     justify-content: center;
@@ -147,7 +136,7 @@
     border-radius: 4px;
     border: solid 1px #979797;
 }
-.Search-Selected-Rooms{
+.Search-Selected-Rooms1{
   flex-grow: 1;
   display: flex;
   justify-content: center;
@@ -155,7 +144,6 @@
   padding: 2%;
   border-radius: 4px;
   border: solid 1px #979797;
-  /* margin: 5%; */
 }
 .PaymentpageArrow{
     display: flex;
@@ -163,16 +151,13 @@
     justify-content: center;
     opacity: 0.45;
 }
-.Search-Selected-Details{
-  /* font-family: OpenSans-regular; */
+.Search-Selected-Details1{
   display: flex;
   flex-direction: row;
   justify-content:center;
-  /* font-size: 12px; */
   font-size: 14px;
   font-weight: bold;
   padding:2%;
-  /* border-bottom:1px solid #9b9b9b; */
   padding-bottom:3%;
 
 }
@@ -184,7 +169,7 @@
     padding:4%;
     border-radius: 4px;
   background-color: #48bc48;
-  font-family: OpenSans-regular;
+  font-family: "Open Sans";
   font-size: 18px;
   font-weight: 500;
   color:white;
@@ -286,7 +271,6 @@
   line-height: normal;
   letter-spacing: 0.1px;
   color: #48bc48;
-  /* margin-left: 5%; */
 }
 
 .backArrow{
@@ -306,4 +290,56 @@
 
 .removeTextDecoration{
   text-decoration: none;
+}
+.InvoiceHeader{
+  padding:2%;
+}
+@media only screen and (max-width: 768px) {
+  .mainBody1{
+    flex-direction: column;
+    height:100%;
+  }
+  .hotelDetailsContainer1{
+    width:100%;
+    max-width:100vh;
+    overflow-y: scroll;
+    border-top: 1px solid #979797;
+  }
+  .bookingConfirmation1{
+    height: 20%;
+    min-height:0px;
+  }
+  .detailsPage1{
+    height: 100vh;
+  }
+.invoicePageContainer{
+  height:67%;
+}
+.Booking-Summary1{
+  border:0;
+  width:100%;
+  margin-left:0;
+  padding:0;
+}
+.bookingDetailsContainer1{
+  border-top:1px solid black;
+  justify-content: center;
+  width:100%;
+}
+.DetailsPageAmounts{
+  display: none;
+}
+.Search-Selected-Details1{
+  padding-left:0;
+  padding-right:0;
+  justify-content: space-between;
+}
+.Search-Selected-CheckInOutDates1{
+  border:0;
+  padding:0;
+}
+.Search-Selected-Rooms1{
+  border:0;
+  padding:0;
+}
 }

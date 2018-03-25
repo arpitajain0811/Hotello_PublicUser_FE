@@ -68,7 +68,7 @@ class BookingSummary extends React.Component {
     numOfNights = checkOut - checkIn;
     if (numOfNights > 1) nights = `${numOfNights} Nights`;
     else nights = `${numOfNights} Night`;
-    const amtPerNightPerRoom = this.props.rooms[this.props.currentId].price.total * numOfNights * this.props.totalRooms;
+    const amtPerNightPerRoom = Math.round(this.props.rooms[this.props.currentId].price.total * numOfNights * this.props.totalRooms);
     return (
       <div className="BookingSummary" >
         <div className="HotelNameWithStars">
@@ -81,7 +81,7 @@ class BookingSummary extends React.Component {
           </div>
         </div>
         <div className="TotalAmountForMobile">
-        ₹{(0.18 * amtPerNightPerRoom) + this.props.serviceFee + amtPerNightPerRoom}
+        ₹{Math.round((0.18 * amtPerNightPerRoom) + this.props.serviceFee + amtPerNightPerRoom)}
         </div>
         <hr className="PaymentPageLine" />
         <div className="SearchSelectedDetails">
@@ -111,13 +111,13 @@ class BookingSummary extends React.Component {
           <hr className="PaymentPageLine" />
           <div className="Taxes">
             <div>Taxes (18% GST)</div>
-            <div> ₹{0.18 * amtPerNightPerRoom}</div>
+            <div> ₹{Math.round(0.18 * amtPerNightPerRoom)}</div>
 
           </div>
           <hr className="PaymentPageLine" />
           <div className="TotalAmount">
             <div>Total</div>
-            <div> ₹{(0.18 * amtPerNightPerRoom) + this.props.serviceFee + amtPerNightPerRoom}</div>
+            <div> ₹{Math.round((0.18 * amtPerNightPerRoom) + this.props.serviceFee + amtPerNightPerRoom)}</div>
           </div>
         </div>
         <div className="MakePaymentButtonDiv" >
