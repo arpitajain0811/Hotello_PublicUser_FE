@@ -86,3 +86,12 @@ export const userBookingDetails = userBookDetails => ({
   type: 'userBookingDetails',
   payload: userBookDetails,
 });
+
+export const updateRedirect = () => ({
+  type: 'UPDATE_REDIRECT',
+});
+
+export const updateBookBasket = bookingId => ({
+  type: 'UPDATE_BOOK_BASKET',
+  payload: bookingId,
+});

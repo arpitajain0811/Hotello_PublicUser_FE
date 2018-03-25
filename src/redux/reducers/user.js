@@ -87,6 +87,17 @@ const userReducer = (prevState = defaultState, action) => {
         },
       };
     }
+    case 'UPDATE_BOOK_BASKET': {
+      const tempArray = [];
+      tempArray.push(action.payload);
+      return {
+        ...prevState,
+        bookDetails: {
+          ...prevState.bookDetails,
+          bookBasket: tempArray,
+        },
+      };
+    }
     default: {
       return prevState;
     }
