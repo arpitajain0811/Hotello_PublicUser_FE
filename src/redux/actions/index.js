@@ -78,3 +78,13 @@ export const userBookingDetails = userBookDetails => ({
   payload: userBookDetails,
 });
 
+export const setRoomTypeArray = roomsArray => ({
+  type: 'setRoomTypeArray',
+  payload: roomsArray,
+});
+export const setRoomTypeEditable = () => ({
+  type: 'setRoomTypeEditable',
+});
+export const setRoomTypeUneditable = () => ({
+  type: 'setRoomTypeUneditable',
+});

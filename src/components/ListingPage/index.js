@@ -259,6 +259,7 @@ ListingPage.propTypes = {
   saveFilteredHotels: PropTypes.func.isRequired,
   allHotels: PropTypes.arrayOf(Object).isRequired,
   saveAllHotels: PropTypes.func.isRequired,
+  latLng: PropTypes.object.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ListingPage);
