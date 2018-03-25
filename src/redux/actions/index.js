@@ -73,11 +73,36 @@ export const logout = () => ({
   type: 'logout',
 });
 
+
+export const updateHotelDetails = (hotelDetails, rooms) => ({
+  type: 'UPDATE_HOTEL_DETAILS',
+  payload: {
+    hotelDetails,
+    rooms,
+  },
+});
+
 export const userBookingDetails = userBookDetails => ({
   type: 'userBookingDetails',
   payload: userBookDetails,
 });
 
+export const updateRedirect = () => ({
+  type: 'UPDATE_REDIRECT',
+});
+
+export const updateBookBasket = bookingId => ({
+  type: 'UPDATE_BOOK_BASKET',
+  payload: bookingId,
+});
+
+export const updateBookingStatus = (bookingId, status) => ({
+  type: 'UPDATE_BOOKING_STATUS',
+  payload: {
+    bookingId,
+    status,
+  },
+});
 export const setRoomTypeArray = roomsArray => ({
   type: 'setRoomTypeArray',
   payload: roomsArray,

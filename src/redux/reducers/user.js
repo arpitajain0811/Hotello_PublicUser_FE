@@ -19,15 +19,15 @@ const defaultState = {
     firstName: '',
     lastName: '',
     phoneNumber: 0,
-    persons: {
+    persons: [{
       namePrefix: '',
       firstName: '',
       lastName: '',
       birthDate: '1997-03-21',
-      room_index: 0,
+      room_index: '0',
       passengerTypeCode: 'ADT',
       baggage: '0',
-    },
+    }],
   },
 };
 
@@ -78,12 +78,28 @@ const userReducer = (prevState = defaultState, action) => {
           firstName: action.payload.firstName,
           lastName: action.payload.lastName,
           phoneNumber: action.payload.phoneNumber,
-          persons: {
-            ...prevState.bookDetails.persons,
+          persons: [{
+            ...prevState.bookDetails.persons[0],
             namePrefix: action.payload.persons.namePrefix,
             firstName: action.payload.firstName,
             lastName: action.payload.lastName,
-          },
+          }],
+          amount: action.payload.amount,
+          hotelname: action.payload.hotelname,
+          checkin: action.payload.checkin,
+          checkout: action.payload.checkout,
+          city: action.payload.city,
+        },
+      };
+    }
+    case 'UPDATE_BOOK_BASKET': {
+      const tempArray = [];
+      tempArray.push(action.payload);
+      return {
+        ...prevState,
+        bookDetails: {
+          ...prevState.bookDetails,
+          bookBasket: tempArray,
         },
       };
     }

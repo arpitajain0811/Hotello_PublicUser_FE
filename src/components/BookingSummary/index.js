@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { updateBookingStatus } from '../../redux/actions';
 import './BookingSummary.css';
 
 class BookingSummary extends React.Component {
@@ -15,10 +17,21 @@ class BookingSummary extends React.Component {
         sessionId: cookie,
       },
       body: JSON.stringify({
-        basket: [this.props.RoomId],
-        amount: this.props.amount,
+        basket: this.props.bookDetails.bookBasket,
+        amount: this.props.rooms[this.props.currentId].price.total,
       }),
     }).then(() => {
+      fetch('/bookHotel', {
+        method: 'POST',
+        headers: {
+          authorization: auth,
+          sessionId: cookie,
+        },
+        body: JSON.stringify(this.props.bookDetails),
+      }).then(data => data.json()).then((response) => {
+        console.log('Server booking response is: ', response);
+        this.props.updateBookingStatus(response.bookingid, response.status);
+      });
     });
   }
   render() {
@@ -55,7 +68,7 @@ class BookingSummary extends React.Component {
     numOfNights = checkOut - checkIn;
     if (numOfNights > 1) nights = `${numOfNights} Nights`;
     else nights = `${numOfNights} Night`;
-    const amtPerNightPerRoom = this.props.amountPerNight * numOfNights * this.props.totalRooms;
+    const amtPerNightPerRoom = this.props.rooms[this.props.currentId].price.total * numOfNights * this.props.totalRooms;
     return (
       <div className="BookingSummary" >
         <div className="HotelNameWithStars">
@@ -108,7 +121,9 @@ class BookingSummary extends React.Component {
           </div>
         </div>
         <div className="MakePaymentButtonDiv" >
-          <button disabled={this.props.isAnyFieldEmpty} onClick={() => this.makePayment()} className="MakePaymentButton">Make Payment</button>
+          <Link to="/invoice">
+          <button onClick={() => this.makePayment()} disabled={this.props.isAnyFieldEmpty} className="MakePaymentButton">Make Payment</button>
+          </Link>
         </div>
       </div>
     );
@@ -132,8 +147,17 @@ const mapStateToProps = state => ({
   totalAdults: state.searchOptions.totalAdults,
   totalChildren: state.searchOptions.totalChildren,
   totalRooms: state.searchOptions.totalRooms,
+  bookDetails: state.userReducer.bookDetails,
+  currentId: state.manageRooms.currentRoomId,
+  rooms: state.manageRooms.rooms,
 });
-export default connect(mapStateToProps, null)(BookingSummary);
+
+const mapDispatchToProps = dispatch => ({
+  updateBookingStatus: (bookingId, status) => {
+    dispatch(updateBookingStatus(bookingId, status));
+  },
+});
+export default connect(mapStateToProps, mapDispatchToProps)(BookingSummary);
 BookingSummary.propTypes = {
   hotelName: PropTypes.string,
   stars: PropTypes.string,
