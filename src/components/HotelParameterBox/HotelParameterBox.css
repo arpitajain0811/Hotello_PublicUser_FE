@@ -142,6 +142,7 @@
     }
 
     .filter-row-mobile{
+        display:none;
         position: absolute;
         flex-direction: column;
         background-color: white;
@@ -154,6 +155,9 @@
         padding:1vh;
         box-sizing: border-box;
         border-radius: 5px;
+    }
+    .filter-visible{
+        display:flex
     }
     .slider-row{
         margin:1vh 0px;
