@@ -17,6 +17,7 @@ class InfoCard extends React.Component {
   componentDidMount() {
     this.scroll();
   }
+
   componentWillReceiveProps(nextProps) {
     if (nextProps.name !== this.props.name) {
       this.setState({ hidden: '', diff: true });
@@ -24,7 +25,9 @@ class InfoCard extends React.Component {
       this.setState({ hidden: '', diff: false });
     }
   }
-
+  componentWillUpdate() {
+    this.scroll();
+  }
   scroll=() => {
     this.top.scrollIntoView();
   }
