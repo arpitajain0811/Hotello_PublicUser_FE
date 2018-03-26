@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Switch, Route, Link, Redirect } from 'react-router-dom';
 import { logout, changeLoginState } from '../../redux/actions';
-import SarchBarAndHeader from '../SearchBarAndHeader';
+import Header from '../Header';
 import EditUserDetails from '../EditUserDetails';
 import ManageUserBookings from '../ManageUserBookings';
 import './UserProfilePage.css';
@@ -52,10 +52,11 @@ class UserProfilePage extends React.Component {
     }
     return (
       <div className="userProfilePage" >
-        <SarchBarAndHeader
-          updateSearch={this.updateSearch}
+        <Header
+          logoGreen
           logoutHandler={this.logoutHandler}
-          cityPlaceholder={this.props.city}
+          profileButtonClass="profileButtonBlack"
+          setHeight="10%"
         />
         <div className="userProfileBody" >
           <div className="userProfileBody-col1" style={this.state.showSidebar ? { display: 'flex' } : {}}>
