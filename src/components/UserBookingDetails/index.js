@@ -12,6 +12,18 @@ class UserBookingDetails extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      firstNameErr: 0,
+      lastNameErr: 0,
+      emailErr: 0,
+      mobErr: 0,
+      add1Err: 0,
+      add2Err: 0,
+      add3Err: 0,
+      cityErr: 0,
+      zipErr: 0,
+      countryErr: 0,
+      provErr: 0,
+      errorMsg: '',
       bookDetails: {
         bookBasket: [],
         address: {
@@ -81,8 +93,11 @@ class UserBookingDetails extends React.Component {
   }
 
   changeFirstName = (event) => {
+    const fieldMatch = event.target.value.match(/^[a-zA-Z ]{1,}$/);
     this.setState({
       ...this.state,
+      firstNameErr: fieldMatch ? 1 : 0,
+      errorMsg: fieldMatch ? '' : 'Invalid FirstName!',
       bookDetails: {
         ...this.state.bookDetails,
         firstName: event.target.value,
@@ -95,8 +110,11 @@ class UserBookingDetails extends React.Component {
   }
 
   changeLastName = (event) => {
+    const fieldMatch = event.target.value.match(/^[a-zA-Z ]{1,}$/);
     this.setState({
       ...this.state,
+      lastNameErr: fieldMatch ? 1 : 0,
+      errorMsg: fieldMatch ? '' : 'Invalid LastName!',
       bookDetails: {
         ...this.state.bookDetails,
         lastName: event.target.value,
@@ -109,8 +127,11 @@ class UserBookingDetails extends React.Component {
   }
 
   changeEmail = (event) => {
+    const fieldMatch = event.target.value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
     this.setState({
       ...this.state,
+      emailErr: fieldMatch ? 1 : 0,
+      errorMsg: fieldMatch ? '' : 'Invalid Email!',
       bookDetails: {
         ...this.state.bookDetails,
         email: event.target.value,
@@ -119,8 +140,11 @@ class UserBookingDetails extends React.Component {
   }
 
   changePhone = (event) => {
+    const fieldMatch = event.target.value.match(/^\d{10}$/);
     this.setState({
       ...this.state,
+      mobErr: fieldMatch ? 1 : 0,
+      errorMsg: fieldMatch ? '' : 'Invalid Mobile Number!',
       bookDetails: {
         ...this.state.bookDetails,
         phoneNumber: event.target.value,
@@ -129,8 +153,11 @@ class UserBookingDetails extends React.Component {
   }
 
   changeAdd1 = (event) => {
+    const fieldMatch = event.target.value.match(/^[a-zA-Z0-9 ]{1,}$/);
     this.setState({
       ...this.state,
+      add1Err: fieldMatch ? 1 : 0,
+      errorMsg: fieldMatch ? '' : 'Invalid Address Line 1!',
       bookDetails: {
         ...this.state.bookDetails,
         address: {
@@ -142,8 +169,11 @@ class UserBookingDetails extends React.Component {
   }
 
   changeAdd2 = (event) => {
+    const fieldMatch = event.target.value.match(/^[a-zA-Z0-9 ]{1,}$/);
     this.setState({
       ...this.state,
+      add2Err: fieldMatch ? 1 : 0,
+      errorMsg: fieldMatch ? '' : 'Invalid Address Line 2!',
       bookDetails: {
         ...this.state.bookDetails,
         address: {
@@ -155,8 +185,11 @@ class UserBookingDetails extends React.Component {
   }
 
   changeAdd3 = (event) => {
+    const fieldMatch = event.target.value.match(/^[a-zA-Z0-9 ]{1,}$/);
     this.setState({
       ...this.state,
+      add3Err: fieldMatch ? 1 : 0,
+      errorMsg: fieldMatch ? '' : 'Invalid Address Line 3!',
       bookDetails: {
         ...this.state.bookDetails,
         address: {
@@ -168,8 +201,11 @@ class UserBookingDetails extends React.Component {
   }
 
   changeCity = (event) => {
+    const fieldMatch = event.target.value.match(/^[a-zA-Z ]{1,}$/);
     this.setState({
       ...this.state,
+      cityErr: fieldMatch ? 1 : 0,
+      errorMsg: fieldMatch ? '' : 'Invalid City Name!',
       bookDetails: {
         ...this.state.bookDetails,
         address: {
@@ -181,8 +217,11 @@ class UserBookingDetails extends React.Component {
   }
 
   changeZip = (event) => {
+    const fieldMatch = event.target.value.match(/^\d{6}$/);
     this.setState({
       ...this.state,
+      zipErr: fieldMatch ? 1 : 0,
+      errorMsg: fieldMatch ? '' : 'Invalid Zip Code!',
       bookDetails: {
         ...this.state.bookDetails,
         address: {
@@ -194,8 +233,11 @@ class UserBookingDetails extends React.Component {
   }
 
   changeCountry = (event) => {
+    const fieldMatch = event.target.value.match(/^[a-zA-Z ]{1,}$/);
     this.setState({
       ...this.state,
+      countryErr: fieldMatch ? 1 : 0,
+      errorMsg: fieldMatch ? '' : 'Invalid Country!',
       bookDetails: {
         ...this.state.bookDetails,
         address: {
@@ -207,8 +249,11 @@ class UserBookingDetails extends React.Component {
   }
 
   changeProvince = (event) => {
+    const fieldMatch = event.target.value.match(/^[a-zA-Z ]{1,}$/);
     this.setState({
       ...this.state,
+      provErr: fieldMatch ? 1 : 0,
+      errorMsg: fieldMatch ? '' : 'Invalid Province!',
       bookDetails: {
         ...this.state.bookDetails,
         address: {
@@ -223,7 +268,30 @@ class UserBookingDetails extends React.Component {
     this.props.userBookingDetails(this.state.bookDetails);
   }
 
+  doNothing = () => {}
+
   render() {
+    const { firstNameErr } = this.state;
+    const { lastNameErr } = this.state;
+    const { emailErr } = this.state;
+    const { mobErr } = this.state;
+    const { add1Err } = this.state;
+    const { add2Err } = this.state;
+    const { add3Err } = this.state;
+    const { cityErr } = this.state;
+    const { zipErr } = this.state;
+    const { countryErr } = this.state;
+    const { provErr } = this.state;
+    const errorTotal = firstNameErr + lastNameErr
+    + emailErr + mobErr + add1Err
+    + add2Err + add3Err + cityErr + zipErr + countryErr + provErr;
+    const error = this.state.errorMsg !== '' ? (<p>{this.state.errorMsg}</p>) : null;
+    console.log(errorTotal);
+    const btn = errorTotal === 11 ? (
+      <Link to="/payment" className="UBD-btn-div">
+        <button onClick={() => { this.saveDetails(); }} className="UBD-btn">Continue</button>
+      </Link>) : (<div className="UBD-btn-div"><button onClick={() => { this.doNothing(); }} className="UBD-btn">Continue</button></div>);
+
     // const paxRows = [];
     // const { rooms } = this.props;
     // for (let i = 0; i < rooms.length; i += 1) {
@@ -326,9 +394,8 @@ class UserBookingDetails extends React.Component {
         </div>
         </div>
         </div>
-        <Link to="/payment" className="UBD-btn-div">
-          <button onClick={() => { this.saveDetails(); }} className="UBD-btn">Continue</button>
-        </Link>
+        {error}
+        {btn}
         <div className="UBD-Footer">
         <FooterBlack />
         </div>
