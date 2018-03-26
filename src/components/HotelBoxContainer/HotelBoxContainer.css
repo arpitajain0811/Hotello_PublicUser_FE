@@ -12,4 +12,10 @@
     overflow:scroll;
     /* border: solid 1px rgba(151, 151, 151, 1); */
 }
-
+@media only screen and (max-width: 840px) {
+    .hotel-box-container{
+        height: unset;
+        margin-top:2%;
+        width:unset;
+    }
+}

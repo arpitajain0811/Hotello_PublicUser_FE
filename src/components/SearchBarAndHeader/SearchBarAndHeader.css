@@ -3,7 +3,7 @@
     align-items: center;
     justify-content: space-between;
     /* flex-grow: 1; */
-    height: 6%;
+    /* height: 6%; */
     border: solid 0 0 1px 0 rgba(151, 151, 151, 0.45);
     /* margin:29px 0px */
     padding:1%;
@@ -17,7 +17,7 @@
     padding-left:0;
     padding-right: 0;
     align-items: center;
-    width:40%;
+    /* width:40%; */
     max-height: 70px;
     box-sizing: border-box;
     /* justify-content: space-between; */
@@ -75,8 +75,8 @@
     /* line-height: 3.5; */
     letter-spacing: 0.1px;
     padding:3%;
-    padding-left:4%;
-    padding-right: 4%;
+    padding-left:2%;
+    padding-right: 2%;
     outline:none;
 }
 .searchbarAndHeader-LinksContainer {
@@ -96,7 +96,12 @@
     color: grey;
 }
 .logoInListPage{
-    height:8%;
-    width:8%;
+    height:40px;
+    width:43px;
     margin-right:5%;
+}
+@media only screen and (max-width: 768px) {
+    .searchbarAndHeader {
+        margin:29px 0px
+    }
 }

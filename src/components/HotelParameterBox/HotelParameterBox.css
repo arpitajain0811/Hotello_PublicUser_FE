@@ -10,8 +10,9 @@
     /* padding:10px; */
     box-sizing:border-box;
     padding:1%;
-    padding-left: 2%;
-    padding-right: 2%;
+    justify-content: space-between;
+    /* padding-left: 2%; */
+    /* padding-right: 2%; */
     z-index:997
 }
 .DatesDiv {
@@ -53,7 +54,9 @@
     color: white;
 }
 
-
+.DatesAndRoomDivContainer{
+    display: flex;
+}
 .RoomLabel{
     color:black;
 }
@@ -62,7 +65,7 @@
     display:flex;
     flex-direction: row;
     flex-grow:0;
-    margin:0px 50px;
+    /* margin:0px 50px; */
     align-items: center;
     font-family: 'Open Sans';
     border: 1px solid rgba(151, 151, 151, 0.7);
@@ -82,7 +85,9 @@
 .filter-icon{
     width:30px
 }
-
+.MobileViewFilter{
+    display: none;
+}
 .slider-row{
     display:flex;
     flex-direction: row;
@@ -122,4 +127,29 @@
 .bar-1{
     height: 2px;
     background-color:#48bc48
+}
+@media only screen and (max-width: 1240px) {
+    .filter-row {
+        margin-top:1%;
+    }
+}
+@media only screen and (max-width: 840px) {
+    .filter-row {
+        display: none;
+    }
+.hotelParameterBox{
+    padding-top:25px;
+    padding-bottom:25px;
+}
+.DatesDiv{
+    padding:0 4px 0 4px;
+}
+.MobileViewFilter{
+    display: flex;
+    align-items: center;
+    padding-left:3%;
+}
+.RoomsDiv{
+    padding:0 8px 0 8px;
+}
 }

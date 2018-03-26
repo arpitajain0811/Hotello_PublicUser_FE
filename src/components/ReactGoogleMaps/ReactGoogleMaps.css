@@ -104,3 +104,11 @@
 .selectedOverlay{
     border:5px solid #48bc48;
 }
+.ReactGoogleMap{
+    height:65vh;
+}
+@media only screen and (max-width: 768px) {
+    .ReactGoogleMap{
+        height:50vh;
+    }
+}

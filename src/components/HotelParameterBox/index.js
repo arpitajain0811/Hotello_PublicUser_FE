@@ -21,6 +21,7 @@ class HotelParameterBox extends React.Component {
   render() {
     return (
       <div className="hotelParameterBox" >
+      <div className="DatesAndRoomDivContainer">
         <div className="DatesDiv">
           <div className="DatePicker">
             <DatePicker
@@ -43,6 +44,11 @@ class HotelParameterBox extends React.Component {
         <div className="RoomsDiv">
           <RoomsDropDown borderClass="GiveBorder" showDropdownBlock={() => this.showDropdownBlock} />
         </div>
+        <div className="MobileViewFilter">
+      <img src="/filterGreen.svg" alt="filter" className="filter-icon" />
+        </div>
+      </div>
+
         <div className="filter-row">
         <div className="filter-icon-div">
           <img src="/filter.svg" alt="filter" className="filter-icon" />
