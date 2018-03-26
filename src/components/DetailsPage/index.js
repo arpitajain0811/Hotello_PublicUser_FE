@@ -143,14 +143,14 @@ class DetailsPage extends React.Component {
     if (noOfAdults > 1) {
       adultString = `${noOfAdults} Adults`;
     }
-    let childrenString = `${noOfChildren} Child`;
+    let childrenString = `, ${noOfChildren} Child`;
     if (noOfChildren > 1) {
-      childrenString = `${noOfChildren} Children`;
+      childrenString = `, ${noOfChildren} Children`;
     } else if (noOfChildren === 0) {
       childrenString = '';
     }
 
-    const finalRoomStatus = `${roomString}, ${adultString}, ${childrenString}`;
+    const finalRoomStatus = `${roomString}, ${adultString}${childrenString}`;
     // console.log('The image source is: ', imgSrc);
     let roomsArray;
     const usedRooms = [];
