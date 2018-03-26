@@ -23,3 +23,9 @@
 .roomDesc{
   padding-left: 3%;
 }
+
+@media only screen and (max-width: 768px){
+  .roomContainer{
+    flex-grow: 1;
+  }
+}
