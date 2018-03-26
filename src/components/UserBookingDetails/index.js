@@ -36,6 +36,11 @@ class UserBookingDetails extends React.Component {
           passengerTypeCode: 'ADT',
           baggage: '0',
         },
+        amount: this.props.rooms[this.props.currentId].price.total.toString(),
+        hotelname: this.props.hotelname,
+        checkin: this.props.checkin,
+        checkout: this.props.checkout,
+        city: this.props.city,
       },
     };
 
@@ -350,8 +355,13 @@ const mapStateToProps = state => ({
   userName: state.userReducer.firstName,
   isLoggedIn: state.userReducer.isLoggedIn,
   firstName: state.userReducer.firstName,
+  currentId: state.manageRooms.currentRoomId,
+  rooms: state.manageRooms.rooms,
+  hotelname: state.manageRooms.hotelDetails.hotel_name,
+  checkin: state.searchOptions.checkInDate,
+  checkout: state.searchOptions.checkOutDate,
+  city: state.searchOptions.city,
   // rooms: state.searchOptions.rooms,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserBookingDetails);
-
