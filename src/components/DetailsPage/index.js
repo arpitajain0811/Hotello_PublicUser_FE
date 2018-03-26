@@ -36,7 +36,11 @@ class DetailsPage extends React.Component {
     // console.log('Rooms are:', this.props.rooms);
     window.addEventListener('scroll', this.handleScroll);
     console.log('Match type is: ', typeof this.props.match);
-    fetch(`/viewHotelDetails/${this.props.match.params.value}`, {}).then(data => data.json()).then((response) => {
+    fetch(`/viewHotelDetails/${this.props.match.params.value}`, {
+      headers: {
+        sessionId: window.localStorage.getItem('cookie'),
+      },
+    }).then(data => data.json()).then((response) => {
       console.log(response);
       this.setState({
         hotelDetails: response.hotel_details,
