@@ -24,6 +24,7 @@ class PrimaryTravellerDetails extends React.Component {
             <div className="PTD-inp PTD-title-div">
               <select className="PTD-form-input PTD-title">
             <option value="Mr">Mr.</option>
+            <option value="Ms">Ms. </option>
             <option value="Mrs">Mrs.</option>
               </select>
             </div>

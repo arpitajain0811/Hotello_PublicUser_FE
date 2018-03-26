@@ -391,10 +391,10 @@ class DetailsPage extends React.Component {
                     </div>
                   </div>
                   <hr className="PaymentPageLine" />
-                  <div >
+                  <div className="AmountsContainer">
                     <div className="BasePay">
                       <div>
-                        ₹{(this.state.rooms[this.props.currentId].price.total * 65).toFixed(0)} X {this.props.checkOutDate.diff(this.props.checkInDate, 'days')} X 1
+                        ₹{(this.state.rooms[this.props.currentId].price.total * 65).toFixed(0)} X {this.props.checkOutDate.diff(this.props.checkInDate, 'days')} night X 1 room
                       </div>
                       <div>
                         ₹{(this.state.rooms[this.props.currentId].price.total * 65).toFixed(0)}

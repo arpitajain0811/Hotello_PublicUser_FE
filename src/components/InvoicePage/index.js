@@ -180,7 +180,8 @@ class InvoicePage extends React.Component {
     }
 
     return (
-      <div className="detailsPage" >
+      <div className="detailsPage1" >
+      <div className="InvoiceHeader">
       <Header
         isLoggedIn={this.props.isLoggedIn}
         logoutHandler={this.logoutHandler}
@@ -188,17 +189,18 @@ class InvoicePage extends React.Component {
         profileButtonClass="profileButtonBlack"
         logoGreen
       />
-        <div className="bookingConfirmation" >
+      </div>
+        <div className="bookingConfirmation1" >
           <img src={greenTick} alt="" className="greenTick" />
-          <div className="bookingText">Booking Confirmed </div>
+          <div className="bookingText1">Booking Confirmed </div>
           <div className="bookingId">{this.props.bookingId}</div>
 
         </div>
         <div className="invoicePageContainer">
 
-          <div className="mainBody">
-            <div className="hotelDetailsContainer">
-              <div className="hotelName">
+          <div className="mainBody1">
+            <div className="hotelDetailsContainer1">
+              <div className="hotelName1">
                 {this.state.hotelDetails.hotel_name}
               </div>
               {
@@ -248,26 +250,30 @@ class InvoicePage extends React.Component {
               <div className="subHeading">
               Room Type
               </div>
-              <div className="roomType" >
+              <div className="roomType1" >
                 {roomsArray}
               </div>
             </div>
 
-              {this.state.rooms[this.props.currentId] && <div className="bookingDetailsContainer">
-              <div className="Booking-Summary" >
-                <div className="Search-Selected-Details">
-                  <div className="Search-Selected-CheckInOutDates">
-                    {this.props.checkInDate.toString().substring(0, 11)}
+              {this.state.rooms[this.props.currentId] && <div className="bookingDetailsContainer1">
+              {/* Booking Details */}
+              <div className="Booking-Summary1" >
+              <div className="Selected-Hotel-Name">
+                      ₹{(this.state.rooms[this.props.currentId].price.total * 65).toFixed(0)}<span className="night">/NIGHT</span>
+              </div>
+                <div className="Search-Selected-Details1">
+                  <div className="Search-Selected-CheckInOutDates1">
+                  {this.props.checkInDate.toString().substring(0, 3)}, {this.props.checkInDate.toString().substring(4, 11)}
                     <span className="dataArrow">→</span>
-                    {this.props.checkOutDate.toString().substring(0, 11)}
+                    {this.props.checkOutDate.toString().substring(0, 3)}, {this.props.checkOutDate.toString().substring(4, 11)}
 
                   </div>
-                  <div className="Search-Selected-Rooms">
+                  <div className="Search-Selected-Rooms1">
                     {finalRoomStatus}
                   </div>
                 </div>
                 <hr className="PaymentPageLine" />
-                <div >
+                <div className="DetailsPageAmounts">
                   <div className="BasePay">
                     <div>
                       ₹{(this.state.rooms[this.props.currentId].price.total * 65).toFixed(0)} X {this.props.checkOutDate.diff(this.props.checkInDate, 'days')} X 1

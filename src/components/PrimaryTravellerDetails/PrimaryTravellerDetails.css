@@ -22,6 +22,7 @@
     width:100%;
     /* opacity: 0.43; */
     /* margin-left: 10px; */
+    box-sizing: border-box;
     border-radius: 5px;
     border: solid 1px #979797;
 }
@@ -33,7 +34,7 @@
 }
 
 .PTD-title {
-    height: 30px;
+    /* height: 30px; */
 }
 
 .PTD-form-input2 {
@@ -41,6 +42,7 @@
     /* height: 40px; */
     padding: 7%;
     width: 100%;
+    box-sizing: border-box;
     /* opacity: 0.43; */
     /* margin-left: 10px; */
     border-radius: 5px;
@@ -67,14 +69,16 @@
 }
 
 .PTD-title-div {
-    padding-top: 3%;
+    margin-top: 3%;
+    border: 1px solid #979797;
+    padding:2%;
 }
 
 .PTD-title {
     /* height: 29px; */
-    padding: 2%;
+    /* padding: 3%; */
     /* opacity: 0.43; */
-    width: 90%;
+    width: 100%;
     border-radius: 5px;
     border: solid 1px #979797;
 }

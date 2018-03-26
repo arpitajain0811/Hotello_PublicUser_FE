@@ -1,5 +1,6 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Header from '../Header';
 import { logout, changeLoginState, userBookingDetails } from '../../redux/actions';
@@ -293,6 +294,7 @@ class UserBookingDetails extends React.Component {
             <div className="PTD-inp PTD-title-div">
               <select className="PTD-form-input PTD-title" onChange={(event) => { this.changeTitle(event); }}>
             <option className="PTD-title" value="Mr">Mr.</option>
+            <option className="PTD-title" value="Ms">Ms.</option>
             <option className="PTD-title" value="Mrs">Mrs.</option>
               </select>
             </div>
@@ -324,9 +326,9 @@ class UserBookingDetails extends React.Component {
         </div>
         </div>
         </div>
-        <div className="UBD-btn-div">
+        <Link to="/payment" className="UBD-btn-div">
           <button onClick={() => { this.saveDetails(); }} className="UBD-btn">Continue</button>
-        </div>
+        </Link>
         <div className="UBD-Footer">
         <FooterBlack />
         </div>

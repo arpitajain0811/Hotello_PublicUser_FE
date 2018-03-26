@@ -87,7 +87,8 @@
     border:1px solid #979797;
     width:70%;
     margin-left:5%;
-    margin:auto;
+    /* margin:auto; */
+    justify-content: center;
     padding:2%;
     /* opacity: 0.85; */
     font-family: 'Open Sans';
@@ -161,7 +162,7 @@
     padding:4%;
     border-radius: 4px;
   background-color: #48bc48;
-  font-family: OpenSans-regular;
+  font-family: "Open Sans";
   font-size: 18px;
   font-weight: 500;
   color:white;
@@ -353,4 +354,14 @@
 .PaymentPageLine{
   display: none;
 }
+.bookingDetailsContainer{
+  width:100%;
 }
+.Booking-Summary{
+  margin:0;
+  margin-left:0;
+}
+.AmountsContainer{
+  display: none;
+}
+};
