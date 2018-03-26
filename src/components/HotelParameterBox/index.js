@@ -46,6 +46,26 @@ class HotelParameterBox extends React.Component {
         </div>
         <div className="MobileViewFilter">
       <img src="/filterGreen.svg" alt="filter" className="filter-icon" />
+      <div className="filter-row-mobile">
+          <div className="slider-row">
+          Price:
+            <SliderPrice price={this.props.priceFilter[0]} />
+            <Slider
+              min={1000}
+              max={20000}
+              defaultValue={[5000, 17000]}
+              withBars
+              onAfterChange={(v) => {
+                this.props.updateFilteredHotels(v, null);
+          }}
+            />
+            <SliderPrice price={this.props.priceFilter[1]} />
+          </div>
+          <StarsFilter
+            updateFilteredHotels={this.props.updateFilteredHotels}
+            starsFilter={this.props.starsFilter}
+          />
+      </div>
         </div>
       </div>
 
