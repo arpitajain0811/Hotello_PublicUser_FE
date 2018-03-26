@@ -285,7 +285,7 @@ class UserBookingDetails extends React.Component {
     const errorTotal = firstNameErr + lastNameErr
     + emailErr + mobErr + add1Err
     + add2Err + add3Err + cityErr + zipErr + countryErr + provErr;
-    const error = this.state.errorMsg !== '' ? (<p>{this.state.errorMsg}</p>) : null;
+    const error = this.state.errorMsg !== '' ? (<span>{this.state.errorMsg}</span>) : <p />;
     console.log(errorTotal);
     const btn = errorTotal === 11 ? (
       <Link to="/payment" className="UBD-btn-div">
@@ -394,7 +394,7 @@ class UserBookingDetails extends React.Component {
         </div>
         </div>
         </div>
-        {error}
+        <div className="UBD-error">{error}</div>
         {btn}
         <div className="UBD-Footer">
         <FooterBlack />
