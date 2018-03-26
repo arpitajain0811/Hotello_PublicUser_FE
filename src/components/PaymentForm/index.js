@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Payment from 'payment';
+import Room from '../Room';
 import './PaymentForm.css';
 
 class CreditCard extends React.Component {
@@ -80,6 +81,47 @@ class CreditCard extends React.Component {
       this.props.setNoFieldsEmpty(true);
     }
   }
+
+  createRoomsArray = () => {
+    let roomsArray;
+    const usedRooms = [];
+    let flag;
+    if (this.props.hotelDetails.rooms) {
+      roomsArray = this.props.hotelDetails.rooms.map((room, i) => {
+        flag = 1;
+        usedRooms.forEach((type) => {
+          if (type === room.description[0]) {
+            flag = 0;
+          }
+        });
+        if (flag === 1) {
+          usedRooms.push(room.description[0]);
+          if (room.booking_id === this.props.currentId) {
+            return (
+              <Room
+                type={room.description[0]}
+                bookingId={room.booking_id}
+                selected={1}
+                updatePrice={this.updatePrice}
+                hotelId={this.props.hotelDetails.hotel_code}
+              />
+            );
+          }
+          return (
+            <Room
+              type={room.description[0]}
+              bookingId={room.booking_id}
+              selected={0}
+              updatePrice={this.updatePrice}
+              hotelId={this.props.hotelDetails.hotel_code}
+            />
+          );
+        }
+      });
+      // console.log('The buttons are: ', buttons);
+    }
+    return roomsArray;
+  }
   renderCardList=() => (
     <ul className="credit-card-list clearfix">
       <li><i data-brand="visa" className="Visa" /></li>
@@ -90,12 +132,13 @@ class CreditCard extends React.Component {
       <li><i data-brand="dinersclub" className="Diners-club" /></li>
     </ul>)
   render() {
+    const roomsArray = this.createRoomsArray();
     return (
       <div className="PaymentForm">
         <div className="RoomDetailsSection">
     Room type
           <div className="RoomType">
-          {this.props.roomsArray}
+          {roomsArray}
           </div>
         </div>
         <div className="CredidCardDetailsForm">
@@ -119,11 +162,12 @@ class CreditCard extends React.Component {
 }
 const mapStateToProps = state => ({
   roomsArray: state.manageRooms.roomsArrayOfSelectedHotel,
+  currentId: state.manageRooms.currentRoomId,
+  hotelDetails: state.manageRooms.hotelDetails,
 
 });
 CreditCard.propTypes = {};
 export default connect(mapStateToProps, null)(CreditCard);
 CreditCard.propTypes = {
-  roomsArray: PropTypes.array.isRequired,
   setNoFieldsEmpty: PropTypes.func.isRequired,
 };

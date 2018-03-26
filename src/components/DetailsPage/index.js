@@ -195,7 +195,7 @@ class DetailsPage extends React.Component {
       // console.log('The buttons are: ', buttons);
     }
     // roomsArray = Array.prototype.slice.call(roomsArray)
-    this.props.setRoomTypeArray(roomsArray);
+    // this.props.setRoomTypeArray(roomsArray);
 
     let allAmenities;
 
