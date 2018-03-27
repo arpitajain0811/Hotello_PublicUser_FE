@@ -11,6 +11,12 @@ import SliderPrice from '../SliderPrice';
 import StarsFilter from '../StarsFilter';
 
 class HotelParameterBox extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      filterMobileVisible: false,
+    };
+  }
   verifyCheckinDate=(date) => {
     if (date >= moment(new Date())) { this.props.changeCheckinDate(date); }
   }
@@ -45,7 +51,27 @@ class HotelParameterBox extends React.Component {
           <RoomsDropDown borderClass="GiveBorder" showDropdownBlock={() => this.showDropdownBlock} />
         </div>
         <div className="MobileViewFilter">
-      <img src="/filterGreen.svg" alt="filter" className="filter-icon" />
+      <img src="/filterGreen.svg" alt="filter" className="filter-icon" onClick={() => { this.setState({ filterMobileVisible: !this.state.filterMobileVisible }); }} />
+      <div className={`filter-row-mobile${this.state.filterMobileVisible ? ' filter-visible' : ''}`}>
+          <div className="slider-row">
+          Price:
+            <SliderPrice price={this.props.priceFilter[0]} />
+            <Slider
+              min={1000}
+              max={20000}
+              defaultValue={[5000, 17000]}
+              withBars
+              onAfterChange={(v) => {
+                this.props.updateFilteredHotels(v, null);
+          }}
+            />
+            <SliderPrice price={this.props.priceFilter[1]} />
+          </div>
+          <StarsFilter
+            updateFilteredHotels={this.props.updateFilteredHotels}
+            starsFilter={this.props.starsFilter}
+          />
+      </div>
         </div>
       </div>
 

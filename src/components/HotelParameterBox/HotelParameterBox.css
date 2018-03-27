@@ -71,6 +71,8 @@
     border: 1px solid rgba(151, 151, 151, 0.7);
     border-radius:5px
 }
+
+
 .filter-icon-div
 {
     display:flex;
@@ -100,6 +102,7 @@
     border-right: 1px solid rgba(151, 151, 151, 0.7)
     /* border-radius:5px */
 }
+
 
 .slider{
     height:35px;
@@ -137,19 +140,45 @@
     .filter-row {
         display: none;
     }
-.hotelParameterBox{
+
+    .filter-row-mobile{
+        display:none;
+        position: absolute;
+        flex-direction: column;
+        background-color: white;
+        justify-content: space-between;
+        left:0;
+        top:20vh;
+        width:98vw;
+        box-shadow:0px 0px 20px rgba(151, 151, 151, 0.8);
+        margin:0 1vw;
+        padding:1vh;
+        box-sizing: border-box;
+        border-radius: 5px;
+    }
+    .filter-visible{
+        display:flex
+    }
+    .slider-row{
+        margin:1vh 0px;
+        border-right:0;
+        border-bottom:1px solid rgba(151, 151, 151, 0.7)
+    }
+
+    .hotelParameterBox{
     padding-top:25px;
     padding-bottom:25px;
-}
-.DatesDiv{
-    padding:0 4px 0 4px;
-}
-.MobileViewFilter{
-    display: flex;
-    align-items: center;
-    padding-left:3%;
-}
-.RoomsDiv{
-    padding:0 8px 0 8px;
-}
+    }
+
+    .DatesDiv{
+        padding:0 4px 0 4px;
+    }
+    .MobileViewFilter{
+        display: flex;
+        align-items: center;
+        padding-left:3%;
+    }
+    .RoomsDiv{
+        padding:0 8px 0 8px;
+    }
 }
