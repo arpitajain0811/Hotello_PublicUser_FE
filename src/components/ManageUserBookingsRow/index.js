@@ -68,9 +68,14 @@ class ManageUserBookingsRow extends React.Component {
                 </div>
               </div>
               <div className="manage-bookings-row-head-right">
-              {this.state.status === 'Confirmed' ?
-              <button className="manage-bookings-row-cancel-btn" onClick={() => { this.setState({ confirmDialogVisible: true }); }}>Cancel</button>
-              : <div className="manage-bookings-row-cancelled-pill" >Cancelled</div>}
+              {
+                (this.state.status === 'Confirmed') ?
+                  (new Date(this.props.checkIn) > new Date() ?
+                  <button className="manage-bookings-row-cancel-btn" onClick={() => { this.setState({ confirmDialogVisible: true }); }}>Cancel</button>
+                  : <div />)
+
+              : <div className="manage-bookings-row-cancelled-pill" >Cancelled</div>
+            }
 
               </div>
             </div>
