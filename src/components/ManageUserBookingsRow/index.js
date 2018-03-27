@@ -15,16 +15,22 @@ class ManageUserBookingsRow extends React.Component {
       return (
         <div className="manage-bookings-row">
           <div className="manage-bookings-row-img-col">
-            <img src={`/placeholder-hotel-image${Number(this.props.amount)%6}.jpeg`} className="manage-bookings-row-img" alt="hotel-img" />
+            <img src={`/placeholder-hotel-image${Number(this.props.amount) % 6}.jpeg`} className="manage-bookings-row-img" alt="hotel-img" />
           </div>
           <div className="manage-bookings-row-content">
 
             <div className="manage-bookings-row-head">
-              <div className="manage-bookings-row-hotelname">
-                {this.props.hotelName}
+              <div className="manage-bookings-row-head-left">
+                <div className="manage-bookings-row-hotelname">
+                  {this.props.hotelName}
+                </div>
+
+                <div className="manage-bookings-row-bookingid">
+                  Booking ID: {this.props.bookingId}
+                </div>
               </div>
-              <div className="manage-bookings-row-bookingid">
-                Booking ID: {this.props.bookingId}
+              <div className="manage-bookings-row-head-right">
+                <button className="manage-bookings-row-cancel-btn">Cancel</button>
               </div>
             </div>
 
