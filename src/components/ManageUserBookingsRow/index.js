@@ -3,6 +3,32 @@ import PropTypes from 'prop-types';
 import './ManageUserBookingsRow.css';
 
 class ManageUserBookingsRow extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      status: this.props.status,
+      confirmDialogVisible: false,
+    };
+  }
+    cancelBooking=() => {
+      const fetchOptions = {
+        method: 'get',
+        headers: {
+          authorization: window.localStorage.getItem('token'),
+          // sessionId: window.localStorage.getItem('cookie'),
+        },
+      };
+      fetch(`/cancelBooking/${this.props.bookingId}`, fetchOptions).then(response => response.text())
+        .then((respText) => {
+          if (respText === 'Cancelled') {
+            this.setState({ status: 'Cancelled', confirmDialogVisible: false });
+          } else {
+            alert('Unable to cancel. Please try again later');
+            this.setState({ confirmDialogVisible: false });
+          }
+        });
+    }
+
     formatDate=(dateString) => {
       const d = new Date(dateString);
       const options = {
@@ -12,10 +38,22 @@ class ManageUserBookingsRow extends React.Component {
     }
 
     render() {
+      if (this.state.confirmDialogVisible) {
+        return (
+            <div className="manage-bookings-row-cancel-confirmation">
+            Are you sure you want to cancel this booking?
+            <div>
+              <button className="cancel-booking-confirm-btn btn-yes" onClick={this.cancelBooking}>Yes</button>
+              <button className="cancel-booking-confirm-btn" onClick={() => { this.setState({ confirmDialogVisible: false }); }}>No</button>
+            </div>
+            </div>
+        );
+      }
+
       return (
         <div className="manage-bookings-row">
           <div className="manage-bookings-row-img-col">
-            <img src={`/placeholder-hotel-image${Number(this.props.amount) % 6}.jpeg`} className="manage-bookings-row-img" alt="hotel-img" />
+            <img src={`/placeholder-hotel-image${Number(this.props.amount % 6).toFixed(0)}.jpeg`} className="manage-bookings-row-img" alt="hotel-img" />
           </div>
           <div className="manage-bookings-row-content">
 
@@ -30,7 +68,10 @@ class ManageUserBookingsRow extends React.Component {
                 </div>
               </div>
               <div className="manage-bookings-row-head-right">
-                <button className="manage-bookings-row-cancel-btn">Cancel</button>
+              {this.state.status === 'Confirmed' ?
+              <button className="manage-bookings-row-cancel-btn" onClick={() => { this.setState({ confirmDialogVisible: true }); }}>Cancel</button>
+              : <div className="manage-bookings-row-cancelled-pill" >Cancelled</div>}
+
               </div>
             </div>
 
@@ -72,6 +113,6 @@ ManageUserBookingsRow.propTypes = {
   hotelName: PropTypes.string.isRequired,
   numOfGuests: PropTypes.number.isRequired,
   numOfRooms: PropTypes.number.isRequired,
-
+  status: PropTypes.string.isRequired,
 };
 export default ManageUserBookingsRow;

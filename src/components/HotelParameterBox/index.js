@@ -58,7 +58,7 @@ class HotelParameterBox extends React.Component {
             <SliderPrice price={this.props.priceFilter[0]} />
             <Slider
               min={1000}
-              max={20000}
+              max={100000}
               defaultValue={[5000, 17000]}
               withBars
               onAfterChange={(v) => {
@@ -84,7 +84,7 @@ class HotelParameterBox extends React.Component {
             <SliderPrice price={this.props.priceFilter[0]} />
             <Slider
               min={1000}
-              max={20000}
+              max={100000}
               defaultValue={[5000, 17000]}
               withBars
               onAfterChange={(v) => {
