@@ -68,7 +68,7 @@ class BookingSummary extends React.Component {
     numOfNights = checkOut - checkIn;
     if (numOfNights > 1) nights = `${numOfNights} Nights`;
     else nights = `${numOfNights} Night`;
-    const amtPerNightPerRoom = Math.round(this.props.rooms[this.props.currentId].price.total * numOfNights * this.props.totalRooms);
+    const amtPerNightPerRoom = Math.round(this.props.rooms[this.props.currentId].price.total * numOfNights * this.props.totalRooms * 65);
     console.log(amtPerNightPerRoom);
     return (
       <div className="BookingSummary" >
@@ -101,7 +101,7 @@ class BookingSummary extends React.Component {
         <hr className="PaymentPageLine" />
         <div className="PriceDeatils" >
           <div className="BasePay">
-            <div>₹{this.props.amountPerNight} X {nights} X {this.props.totalRooms} {Room}</div>
+            <div>₹{amtPerNightPerRoom} X {nights} X {this.props.totalRooms} {Room}</div>
             <div> ₹{amtPerNightPerRoom}</div>
           </div>
           <hr className="PaymentPageLine" />
@@ -138,7 +138,7 @@ BookingSummary.defaultProps = {
   totalRooms: 1,
   totalChildren: 0,
   amountPerNight: 3000,
-  serviceFee: 700,
+  serviceFee: 500,
   RoomId: '00334399-d1f4-4fec-b7a7-189af47b4f40',
   amount: 1235,
 };

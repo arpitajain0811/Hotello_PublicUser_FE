@@ -379,7 +379,7 @@ class DetailsPage extends React.Component {
                 <div className="Booking-Summary" >
                   <div className="HotelNameWithStars">
                     <div className="Selected-Hotel-Name">
-                      ₹{(this.state.rooms[this.props.currentId].price.total * 65).toFixed(0)}<span className="night">/NIGHT</span>
+                      ₹{((this.state.rooms[this.props.currentId].price.total * 65) + 500 + (0.18 * (this.state.rooms[this.props.currentId].price.total * 65))).toFixed(0)}<span className="night">/NIGHT</span>
                     </div>
 
                     <div className="SelectedHotelStars">
