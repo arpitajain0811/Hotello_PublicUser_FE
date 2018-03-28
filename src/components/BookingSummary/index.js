@@ -111,7 +111,7 @@ class BookingSummary extends React.Component {
           </div>
           <hr className="PaymentPageLine" />
           <div className="Taxes">
-            <div>Taxes (18% GST)</div>
+            <div>Taxes</div>
             <div> ₹{Math.round(0.18 * amtPerNightPerRoom)}</div>
 
           </div>
