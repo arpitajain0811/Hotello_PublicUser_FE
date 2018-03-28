@@ -14,7 +14,7 @@
 }
 @media only screen and (max-width: 840px) {
     .hotel-box-container{
-        height: 20vh;
+        height: 25vh;
         margin-top:2%;
         width:unset;
         flex-wrap: nowrap
