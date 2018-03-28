@@ -23,7 +23,7 @@ class UserBookingDetails extends React.Component {
         add3Err: 0,
         cityErr: 0,
         zipErr: 0,
-        countryErr: 0,
+        countryErr: 1,
         provErr: 0,
         errorMsg: '',
         bookDetails: {
@@ -413,7 +413,7 @@ class UserBookingDetails extends React.Component {
       );
     }
 
-    return null;
+    return <Redirect to="/" />;
   }
 }
 
