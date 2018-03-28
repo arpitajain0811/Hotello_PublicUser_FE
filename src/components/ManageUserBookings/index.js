@@ -40,9 +40,18 @@ class ManageUserBookings extends React.Component {
       />);
       allBookingRows.push(bookingRow);
     });
+    if (allBookingRows.length) {
+      return (
+        <div className="manage-user-bookings">
+          {allBookingRows}
+        </div>
+      );
+    }
     return (
       <div className="manage-user-bookings">
-        {allBookingRows}
+        <div className="messageContainer" >
+          No Bookings Found
+        </div>
       </div>
     );
   }

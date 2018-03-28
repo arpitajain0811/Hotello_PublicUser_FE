@@ -80,6 +80,8 @@ class EditUserDetails extends React.Component {
         this.setState({
           updateSuccessMsg: 'Details updated successfully!',
         });
+        console.log('after setting state to "Details updated successfully"');
+        this.props.changeUserName(this.state.firstName);
       });
     } else {
       this.setState({
@@ -116,18 +118,18 @@ class EditUserDetails extends React.Component {
             <input type="text" className="userDetailsInputBox" name="email" value={this.state.email} onChange={this.editDetailHandler} />
             <input type="text" className="userDetailsInputBox" name="phoneNumber" value={this.state.phoneNumber} onChange={this.editDetailHandler} />
           </div>
-          <div className="validationErrorMsgsBlock">
+          <div className="msgsRow" >
+            <div className="validationErrorMsgsBlock">
               {msgs}
-          </div>
-          <div className="saveButtonRow" >
+            </div>
             <div style={{ color: 'red' }}>
               {this.state.submitErrorMsg}
             </div>
             <div style={{ color: '#48bc48' }} >
               {this.state.updateSuccessMsg}
             </div>
-            <button className="saveDetailsButton" onClick={this.handleSaveUserDetails} >Save Details</button>
           </div>
+          <button className="saveDetailsButton" onClick={this.handleSaveUserDetails} >Save Details</button>
 
         </div>
       );
