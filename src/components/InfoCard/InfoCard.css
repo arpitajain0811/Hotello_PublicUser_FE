@@ -151,10 +151,9 @@
     left :0;
     width:100vw;
     margin:0;
-    bottom:0;
-    z-index:999
+    top:10%;
+    z-index:999;
+    box-shadow:0px 0px 10px rgba(85, 85, 85, 0.5);
 }
-.info-card > *{
-    /* z-index:1000 */
-}
+
 }

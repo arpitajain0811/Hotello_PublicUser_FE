@@ -15,7 +15,7 @@ class ManageUserBookingsRow extends React.Component {
         method: 'get',
         headers: {
           authorization: window.localStorage.getItem('token'),
-          // sessionId: window.localStorage.getItem('cookie'),
+          sessionId: window.localStorage.getItem('cookie'),
         },
       };
       fetch(`/cancelBooking/${this.props.bookingId}`, fetchOptions).then(response => response.text())
@@ -53,7 +53,7 @@ class ManageUserBookingsRow extends React.Component {
       return (
         <div className="manage-bookings-row">
           <div className="manage-bookings-row-img-col">
-            <img src={`/placeholder-hotel-image${Number(this.props.amount % 6).toFixed(0)}.jpeg`} className="manage-bookings-row-img" alt="hotel-img" />
+            <img src={`/placeholder-hotel-image${Number((this.props.amount % 6) + 1).toFixed(0)}.jpeg`} className="manage-bookings-row-img" alt="hotel-img" />
           </div>
           <div className="manage-bookings-row-content">
 
