@@ -6,12 +6,17 @@
   font-family: 'Open Sans';
 }
 
+.buttonsContainer{
+  width: 20%;
+}
+
 .printButton{
   margin-top: 2%;
   background: #48bc48;
   color: white;
   height: 13%;
-  width: 9%;
+  width: 47%;
+  margin: 1%;
   font-size: 12px;
   font-family: 'Open Sans';
 }
@@ -309,6 +314,13 @@
     flex-direction: column;
     height:100%;
   }
+
+  .buttonsContainer{
+    width: 80%;
+  }
+  .printButton{
+    width:45%;
+  }
   .hotelDetailsContainer1{
     width:100%;
     max-width:100vh;
@@ -316,14 +328,14 @@
     border-top: 1px solid #979797;
   }
   .bookingConfirmation1{
-    height: 20%;
+    height: 25%;
     min-height:0px;
   }
   .detailsPage1{
     height: 100vh;
   }
 .invoicePageContainer{
-  height:67%;
+  height:62%;
 }
 .Booking-Summary1{
   border:0;
