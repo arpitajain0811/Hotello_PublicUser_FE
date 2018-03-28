@@ -26,32 +26,31 @@
     height: 15%;
     border: solid 1px #979797;
     border-radius: 5px; 
-    padding-left: 4%;
+    padding-left: 2%;
     box-sizing: border-box;
 }
 .validationErrorMsgsBlock {
     color: red;
-    height: 10%;
 }
-.saveButtonRow {
+.msgsRow {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 9%;
+    height: 10%;
     font-weight: 600;
     font-size: 1em;
 }
 .saveDetailsButton {
     width: 20%;
-    height: 100%;
-    align-self: flex-end;
-    margin-left: 5%;
+    height: 8%;
+    align-self: center;
     background-color: #48bc48;
     border-radius: 4px;
     color: white;
     outline: none;
     cursor: pointer; 
     box-shadow: 8px 8px 25px 0 rgba(46,61,73,.2); 
+    font-size: 17px;
 }
 .saveDetailsButton:hover {
     box-shadow: 4px 4px 25px 0 rgba(46,61,73,.2); 
