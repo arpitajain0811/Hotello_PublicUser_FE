@@ -32,6 +32,7 @@ class DetailsPage extends React.Component {
 
 
   componentDidMount() {
+    document.body.style.overflow = 'scroll';
     this.props.setRoomTypeEditable();
     // console.log('Rooms are:', this.props.rooms);
     window.addEventListener('scroll', this.handleScroll);

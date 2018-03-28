@@ -36,7 +36,7 @@ class BookingSummary extends React.Component {
   }
   render() {
     const stars = [];
-    for (let i = 0; i < Number(this.props.stars); i += 1) {
+    for (let i = 0; i < Number(this.props.hotelDetails.stars); i += 1) {
       stars.push((<img
         src="/star.svg"
         className="star"
@@ -44,12 +44,12 @@ class BookingSummary extends React.Component {
         key={i}
       />));
     }
-    for (let i = 0; i < (5 - Number(this.props.stars)); i += 1) {
+    for (let i = 0; i < (5 - Number(this.props.hotelDetails.stars)); i += 1) {
       stars.push((<img
         src="/star-grey.svg"
         className="star-grey"
         alt="star-grey"
-        key={Number(this.props.stars) + i}
+        key={Number(this.props.hotelDetails.stars) + i}
       />));
     }
     let childrenString = '';
@@ -69,12 +69,13 @@ class BookingSummary extends React.Component {
     if (numOfNights > 1) nights = `${numOfNights} Nights`;
     else nights = `${numOfNights} Night`;
     const amtPerNightPerRoom = Math.round(this.props.rooms[this.props.currentId].price.total * numOfNights * this.props.totalRooms);
+    console.log(amtPerNightPerRoom);
     return (
       <div className="BookingSummary" >
         <div className="HotelNameWithStars">
 
           <div className="SelectedHotelName">
-            {this.props.hotelName}
+            {this.props.hotelDetails.hotel_name}
           </div>
           <div className="SelectedHotelStars">
             {stars}
@@ -150,6 +151,7 @@ const mapStateToProps = state => ({
   bookDetails: state.userReducer.bookDetails,
   currentId: state.manageRooms.currentRoomId,
   rooms: state.manageRooms.rooms,
+  hotelDetails: state.manageRooms.hotelDetails,
 });
 
 const mapDispatchToProps = dispatch => ({

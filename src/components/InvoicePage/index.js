@@ -35,6 +35,7 @@ class InvoicePage extends React.Component {
 
 
   componentDidMount() {
+    document.body.style.overflow = 'scroll';
     this.setState({
       hotelDetails: this.props.hotelDetails,
       rooms: this.props.roomsArray,
@@ -165,19 +166,19 @@ class InvoicePage extends React.Component {
     }
 
 
-    if (this.state.loaded === 0) {
-      return (
-        <div className="detailsPage" >
-          <SearchBarAndHeader updateSearch={this.updateSearch} logoutHandler={this.logoutHandler} />
-          <img src={this.imgSrc} className="hotelImage" />
-          <div className="detailsPageContainer">
-            <div className="mainBody">
-              <img src={loader} />
-            </div>
-          </div>
-        </div>
-      );
-    }
+    // if (this.state.loaded === 0) {
+    //   return (
+    //     <div className="detailsPage" >
+    //       <SearchBarAndHeader updateSearch={this.updateSearch} logoutHandler={this.logoutHandler} />
+    //       <img src={this.imgSrc} className="hotelImage" />
+    //       <div className="detailsPageContainer">
+    //         <div className="mainBody">
+    //           <img src={loader} />
+    //         </div>
+    //       </div>
+    //     </div>
+    //   );
+    // }
 
     return (
       <div className="detailsPage1" >
