@@ -1,0 +1,345 @@
+.detailsPage1{
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  width: 100%;
+  font-family: 'Open Sans';
+}
+
+.bookingConfirmation1{
+  width: 100%;
+  height: 30vh;
+  min-height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.bookingText1{
+  font-size: 25px;
+  font-weight: 600;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: 0.1px;
+  margin-top: 1%;
+}
+
+.mainBody1{
+  display:flex;
+  flex-direction: row;
+  padding: 0 5%;
+  justify-content: center;
+
+}
+
+.boldText{
+    font-weight: bold;
+}
+
+
+.greenTick{
+  width: 15vh;
+  height: 13vh;
+}
+
+.invoicePageContainer{
+  background-color: white;
+  padding-top: 3%;
+}
+
+.hotelDetailsContainer1{
+  flex-grow: 1;
+  max-width: 50vw;
+}
+
+.bookingDetailsContainer1{
+   flex-grow: 1;
+  margin-top: 20px;
+
+}
+
+.hotelName1{
+  font-size: 40px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: 0.1px;
+}
+
+.description{
+  text-align:justify;
+  font-size: 15px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: 0.1px;
+  margin-top: 2%;
+}
+
+.amenities {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content:flex-start;
+  margin-top: 2%;
+}
+
+.bookingId{
+  font-size: 16px;
+  font-weight: 600;
+}
+.roomType1{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin-top: 2%;
+}
+
+.Booking-Summary1{
+    border:1px solid #979797;
+    width:70%;
+    margin-left:5%;
+    justify-content: center;
+    padding:2%;
+    font-family: 'Open Sans';
+    font-size: 15px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    letter-spacing: 0.1px;
+}
+.Selected-Hotel-Name1{
+    font-family: 'Open Sans';
+    font-size: 30px;
+    font-weight: bold;
+    letter-spacing: 0.1px;
+}
+.HotelNameWithStars{
+    padding-bottom:1%;
+}
+.PaymentPageArrowImg{
+    width:65%;
+    height:45%;
+}
+.Search-Selected-CheckInOutDates1{
+    margin-right: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2%;
+    flex-grow: 1;
+    border-radius: 4px;
+    border: solid 1px #979797;
+}
+.Search-Selected-Rooms1{
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2%;
+  border-radius: 4px;
+  border: solid 1px #979797;
+}
+.PaymentpageArrow{
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    opacity: 0.45;
+}
+.Search-Selected-Details1{
+  display: flex;
+  flex-direction: row;
+  justify-content:center;
+  font-size: 14px;
+  font-weight: bold;
+  padding:2%;
+  padding-bottom:3%;
+
+}
+.PaymentPageLine{
+    opacity: 0.42;
+}
+.MakePaymentButton{
+    width:100%;
+    padding:4%;
+    border-radius: 4px;
+  background-color: #48bc48;
+  font-family: "Open Sans";
+  font-size: 18px;
+  font-weight: 500;
+  color:white;
+  outline: none;
+}
+
+.BasePay{
+    display: flex;
+    justify-content: space-between;
+    padding:2%;
+}
+.ServiceFee{
+    display: flex;
+    justify-content: space-between;
+    padding:2%;
+}
+.Taxes{
+    display: flex;
+    justify-content: space-between;
+    padding:2%;
+}
+.TotalAmount{
+    display: flex;
+    justify-content: space-between;
+    padding:2%;
+    font-weight: 600;
+    padding-bottom: 5%;
+}
+
+.address{
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: 0.1px;
+}
+
+.subHeading{
+  font-size: 17px;
+  font-weight: 600;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: 0.1px;
+  margin-top: 4%;
+}
+
+.night{
+  font-size: 16px;
+  font-family: 'Open Sans';
+  font-weight: lighter;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: 0.1px;
+}
+.dataArrow{
+  padding: 2%;
+  font-size: 25px;
+  opacity: 0.45;
+  margin-right: 2%;
+}
+
+.amenitiesButton{
+  font-size: 15px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: 0.1px;
+  color: #48bc48;
+  margin-bottom: 3%;
+}
+
+.amenitiesButton:hover {
+  cursor: pointer;
+}
+
+.expandedAmenities{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content:flex-start;
+  margin-top: 2%;
+  margin-bottom: 3%;
+}
+
+.hotelDescription{
+  margin-bottom: 3%;
+}
+
+.backButton{
+  font-family: 'Open Sans';
+  font-size: 18px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: 0.1px;
+  color: #48bc48;
+}
+
+.backArrow{
+  font-size: 10px;
+  padding-top: 5px;
+}
+
+.backSection{
+  color: #48bc48;
+  margin-left: 5%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin-top: -2%;
+  margin-bottom: 2%;
+}
+
+.removeTextDecoration{
+  text-decoration: none;
+}
+.InvoiceHeader{
+  padding:2%;
+}
+@media only screen and (max-width: 768px) {
+  .mainBody1{
+    flex-direction: column;
+    height:100%;
+  }
+  .hotelDetailsContainer1{
+    width:100%;
+    max-width:100vh;
+    overflow-y: scroll;
+    border-top: 1px solid #979797;
+  }
+  .bookingConfirmation1{
+    height: 20%;
+    min-height:0px;
+  }
+  .detailsPage1{
+    height: 100vh;
+  }
+.invoicePageContainer{
+  height:67%;
+}
+.Booking-Summary1{
+  border:0;
+  width:100%;
+  margin-left:0;
+  padding:0;
+}
+.bookingDetailsContainer1{
+  border-top:1px solid black;
+  justify-content: center;
+  width:100%;
+}
+.DetailsPageAmounts{
+  display: none;
+}
+.Search-Selected-Details1{
+  padding-left:0;
+  padding-right:0;
+  justify-content: space-between;
+}
+.Search-Selected-CheckInOutDates1{
+  border:0;
+  padding:0;
+}
+.Search-Selected-Rooms1{
+  border:0;
+  padding:0;
+}
+}

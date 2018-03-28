@@ -1,0 +1,19 @@
+.stars-filter-item{
+    display:flex;
+    flex-direction: row;
+    border:1px solid grey;
+    /* border-radius:3%; */
+    align-items: center;
+    margin:0px 5px;
+    padding:3px;
+    font-family: 'Open Sans';
+    background-color:white;
+    cursor: pointer;
+    color:grey
+}
+
+.stars-filter-item-active{
+    background-color:#f6a623;
+    border:1px solid #f6a623;
+    color:white
+}

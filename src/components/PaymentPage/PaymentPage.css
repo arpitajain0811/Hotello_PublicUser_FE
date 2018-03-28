@@ -1,0 +1,39 @@
+.PaymentPage{
+    /* width:100%; */
+    padding:2%;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-between; */
+    height:100%;
+    box-sizing: border-box;
+    /* flex-grow: 1; */
+}
+.PaymentBody{
+    display: flex;
+    flex-grow:1;
+    justify-content: center;
+    align-items: center;
+    border-top:1px solid rgba(151, 151, 151, 0.45);
+    margin-top:2%;
+    
+}
+@media only screen and (max-width: 768px) {
+
+.PaymentFooter{
+    display: none;
+}
+.PaymentPage{
+    padding:0;
+}
+.PaymentBody{
+    /* border-bottom:1px solid rgba(151, 151, 151, 0.45); */
+    flex-direction: column;
+    padding-left:3%;
+    padding-right:3%;
+    justify-content: space-between;
+    margin-top:0;
+}
+.PaymentHeader{
+    padding:2%;
+}
+}

@@ -1,0 +1,30 @@
+.icon{
+  width: 100%;
+  height: 120%;
+  /* margin-top: 10px; */
+  min-width: 25px;
+}
+
+.crop{
+  width:7vh;
+  height:7vh;
+  margin: 5px;
+  overflow: hidden;
+}
+
+.Amenitycontainer{
+  display: flex;
+  flex-direction: row;
+  width: 20vw;
+  min-width: 100px;
+}
+
+.amenityText{
+  padding-top: 7%;
+  padding-left: 3%;
+  /* font-family: 'Open Sans Light'; */
+  font-weight:200;
+  flex-grow: 1;
+  margin-left:auto;
+  margin-right: auto;
+}
