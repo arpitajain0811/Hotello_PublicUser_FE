@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import './Header.css';
 import logo from '../../logo.svg';
@@ -85,7 +86,9 @@ class Header extends React.Component {
     return (
       <div className="MyHeader" style={this.props.setHeight ? { height: this.props.setHeight } : {}} >
         <div className="logo">
+        <Link to="/">
           <img src={this.props.logoGreen ? '/group-26.svg' : logo} alt="logo" className="logo" />
+        </Link>
         </div>
         {signOptionsBlock}
 

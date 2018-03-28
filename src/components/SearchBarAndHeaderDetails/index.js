@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './SearchBarAndHeader.css';
 // import logo from '../../logo.svg';
 import searchLogo from '../../searchLogo.svg';
@@ -108,9 +108,10 @@ class SearchBarAndHeader extends React.Component {
       <div className="searchbarAndHeaderDetails" style={{ backgroundColor: bgColor, boxShadow: shadow }}>
         <div className="searchbarAndHeader-LogoAndSearchBox" >
           {/* <div className="searchbarAndHeader-logo" > */}
+          <Link to="/">
           <img src={this.props.type === 1 ? '/group-26.svg' : logo} alt="logo" className="logoInDetailsPage" />
           {/* </div> */}
-
+          </Link>
 
         </div>
         {/* <div className="searchbarAndHeader-LinksContainer">
