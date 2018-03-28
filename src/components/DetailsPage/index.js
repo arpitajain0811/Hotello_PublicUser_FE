@@ -14,7 +14,9 @@ import Room from '../Room';
 import loader from '../../images/loader2.svg';
 import LoginBody from '../LoginBody';
 
-
+window.onbeforeunload = function () {
+  window.localStorage.setItem('refresh', true);
+};
 class DetailsPage extends React.Component {
   constructor(props) {
     super(props);
@@ -29,7 +31,6 @@ class DetailsPage extends React.Component {
     this.imgSrc = '';
     this.setImg();
   }
-
 
   componentDidMount() {
     this.props.setRoomTypeEditable();
@@ -72,7 +73,6 @@ class DetailsPage extends React.Component {
   componentWillUnmount() {
     window.removeEventListener('scroll', this.handleScroll);
   }
-
 
   setImg = () => {
     const context = require.context('../../images/rooms', true);
@@ -128,7 +128,10 @@ class DetailsPage extends React.Component {
   }
 
   render() {
-    // console.log(this.props.userName);
+    if (window.localStorage.getItem('refresh') === 'true') {
+      return <Redirect to="/" />;
+    }
+
     let roomString = `${this.props.rooms.length} Room`;
     if (this.props.rooms.length > 1) {
       roomString = `${this.props.rooms.length} Rooms`;

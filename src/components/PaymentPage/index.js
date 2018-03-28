@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import './PaymentPage.css';
 import Header from '../Header';
@@ -8,6 +9,9 @@ import BookingSummary from '../BookingSummary';
 import FooterBlack from '../FooterBlack';
 import PaymentForm from '../PaymentForm';
 
+window.onbeforeunload = function () {
+  window.localStorage.setItem('refresh', true);
+};
 class PaymentPage extends React.Component {
   constructor(props) {
     super(props);
@@ -60,6 +64,12 @@ class PaymentPage extends React.Component {
   }
 
   render() {
+    if (window.localStorage.getItem('refresh') === 'true') {
+      return <Redirect to="/" />;
+    }
+    // if (this.props.rooms[this.props.currentId] === undefined) {
+    //   return <Redirect to="/" />;
+    // }
     if (window.localStorage.getItem('token') !== null) {
       return (
         <div className="PaymentPage">

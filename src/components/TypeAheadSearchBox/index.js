@@ -67,7 +67,7 @@ const PlacesWithStandaloneSearchBox = compose(
         <input
           type="text"
           placeholder={props.cityPlaceholder}
-          className="SearchByTextInput1"
+          className="SearchByTextInput"
         />
       </StandaloneSearchBox>
     </div>

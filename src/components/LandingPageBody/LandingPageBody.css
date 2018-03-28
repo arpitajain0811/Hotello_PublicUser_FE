@@ -91,7 +91,7 @@
     align-items: center;
     width:30%;
     border-right: 1px solid rgba(0, 0, 0, 0.24);
-    padding:1%;
+    margin:1%;
     /* margin-right:0; */
 }
 .ArrowImg{
@@ -255,5 +255,11 @@ input{
         padding:2%;
         box-sizing: border-box;
         margin-top: 3%;
+    }
+    .CheckOutPicker .react-datepicker-popper{
+        transform: translate3d(155px, 460px, 0px) !important;
+    }
+    .CheckOutPicker .react-datepicker__triangle{
+        left:160px !important;
     }
 }
