@@ -109,6 +109,6 @@
 }
 @media only screen and (max-width: 768px) {
     .ReactGoogleMap{
-        height:50vh;
+        height:45vh;
     }
 }
