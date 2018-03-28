@@ -171,6 +171,9 @@ class InvoicePage extends React.Component {
     }
 
 
+    if (window.localStorage.getItem('token') === null) {
+      return (<Redirect to="/" />);
+    }
     // if (this.state.loaded === 0) {
     //   return (
     //     <div className="detailsPage" >
