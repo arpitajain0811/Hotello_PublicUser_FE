@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import Popup from 'reactjs-popup';
 import axios from 'axios';
 import PropTypes from 'prop-types';
@@ -16,7 +16,9 @@ import greenTick from '../../images/greenTick.png';
 import LoginBody from '../LoginBody';
 import Header from '../Header';
 
-
+// window.onbeforeunload = function () {
+//   window.localStorage.setItem('refresh', true);
+// };
 class InvoicePage extends React.Component {
   constructor(props) {
     super(props);
@@ -80,6 +82,9 @@ class InvoicePage extends React.Component {
   }
 
   render() {
+    // if (window.localStorage.getItem('refresh') === 'true') {
+    //   return <Redirect to="/" />;
+    // }
     console.log(this.props.userName);
     let roomString = `${this.props.rooms.length} Room`;
     if (this.props.rooms.length > 1) {

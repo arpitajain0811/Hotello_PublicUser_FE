@@ -56,3 +56,17 @@
     text-decoration: none;
     margin-right:2%;
 }
+@media only screen and (max-width: 840px) {
+    .footerBlack{
+        padding:0;
+       padding-left:10px;
+    }
+    .footerBlackItem1Link {
+        padding-top:20px;
+        padding-bottom:20px;
+    }
+    .footerBlackItem2Link {
+        padding-top:80px;
+        padding-bottom:30px;
+    }
+}

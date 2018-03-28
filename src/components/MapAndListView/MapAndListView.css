@@ -26,5 +26,12 @@
     /* background-color: red; */
     /* height:70vh */
 }
-
-
+@media only screen and (max-width: 840px) {
+.mapAndListView{
+    flex-direction: column-reverse;
+}
+.map-container{
+    /* margin-left:2%;
+    margin-right:2%; */
+}
+}

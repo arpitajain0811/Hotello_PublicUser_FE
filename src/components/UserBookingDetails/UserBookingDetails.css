@@ -22,6 +22,12 @@
     margin-top:2%;
 }
 
+.UBD-error {
+    color: red;
+    text-align: center;
+    padding: 2%;
+}
+
 .UBD-Room {
     background-color: #48bc48;
     color: white;

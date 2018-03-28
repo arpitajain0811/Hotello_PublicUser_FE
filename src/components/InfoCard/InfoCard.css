@@ -54,6 +54,7 @@
     flex-direction:column;
     padding:20px;
     font-size:0.75em;
+    background-color:white
 }
 
 .hide{
@@ -142,4 +143,18 @@
     justify-content: space-between;
     align-items: center;
     margin:0px 10px;
+}
+
+@media only screen and (max-width: 840px) {
+.info-card{
+    position: fixed;
+    left :0;
+    width:100vw;
+    margin:0;
+    bottom:0;
+    z-index:999
+}
+.info-card > *{
+    /* z-index:1000 */
+}
 }

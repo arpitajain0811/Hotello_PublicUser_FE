@@ -20,6 +20,7 @@ class LandingPage extends React.Component {
 
   componentWillMount() {
     console.log('in LandingPage componentWillMount, window.localStorage.getItem(userName)', window.localStorage.getItem('userName'), typeof (window.localStorage.getItem('userName')));
+    window.localStorage.setItem('refresh', false);
     if (window.localStorage.getItem('userName') !== null) {
       // console.log('hi');
       this.props.changeLoginState(window.localStorage.getItem('userName'));

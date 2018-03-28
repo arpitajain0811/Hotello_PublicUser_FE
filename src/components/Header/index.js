@@ -83,9 +83,9 @@ class Header extends React.Component {
     // console.log(signOptionsBlock);
     // console.log(userGreetingAndIcon);
     return (
-      <div className="MyHeader">
+      <div className="MyHeader" style={this.props.setHeight ? { height: this.props.setHeight } : {}} >
         <div className="logo">
-          <img src={this.props.logoGreen?'/group-26.svg':logo} alt="logo" className="logo" />
+          <img src={this.props.logoGreen ? '/group-26.svg' : logo} alt="logo" className="logo" />
         </div>
         {signOptionsBlock}
 
@@ -100,10 +100,18 @@ const mapStateToProps = state => ({
   isLoggedIn: state.userReducer.isLoggedIn,
 });
 export default connect(mapStateToProps, null)(Header);
+
+Header.defaultProps = {
+  setHeight: null,
+  logoGreen: null,
+};
+
 Header.propTypes = {
   firstName: PropTypes.string.isRequired,
   textColor: PropTypes.string.isRequired,
   logoutHandler: PropTypes.func.isRequired,
   profileButtonClass: PropTypes.string.isRequired,
   isLoggedIn: PropTypes.bool.isRequired,
+  setHeight: PropTypes.string,
+  logoGreen: PropTypes.bool,
 };

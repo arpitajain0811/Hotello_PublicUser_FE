@@ -71,3 +71,14 @@ justify-content: flex-start
     object-fit: contain;
     background-color: rgba(216, 216, 216, 0.0);
 }
+@media only screen and (max-width: 768px) {
+.hotel-box{
+    width:180px;
+    height:190px;
+    /* justify-content: space-around; */
+    margin:0px 8px 15px 8px;
+}
+.hotel-box-content{
+    width:180px;
+}
+}
