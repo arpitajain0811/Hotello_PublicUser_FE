@@ -80,6 +80,8 @@ class EditUserDetails extends React.Component {
         this.setState({
           updateSuccessMsg: 'Details updated successfully!',
         });
+        console.log('after setting state to "Details updated successfully"');
+        this.props.changeUserName(this.state.firstName);
       });
     } else {
       this.setState({
