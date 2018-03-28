@@ -36,12 +36,13 @@ class ManageUserBookings extends React.Component {
         hotelName={booking.hotelname}
         numOfGuests={booking.numofguests}
         numOfRooms={booking.numofrooms}
+        status={booking.status}
       />);
       allBookingRows.push(bookingRow);
     });
     return (
-      <div className='manage-user-bookings'>
-        {allBookingRows} 
+      <div className="manage-user-bookings">
+        {allBookingRows}
       </div>
     );
   }

@@ -22,7 +22,7 @@ class InfoCard extends React.Component {
     if (nextProps.name !== this.props.name) {
       this.setState({ hidden: '', diff: true });
     } else {
-      this.setState({ hidden: '', diff: false });
+      this.setState({ hidden: ' hide', diff: false });
     }
   }
   componentWillUpdate() {

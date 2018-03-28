@@ -164,7 +164,9 @@
         border-right:0;
         border-bottom:1px solid rgba(151, 151, 151, 0.7)
     }
-
+    .slider{
+        width:60vw
+    }
     .hotelParameterBox{
     padding-top:25px;
     padding-bottom:25px;
