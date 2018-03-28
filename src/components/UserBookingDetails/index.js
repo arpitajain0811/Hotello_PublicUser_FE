@@ -1,70 +1,72 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Header from '../Header';
 import { logout, changeLoginState, userBookingDetails } from '../../redux/actions';
 // import PrimaryTravellerDetails from '../PrimaryTravellerDetails';
 import './UserBookingDetails.css';
 import FooterBlack from '../FooterBlack';
+// import { Redirect } from '../../../../../Library/Caches/typescript/2.6/node_modules/@types/react-router';
 
 class UserBookingDetails extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      firstNameErr: 0,
-      lastNameErr: 0,
-      emailErr: 0,
-      mobErr: 0,
-      add1Err: 0,
-      add2Err: 0,
-      add3Err: 0,
-      cityErr: 0,
-      zipErr: 0,
-      countryErr: 0,
-      provErr: 0,
-      errorMsg: '',
-      bookDetails: {
-        bookBasket: [],
-        address: {
-          addressLine1: '',
-          addressLine2: '',
-          addressLine3: '',
-          cityName: '',
-          zipCode: '',
-          countryCode: '',
-          province: '',
-        },
-        email: '',
-        firstName: '',
-        lastName: '',
-        phoneNumber: 0,
-        persons: {
-          namePrefix: 'Mr',
+    if (this.props.rooms[this.props.currentId] !== undefined) {
+      this.state = {
+        firstNameErr: 0,
+        lastNameErr: 0,
+        emailErr: 0,
+        mobErr: 0,
+        add1Err: 0,
+        add2Err: 0,
+        add3Err: 0,
+        cityErr: 0,
+        zipErr: 0,
+        countryErr: 0,
+        provErr: 0,
+        errorMsg: '',
+        bookDetails: {
+          bookBasket: [],
+          address: {
+            addressLine1: '',
+            addressLine2: '',
+            addressLine3: '',
+            cityName: '',
+            zipCode: '',
+            countryCode: '',
+            province: '',
+          },
+          email: '',
           firstName: '',
           lastName: '',
-          birthDate: '1997-03-21',
-          room_index: 0,
-          passengerTypeCode: 'ADT',
-          baggage: '0',
+          phoneNumber: 0,
+          persons: {
+            namePrefix: 'Mr',
+            firstName: '',
+            lastName: '',
+            birthDate: '1997-03-21',
+            room_index: 0,
+            passengerTypeCode: 'ADT',
+            baggage: '0',
+          },
+          amount: this.props.rooms[this.props.currentId].price.total.toString(),
+          hotelname: this.props.hotelname,
+          checkin: this.props.checkin,
+          checkout: this.props.checkout,
+          city: this.props.city,
         },
-        amount: this.props.rooms[this.props.currentId].price.total.toString(),
-        hotelname: this.props.hotelname,
-        checkin: this.props.checkin,
-        checkout: this.props.checkout,
-        city: this.props.city,
-      },
-    };
+      };
 
-    UserBookingDetails.propTypes = {
-      isLoggedIn: PropTypes.bool.isRequired,
-      firstName: PropTypes.string.isRequired,
-      changeLoginState: PropTypes.func.isRequired,
-      logout: PropTypes.func.isRequired,
-      userBookingDetails: PropTypes.func.isRequired,
-    };
+      UserBookingDetails.propTypes = {
+        isLoggedIn: PropTypes.bool.isRequired,
+        firstName: PropTypes.string.isRequired,
+        changeLoginState: PropTypes.func.isRequired,
+        logout: PropTypes.func.isRequired,
+        userBookingDetails: PropTypes.func.isRequired,
+      };
+    }
   }
-
   componentWillMount() {
     console.log('in LandingPage componentWillMount, window.localStorage.getItem(userName)', window.localStorage.getItem('userName'), typeof (window.localStorage.getItem('userName')));
     if (window.localStorage.getItem('userName') !== null) {
@@ -276,6 +278,9 @@ class UserBookingDetails extends React.Component {
   doNothing = () => {}
 
   render() {
+    if (this.props.rooms[this.props.currentId] === undefined) {
+      return <Redirect to="/" />;
+    }
     const { firstNameErr } = this.state;
     const { lastNameErr } = this.state;
     const { emailErr } = this.state;

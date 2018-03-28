@@ -194,6 +194,7 @@ class ListingPage extends React.Component {
 
 
   render() {
+    // window.localStorage.setItem('refresh', false);
     console.log('in ListingPage render, state', this.state);
     return (
       <div className="listingPage" >
