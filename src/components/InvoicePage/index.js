@@ -200,7 +200,7 @@ class InvoicePage extends React.Component {
           <img src={greenTick} alt="" className="greenTick" />
           <div className="bookingText1">Booking Confirmed </div>
           <div className="bookingId">{this.props.bookingId}</div>
-
+          <button onClick={() => { window.print(); }} className="printButton">Print</button>
         </div>
         <div className="invoicePageContainer">
 

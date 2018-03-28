@@ -6,6 +6,16 @@
   font-family: 'Open Sans';
 }
 
+.printButton{
+  margin-top: 2%;
+  background: #48bc48;
+  color: white;
+  height: 13%;
+  width: 9%;
+  font-size: 12px;
+  font-family: 'Open Sans';
+}
+
 .bookingConfirmation1{
   width: 100%;
   height: 30vh;
