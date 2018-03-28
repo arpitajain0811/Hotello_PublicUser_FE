@@ -33,11 +33,16 @@ class DetailsPage extends React.Component {
   }
 
   componentDidMount() {
+    document.body.style.overflow = 'scroll';
     this.props.setRoomTypeEditable();
     // console.log('Rooms are:', this.props.rooms);
     window.addEventListener('scroll', this.handleScroll);
     console.log('Match type is: ', typeof this.props.match);
-    fetch(`/viewHotelDetails/${this.props.match.params.value}`, {}).then(data => data.json()).then((response) => {
+    fetch(`/viewHotelDetails/${this.props.match.params.value}`, {
+      headers: {
+        sessionId: window.localStorage.getItem('cookie'),
+      },
+    }).then(data => data.json()).then((response) => {
       console.log(response);
       this.setState({
         hotelDetails: response.hotel_details,
@@ -194,7 +199,7 @@ class DetailsPage extends React.Component {
       // console.log('The buttons are: ', buttons);
     }
     // roomsArray = Array.prototype.slice.call(roomsArray)
-    this.props.setRoomTypeArray(roomsArray);
+    // this.props.setRoomTypeArray(roomsArray);
 
     let allAmenities;
 
@@ -374,7 +379,7 @@ class DetailsPage extends React.Component {
                 <div className="Booking-Summary" >
                   <div className="HotelNameWithStars">
                     <div className="Selected-Hotel-Name">
-                      ₹{(this.state.rooms[this.props.currentId].price.total * 65).toFixed(0)}<span className="night">/NIGHT</span>
+                      ₹{((this.state.rooms[this.props.currentId].price.total * 65) + 500 + (0.18 * (this.state.rooms[this.props.currentId].price.total * 65))).toFixed(0)}<span className="night">/NIGHT</span>
                     </div>
 
                     <div className="SelectedHotelStars">

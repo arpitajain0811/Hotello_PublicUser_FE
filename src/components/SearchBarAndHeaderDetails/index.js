@@ -52,13 +52,19 @@ class SearchBarAndHeader extends React.Component {
   render() {
     let bgColor = '';
     let shadow = '';
+    let displayTextColor = '';
+    let profileButtonColor = '';
     console.log('rerendered');
     if (this.props.type === 1) {
       bgColor = 'white';
       shadow = '0 2px 10px 2px rgba(0, 0, 0, 0.1)';
+      displayTextColor = 'black';
+      profileButtonColor = 'profileButtonBlack';
     } else {
       bgColor = 'transparent';
       shadow = 'none';
+      displayTextColor = 'white';
+      profileButtonColor = 'profileButtonWhite';
     }
     if (this.props.isLoggedIn === true && this.state.displayUserIcon === false) {
       this.setState({
@@ -80,7 +86,8 @@ class SearchBarAndHeader extends React.Component {
           isLoggedIn={this.props.isLoggedIn}
           logoutHandler={this.props.logoutHandler}
           firstName={this.props.firstName}
-          profileButtonClass="profileButtonBlack"
+          textColor={displayTextColor}
+          profileButtonClass={profileButtonColor}
         />
       );
     }
@@ -140,4 +147,3 @@ SearchBarAndHeader.propTypes = {
   logoutHandler: PropTypes.func.isRequired,
   firstName: PropTypes.string.isRequired,
 };
-

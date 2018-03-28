@@ -37,6 +37,7 @@ class InvoicePage extends React.Component {
 
 
   componentDidMount() {
+    document.body.style.overflow = 'scroll';
     this.setState({
       hotelDetails: this.props.hotelDetails,
       rooms: this.props.roomsArray,
@@ -170,19 +171,19 @@ class InvoicePage extends React.Component {
     }
 
 
-    if (this.state.loaded === 0) {
-      return (
-        <div className="detailsPage" >
-          <SearchBarAndHeader updateSearch={this.updateSearch} logoutHandler={this.logoutHandler} />
-          <img src={this.imgSrc} className="hotelImage" />
-          <div className="detailsPageContainer">
-            <div className="mainBody">
-              <img src={loader} />
-            </div>
-          </div>
-        </div>
-      );
-    }
+    // if (this.state.loaded === 0) {
+    //   return (
+    //     <div className="detailsPage" >
+    //       <SearchBarAndHeader updateSearch={this.updateSearch} logoutHandler={this.logoutHandler} />
+    //       <img src={this.imgSrc} className="hotelImage" />
+    //       <div className="detailsPageContainer">
+    //         <div className="mainBody">
+    //           <img src={loader} />
+    //         </div>
+    //       </div>
+    //     </div>
+    //   );
+    // }
 
     return (
       <div className="detailsPage1" >
@@ -264,7 +265,7 @@ class InvoicePage extends React.Component {
               {/* Booking Details */}
               <div className="Booking-Summary1" >
               <div className="Selected-Hotel-Name">
-                      ₹{(this.state.rooms[this.props.currentId].price.total * 65).toFixed(0)}<span className="night">/NIGHT</span>
+                      ₹{((this.state.rooms[this.props.currentId].price.total * 65) + 500 + (0.18 * (this.state.rooms[this.props.currentId].price.total * 65))).toFixed(0)}<span className="night">/NIGHT</span>
               </div>
                 <div className="Search-Selected-Details1">
                   <div className="Search-Selected-CheckInOutDates1">
