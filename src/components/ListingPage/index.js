@@ -23,7 +23,7 @@ class ListingPage extends React.Component {
       selectedHotelDetails: {},
       priceFilter: [
         1000,
-        100000,
+        20000,
       ],
       starsFilter: {
         1: true,
