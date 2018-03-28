@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import './DetailsPage.css';
 import SearchBarAndHeader from '../SearchBarAndHeaderDetails';
 import getAllHotels from '../../helpers/getAllHotels';
-import { storeAllHotels, storeFilteredHotels, logout, updateHotelDetails, updateRedirect, updateBookBasket, setRoomTypeArray, setRoomTypeEditable } from '../../redux/actions';
+import { storeAllHotels, storeFilteredHotels, logout, updateHotelDetails, updateRedirect, updateBookBasket, setRoomTypeArray, setRoomTypeEditable, changeLoginState } from '../../redux/actions';
 import constants from '../../constants.json';
 import Amenity from '../Amenity';
 import Room from '../Room';
@@ -31,7 +31,12 @@ class DetailsPage extends React.Component {
     this.imgSrc = '';
     this.setImg();
   }
-
+  componentWillMount() {
+    if (window.localStorage.getItem('userName') !== null) {
+      // console.log('hi');
+      this.props.changeLoginState(window.localStorage.getItem('userName'));
+    }
+  }
   componentDidMount() {
     document.body.style.overflow = 'scroll';
     this.props.setRoomTypeEditable();
@@ -234,7 +239,7 @@ class DetailsPage extends React.Component {
     if (this.state.expandedDescription) {
       moreDescription = 'Less  ▴';
     } else {
-      moreDescription = 'Read More About Hotels ▾';
+      moreDescription = 'Read More About Hotel ▾';
     }
 
 
@@ -295,6 +300,7 @@ class DetailsPage extends React.Component {
         <div className="detailsPage" >
           <SearchBarAndHeader updateSearch={this.updateSearch} logoutHandler={this.logoutHandler} />
           <img src={this.imgSrc} className="hotelImage" alt="" />
+          <div className="imageTint" />
           <div className="detailsPageContainer">
             <div className="mainBody">
               <img src={loader} alt="" />
@@ -312,6 +318,7 @@ class DetailsPage extends React.Component {
             logoutHandler={this.logoutHandler}
           />
           <img src={this.imgSrc} alt="" className="hotelImage" />
+          <div className="imageTint" />
           <div className="detailsPageContainer">
             <Link to="/listingPage" className="removeTextDecoration">
               <div className="backSection">
@@ -472,6 +479,9 @@ const mapDispatchToProps = dispatch => ({
   },
   setRoomTypeEditable: () => {
     dispatch(setRoomTypeEditable());
+  },
+  changeLoginState: (firstName) => {
+    dispatch(changeLoginState(firstName));
   },
 });
 

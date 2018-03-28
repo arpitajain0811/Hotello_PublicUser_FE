@@ -28,7 +28,7 @@ class HotelCard extends React.Component {
       <div className="HotelCard-outer">
         <div
           className="hotel-image"
-          style={{ backgroundImage: `url("/placeholder-hotel-image${((this.props.image % 6) + 1).toString()}.jpeg")` }}
+          style={{ backgroundImage: `url("/placeholder-hotel-image${((this.props.image % 20) + 1).toString()}.jpeg")` }}
         />
         <div className="hotel-card-content">
           <div className="hotel-card-name" title={this.props.hotelName}>{(this.props.hotelName.length > 14) ? (`${this.props.hotelName.slice(0, 11)}...`) : this.props.hotelName}</div>
