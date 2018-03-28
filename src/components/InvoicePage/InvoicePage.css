@@ -14,7 +14,11 @@
   margin-top: 2%;
   background: #48bc48;
   color: white;
-  height: 13%;
+  height: 18%;
+  padding: 2%;
+  border-radius: 4px;
+  border: 0;
+  outline: none;
   width: 47%;
   margin: 1%;
   font-size: 12px;

@@ -37,7 +37,7 @@ font-family: "Open Sans";
   padding:2%;
   /* border-bottom:1px solid #9b9b9b; */
   padding-bottom:3%;
-  
+
 }
 .PaymentPageLine{
     opacity: 0.42;
@@ -119,9 +119,10 @@ font-family: "Open Sans";
         margin:0;
     }
     .PaymentpageArrow{
-       align-items: center;
+       /* align-items: center; */
     }
     .PaymentPageArrowImg{
         width:45%;
+        margin-top: 5%;
     }
   }
