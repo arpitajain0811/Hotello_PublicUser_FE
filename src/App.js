@@ -14,7 +14,7 @@ import UserBookingDetails from './components/UserBookingDetails';
 import UserProfilePage from './components/UserProfilePage';
 import InvoicePage from './components/InvoicePage';
 import RedirectHome from './components/RedirectHome';
-
+import ErrorPage from './components/ErrorPage';
 
 class App extends Component {
   // componentDidMount() {
@@ -40,6 +40,7 @@ class App extends Component {
           <Route path="/userbookingdetails" component={UserBookingDetails} />
           <Route path="/userProfile" component={UserProfilePage} />
           <Route path="/invoice" component={InvoicePage} />
+          <Route path="/error" component={ErrorPage} />
           <Route component={RedirectHome} />
 
         </Switch>
