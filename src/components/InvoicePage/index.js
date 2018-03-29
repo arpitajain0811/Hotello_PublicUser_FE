@@ -170,7 +170,10 @@ class InvoicePage extends React.Component {
       moreDescription = 'Read More About Hotels ▾';
     }
 
-
+    let numOfNights = this.props.checkOutDate.diff(this.props.checkInDate, 'days');
+    if ((this.props.checkOutDate.date() - this.props.checkInDate.date()) !== 1) {
+      numOfNights += 1;
+    }
     // if (this.state.loaded === 0) {
     //   return (
     //     <div className="detailsPage" >
@@ -280,34 +283,34 @@ class InvoicePage extends React.Component {
                 </div>
                 <hr className="PaymentPageLine" />
                 <div className="DetailsPageAmounts">
-                  <div className="BasePay">
-                    <div>
-                      ₹{(this.state.rooms[this.props.currentId].price.total * 65).toFixed(0)} X {this.props.checkOutDate.diff(this.props.checkInDate, 'days')} X 1
-                    </div>
-                    <div>
-                      ₹{(this.state.rooms[this.props.currentId].price.total * 65).toFixed(0)}
-                    </div>
+                <div className="BasePay">
+                  <div>
+                    ₹{Math.round(this.state.rooms[this.props.currentId].price.total * 65)} X {numOfNights} night X 1 room
                   </div>
-                  <hr className="PaymentPageLine" />
-                  <div className="ServiceFee">
-                    <div>Service Fee</div>
-                    <div> ₹500</div>
+                  <div>
+                    ₹{Math.round(this.state.rooms[this.props.currentId].price.total * 65 * numOfNights) }
                   </div>
-                  <hr className="PaymentPageLine" />
-                  <div className="Taxes">
-                    <div>Taxes (18% GST)</div>
-                    <div>
-                      ₹{(0.18 * (this.state.rooms[this.props.currentId].price.total * 65)).toFixed(0)}
-                    </div>
+                </div>
+                <hr className="PaymentPageLine" />
+                <div className="ServiceFee">
+                  <div>Service Fee</div>
+                  <div> ₹500</div>
+                </div>
+                <hr className="PaymentPageLine" />
+                <div className="Taxes">
+                  <div>Taxes (18% GST)</div>
+                  <div>
+                    ₹{Math.round(0.18 * (this.state.rooms[this.props.currentId].price.total * 65) * numOfNights) }
+                  </div>
 
+                </div>
+                <hr className="PaymentPageLine" />
+                <div className="TotalAmount">
+                  <div>Total</div>
+                  <div>
+                    ₹{Math.round(((this.state.rooms[this.props.currentId].price.total * 65) * numOfNights) + 500 + (0.18 * (this.state.rooms[this.props.currentId].price.total * 65) * numOfNights))}
                   </div>
-                  <hr className="PaymentPageLine" />
-                  <div className="TotalAmount">
-                    <div className="boldText">Amount Paid</div>
-                    <div>
-                      ₹{((this.state.rooms[this.props.currentId].price.total * 65) + 500 + (0.18 * (this.state.rooms[this.props.currentId].price.total * 65))).toFixed(0)}
-                    </div>
-                  </div>
+                </div>
                 </div>
               </div>
                                                          </div>}
