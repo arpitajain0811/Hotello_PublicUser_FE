@@ -290,6 +290,10 @@ class DetailsPage extends React.Component {
       return (<Redirect to="/userbookingdetails" />);
     }
 
+    let numOfNights = this.props.checkOutDate.diff(this.props.checkInDate, 'days');
+    if ((this.props.checkOutDate.date() - this.props.checkInDate.date()) !== 1) {
+      numOfNights += 1;
+    }
     if (this.state.loaded === 0) {
       return (
         <div className="detailsPage" >
@@ -303,7 +307,6 @@ class DetailsPage extends React.Component {
         </div>
       );
     }
-
     return (
         <div className="detailsPage" >
           <SearchBarAndHeader
@@ -379,7 +382,7 @@ class DetailsPage extends React.Component {
                 <div className="Booking-Summary" >
                   <div className="HotelNameWithStars">
                     <div className="Selected-Hotel-Name">
-                      ₹{((this.state.rooms[this.props.currentId].price.total * 65) + 500 + (0.18 * (this.state.rooms[this.props.currentId].price.total * 65))).toFixed(0)}<span className="night">/NIGHT</span>
+                      ₹{Math.round((this.state.rooms[this.props.currentId].price.total * 65))}<span className="night">/NIGHT</span>
                     </div>
 
                     <div className="SelectedHotelStars">
@@ -402,10 +405,10 @@ class DetailsPage extends React.Component {
                   <div className="AmountsContainer">
                     <div className="BasePay">
                       <div>
-                        ₹{(this.state.rooms[this.props.currentId].price.total * 65).toFixed(0)} X {this.props.checkOutDate.diff(this.props.checkInDate, 'days')} night X 1 room
+                        ₹{Math.round(this.state.rooms[this.props.currentId].price.total * 65)} X {numOfNights} night X 1 room
                       </div>
                       <div>
-                        ₹{(this.state.rooms[this.props.currentId].price.total * 65).toFixed(0)}
+                        ₹{Math.round(this.state.rooms[this.props.currentId].price.total * 65 * numOfNights) }
                       </div>
                     </div>
                     <hr className="PaymentPageLine" />
@@ -417,7 +420,7 @@ class DetailsPage extends React.Component {
                     <div className="Taxes">
                       <div>Taxes (18% GST)</div>
                       <div>
-                        ₹{(0.18 * (this.state.rooms[this.props.currentId].price.total * 65)).toFixed(0)}
+                        ₹{Math.round(0.18 * (this.state.rooms[this.props.currentId].price.total * 65) * numOfNights) }
                       </div>
 
                     </div>
@@ -425,7 +428,7 @@ class DetailsPage extends React.Component {
                     <div className="TotalAmount">
                       <div>Total</div>
                       <div>
-                        ₹{((this.state.rooms[this.props.currentId].price.total * 65) + 500 + (0.18 * (this.state.rooms[this.props.currentId].price.total * 65))).toFixed(0)}
+                        ₹{Math.round(((this.state.rooms[this.props.currentId].price.total * 65) * numOfNights) + 500 + (0.18 * (this.state.rooms[this.props.currentId].price.total * 65) * numOfNights))}
                       </div>
                     </div>
                   </div>

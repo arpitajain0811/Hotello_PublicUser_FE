@@ -62,13 +62,17 @@ class BookingSummary extends React.Component {
     let Adults = 'Adult';
     if (this.props.totalAdults > 1) Adults = 'Adults';
     let nights = '';
-    let numOfNights = 0;
-    const checkOut = Number(this.props.checkOutDate._d.toString().slice(8, 10));
-    const checkIn = Number(this.props.checkInDate._d.toString().slice(8, 10));
-    numOfNights = checkOut - checkIn;
+    // let numOfNights = 0;
+    // const checkOut = Number(this.props.checkOutDate._d.toString().slice(8, 10));
+    // const checkIn = Number(this.props.checkInDate._d.toString().slice(8, 10));
+    // numOfNights = checkOut - checkIn;
+    let numOfNights = this.props.checkOutDate.diff(this.props.checkInDate, 'days');
+    if ((this.props.checkOutDate.date() - this.props.checkInDate.date()) !== 1) {
+      numOfNights += 1;
+    }
     if (numOfNights > 1) nights = `${numOfNights} Nights`;
     else nights = `${numOfNights} Night`;
-    const amtPerNightPerRoom = Math.round(this.props.rooms[this.props.currentId].price.total * numOfNights * this.props.totalRooms * 65);
+    const amtPerNightPerRoom = Math.round(this.props.rooms[this.props.currentId].price.total * numOfNights * 1 * 65);
     console.log(amtPerNightPerRoom);
     return (
       <div className="BookingSummary" >
@@ -95,13 +99,13 @@ class BookingSummary extends React.Component {
 
           </div>
           <div className="SearchSelectedRooms">
-            {this.props.totalRooms} {Room}, {this.props.totalAdults} {Adults}{childrenString}
+            1 {Room}, {this.props.totalAdults} {Adults}{childrenString}
           </div>
         </div>
         <hr className="PaymentPageLine" />
         <div className="PriceDeatils" >
           <div className="BasePay">
-            <div>₹{amtPerNightPerRoom} X {nights} X {this.props.totalRooms} {Room}</div>
+            <div>₹{Math.round(this.props.rooms[this.props.currentId].price.total)} X {nights} X 1 {Room}</div>
             <div> ₹{amtPerNightPerRoom}</div>
           </div>
           <hr className="PaymentPageLine" />
