@@ -122,19 +122,6 @@
     align-items: center;    
 }
 
-@media only screen and (max-width:952px){
-    .manage-bookings-row-head{
-        flex-direction: column;
-        align-items:flex-start
-    }
-
-    .manage-bookings-row-foot{
-        flex-direction: column;
-        align-items: flex-start;
-        margin-top:10%;
-    }
-}
-
 .manage-bookings-row-foot-left{
     display:flex;
     flex-direction: column;
@@ -212,4 +199,45 @@
     font-weight: 600;
     color:black;
     font-size:30px
+}
+
+
+
+
+@media only screen and (max-width:952px){
+    .manage-bookings-row-head{
+        flex-direction: column;
+        align-items:flex-start;
+        justify-content: space-between;
+    }
+
+    .manage-bookings-row-foot{
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: space-between;
+        margin-top:10%;
+    }
+    .manage-bookings-row-img-col{
+        display:none
+    }
+    .manage-bookings-row-hotelname{
+        margin:10px 0px;
+    }
+    .manage-bookings-row-bookingid{
+        margin:10px 0px;
+    }
+    .manage-bookings-row-dates{
+        margin:10px 0px;
+    }
+    .manage-bookings-row-guests{
+        margin:10px 0px;
+    }
+    .manage-bookings-row-foot-right{
+        flex-direction: row;
+    }
+    .manage-bookings-row-amount{
+        margin:0px 10px
+    }
+
+
 }
