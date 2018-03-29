@@ -26,21 +26,38 @@ class BookingSummary extends React.Component {
         basket: this.props.bookDetails.bookBasket,
         amount: this.props.rooms[this.props.currentId].price.total,
       }),
-    }).then(() => {
-      fetch('/bookHotel', {
-        method: 'POST',
-        headers: {
-          authorization: auth,
-          sessionId: cookie,
-        },
-        body: JSON.stringify(this.props.bookDetails),
-      }).then(data => data.json()).then((response) => {
-        console.log('Server booking response is: ', response);
-        this.props.updateBookingStatus(response.bookingid, response.status);
-        this.setState({ goTo: '/invoice' });
-      }).catch(() => {
-        this.setState({ goTo: '/error' });
-      });
+    }).then((response) => {
+      if (response.status === 401) {
+        window.localStorage.setItem('token', null);
+        this.setState({ goTo: '/' });
+      } else {
+        fetch('/bookHotel', {
+          method: 'POST',
+          headers: {
+            authorization: auth,
+            sessionId: cookie,
+          },
+          body: JSON.stringify(this.props.bookDetails),
+        }).then((data) => {
+          if (data.status === 401) {
+            return 'Login invalid';
+          }
+          return data.json();
+        }).then((bookingResponse) => {
+          if (bookingResponse === 'Login invalid') {
+            window.localStorage.setItem('token', null);
+            this.setState({ goTo: '/' });
+          } else {
+            console.log('Server booking response is: ', response);
+            this.props.updateBookingStatus(response.bookingid, response.status);
+            this.setState({ goTo: '/invoice' });
+          }
+        }).catch(() => {
+          this.setState({ goTo: '/error' });
+        });
+      }
+    }).catch(() => {
+      this.setState({ goTo: '/error' });
     });
   }
   render() {
