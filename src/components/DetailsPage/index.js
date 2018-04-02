@@ -14,9 +14,9 @@ import Room from '../Room';
 import loader from '../../images/loader2.svg';
 import LoginBody from '../LoginBody';
 
-window.onbeforeunload = function () {
-  window.localStorage.setItem('refresh', true);
-};
+// window.onbeforeunload = function () {
+//   window.localStorage.setItem('refresh', true);
+// };
 class DetailsPage extends React.Component {
   constructor(props) {
     super(props);
@@ -133,10 +133,12 @@ class DetailsPage extends React.Component {
   }
 
   render() {
-    if (window.localStorage.getItem('refresh') === 'true') {
+    // if (window.localStorage.getItem('refresh') === 'true') {
+    //   return <Redirect to="/" />;
+    // }
+    if (this.props.city === '') {
       return <Redirect to="/" />;
     }
-
     let roomString = `${this.props.rooms.length} Room`;
     if (this.props.rooms.length > 1) {
       roomString = `${this.props.rooms.length} Rooms`;

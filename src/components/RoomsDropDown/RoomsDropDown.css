@@ -65,7 +65,7 @@
     outline: none;
     color: #0eb550;
 }
-@media only screen and (max-width: 1200px) {
+@media only screen and (max-width: 1235px) {
     .DropDownBlock{
         background-color: white;
         position: absolute;
@@ -75,6 +75,9 @@
         margin-left:-1.5%;
         width: 30%;
         min-width:300px;
+    }
+    .GiveBorder{
+        z-index:5
     }
    
 }

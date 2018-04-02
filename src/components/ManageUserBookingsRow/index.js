@@ -53,7 +53,7 @@ class ManageUserBookingsRow extends React.Component {
       return (
         <div className="manage-bookings-row">
           <div className="manage-bookings-row-img-col">
-            <img src={`/placeholder-hotel-image${Number((this.props.amount % 6) + 1).toFixed(0)}.jpeg`} className="manage-bookings-row-img" alt="hotel-img" />
+            <img src={`/placeholder-hotel-image${Number((this.props.amount.toFixed(0) % 6) + 1).toFixed(0)}.jpeg`} className="manage-bookings-row-img" alt="hotel-img" />
           </div>
           <div className="manage-bookings-row-content">
 

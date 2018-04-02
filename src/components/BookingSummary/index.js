@@ -1,11 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { updateBookingStatus } from '../../redux/actions';
 import './BookingSummary.css';
 
 class BookingSummary extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      goTo: null,
+    };
+  }
   makePayment=() => {
     console.log('ho');
     const auth = window.localStorage.getItem('token');
@@ -20,21 +26,44 @@ class BookingSummary extends React.Component {
         basket: this.props.bookDetails.bookBasket,
         amount: this.props.rooms[this.props.currentId].price.total,
       }),
-    }).then(() => {
-      fetch('/bookHotel', {
-        method: 'POST',
-        headers: {
-          authorization: auth,
-          sessionId: cookie,
-        },
-        body: JSON.stringify(this.props.bookDetails),
-      }).then(data => data.json()).then((response) => {
-        console.log('Server booking response is: ', response);
-        this.props.updateBookingStatus(response.bookingid, response.status);
-      });
+    }).then((response) => {
+      if (response.status === 401) {
+        window.localStorage.setItem('token', null);
+        this.setState({ goTo: '/' });
+      } else {
+        fetch('/bookHotel', {
+          method: 'POST',
+          headers: {
+            authorization: auth,
+            sessionId: cookie,
+          },
+          body: JSON.stringify(this.props.bookDetails),
+        }).then((data) => {
+          if (data.status === 401) {
+            return 'Login invalid';
+          }
+          return data.json();
+        }).then((bookingResponse) => {
+          if (bookingResponse === 'Login invalid') {
+            window.localStorage.setItem('token', null);
+            this.setState({ goTo: '/' });
+          } else {
+            console.log('Server booking response is: ', response);
+            this.props.updateBookingStatus(response.bookingid, response.status);
+            this.setState({ goTo: '/invoice' });
+          }
+        }).catch(() => {
+          this.setState({ goTo: '/error' });
+        });
+      }
+    }).catch(() => {
+      this.setState({ goTo: '/error' });
     });
   }
   render() {
+    if (this.state.goTo !== null) {
+      return <Redirect to={this.state.goTo} />;
+    }
     const stars = [];
     for (let i = 0; i < Number(this.props.hotelDetails.stars); i += 1) {
       stars.push((<img
@@ -115,7 +144,7 @@ class BookingSummary extends React.Component {
           </div>
           <hr className="PaymentPageLine" />
           <div className="Taxes">
-            <div>Taxes (18% GST)</div>
+            <div>Taxes</div>
             <div> ₹{Math.round(0.18 * amtPerNightPerRoom)}</div>
 
           </div>
@@ -126,9 +155,7 @@ class BookingSummary extends React.Component {
           </div>
         </div>
         <div className="MakePaymentButtonDiv" >
-          <Link to="/invoice">
           <button onClick={() => this.makePayment()} disabled={this.props.isAnyFieldEmpty} className="MakePaymentButton">Make Payment</button>
-          </Link>
         </div>
       </div>
     );

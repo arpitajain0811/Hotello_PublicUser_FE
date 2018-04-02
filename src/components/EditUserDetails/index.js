@@ -1,4 +1,5 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
 import './EditUserDetails.css';
 import loaderGif from '../../ajax-loader.gif';
 
@@ -7,6 +8,7 @@ class EditUserDetails extends React.Component {
     console.log('in EditUserDetails constructor');
     super(props);
     this.state = {
+      isLoggedIn: true,
       isFirstNameValid: true,
       isPhoneNumberValid: true,
       isLastNameValid: true,
@@ -28,7 +30,19 @@ class EditUserDetails extends React.Component {
       headers: {
         authorization: window.localStorage.getItem('token'),
       },
-    }).then(resp => resp.json()).then(json => this.setState(prevState => ({ ...prevState, ...json })));
+    }).then((resp) => {
+      if (resp.status === 401) {
+        return 'Login invalid';
+      }
+      return resp.json();
+    })
+      .then((json) => {
+        if (json === 'Login invalid') {
+          this.setState({ isLoggedIn: false });
+          window.localStorage.setItem('token', null);
+        }
+        this.setState(prevState => ({ ...prevState, ...json }));
+      });
   }
 
   editDetailHandler = (event) => {
@@ -101,6 +115,9 @@ class EditUserDetails extends React.Component {
   }
 
   render() {
+    if (this.state.isLoggedIn === false) {
+      return <Redirect to="/" />;
+    }
     console.log('in EditUserDetails render state = ', this.state);
     if (this.state) {
       let msgs = Object.values(this.state.validationErrorMsgs);

@@ -23,7 +23,7 @@ class UserBookingDetails extends React.Component {
         add3Err: 0,
         cityErr: 0,
         zipErr: 0,
-        countryErr: 0,
+        countryErr: 1,
         provErr: 0,
         errorMsg: '',
         bookDetails: {
@@ -34,7 +34,7 @@ class UserBookingDetails extends React.Component {
             addressLine3: '',
             cityName: '',
             zipCode: '',
-            countryCode: '',
+            countryCode: 'IN',
             province: '',
           },
           email: '',
@@ -394,7 +394,7 @@ class UserBookingDetails extends React.Component {
             <div className="PTD-inp"><input onChange={(event) => { this.changeAdd2(event); }} className="PTD-form-input" type="text" placeholder="Address Line 2" /></div>
             <div className="PTD-inp PTD-inpx2">
               <div className="PTD-inp"><input onChange={(event) => { this.changeZip(event); }} className="PTD-form-input2" type="number" placeholder="Zip" /></div>
-              <div className="PTD-inp"><input onChange={(event) => { this.changeCountry(event); }} className="PTD-form-input2" type="text" placeholder="Country Code" /></div>
+              <div className="PTD-inp"><input className="PTD-form-input2" type="text" placeholder="Country" /></div>
             </div>
           </div>
           <div className="PTD-form-fields">
@@ -413,7 +413,7 @@ class UserBookingDetails extends React.Component {
       );
     }
 
-    return null;
+    return <Redirect to="/" />;
   }
 }
 
