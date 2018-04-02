@@ -93,6 +93,7 @@ class SearchBarAndHeader extends React.Component {
                 cityPlaceholder={this.props.cityPlaceholder}
                 saveSearchCityText={this.props.saveSearchCityText}
                 saveSearchCityLatLng={this.props.saveSearchCityLatLng}
+                lighterPlaceholder="lighterPlaceholder"
               />
               {/* <input
                 className="searchCityInputBox"

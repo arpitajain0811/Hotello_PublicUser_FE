@@ -92,7 +92,7 @@ class PaymentPage extends React.Component {
         </div>
       );
     }
-    return null;
+    return <Redirect to="/" />;
   }
 }
 

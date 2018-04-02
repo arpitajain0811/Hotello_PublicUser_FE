@@ -17,9 +17,7 @@ class UserProfilePage extends React.Component {
   }
   componentWillMount() {
     console.log('in UserProfilePage componentWillMount');
-    if (window.localStorage.getItem('userName') !== null) {
-      this.props.changeLoginState(window.localStorage.getItem('userName'));
-    }
+    this.props.changeLoginState(window.localStorage.getItem('userName'));
   }
 
   setActiveLink =() => {
@@ -39,12 +37,14 @@ class UserProfilePage extends React.Component {
     }));
   }
 
-  goBack = () => {
-    this.props.history.goBack();
+  changeUserName = (newUserName) => {
+    console.log('in UserProfilePage changeUserName');
+    window.localStorage.setItem('userName', newUserName);
+    this.props.changeLoginState(window.localStorage.getItem('userName'));
   }
 
   render() {
-    console.log('in UserProfilePage render, state', this.state);
+    console.log('in UserProfilePage render, state, userName', this.state, window.localStorage.getItem('userName'));
     if (!window.localStorage.getItem('userName')) {
       return (
         <Redirect to="/" />
@@ -56,7 +56,7 @@ class UserProfilePage extends React.Component {
           logoGreen
           logoutHandler={this.logoutHandler}
           profileButtonClass="profileButtonBlack"
-          setHeight="10%"
+          setStyle={{ height: '10%', padding: '0% 2%' }}
         />
         <div className="userProfileBody" >
           <div className="userProfileBody-col1" style={this.state.showSidebar ? { display: 'flex' } : {}}>
@@ -91,10 +91,10 @@ class UserProfilePage extends React.Component {
             <div
               className="backButtonContainer"
             >
-                <div className="backArrow">◀</div><div onClick={this.goBack} className="backButton">Back</div>
+                <div className="backArrow">◀</div><Link to="/" className="goHomeLink">Go to Home</Link>
             </div>
             <Switch>
-              <Route exact path="/userProfile/" component={EditUserDetails} />
+              <Route exact path="/userProfile/" component={() => (<EditUserDetails changeUserName={this.changeUserName} />)} />
               <Route path="/userProfile/manageUserBookings" component={ManageUserBookings} />
             </Switch>
           </div>
@@ -122,6 +122,5 @@ export default connect(mapStateToProps, mapDispatchToProps)(UserProfilePage);
 
 UserProfilePage.propTypes = {
   logout: PropTypes.func.isRequired,
-  city: PropTypes.string.isRequired,
-  history: PropTypes.object,
+  changeLoginState: PropTypes.func.isRequired,
 };

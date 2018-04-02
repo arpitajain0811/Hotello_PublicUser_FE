@@ -1,4 +1,5 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
 import './ManageUserBookings.css';
 import ManageUserBookingsRow from '../ManageUserBookingsRow';
 
@@ -6,6 +7,7 @@ class ManageUserBookings extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      isLoggedIn: true,
       allBookings: [],
     };
   }
@@ -18,12 +20,24 @@ class ManageUserBookings extends React.Component {
       },
     };
     fetch('/userViewBookings', options)
-      .then(response => response.json())
+      .then((response) => {
+        if (response.status === 401) { console.log('logininvalid'); return 'Login invalid'; }
+        return response.json();
+      })
       .then((respJSON) => {
-        this.setState({ allBookings: respJSON });
+        if (respJSON === 'Login invalid') {
+          this.setState({ isLoggedIn: false });
+          window.localStorage.setItem('token', null);
+        } else {
+          this.setState({ allBookings: respJSON });
+        }
       });
   }
   render() {
+    if (this.state.isLoggedIn === false) {
+      return <Redirect to="/" />;
+    }
+
     const allBookingRows = [];
     this.state.allBookings.forEach((booking) => {
       const bookingRow = (<ManageUserBookingsRow
@@ -40,9 +54,18 @@ class ManageUserBookings extends React.Component {
       />);
       allBookingRows.push(bookingRow);
     });
+    if (allBookingRows.length) {
+      return (
+        <div className="manage-user-bookings">
+          {allBookingRows}
+        </div>
+      );
+    }
     return (
       <div className="manage-user-bookings">
-        {allBookingRows}
+        <div className="messageContainer" >
+          No Bookings Found
+        </div>
       </div>
     );
   }

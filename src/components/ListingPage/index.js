@@ -63,6 +63,7 @@ class ListingPage extends React.Component {
     console.log(inDate, outDate);
     inDate = inDate.substring(0, inDate.lastIndexOf('T'));
     outDate = outDate.substring(0, outDate.lastIndexOf('T'));
+    // if (this.props.allHotels.length === 0) {
     getAllHotels(
       this.props.city,
       inDate, outDate,
@@ -77,6 +78,10 @@ class ListingPage extends React.Component {
       }
       this.setState({ loaded: true });
     });
+    // }
+    // else {
+    //   this.setState({ loaded: true });
+    // }
   }
 
   updateFilteredHotels = (priceRange, stars) => {

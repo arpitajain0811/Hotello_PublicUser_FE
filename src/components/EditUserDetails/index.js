@@ -1,4 +1,5 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
 import './EditUserDetails.css';
 import loaderGif from '../../ajax-loader.gif';
 
@@ -7,6 +8,7 @@ class EditUserDetails extends React.Component {
     console.log('in EditUserDetails constructor');
     super(props);
     this.state = {
+      isLoggedIn: true,
       isFirstNameValid: true,
       isPhoneNumberValid: true,
       isLastNameValid: true,
@@ -28,7 +30,19 @@ class EditUserDetails extends React.Component {
       headers: {
         authorization: window.localStorage.getItem('token'),
       },
-    }).then(resp => resp.json()).then(json => this.setState(prevState => ({ ...prevState, ...json })));
+    }).then((resp) => {
+      if (resp.status === 401) {
+        return 'Login invalid';
+      }
+      return resp.json();
+    })
+      .then((json) => {
+        if (json === 'Login invalid') {
+          this.setState({ isLoggedIn: false });
+          window.localStorage.setItem('token', null);
+        }
+        this.setState(prevState => ({ ...prevState, ...json }));
+      });
   }
 
   editDetailHandler = (event) => {
@@ -80,6 +94,8 @@ class EditUserDetails extends React.Component {
         this.setState({
           updateSuccessMsg: 'Details updated successfully!',
         });
+        console.log('after setting state to "Details updated successfully"');
+        this.props.changeUserName(this.state.firstName);
       });
     } else {
       this.setState({
@@ -99,6 +115,9 @@ class EditUserDetails extends React.Component {
   }
 
   render() {
+    if (this.state.isLoggedIn === false) {
+      return <Redirect to="/" />;
+    }
     console.log('in EditUserDetails render state = ', this.state);
     if (this.state) {
       let msgs = Object.values(this.state.validationErrorMsgs);
@@ -116,18 +135,18 @@ class EditUserDetails extends React.Component {
             <input type="text" className="userDetailsInputBox" name="email" value={this.state.email} onChange={this.editDetailHandler} />
             <input type="text" className="userDetailsInputBox" name="phoneNumber" value={this.state.phoneNumber} onChange={this.editDetailHandler} />
           </div>
-          <div className="validationErrorMsgsBlock">
+          <div className="msgsRow" >
+            <div className="validationErrorMsgsBlock">
               {msgs}
-          </div>
-          <div className="saveButtonRow" >
+            </div>
             <div style={{ color: 'red' }}>
               {this.state.submitErrorMsg}
             </div>
             <div style={{ color: '#48bc48' }} >
               {this.state.updateSuccessMsg}
             </div>
-            <button className="saveDetailsButton" onClick={this.handleSaveUserDetails} >Save Details</button>
           </div>
+          <button className="saveDetailsButton" onClick={this.handleSaveUserDetails} >Save Details</button>
 
         </div>
       );
