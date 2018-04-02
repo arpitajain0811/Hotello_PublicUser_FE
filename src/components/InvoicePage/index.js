@@ -29,6 +29,7 @@ class InvoicePage extends React.Component {
       scrollState: 0,
       expandedAmenities: false,
       expandedDescription: false,
+      goHome: false,
       // redirect: false,
     };
     this.imgSrc = '';
@@ -191,7 +192,11 @@ class InvoicePage extends React.Component {
     //     </div>
     //   );
     // }
-
+    if (this.state.goHome === true) {
+      return (
+        <Redirect to="/" />
+      );
+    }
     return (
       <div className="detailsPage1" >
       <div className="InvoiceHeader">
@@ -207,7 +212,18 @@ class InvoicePage extends React.Component {
           <img src={greenTick} alt="" className="greenTick" />
           <div className="bookingText1">Booking Confirmed </div>
           <div className="bookingId">{this.props.bookingId}</div>
-
+          <div className="buttonsContainer">
+          <button
+            onClick={() => {
+            this.setState({
+              goHome: true,
+            });
+          }}
+            className="printButton"
+          > Home
+          </button>
+          <button onClick={() => { window.print(); }} className="printButton">Print</button>
+          </div>
         </div>
         <div className="invoicePageContainer">
 

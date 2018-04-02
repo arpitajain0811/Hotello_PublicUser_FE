@@ -48,8 +48,8 @@ class BookingSummary extends React.Component {
             window.localStorage.setItem('token', null);
             this.setState({ goTo: '/' });
           } else {
-            console.log('Server booking response is: ', response);
-            this.props.updateBookingStatus(response.bookingid, response.status);
+            console.log('Server booking response is: ', bookingResponse);
+            this.props.updateBookingStatus(bookingResponse.bookingid, bookingResponse.status);
             this.setState({ goTo: '/invoice' });
           }
         }).catch(() => {
