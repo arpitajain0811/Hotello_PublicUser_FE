@@ -171,14 +171,12 @@ class InvoicePage extends React.Component {
     }
 
 
-
     if (window.localStorage.getItem('token') === null) {
       return (<Redirect to="/" />);
-
+    }
     let numOfNights = this.props.checkOutDate.diff(this.props.checkInDate, 'days');
     if ((this.props.checkOutDate.date() - this.props.checkInDate.date()) !== 1) {
       numOfNights += 1;
-
     }
     // if (this.state.loaded === 0) {
     //   return (
