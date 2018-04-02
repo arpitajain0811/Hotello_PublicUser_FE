@@ -93,6 +93,8 @@
   display: flex;
   /* flex-direction: column; */
   flex-wrap: wrap;
+  max-height: 23vh;
+  overflow-y: scroll;
 }
 .Roomtype2{
   margin-right:2%;
