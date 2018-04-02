@@ -60,12 +60,12 @@ class LandingPageBody extends React.Component {
           </div>
           <div className="LandingPageSearchBox">
             <div className="SearchByBox">
-              <TypeAheadSearchBox cityPlaceholder="Search Places" saveSearchCityText={this.props.saveSearchCityText} saveSearchCityLatLng={this.props.saveSearchCityLatLng} checkValidation={this.checkValidation} />
-              {/* <input
-               className="SearchByTextInput"
-               value={this.props.city} type="text"
-               placeholder="Search Hotels by City"
-               onChange={text => this.props.saveSearchCityText(text)} /> */}
+              <TypeAheadSearchBox
+                cityPlaceholder="Search Places"
+                saveSearchCityText={this.props.saveSearchCityText}
+                saveSearchCityLatLng={this.props.saveSearchCityLatLng}
+                checkValidation={this.checkValidation}
+              />
             </div>
             <div className="CheckInOutDates">
               <div className="CheckInPicker">
